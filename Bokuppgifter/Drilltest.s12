@@ -1,0 +1,6 @@
+	use	Labdefs.s12
+	org	$1000
+Dtest1:	
+	ldaa	DipSwitch	;In med instruktionerna i A
+	staa	DrillControl	;Spara i kontrollern
+	bra	Dtest1

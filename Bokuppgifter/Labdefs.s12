@@ -1,0 +1,5 @@
+;Adresser
+DipSwitch	equ	$600
+HexDisplay	equ	$700
+DrillControl	equ	$400
+DrillStatus	equ	$401

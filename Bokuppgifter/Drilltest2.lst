@@ -58,4 +58,7 @@ File: Drilltest2.lst
 001052 7A 04 00            51. 	staa	DrillControl	;Höj borren
 001055 79 04 00            52. 	clr	DrillControl
 001058                     53. 	
-001058 3D                  54. GeLarm:		rts
+001058                     54. GeLarm:	
+001058 86 10               55. 	ldaa	#$10
+00105A 7A 04 00            56. 	staa	DrillControl
+00105D 3D                  57. 	rts

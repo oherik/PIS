@@ -46,4 +46,7 @@ Borra_read_status:
 	staa	DrillControl	;Höj borren
 	clr	DrillControl
 	
-GeLarm:		rts
+GeLarm:	
+	ldaa	#$10
+	staa	DrillControl
+	rts

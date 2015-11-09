@@ -17,13 +17,33 @@ start:	ldaa	#0
 stopp:	bra	stopp
 
 Vrid1steg:	
-	ldaa	#3
-	staa	DrillControl
-	ldaa	#0
-	staa	DrillControl
+	ldaa	#2		;Medurs (ettställ bit 1, nollställ övriga)
+	staa	DrillControl	
+	inca
+	staa	DrillControl	;Stega (addera 1 till 2 = 3 => bit 1 och 0 ettställda)
 	rts
 	
-;Dummyrutiner
-TillRefPos:	rts
-Borra:		rts
+TillRefPos:	
+	ldaa	DrillStatus
+	anda	#1		;Maska bort bit 1-7
+	beq	TillRefPos_turn	
+	rts	
+TillRefPos_turn
+	jsr	Vrid1steg
+	bra	TillRefPos
+	
+
+Borra:	
+	ldaa	#4	;Starta motor
+	staa	DrillControl
+	adda	#8	;Sänk borr
+	staa	DrillControl
+Borra_read_status:
+	ldab	DrillStatus
+	andb	#4
+	beq	Borra_read_status
+	suba	#8	;Höj borr
+	staa	DrillControl	;Höj borren
+	clr	DrillControl
+	
 GeLarm:		rts

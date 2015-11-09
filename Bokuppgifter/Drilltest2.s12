@@ -1,0 +1,23 @@
+;Drilltest2.s12
+	use	Labdefs.s12
+	org	$1000
+start:	ldaa	#0
+	staa	DrillControl
+	jsr	TillRefPos
+	jsr	Borra
+	jsr	Vrid1steg
+	jsr	Borra
+	jsr	Vrid1steg
+	jsr	Borra
+	jsr	Vrid1steg
+	jsr	Vrid1steg
+	jsr	Vrid1steg
+	jsr	Borra
+	jsr	GeLarm
+stopp:	bra	stopp
+
+;Dummyrutiner
+Vrid1steg:	rts
+TillRefPos:	rts
+Borra:		rts
+GeLarm:		rts

@@ -1,0 +1,35 @@
+QA12 - MC68HC12 Absolute crossassembler, Version 1.6.3
+(c) GMV 1989-2013
+
+
+File: Drilltest2.lst
+                            1. ;Drilltest2.s12
+---- File: "C:\Users\Erik\Documents\GitHub\PIS\Bokuppgifter\Drilltest2.s12"
+                            2. 	use	Labdefs.s12
+---- File: "Labdefs.s12"
+                            3. ;Adresser
+       0000 0600            4. DipSwitch	equ	$600
+       0000 0700            5. HexDisplay	equ	$700
+       0000 0400            6. DrillControl	equ	$400
+       0000 0401            7. DrillStatus	equ	$401001000                      8. 	org	$1000
+---- File: "C:\Users\Erik\Documents\GitHub\PIS\Bokuppgifter\Drilltest2.s12"
+001000 86 00                9. start:	ldaa	#0
+001002 7A 04 00            10. 	staa	DrillControl
+001005 16 10 29            11. 	jsr	TillRefPos
+001008 16 10 2A            12. 	jsr	Borra
+00100B 16 10 28            13. 	jsr	Vrid1steg
+00100E 16 10 2A            14. 	jsr	Borra
+001011 16 10 28            15. 	jsr	Vrid1steg
+001014 16 10 2A            16. 	jsr	Borra
+001017 16 10 28            17. 	jsr	Vrid1steg
+00101A 16 10 28            18. 	jsr	Vrid1steg
+00101D 16 10 28            19. 	jsr	Vrid1steg
+001020 16 10 2A            20. 	jsr	Borra
+001023 16 10 2B            21. 	jsr	GeLarm
+001026 20 FE               22. stopp:	bra	stopp
+                           23. 
+                           24. ;Dummyrutiner
+001028 3D                  25. Vrid1steg:	rts
+001029 3D                  26. TillRefPos:	rts
+00102A 3D                  27. Borra:		rts
+00102B 3D                  28. GeLarm:		rts

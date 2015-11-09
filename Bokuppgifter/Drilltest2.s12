@@ -16,8 +16,14 @@ start:	ldaa	#0
 	jsr	GeLarm
 stopp:	bra	stopp
 
+Vrid1steg:	
+	ldaa	#3
+	staa	DrillControl
+	ldaa	#0
+	staa	DrillControl
+	rts
+	
 ;Dummyrutiner
-Vrid1steg:	rts
 TillRefPos:	rts
 Borra:		rts
 GeLarm:		rts

@@ -1,0 +1,90 @@
+QA12 - MC68HC12 Absolute crossassembler, Version 1.6.3
+(c) GMV 1989-2013
+
+
+File: Uppgift_7.lst
+                            1. 	use	KeyboardML15_lab.s12
+---- File: "KeyboardML15_lab.s12"
+                            2. ;Testprogram
+001000                      3. 	org	$1000
+                            4. ;start:	jsr	GetKbdML15
+                            5. ;	cmpb	#$FF
+                            6. ;	beq	start
+                            7. ;	nop
+                            8. ;	bra	start
+001000 CE 10 08             9. 	ldx	#tabell
+001003 16 10 26            10. start:	jsr	DisplayML15
+001006 20 FB               11. 	bra	start
+                           12. ;
+001008 01 02 03 04 05 06   13. tabell:	fcb	1,2,3,4,5,6
+                           14. 
+00100E                     15. 	
+00100E                     16. CheckKbdML15:
+00100E F6 09 C0            17. 	ldab	$9c0
+001011 2A 03               18. 	bpl	CheckKbd_VA
+001013 C6 FF               19. 	ldab	#$FF	
+001015 3D                  20. 	rts
+001016                     21. CheckKbd_VA:
+001016 37                  22. 	pshb
+001017                     23. CheckKbd_VA_active:
+001017 F6 09 C0            24. 	ldab	$9c0
+00101A 2A FB               25. 	bpl	CheckKbd_VA_active
+00101C 33                  26. 	pulb
+00101D 3D                  27. 	rts
+00101E                     28. 	
+00101E                     29. GetKbdML15:
+00101E 16 10 0E            30. 	jsr	CheckKbdML15
+001021 C1 FF               31. 	cmpb	#$FF
+001023 27 F9               32. 	beq	GetKbdML15
+001025 3D                  33. 	rts
+001026                     34. 	
+001026                     35. DisplayML15:	; Visa sifforna 1-6 på displayen
+001026 16 10 59            36. 	jsr	DisplayML15_reset
+001029 7A 09 C2            37. 	staa	$9c2
+00102C                     38. DisplayML15_compare_loop:
+00102C 81 06               39. 	cmpa	#6
+00102E 26 09               40. 	bne	DisplayML15_not_6
+001030 86 00               41. 	ldaa	#0
+001032 7A 09 C3            42. 	staa	$9c3
+001035 7A 09 C3            43. 	staa	$9c3
+001038 3D                  44. 	rts
+001039                     45. DisplayML15_not_6
+001039                     46. 	ldab	a,x
+00103B 7B 09 C3            47. 	stab	$9c3
+00103E 42                  48. 	inca
+00103F 20 EB               49. 	bra	DisplayML15_compare_loop
+001041                     50. 	
+001041                     51. DisplayML15_Stack:	; Visa ett värde som lagts på stacken på samtliga displayer
+001041 16 10 59            52. 	jsr	DisplayML15_reset
+001044                     53. 	ldab	2,sp	; Lägg stackvärdet i B
+001046                     54. DisplayML15_Stack_compare_loop:
+001046 81 06               55. 	cmpa	#6
+001048 26 09               56. 	bne	DisplayML15_Stack_not_6
+00104A 86 00               57. 	ldaa	#0
+00104C 7A 09 C3            58. 	staa	$9c3
+00104F 7A 09 C3            59. 	staa	$9c3
+001052 3D                  60. 	rts
+001053                     61. DisplayML15_Stack_not_6:
+001053 7B 09 C3            62. 	stab	$9c3
+001056 42                  63. 	inca
+001057 20 ED               64. 	bra	DisplayML15_Stack_compare_loop
+001059                     65. 	
+001059                     66. DisplayML15_reset:
+001059 86 01               67. 	ldaa	#1
+00105B 7A 09 C2            68. 	staa	$9c2
+00105E 86 D0               69. 	ldaa	#$d0
+001060 7A 09 C3            70. 	staa	$9c3
+001063 86 00               71. 	ldaa	#0
+001065 7A 09 C2            72. 	staa	$9c2
+001068 3D                  73. 	rts
+                           74. 
+001069                     75. 	
+001069                     76. 	001000                     77. 	org	$1000
+---- File: "C:\Users\Erik\Documents\GitHub\PIS\Lab1\Uppgift_7.s12"
+001000 16 10 05            78. main:	jsr	GetPut
+001003 20 FB               79. 	bra 	main
+001005                     80. 	
+001005 16 10 1E            81. GetPut:	jsr	GetKbdML15		;Lägger knappens index i B
+001008 37                  82. 	pshb				;Lägg B på stacken
+001009 16 10 41            83. 	jsr	DisplayML15_Stack	;Visa värde som ligger överst på stacken
+00100C 1B 81               84. 	leas	1,sp			;Ta bort argument

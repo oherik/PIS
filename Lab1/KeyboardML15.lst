@@ -1,0 +1,80 @@
+QA12 - MC68HC12 Absolute crossassembler, Version 1.6.3
+(c) GMV 1989-2013
+
+
+File: KeyboardML15.lst
+                            1. ;Testprogram
+001000                      2. 	org	$1000
+                            3. ;start:	jsr	GetKbdML15
+                            4. ;	cmpb	#$FF
+                            5. ;	beq	start
+                            6. ;	nop
+                            7. ;	bra	start
+001000 CE 10 08             8. 	ldx	#tabell
+001003 16 10 26             9. start:	jsr	DisplayML15
+001006 20 FB               10. 	bra	start
+                           11. ;
+001008 01 02 03 04 05 06   12. tabell:	fcb	1,2,3,4,5,6
+                           13. 
+00100E                     14. 	
+00100E                     15. CheckKbdML15:
+00100E F6 09 C0            16. 	ldab	$9c0
+001011 2A 03               17. 	bpl	CheckKbd_VA
+001013 C6 FF               18. 	ldab	#$FF	
+001015 3D                  19. 	rts
+001016                     20. CheckKbd_VA:
+001016 37                  21. 	pshb
+001017                     22. CheckKbd_VA_active:
+001017 F6 09 C0            23. 	ldab	$9c0
+00101A 2A FB               24. 	bpl	CheckKbd_VA_active
+00101C 33                  25. 	pulb
+00101D 3D                  26. 	rts
+00101E                     27. 	
+00101E                     28. GetKbdML15:
+00101E 16 10 0E            29. 	jsr	CheckKbdML15
+001021 C1 FF               30. 	cmpb	#$FF
+001023 27 F9               31. 	beq	GetKbdML15
+001025 3D                  32. 	rts
+001026                     33. 	
+001026                     34. DisplayML15:
+001026 86 01               35. 	ldaa	#1
+001028 7A 09 C2            36. 	staa	$9c2
+00102B 86 D0               37. 	ldaa	#$d0
+00102D 7A 09 C3            38. 	staa	$9c3
+001030 86 00               39. 	ldaa	#0
+001032 7A 09 C2            40. 	staa	$9c2
+001035                     41. DisplayML15_compare_loop:
+001035 81 06               42. 	cmpa	#6
+001037 26 09               43. 	bne	DisplayML15_not_6
+001039 86 00               44. 	ldaa	#0
+00103B 7A 09 C3            45. 	staa	$9c3
+00103E 7A 09 C3            46. 	staa	$9c3
+001041 3D                  47. 	rts
+001042                     48. DisplayML15_not_6
+001042                     49. 	ldab	a,x
+001044 7B 09 C3            50. 	stab	$9c3
+001047 42                  51. 	inca
+001048 20 EB               52. 	bra	DisplayML15_compare_loop
+00104A                     53. 	
+00104A                     54. DisplayML15_Stack:
+00104A 86 01               55. 	ldaa	#1
+00104C 7A 09 C2            56. 	staa	$9c2
+00104F 86 D0               57. 	ldaa	#$d0
+001051 7A 09 C3            58. 	staa	$9c3
+001054 86 00               59. 	ldaa	#0
+001056 7A 09 C2            60. 	staa	$9c2
+001059                     61. 	ldab	2,sp
+00105B                     62. DisplayML15_Stack_compare_loop:
+00105B 81 06               63. 	cmpa	#6
+00105D 26 09               64. 	bne	DisplayML15_Stack_not_6
+00105F 86 00               65. 	ldaa	#0
+001061 7A 09 C3            66. 	staa	$9c3
+001064 7A 09 C3            67. 	staa	$9c3
+001067 3D                  68. 	rts
+001068                     69. DisplayML15_Stack_not_6:
+001068 7B 09 C3            70. 	stab	$9c3
+00106B 42                  71. 	inca
+00106C 20 ED               72. 	bra	DisplayML15_Stack_compare_loop
+                           73. 
+00106E                     74. 	
+00106E                     75. 	

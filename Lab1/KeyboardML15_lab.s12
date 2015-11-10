@@ -1,0 +1,75 @@
+;Testprogram
+	org	$1000
+;start:	jsr	GetKbdML15
+;	cmpb	#$FF
+;	beq	start
+;	nop
+;	bra	start
+	ldx	#tabell
+start:	jsr	DisplayML15
+	bra	start
+;
+tabell:	fcb	1,2,3,4,5,6
+
+	
+CheckKbdML15:
+	ldab	$9c0
+	bpl	CheckKbd_VA
+	ldab	#$FF	
+	rts
+CheckKbd_VA:
+	pshb
+CheckKbd_VA_active:
+	ldab	$9c0
+	bpl	CheckKbd_VA_active
+	pulb
+	rts
+	
+GetKbdML15:
+	jsr	CheckKbdML15
+	cmpb	#$FF
+	beq	GetKbdML15
+	rts
+	
+DisplayML15:	; Visa sifforna 1-6 på displayen
+	jsr	DisplayML15_reset
+	staa	$9c2
+DisplayML15_compare_loop:
+	cmpa	#6
+	bne	DisplayML15_not_6
+	ldaa	#0
+	staa	$9c3
+	staa	$9c3
+	rts
+DisplayML15_not_6
+	ldab	a,x
+	stab	$9c3
+	inca
+	bra	DisplayML15_compare_loop
+	
+DisplayML15_Stack:	; Visa ett värde som lagts på stacken på samtliga displayer
+	jsr	DisplayML15_reset
+	ldab	2,sp	; Lägg stackvärdet i B
+DisplayML15_Stack_compare_loop:
+	cmpa	#6
+	bne	DisplayML15_Stack_not_6
+	ldaa	#0
+	staa	$9c3
+	staa	$9c3
+	rts
+DisplayML15_Stack_not_6:
+	stab	$9c3
+	inca
+	bra	DisplayML15_Stack_compare_loop
+	
+DisplayML15_reset:
+	ldaa	#1
+	staa	$9c2
+	ldaa	#$d0
+	staa	$9c3
+	ldaa	#0
+	staa	$9c2
+	rts
+
+	
+	

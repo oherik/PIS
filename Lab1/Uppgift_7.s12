@@ -1,0 +1,9 @@
+	use	KeyboardML15_lab.s12
+	org	$1000
+main:	jsr	GetPut
+	bra 	main
+	
+GetPut:	jsr	GetKbdML15		;Lägger knappens index i B
+	pshb				;Lägg B på stacken
+	jsr	DisplayML15_Stack	;Visa värde som ligger överst på stacken
+	leas	1,sp			;Ta bort argument

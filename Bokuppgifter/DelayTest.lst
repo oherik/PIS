@@ -3,11 +3,11 @@ QA12 - MC68HC12 Absolute crossassembler, Version 1.6.3
 
 
 File: DelayTest.lst
-       0000 0003            1. DelayConstant:	equ	3
+       0000 0008            1. DelayConstant:	equ	8
 001000                      2. 	org	$1000
 001000                      3. 	
 001000 87                   4. Start:	clra
-001001 CE 00 03             5. DELAY:	ldx	#DelayConstant
+001001 CE 00 08             5. DELAY:	ldx	#DelayConstant
 001004 1A 1F                6. NEXT:	leax	-1,x
 001006 CD 00 64             7. 	ldy	#100
 001009 19 5F                8. NEXT2:	leay	-1,y

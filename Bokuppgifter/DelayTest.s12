@@ -1,4 +1,4 @@
-DelayConstant:	equ	3
+DelayConstant:	equ	8
 	org	$1000
 	
 Start:	clra

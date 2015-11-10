@@ -8,3 +8,8 @@ File: Labdefs.lst
        0000 0700            3. HexDisplay	equ	$700
        0000 0400            4. DrillControl	equ	$400
        0000 0401            5. DrillStatus	equ	$401
+                            6. 
+000000                      7. #ifdef	SIMULATOR
+                           13. #else
+       0000 0004           14. DelayConst	EQU	4
+                           15. #endif

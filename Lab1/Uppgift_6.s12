@@ -5,6 +5,8 @@
 	STAA	$9C3
 	LDAA	#0
 	STAA	$9C2
+
+; Åtta siffror
 	LDAA	#8
 loop:
 ; Placera lämpligt värde i ackumulator B innan instruktionen utförs

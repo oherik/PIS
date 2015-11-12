@@ -1,0 +1,16 @@
+QA12 - MC68HC12 Absolute crossassembler, Version 1.6.3
+(c) GMV 1989-2013
+
+
+File: Labdefs.lst
+                            1. ;Adresser
+       0000 0600            2. DipSwitch	equ	$600
+       0000 0700            3. HexDisplay	equ	$700
+       0000 0400            4. DrillControl	equ	$400
+                            5. 
+                            6. 
+000000                      7. #ifdef	SIMULATOR
+                           14. #else
+       0000 0600           15. DrillStatus	equ	$600
+       0000 0004           16. DelayConst	EQU	4
+                           17. #endif

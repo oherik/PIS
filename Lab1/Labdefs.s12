@@ -9,7 +9,7 @@ DrillStatus	equ	$401
 #ifdef	RUNFAST
 DelayConst	EQU	8
 #else
-DelayConst	EQU	0
+DelayConst	EQU	0	; Kommer ge för hög fördröjning på grund av den inre loopen, men kan inte skriva in ett lägre tal
 #endif
 #else
 DrillStatus	equ	$600

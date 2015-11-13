@@ -37,7 +37,7 @@ File: Subroutines.lst
 001015                     35. 		
 001015                     36. 		
                            37. ; Nollställ biten i B-registret
-001015 36                  38. Outzero:	psha
+001015 36                  38. Outzero:	psha			; Lägg register på stacken för senare återställning
 001016 39                  39. 		pshc	
 001017 37                  40. 		pshb
 001018 D7                  41. 		tstb
@@ -46,26 +46,26 @@ File: Subroutines.lst
 00101D 2A 16               44. 		bpl	Outzero_return	; Kolla om talet är >7
 00101F                     45. 		ldab	0,sp
 001021                     46. 		
-001021 86 01               47. 		ldaa	#1		; Talet som DCShadow ska and-as med
+001021 86 01               47. 		ldaa	#1		; Påbörjat bitmönster för B. Kommer som minst vara 1 (bit 0)
 001023                     48. 		
 001023                     49. Outzero_loop:	
 001023 D7                  50. 		tstb
-001024 26 13               51. 		bne	Outzero_loop_nonzero
-001026 F6 10 00            52. 		ldab	DCShadow
+001024 26 13               51. 		bne	Outzero_loop_nonzero	; B har fortfarande ett värde
+001026 F6 10 00            52. 		ldab	DCShadow		
 001029 41                  53. 		coma			; A<- A:s komplement
-00102A 36                  54. 		psha
-00102B                     55. 		andb	0,sp		; Måste gå att lösa snyggare. And-ar a med b
+00102A 36                  54. 		psha			; Lägg A:s värde på stacken. A är nu bitmönstret för original-B
+00102B                     55. 		andb	0,sp		; Ta DCShadow && A
 00102D 1B 81               56. 		leas	1,sp
-00102F 7B 04 00            57. 		stab	DrillControl
-001032 7B 10 00            58. 		stab	DCShadow
-001035 33                  59. Outzero_return:	pulb			; Original-b
+00102F 7B 04 00            57. 		stab	DrillControl	; Spara till borren
+001032 7B 10 00            58. 		stab	DCShadow	; Spara till skuggningen
+001035 33                  59. Outzero_return:	pulb			; Återställ originalvärden
 001036 38                  60. 		pulc
 001037 32                  61. 		pula
 001038 3D                  62. 		rts
 001039                     63. 		
 001039                     64. Outzero_loop_nonzero:	
-001039 48                  65. 		asla
-00103A 53                  66. 		decb
+001039 48                  65. 		asla			; Multiplicera A med två
+00103A 53                  66. 		decb		
 00103B 20 E6               67. 		bra	Outzero_loop
 00103D                     68. 		
 00103D                     69. 		

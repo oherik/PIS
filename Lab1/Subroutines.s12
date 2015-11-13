@@ -18,7 +18,7 @@ Loop:		ldab	InPort
 		
 		
 ; Nollställ biten i B-registret
-Outzero:	psha
+Outzero:	psha			; Lägg register på stacken för senare återställning
 		pshc	
 		pshb
 		tstb
@@ -27,26 +27,26 @@ Outzero:	psha
 		bpl	Outzero_return	; Kolla om talet är >7
 		ldab	0,sp
 		
-		ldaa	#1		; Talet som DCShadow ska and-as med
+		ldaa	#1		; Påbörjat bitmönster för B. Kommer som minst vara 1 (bit 0)
 		
 Outzero_loop:	
 		tstb
-		bne	Outzero_loop_nonzero
-		ldab	DCShadow
+		bne	Outzero_loop_nonzero	; B har fortfarande ett värde
+		ldab	DCShadow		
 		coma			; A<- A:s komplement
-		psha
-		andb	0,sp		; Måste gå att lösa snyggare. And-ar a med b
+		psha			; Lägg A:s värde på stacken. A är nu bitmönstret för original-B
+		andb	0,sp		; Ta DCShadow && A
 		leas	1,sp
-		stab	DrillControl
-		stab	DCShadow
-Outzero_return:	pulb			; Original-b
+		stab	DrillControl	; Spara till borren
+		stab	DCShadow	; Spara till skuggningen
+Outzero_return:	pulb			; Återställ originalvärden
 		pulc
 		pula
 		rts
 		
 Outzero_loop_nonzero:	
-		asla
-		decb
+		asla			; Multiplicera A med två
+		decb		
 		bra	Outzero_loop
 		
 		

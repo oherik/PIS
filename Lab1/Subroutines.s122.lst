@@ -1,0 +1,65 @@
+QA12 - MC68HC12 Absolute crossassembler, Version 1.6.3
+(c) GMV 1989-2013
+
+
+File: Subroutines.s122.lst
+"C:/Users/Erik/Documents/GitHub/PIS/Lab1/Subroutines.s122.asm" LINE: 1,WARNING: Old fashioned directive: 'DEFINE or XDEF', use 'EXPORT' instead
+"C:/Users/Erik/Documents/GitHub/PIS/Lab1/Subroutines.s122.asm" LINE: 1,WARNING: Unimplemented assembler directive, ignored
+000000                      1. 		define	#SIMULATOR
+---- File: "C:/Users/Erik/Documents/GitHub/PIS/Lab1/Subroutines.s122.asm"
+                            2. 		use	Labdefs.s12
+---- File: "Labdefs.s12"
+                            3. ;Adresser
+       0000 0600            4. DipSwitch	equ	$600
+       0000 0700            5. HexDisplay	equ	$700
+       0000 0400            6. DrillControl	equ	$400
+                            7. 
+                            8. 
+000000                      9. #ifdef	SIMULATOR
+                           16. #else
+       0000 0600           17. DrillStatus	equ	$600
+       0000 0004           18. DelayConst	EQU	4
+                           19. #endif
+000000 00                  20. DCShadow	rmb	1	; DrillControl shadow
+---- File: "C:/Users/Erik/Documents/GitHub/PIS/Lab1/Subroutines.s122.asm"
+                           21. 
+                           22. ; Nollställ biten i B-registret
+000001 36                  23. Outzero:	psha
+000002 39                  24. 		pshc	
+000003 37                  25. 		pshb
+000004 D7                  26. 		tstb
+000005 2B 1A               27. 		bmi	Outzero_return	; Kolla om talet är <0
+000007 F0 00 07            28. 		subb	7		
+00000A 2A 15               29. 		bpl	Outzero_return	; Kolla om talet är >7
+00000C                     30. 		ldab	0,sp
+00000E                     31. 		
+00000E 86 01               32. 		ldaa	#1		; Talet som DCShadow ska and-as med
+000010                     33. 		
+"C:/Users/Erik/Documents/GitHub/PIS/Lab1/Subroutines.s122.asm" line 17, ERROR: Multiple definition
+000010                     34. Outzero_loop_nonzero:	
+000010 D7                  35. 		tstb
+000011 26 FD               36. 		bne	Outzero_loop_nonzero
+000013 F6 00 00            37. 		ldab	DCShadow
+000016 36                  38. 		psha
+000017                     39. 		andb	0,sp		; Måste gå att lösa snyggare. And-ar a med b
+000019 1B 9F               40. 		leas	-1,sp
+00001B 7B 04 00            41. 		stab	DrillControl
+00001E 7B 00 00            42. 		stab	DCShadow
+000021 33                  43. Outzero_return:	pulb			; Original-b
+000022 38                  44. 		pulc
+000023 32                  45. 		pula
+"C:/Users/Erik/Documents/GitHub/PIS/Lab1/Subroutines.s122.asm" line 29, ERROR: Syntax Error
+000024                     46. 		jsr
+000024                     47. 		
+"C:/Users/Erik/Documents/GitHub/PIS/Lab1/Subroutines.s122.asm" line 31, ERROR: Multiple definition
+000024                     48. Outzero_loop_nonzero:	
+000024 48                  49. 		asla
+000025 53                  50. 		decb
+"C:/Users/Erik/Documents/GitHub/PIS/Lab1/Subroutines.s122.asm" line 34, ERROR: Undefined symbol 'Outzero_loop'
+000026 20 D8               51. 		bra	Outzero_loop
+000028                     52. 		
+000028                     53. 		
+000028                     54. 	
+000028                     55. 		
+
+****** Total Errors: 4

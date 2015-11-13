@@ -5,11 +5,11 @@ OutPort		equ	$0400	; Läsa in?
 
 		org	$1000	
 DCShadow	rmb	1	; DrillControl shadow
-Start:		ldab	#$FF
+Start:		ldab	#0
 		stab	DCShadow
 		
 Loop:		ldab	InPort
-		jsr	Outzero
+		jsr	Outone
 		
 		ldaa	DCShadow
 		staa	OutPort
@@ -17,7 +17,38 @@ Loop:		ldab	InPort
 		jmp	Start		
 		
 		
-; Nollställ biten i B-registret
+; Ettställ biten i B-registret
+Outone:		psha			; Lägg register på stacken för senare återställning
+		pshc	
+		pshb
+		tstb
+		bmi	Outone_return	; Kolla om talet är <0
+		subb	#8		
+		bpl	Outone_return	; Kolla om talet är >7
+		ldab	0,sp
+		
+		ldaa	#1		; Påbörjat bitmönster för B. Kommer som minst vara 1 (bit 0)
+		
+Outone_loop:	
+		tstb
+		bne	Outone_loop_nonzero	; B har fortfarande ett värde
+		ldab	DCShadow		
+		psha			; Lägg A:s värde på stacken. A är nu bitmönstret för original-B
+		orab	0,sp		; Ta DCShadow || B
+		leas	1,sp
+		stab	DrillControl	; Spara till borren
+		stab	DCShadow	; Spara till skuggningen
+Outone_return:	pulb			; Återställ originalvärden
+		pulc
+		pula
+		rts
+		
+Outone_loop_nonzero:	
+		asla			; Multiplicera A med två
+		decb		
+		bra	Outone_loop
+		
+; Ettställ biten i B-registrer
 Outzero:	psha			; Lägg register på stacken för senare återställning
 		pshc	
 		pshb
@@ -51,4 +82,5 @@ Outzero_loop_nonzero:
 		
 		
 	
+		
 		

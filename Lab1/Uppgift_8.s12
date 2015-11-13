@@ -1,7 +1,5 @@
-	#define	SIMULATOR
-	include	Labdefs.s12	
 	org $1000
-loop:	nop			;Ge indata till A
-	staa	DrillControl	;Skriv till borren
-	ldab	DrillStatus	;Läs status
+loop:	nop		;Ge indata till A
+	staa	$400	;Skriv till borren
+	ldab	$600	;Läs status
 	bra	loop

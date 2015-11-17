@@ -1,12 +1,13 @@
 #ifdef	RUNFAST
-DelayConstant	equ	4
+DelayConstant	equ	8
 #else
-DelayConstant	equ	1
+DelayConstant	equ	1	;Minimum number for the constant, the delay will however be too long
 #endif
-	org	$1000
 	
-Start:	clra
-DELAY:	ldx	#DelayConstant
+	org	$2000
+DELAY:	pshx
+	pshy
+	ldx	#DelayConstant
 NEXT:	leax	-1,x
 	ldy	#100
 NEXT2:	leay	-1,y
@@ -14,6 +15,6 @@ NEXT2:	leay	-1,y
 	bne	NEXT2
 	cpx	#0
 	bne	NEXT
-	coma
-	staa	$400
-	bra	DELAY
+	puly
+	pulx
+	rts	

@@ -16,35 +16,36 @@ File: Drilltest3.lst
        0000 0004           15. DelayConst	EQU	4
                            16. #endif001000                     17. 	org	$1000
 ---- File: "C:\Users\Erik\Documents\GitHub\PIS\Bokuppgifter\Drilltest3.s12"
-001000                     18. 	
-001000 16 10 1B            19. start:	jsr	Vrid1steg
+001000                     18. start:	
+001000 16 20 19            19. 	jsr	Vrid1steg
 001003 20 FB               20. 	bra	start
 001005                     21. 	
                            22. 	use	Delay.s12
 ---- File: "Delay.s12"
 001005                     23. #ifdef	RUNFAST
                            25. #else
-       0000 0001           26. DelayConstant	equ	1
+       0000 0001           26. DelayConstant	equ	1	;Minimum number for the constant, the delay will however be too long
                            27. #endif
-001000                     28. 	org	$1000
-001000                     29. 	
-001000 87                  30. Start:	clra
-001001 CE 00 01            31. DELAY:	ldx	#DelayConstant
-001004 1A 1F               32. NEXT:	leax	-1,x
-001006 CD 00 64            33. 	ldy	#100
-001009 19 5F               34. NEXT2:	leay	-1,y
-00100B 8D 00 00            35. 	cpy	#0
-00100E 26 F9               36. 	bne	NEXT2
-001010 8E 00 00            37. 	cpx	#0
-001013 26 EF               38. 	bne	NEXT
-001015 41                  39. 	coma
-001016 7A 04 00            40. 	staa	$400
-001019 20 E6               41. 	bra	DELAY00101B                     42. 	
+001005                     28. 	
+002000                     29. 	org	$2000
+002000 34                  30. DELAY:	pshx
+002001 35                  31. 	pshy
+002002 CE 00 01            32. 	ldx	#DelayConstant
+002005 1A 1F               33. NEXT:	leax	-1,x
+002007 CD 00 64            34. 	ldy	#100
+00200A 19 5F               35. NEXT2:	leay	-1,y
+00200C 8D 00 00            36. 	cpy	#0
+00200F 26 F9               37. 	bne	NEXT2
+002011 8E 00 00            38. 	cpx	#0
+002014 26 EF               39. 	bne	NEXT
+002016 31                  40. 	puly
+002017 30                  41. 	pulx
+002018 3D                  42. 	rts	002019                     43. 	
 ---- File: "C:\Users\Erik\Documents\GitHub\PIS\Bokuppgifter\Drilltest3.s12"
-00101B                     43. Vrid1steg:
-00101B 86 02               44. 	ldaa	#2		;Medurs (ettställ bit 1, nollställ övriga)
-00101D 7A 04 00            45. 	staa	DrillControl	
-001020 42                  46. 	inca
-001021 7A 04 00            47. 	staa	DrillControl	;Stega (addera 1 till 2 = 3 => bit 1 och 0 ettställda)
-001024 16 10 01            48. 	jsr	DELAY		;250 ms delay
-001027 3D                  49. 	rts
+002019                     44. Vrid1steg:
+002019 86 02               45. 	ldaa	#2		;Medurs (ettställ bit 1, nollställ övriga)
+00201B 7A 04 00            46. 	staa	DrillControl	
+00201E 42                  47. 	inca
+00201F 7A 04 00            48. 	staa	DrillControl	;Stega (addera 1 till 2 = 3 => bit 1 och 0 ettställda)
+002022 16 20 00            49. 	jsr	DELAY		;250 ms delay
+002025 3D                  50. 	rts	

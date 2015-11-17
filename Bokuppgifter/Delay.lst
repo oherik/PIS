@@ -1,0 +1,23 @@
+QA12 - MC68HC12 Absolute crossassembler, Version 1.6.3
+(c) GMV 1989-2013
+
+
+File: Delay.lst
+000000                      1. #ifdef	RUNFAST
+                            3. #else
+       0000 0000            4. DelayConstant	equ	0
+                            5. #endif
+001000                      6. 	org	$1000
+001000                      7. 	
+001000 87                   8. Start:	clra
+001001 CE 00 00             9. DELAY:	ldx	#DelayConstant
+001004 1A 1F               10. NEXT:	leax	-1,x
+001006 CD 00 64            11. 	ldy	#100
+001009 19 5F               12. NEXT2:	leay	-1,y
+00100B 8D 00 00            13. 	cpy	#0
+00100E 26 F9               14. 	bne	NEXT2
+001010 8E 00 00            15. 	cpx	#0
+001013 26 EF               16. 	bne	NEXT
+001015 41                  17. 	coma
+001016 7A 04 00            18. 	staa	$400
+001019 20 E6               19. 	bra	DELAY

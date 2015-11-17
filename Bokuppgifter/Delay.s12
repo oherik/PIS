@@ -1,0 +1,19 @@
+#ifdef	RUNFAST
+DelayConstant	equ	4
+#else
+DelayConstant	equ	0
+#endif
+	org	$1000
+	
+Start:	clra
+DELAY:	ldx	#DelayConstant
+NEXT:	leax	-1,x
+	ldy	#100
+NEXT2:	leay	-1,y
+	cpy	#0
+	bne	NEXT2
+	cpx	#0
+	bne	NEXT
+	coma
+	staa	$400
+	bra	DELAY

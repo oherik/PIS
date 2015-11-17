@@ -1,7 +1,7 @@
 #ifdef	RUNFAST
 DelayConstant	equ	4
 #else
-DelayConstant	equ	0
+DelayConstant	equ	1
 #endif
 	org	$1000
 	

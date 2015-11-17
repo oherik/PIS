@@ -5,7 +5,7 @@ OutPort		equ	$0400	; Läsa in?
 
 		org	$1000	
 DCShadow	rmb	1	; DrillControl shadow
-Start:		ldab	#0
+Start:		ldab	#$00
 		stab	DCShadow
 		
 Loop:		ldab	InPort
@@ -33,6 +33,7 @@ Outone_loop:
 		tstb
 		bne	Outone_loop_nonzero	; B har fortfarande ett värde
 		ldab	DCShadow		
+		coma			; A<- A:s komplement
 		psha			; Lägg A:s värde på stacken. A är nu bitmönstret för original-B
 		orab	0,sp		; Ta DCShadow || B
 		leas	1,sp

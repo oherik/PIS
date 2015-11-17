@@ -24,11 +24,11 @@ File: Subroutines.lst
                            22. 
 001000                     23. 		org	$1000	
 001000 00                  24. DCShadow	rmb	1	; DrillControl shadow
-001001 C6 00               25. Start:		ldab	#0
+001001 C6 FF               25. Start:		ldab	#$FF
 001003 7B 10 00            26. 		stab	DCShadow
 001006                     27. 		
 001006 F6 04 01            28. Loop:		ldab	InPort
-001009 16 10 15            29. 		jsr	Outone
+001009 16 10 3C            29. 		jsr	Outzero
 00100C                     30. 		
 00100C B6 10 00            31. 		ldaa	DCShadow
 00100F 7A 04 00            32. 		staa	OutPort
@@ -72,34 +72,33 @@ File: Subroutines.lst
 00103D 39                  70. 		pshc	
 00103E 37                  71. 		pshb
 00103F D7                  72. 		tstb
-001040 2B 1A               73. 		bmi	Outzero_return	; Kolla om talet är <0
+001040 2B 19               73. 		bmi	Outzero_return	; Kolla om talet är <0
 001042 C0 08               74. 		subb	#8		
-001044 2A 16               75. 		bpl	Outzero_return	; Kolla om talet är >7
+001044 2A 15               75. 		bpl	Outzero_return	; Kolla om talet är >7
 001046                     76. 		ldab	0,sp
 001048                     77. 		
-001048 86 01               78. 		ldaa	#1		; Påbörjat bitmönster för B. Kommer som minst vara 1 (bit 0)
+001048 86 FE               78. 		ldaa	#$FE		; Påbörjat bitmönster för nollställning. Kommer som minst vara bit 0
 00104A                     79. 		
 00104A                     80. Outzero_loop:	
 00104A D7                  81. 		tstb
-00104B 26 13               82. 		bne	Outzero_loop_nonzero	; B har fortfarande ett värde
+00104B 26 12               82. 		bne	Outzero_loop_nonzero	; B har fortfarande ett värde
 00104D F6 10 00            83. 		ldab	DCShadow		
-001050 41                  84. 		coma			; A<- A:s komplement
-001051 36                  85. 		psha			; Lägg A:s värde på stacken. A är nu bitmönstret för original-B
-001052                     86. 		andb	0,sp		; Ta DCShadow && A
-001054 1B 81               87. 		leas	1,sp
-001056 7B 04 00            88. 		stab	DrillControl	; Spara till borren
-001059 7B 10 00            89. 		stab	DCShadow	; Spara till skuggningen
-00105C 33                  90. Outzero_return:	pulb			; Återställ originalvärden
-00105D 38                  91. 		pulc
-00105E 32                  92. 		pula
-00105F 3D                  93. 		rts
-001060                     94. 		
-001060                     95. Outzero_loop_nonzero:	
-001060 48                  96. 		asla			; Multiplicera A med två
-001061 53                  97. 		decb		
-001062 20 E6               98. 		bra	Outzero_loop
-001064                     99. 		
-001064                    100. 		
-001064                    101. 	
-001064                    102. 		
-001064                    103. 		
+001050 36                  84. 		psha			; Lägg A:s värde på stacken. A är nu bitmönstret för original-B
+001051                     85. 		andb	0,sp		; Ta DCShadow && A
+001053 1B 81               86. 		leas	1,sp
+001055 7B 04 00            87. 		stab	DrillControl	; Spara till borren
+001058 7B 10 00            88. 		stab	DCShadow	; Spara till skuggningen
+00105B 33                  89. Outzero_return:	pulb			; Återställ originalvärden
+00105C 38                  90. 		pulc
+00105D 32                  91. 		pula
+00105E 3D                  92. 		rts
+00105F                     93. 		
+00105F                     94. Outzero_loop_nonzero:	
+00105F 45                  95. 		rola			; Multiplicera A med två
+001060 53                  96. 		decb		
+001061 20 E7               97. 		bra	Outzero_loop
+001063                     98. 		
+001063                     99. 		
+001063                    100. 	
+001063                    101. 		
+001063                    102. 		

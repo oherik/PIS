@@ -1,0 +1,154 @@
+QA12 - MC68HC12 Absolute crossassembler, Version 1.6.3
+(c) GMV 1989-2013
+
+
+File: Subroutines.lst
+                            1. 		#define	SIMUATOR
+---- File: "C:\Users\Erik\Documents\GitHub\PIS\Bokuppgifter\Subroutines.s12"
+                            2. 		use	Labdefs.s12
+---- File: "Labdefs.s12"
+                            3. ;Adresser
+       0000 0600            4. DipSwitch	equ	$600
+       0000 0700            5. HexDisplay	equ	$700
+       0000 0400            6. DrillControl	equ	$400
+       0000 0401            7. DrillStatus	equ	$401
+                            8. 
+000000                      9. #ifdef	SIMULATOR
+                           15. #else
+       0000 0004           16. DelayConst	EQU	4
+                           17. #endif       0000 0401           18. InPort		equ	$0401	; Läsa in?
+---- File: "C:\Users\Erik\Documents\GitHub\PIS\Bokuppgifter\Subroutines.s12"
+       0000 0400           19. OutPort		equ	$0400	; Läsa in?
+                           20. 
+001000                     21. 		org	$1000	
+001000 00                  22. DCShadow	rmb	1	; DrillControl shadow
+001001 C6 00               23. Start:		ldab	#$00
+001003 7B 10 00            24. 		stab	DCShadow
+001006                     25. 		
+001006 F6 04 01            26. Loop:		ldab	InPort
+001009 16 10 34            27. 		jsr	Outone
+00100C                     28. 		
+00100C B6 10 00            29. 		ldaa	DCShadow
+00100F 7A 04 00            30. 		staa	OutPort
+001012                     31. 		
+001012 06 10 01            32. 		jmp	Start		
+001015                     33. 		
+                           34. ; Nollställ biten i B-registrer, med förprogrammerade bitmönster
+001015 36                  35. Outzero:	psha			; Lägg register på stacken för senare återställning
+001016 39                  36. 		pshc	
+001017 37                  37. 		pshb
+001018 C1 07               38. 		cmpb	#7		
+00101A 22 14               39. 		bhi	Outzero_return	; Kolla om talet är >7
+00101C CE 10 A2            40. 		ldx	#Bitmask
+00101F                     41. Outzero_loop:
+00101F                     42. 		ldab	b,x
+001021 51                  43. 		comb	
+001022 37                  44. 		pshb
+001023 B6 10 00            45. 		ldaa	DCShadow
+001026                     46. 		anda	0,sp		; Ta DCShadow && B
+001028 1B 81               47. 		leas	1,sp
+00102A 7A 04 00            48. 		staa	DrillControl	; Spara till borren
+00102D 7A 10 00            49. 		staa	DCShadow	; Spara till skuggningen
+001030                     50. Outzero_return:	
+001030 33                  51. 		pulb			; Återställ originalvärden
+001031 38                  52. 		pulc
+001032 32                  53. 		pula
+001033 3D                  54. 		rts
+001034                     55. 	
+                           56. 
+                           57. 
+                           58. ; Ettställ biten i B-registrer, med förprogrammerade bitmönster
+001034 36                  59. Outone:		psha			; Lägg register på stacken för senare återställning
+001035 39                  60. 		pshc	
+001036 37                  61. 		pshb
+001037 C1 07               62. 		cmpb	#7		
+001039 22 13               63. 		bhi	Outone_return	; Kolla om talet är >7
+00103B CE 10 A2            64. 		ldx	#Bitmask
+00103E                     65. Outone_loop:
+00103E                     66. 		ldab	b,x	
+001040 37                  67. 		pshb
+001041 B6 10 00            68. 		ldaa	DCShadow
+001044                     69. 		oraa	0,sp		; Ta DCShadow || B
+001046 1B 81               70. 		leas	1,sp
+001048 7A 04 00            71. 		staa	DrillControl	; Spara till borren
+00104B 7A 10 00            72. 		staa	DCShadow	; Spara till skuggningen
+00104E                     73. Outone_return:	
+00104E 33                  74. 		pulb			; Återställ originalvärden
+00104F 38                  75. 		pulc
+001050 32                  76. 		pula
+001051 3D                  77. 		rts
+001052                     78. 		
+                           79. ; Ettställ biten i B-registret
+001052 36                  80. Outone_old:		psha			; Lägg register på stacken för senare återställning
+001053 39                  81. 		pshc	
+001054 37                  82. 		pshb
+001055 D7                  83. 		tstb
+001056 2B 1A               84. 		bmi	Outone_old_return	; Kolla om talet är <0
+001058 C0 08               85. 		subb	#8		
+00105A 2A 16               86. 		bpl	Outone_old_return	; Kolla om talet är >7
+00105C                     87. 		ldab	0,sp
+00105E                     88. 		
+00105E 86 01               89. 		ldaa	#1		; Påbörjat bitmönster för B. Kommer som minst vara 1 (bit 0)
+001060                     90. 		
+001060                     91. Outone_old_loop:	
+001060 D7                  92. 		tstb
+001061 26 13               93. 		bne	Outone_old_loop_nonzero	; B har fortfarande ett värde
+001063 F6 10 00            94. 		ldab	DCShadow		
+001066 41                  95. 		coma			; A<- A:s komplement
+001067 36                  96. 		psha			; Lägg A:s värde på stacken. A är nu bitmönstret för original-B
+001068                     97. 		orab	0,sp		; Ta DCShadow || B
+00106A 1B 81               98. 		leas	1,sp
+00106C 7B 04 00            99. 		stab	DrillControl	; Spara till borren
+00106F 7B 10 00           100. 		stab	DCShadow	; Spara till skuggningen
+001072 33                 101. Outone_old_return:	pulb			; Återställ originalvärden
+001073 38                 102. 		pulc
+001074 32                 103. 		pula
+001075 3D                 104. 		rts
+001076                    105. 		
+001076                    106. Outone_old_loop_nonzero:	
+001076 48                 107. 		asla			; Multiplicera A med två
+001077 53                 108. 		decb		
+001078 20 E6              109. 		bra	Outone_old_loop
+00107A                    110. 		
+                          111. ; Nollställ biten i B-registrer, gammal version
+00107A 36                 112. Outzero_old:	psha			; Lägg register på stacken för senare återställning
+00107B 39                 113. 		pshc	
+00107C 37                 114. 		pshb
+00107D D7                 115. 		tstb
+00107E 2B 1A              116. 		bmi	Outzero_old_return	; Kolla om talet är <0
+001080 C0 08              117. 		subb	#8		
+001082 2A 16              118. 		bpl	Outzero_old_return	; Kolla om talet är >7
+001084                    119. 		ldab	0,sp
+001086                    120. 		
+001086 86 01              121. 		ldaa	#1		; Påbörjat bitmönster för B. Kommer som minst vara 1 (bit 0)
+001088                    122. 		
+001088                    123. Outzero_old_loop:	
+001088 D7                 124. 		tstb
+001089 26 13              125. 		bne	Outzero_old_loop_nonzero	; B har fortfarande ett värde
+00108B F6 10 00           126. 		ldab	DCShadow		
+00108E 41                 127. 		coma			; A<- A:s komplement
+00108F 36                 128. 		psha			; Lägg A:s värde på stacken. A är nu bitmönstret för original-B
+001090                    129. 		andb	0,sp		; Ta DCShadow && A
+001092 1B 81              130. 		leas	1,sp
+001094 7B 04 00           131. 		stab	DrillControl	; Spara till borren
+001097 7B 10 00           132. 		stab	DCShadow	; Spara till skuggningen
+00109A                    133. Outzero_old_return:	
+00109A 33                 134. 		pulb			; Återställ originalvärden
+00109B 38                 135. 		pulc
+00109C 32                 136. 		pula
+00109D 3D                 137. 		rts
+00109E                    138. 		
+00109E                    139. Outzero_old_loop_nonzero:	
+00109E 48                 140. 		asla			; Multiplicera A med två
+00109F 53                 141. 		decb		
+0010A0 20 E6              142. 		bra	Outzero_old_loop
+0010A2                    143. 		
+                          144. ; Bitmasks
+0010A2 01 02 04 08 10 20  145. Bitmask:	fcb	1,2,4,8,16,32,64,128
+       40 80            
+0010AA                    146. 		
+                          147. 
+0010AA                    148. 		
+0010AA                    149. 	
+0010AA                    150. 		
+0010AA                    151. 		

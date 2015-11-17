@@ -16,22 +16,66 @@ Loop:		ldab	InPort
 		
 		jmp	Start		
 		
-		
-; Ettställ biten i B-registret
+; Nollställ biten i B-registrer, med förprogrammerade bitmönster
+Outzero:	psha			; Lägg register på stacken för senare återställning
+		pshc	
+		pshb
+		cmpb	#7		
+		bhi	Outzero_return	; Kolla om talet är >7
+		ldx	#Bitmask
+Outzero_loop:
+		ldab	b,x
+		comb	
+		pshb
+		ldaa	DCShadow
+		anda	0,sp		; Ta DCShadow && B
+		leas	1,sp
+		staa	DrillControl	; Spara till borren
+		staa	DCShadow	; Spara till skuggningen
+Outzero_return:	
+		pulb			; Återställ originalvärden
+		pulc
+		pula
+		rts
+	
+
+
+; Ettställ biten i B-registrer, med förprogrammerade bitmönster
 Outone:		psha			; Lägg register på stacken för senare återställning
 		pshc	
 		pshb
+		cmpb	#7		
+		bhi	Outone_return	; Kolla om talet är >7
+		ldx	#Bitmask
+Outone_loop:
+		ldab	b,x	
+		pshb
+		ldaa	DCShadow
+		oraa	0,sp		; Ta DCShadow || B
+		leas	1,sp
+		staa	DrillControl	; Spara till borren
+		staa	DCShadow	; Spara till skuggningen
+Outone_return:	
+		pulb			; Återställ originalvärden
+		pulc
+		pula
+		rts
+		
+; Ettställ biten i B-registret
+Outone_old:		psha			; Lägg register på stacken för senare återställning
+		pshc	
+		pshb
 		tstb
-		bmi	Outone_return	; Kolla om talet är <0
+		bmi	Outone_old_return	; Kolla om talet är <0
 		subb	#8		
-		bpl	Outone_return	; Kolla om talet är >7
+		bpl	Outone_old_return	; Kolla om talet är >7
 		ldab	0,sp
 		
 		ldaa	#1		; Påbörjat bitmönster för B. Kommer som minst vara 1 (bit 0)
 		
-Outone_loop:	
+Outone_old_loop:	
 		tstb
-		bne	Outone_loop_nonzero	; B har fortfarande ett värde
+		bne	Outone_old_loop_nonzero	; B har fortfarande ett värde
 		ldab	DCShadow		
 		coma			; A<- A:s komplement
 		psha			; Lägg A:s värde på stacken. A är nu bitmönstret för original-B
@@ -39,31 +83,31 @@ Outone_loop:
 		leas	1,sp
 		stab	DrillControl	; Spara till borren
 		stab	DCShadow	; Spara till skuggningen
-Outone_return:	pulb			; Återställ originalvärden
+Outone_old_return:	pulb			; Återställ originalvärden
 		pulc
 		pula
 		rts
 		
-Outone_loop_nonzero:	
+Outone_old_loop_nonzero:	
 		asla			; Multiplicera A med två
 		decb		
-		bra	Outone_loop
+		bra	Outone_old_loop
 		
-; Ettställ biten i B-registrer
-Outzero:	psha			; Lägg register på stacken för senare återställning
+; Nollställ biten i B-registrer, gammal version
+Outzero_old:	psha			; Lägg register på stacken för senare återställning
 		pshc	
 		pshb
 		tstb
-		bmi	Outzero_return	; Kolla om talet är <0
+		bmi	Outzero_old_return	; Kolla om talet är <0
 		subb	#8		
-		bpl	Outzero_return	; Kolla om talet är >7
+		bpl	Outzero_old_return	; Kolla om talet är >7
 		ldab	0,sp
 		
 		ldaa	#1		; Påbörjat bitmönster för B. Kommer som minst vara 1 (bit 0)
 		
-Outzero_loop:	
+Outzero_old_loop:	
 		tstb
-		bne	Outzero_loop_nonzero	; B har fortfarande ett värde
+		bne	Outzero_old_loop_nonzero	; B har fortfarande ett värde
 		ldab	DCShadow		
 		coma			; A<- A:s komplement
 		psha			; Lägg A:s värde på stacken. A är nu bitmönstret för original-B
@@ -71,16 +115,21 @@ Outzero_loop:
 		leas	1,sp
 		stab	DrillControl	; Spara till borren
 		stab	DCShadow	; Spara till skuggningen
-Outzero_return:	pulb			; Återställ originalvärden
+Outzero_old_return:	
+		pulb			; Återställ originalvärden
 		pulc
 		pula
 		rts
 		
-Outzero_loop_nonzero:	
+Outzero_old_loop_nonzero:	
 		asla			; Multiplicera A med två
 		decb		
-		bra	Outzero_loop
+		bra	Outzero_old_loop
 		
+; Bitmasks
+Bitmask:	fcb	1,2,4,8,16,32,64,128
+		
+
 		
 	
 		

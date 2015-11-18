@@ -9,7 +9,7 @@ File: Delay.lst
                             5. #endif
 000000                      6. 	
 002000                      7. 	org	$2000
-002000 34                   8. Delay:	pshx
+002000 34                   8. DELAY:	pshx
 002001 35                   9. 	pshy
 002002 CE 00 01            10. 	ldx	#DelayConstant
 002005 1A 1F               11. NEXT:	leax	-1,x

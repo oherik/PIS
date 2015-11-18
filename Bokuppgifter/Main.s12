@@ -1,5 +1,4 @@
 	use	Labdefs.s12
-OutPort	equ	$400
 	
 	org	$1000
 	
@@ -29,27 +28,29 @@ CommandExit:
 ;---------------------------------
 ;	Tabell med kommandon
 
-JUMPTAB	fdb	SUB0,SUB1,SUB2,SUB3
+JUMPTAB	fdb	MotorStart,MotorStop,SUB2,SUB3
 	fdb	SUB4,SUB5,SUB6,SUB7
 	
 ;---------------------------------
 ;	Subrutiner för test
 
-SUB0	movb	#0,OutPort
+OutPortM	equ	$400
+
+SUB0	movb	#0,OutPortM
 	rts
-SUB1	movb	#0,OutPort
+SUB1	movb	#0,OutPortM
 	rts
-SUB2	movb	#0,OutPort
+SUB2	movb	#0,OutPortM
 	rts
-SUB3	movb	#0,OutPort
+SUB3	movb	#0,OutPortM
 	rts
-SUB4	movb	#0,OutPort
+SUB4	movb	#0,OutPortM
 	rts
-SUB5	movb	#0,OutPort
+SUB5	movb	#0,OutPortM
 	rts
-SUB6	movb	#0,OutPort
+SUB6	movb	#0,OutPortM
 	rts
-SUB7	movb	#0,OutPort
+SUB7	movb	#0,OutPortM
 	rts
 		
 ;-------------------------------
@@ -58,10 +59,11 @@ SUB7	movb	#0,OutPort
 	
 	;use	ML15drvr.s12
 	use	KeyboardML15.s12
-
+	use	Delay.s12
+	use	Subroutines.s12
+	
 ;------------------------------
 ;	Globala variabler
 ;------------------------------
 
-DCShadow:	rmb	1
 	

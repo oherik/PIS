@@ -5,7 +5,7 @@ DelayConstant	equ	1	;Minimum number for the constant, the delay will however be 
 #endif
 	
 	org	$2000
-Delay:	pshx
+DELAY:	pshx
 	pshy
 	ldx	#DelayConstant
 NEXT:	leax	-1,x

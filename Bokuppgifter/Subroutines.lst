@@ -62,7 +62,7 @@ File: Subroutines.lst
 001017 37                  61. 		pshb
 001018 C1 07               62. 		cmpb	#7		
 00101A 22 14               63. 		bhi	Outzero_return	; Kolla om talet är >7
-00101C CE 10 71            64. 		ldx	#Bitmask
+00101C CE 10 77            64. 		ldx	#Bitmask
 00101F                     65. Outzero_loop:
 00101F                     66. 		ldab	b,x
 001021 51                  67. 		comb	
@@ -88,7 +88,7 @@ File: Subroutines.lst
 001036 37                  87. 		pshb
 001037 C1 07               88. 		cmpb	#7		
 001039 22 13               89. 		bhi	Outone_return	; Kolla om talet är >7
-00103B CE 10 71            90. 		ldx	#Bitmask
+00103B CE 10 77            90. 		ldx	#Bitmask
 00103E                     91. Outone_loop:
 00103E                     92. 		ldab	b,x	
 001040 37                  93. 		pshb
@@ -111,7 +111,7 @@ File: Subroutines.lst
 001052 36                 110. 	psha
 001053 B6 10 00           111. 	ldaa	DCShadow
 001056 84 04              112. 	anda	#4
-001058 26 15              113. 	bne	MotorStartExit	; Motorn redan startad
+001058 26 12              113. 	bne	MotorStartExit	; Motorn redan startad
 00105A 86 02              114. 	ldaa	#2
 00105C 36                 115. 	psha
 00105D 16 10 34           116. 	jsr	Outone		; Ettställ bit 2	
@@ -119,21 +119,31 @@ File: Subroutines.lst
 001063 16 20 00           118. 	jsr	Delay
 001066 16 20 00           119. 	jsr	Delay
 001069 16 20 00           120. 	jsr	Delay
-00106C 7A 10 00           121. 	staa	DCShadow
-                          122. 
-00106F                    123. MotorStartExit:
-00106F 32                 124. 	pula
-001070 3D                 125. 	rts
-001071                    126. 	
-                          127. ;-------------------------------	
-                          128. ;	Bitmasks
-                          129. ;-------------------------------
-                          130. 
-001071 01 02 04 08 10 20  131. Bitmask:	fcb	1,2,4,8,16,32,64,128
+                          121. 
+00106C                    122. MotorStartExit:
+00106C 32                 123. 	pula
+00106D 3D                 124. 	rts
+                          125. ;-------------------------------
+                          126. ;	MOTORSTOPP
+                          127. ;-------------------------------
+                          128. 
+00106E                    129. MotorStopp
+00106E 36                 130. 	psha
+00106F 86 02              131. 	ldaa	#2
+001071 36                 132. 	psha
+001072 16 10 15           133. 	jsr	Outzero		; Nollställ bit 2
+001075 32                 134. 	pula
+001076 3D                 135. 	rts
+001077                    136. 	
+                          137. ;-------------------------------	
+                          138. ;	Bitmasks
+                          139. ;-------------------------------
+                          140. 
+001077 01 02 04 08 10 20  141. Bitmask:	fcb	1,2,4,8,16,32,64,128
        40 80            
-001079                    132. 		
-                          133. 
-001079                    134. 		
-001079                    135. 	
-001079                    136. 		
-001079                    137. 		
+00107F                    142. 		
+                          143. 
+00107F                    144. 		
+00107F                    145. 	
+00107F                    146. 		
+00107F                    147. 		

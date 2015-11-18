@@ -1,5 +1,6 @@
 		#define	SIMUATOR
 		use	Labdefs.s12
+		use	Delay.s12
 InPort		equ	$0401	; Läsa in?
 OutPort		equ	$0400	; Läsa in?
 
@@ -16,6 +17,9 @@ Loop:		ldab	InPort
 		
 		jmp	Start		
 		
+;---------------------------------
+;	OUTZERO
+;---------------------------------
 ; Nollställ biten i B-registrer, med förprogrammerade bitmönster
 Outzero:	psha			; Lägg register på stacken för senare återställning
 		pshc	
@@ -38,7 +42,9 @@ Outzero_return:
 		pula
 		rts
 	
-
+;---------------------------------
+;	OUTONE
+;---------------------------------
 
 ; Ettställ biten i B-registrer, med förprogrammerade bitmönster
 Outone:		psha			; Lägg register på stacken för senare återställning
@@ -92,6 +98,30 @@ Outone_old_loop_nonzero:
 		asla			; Multiplicera A med två
 		decb		
 		bra	Outone_old_loop
+		
+		
+;-------------------------------
+;	MOTORSTART
+;-------------------------------
+
+MotorStart:
+	psha
+	ldaa	DCShadow
+	anda	#4
+	bne	MotorStartExit	; Motorn redan startad
+	ldaa	#4
+	adda	DCShadow
+	staa	DrillControl
+	jsr	Delay		; 4*250ms fördröjning
+	jsr	Delay
+	jsr	Delay
+	jsr	Delay
+	staa	DCShadow
+
+MotorStartExit:
+	pula
+	rts
+	
 		
 ; Nollställ biten i B-registrer, gammal version
 Outzero_old:	psha			; Lägg register på stacken för senare återställning

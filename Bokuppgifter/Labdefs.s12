@@ -8,7 +8,7 @@ DrillStatus	equ	$401
 #ifdef	RUNFAST
 DelayConst	EQU	8
 #else
-DelayConst	EQU	-1
+DelayConst	EQU	1
 #endif
 #else
 DelayConst	EQU	4

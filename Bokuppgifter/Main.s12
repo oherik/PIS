@@ -51,7 +51,7 @@ SUB6	movb	#0,OutPort
 	rts
 SUB7	movb	#0,OutPort
 	rts
-	
+		
 ;-------------------------------
 ;	File uses
 ;-------------------------------	

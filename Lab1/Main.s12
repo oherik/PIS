@@ -1,0 +1,65 @@
+	use	Labdefs.s12
+OutPort	equ	$400
+	
+	org	$1000
+	
+;----------------------------------
+;	MAIN
+;----------------------------------	
+	
+main_loop:
+	jsr	GetKbdML15	; Tangent till register B
+	jsr	Command
+	bra	main_loop
+	
+;----------------------------------
+;	COMMAND
+;----------------------------------	
+
+	cmpb	#7
+	bhi	CommandExit
+	ldx	#JUMPTAB
+	aslb		; 2 bytes per adress
+	ldx	b,x	; ladda rutinen
+	jsr	,x
+CommandExit:
+	rts
+
+;---------------------------------
+;	Tabell med kommandon
+
+JUMPTAB	fdb	SUB0,SUB1,SUB2,SUB3,
+	fdb	SUB4,SUB5,SUB6,SUB7,
+	
+;---------------------------------
+;	Subrutiner för test
+
+SUB0	movb	#0,OutPort
+	rts
+SUB1	movb	#0,OutPort
+	rts
+SUB2	movb	#0,OutPort
+	rts
+SUB3	movb	#0,OutPort
+	rts
+SUB4	movb	#0,OutPort
+	rts
+SUB5	movb	#0,OutPort
+	rts
+SUB6	movb	#0,OutPort
+	rts
+SUB7	movb	#0,OutPort
+	rts
+	
+;-------------------------------
+;	File uses
+;-------------------------------	
+	
+	use	ML15drvr.s12
+
+;------------------------------
+;	Globala variabler
+;------------------------------
+
+DCShadow:	rmb	1
+	

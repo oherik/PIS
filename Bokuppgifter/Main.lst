@@ -1,0 +1,141 @@
+QA12 - MC68HC12 Absolute crossassembler, Version 1.6.3
+(c) GMV 1989-2013
+
+
+File: Main.lst
+                            1. 	use	Labdefs.s12
+---- File: "Labdefs.s12"
+                            2. ;Adresser
+       0000 0600            3. DipSwitch	equ	$600
+       0000 0700            4. HexDisplay	equ	$700
+       0000 0400            5. DrillControl	equ	$400
+       0000 0401            6. DrillStatus	equ	$401
+                            7. 
+000000                      8. #ifdef	SIMULATOR
+                           14. #else
+       0000 0004           15. DelayConst	EQU	4
+                           16. #endif       0000 0400           17. OutPort	equ	$400
+---- File: "C:\Users\Erik\Documents\GitHub\PIS\Bokuppgifter\Main.s12"
+000000                     18. 	
+001000                     19. 	org	$1000
+001000                     20. 	
+                           21. ;----------------------------------
+                           22. ;	MAIN
+                           23. ;----------------------------------	
+001000                     24. 	
+001000                     25. main_loop:
+001000 16 10 1E            26. 	jsr	GetKbdML15	; Tangent till register B
+001003 16 10 08            27. 	jsr	Command
+001006 20 F8               28. 	bra	main_loop
+001008                     29. 	
+                           30. ;----------------------------------
+                           31. ;	COMMAND
+                           32. ;----------------------------------	
+                           33. 
+001008                     34. Command:
+001008 C1 07               35. 	cmpb	#7
+00100A 22 08               36. 	bhi	CommandExit
+00100C CE 10 15            37. 	ldx	#JUMPTAB
+00100F 58                  38. 	aslb		; 2 bytes per adress
+001010                     39. 	ldx	b,x	; ladda rutinen
+001012 15 00               40. 	jsr	,x
+001014                     41. CommandExit:
+001014 3D                  42. 	rts
+                           43. 
+                           44. ;---------------------------------
+                           45. ;	Tabell med kommandon
+                           46. 
+001015 10 25 10 2B 10 31   47. JUMPTAB	fdb	SUB0,SUB1,SUB2,SUB3
+       10 37            
+00101D 10 3D 10 43 10 49   48. 	fdb	SUB4,SUB5,SUB6,SUB7
+       10 4F            
+001025                     49. 	
+                           50. ;---------------------------------
+                           51. ;	Subrutiner för test
+                           52. 
+001025 18 0B 00 04 00      53. SUB0	movb	#0,OutPort
+00102A 3D                  54. 	rts
+00102B 18 0B 00 04 00      55. SUB1	movb	#0,OutPort
+001030 3D                  56. 	rts
+001031 18 0B 00 04 00      57. SUB2	movb	#0,OutPort
+001036 3D                  58. 	rts
+001037 18 0B 00 04 00      59. SUB3	movb	#0,OutPort
+00103C 3D                  60. 	rts
+00103D 18 0B 00 04 00      61. SUB4	movb	#0,OutPort
+001042 3D                  62. 	rts
+001043 18 0B 00 04 00      63. SUB5	movb	#0,OutPort
+001048 3D                  64. 	rts
+001049 18 0B 00 04 00      65. SUB6	movb	#0,OutPort
+00104E 3D                  66. 	rts
+00104F 18 0B 00 04 00      67. SUB7	movb	#0,OutPort
+001054 3D                  68. 	rts
+001055                     69. 	
+                           70. ;-------------------------------
+                           71. ;	File uses
+                           72. ;-------------------------------	
+001055                     73. 	
+001055                     74. 	;use	ML15drvr.s12
+                           75. 	use	KeyboardML15.s12
+---- File: "KeyboardML15.s12"
+                           76. ;Testprogram
+001000                     77. 	org	$1000
+                           78. ;start:	jsr	GetKbdML15
+                           79. ;	cmpb	#$FF
+                           80. ;	beq	start
+                           81. ;	nop
+                           82. ;	bra	start
+001000 CE 10 08            83. 	ldx	#tabell
+001003 16 10 26            84. start:	jsr	DisplayML15
+001006 20 FB               85. 	bra	start
+                           86. ;
+001008 01 02 03 04 05 06   87. tabell:	fcb	1,2,3,4,5,6
+                           88. 
+00100E                     89. 	
+00100E                     90. CheckKbdML15:
+00100E F6 09 C0            91. 	ldab	$9c0
+001011 2A 03               92. 	bpl	CheckKbd_VA
+001013 C6 FF               93. 	ldab	#$FF	
+001015 3D                  94. 	rts
+001016                     95. CheckKbd_VA:
+001016 37                  96. 	pshb
+001017                     97. CheckKbd_VA_active:
+001017 F6 09 C0            98. 	ldab	$9c0
+00101A 2A FB               99. 	bpl	CheckKbd_VA_active
+00101C 33                 100. 	pulb
+00101D 3D                 101. 	rts
+00101E                    102. 	
+00101E                    103. GetKbdML15:
+00101E 16 10 0E           104. 	jsr	CheckKbdML15
+001021 C1 FF              105. 	cmpb	#$FF
+001023 26 F9              106. 	bne	GetKbdML15
+001025 3D                 107. 	rts
+001026                    108. 	
+001026                    109. DisplayML15:
+001026 86 01              110. 	ldaa	#1
+001028 7A 09 C2           111. 	staa	$9c2
+00102B 86 D0              112. 	ldaa	#$d0
+00102D 7A 09 C3           113. 	staa	$9c3
+001030 86 00              114. 	ldaa	#0
+001032 7A 09 C2           115. 	staa	$9c2
+001035                    116. DisplayML15_compare_loop:
+001035 81 06              117. 	cmpa	#6
+001037 26 09              118. 	bne	DisplayML15_not_6
+001039 86 00              119. 	ldaa	#0
+00103B 7A 09 C3           120. 	staa	$9c3
+00103E 7A 09 C3           121. 	staa	$9c3
+001041 3D                 122. 	rts
+001042                    123. DisplayML15_not_6
+001042                    124. 	ldab	a,x
+001044 7B 09 C3           125. 	stab	$9c3
+001047 42                 126. 	inca
+001048 20 EB              127. 	bra	DisplayML15_compare_loop
+                          128. 
+00104A                    129. 	
+00104A                    130. 	                          131. 
+---- File: "C:\Users\Erik\Documents\GitHub\PIS\Bokuppgifter\Main.s12"
+                          132. ;------------------------------
+                          133. ;	Globala variabler
+                          134. ;------------------------------
+                          135. 
+00104A 00                 136. DCShadow:	rmb	1
+00104B                    137. 	

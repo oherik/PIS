@@ -62,7 +62,7 @@ File: Subroutines.lst
 001017 37                  61. 		pshb
 001018 C1 07               62. 		cmpb	#7		
 00101A 22 14               63. 		bhi	Outzero_return	; Kolla om talet är >7
-00101C CE 10 C1            64. 		ldx	#Bitmask
+00101C CE 10 71            64. 		ldx	#Bitmask
 00101F                     65. Outzero_loop:
 00101F                     66. 		ldab	b,x
 001021 51                  67. 		comb	
@@ -88,7 +88,7 @@ File: Subroutines.lst
 001036 37                  87. 		pshb
 001037 C1 07               88. 		cmpb	#7		
 001039 22 13               89. 		bhi	Outone_return	; Kolla om talet är >7
-00103B CE 10 C1            90. 		ldx	#Bitmask
+00103B CE 10 71            90. 		ldx	#Bitmask
 00103E                     91. Outone_loop:
 00103E                     92. 		ldab	b,x	
 001040 37                  93. 		pshb
@@ -103,101 +103,37 @@ File: Subroutines.lst
 001050 32                 102. 		pula
 001051 3D                 103. 		rts
 001052                    104. 		
-                          105. ; Ettställ biten i B-registret
-001052 36                 106. Outone_old:		psha			; Lägg register på stacken för senare återställning
-001053 39                 107. 		pshc	
-001054 37                 108. 		pshb
-001055 D7                 109. 		tstb
-001056 2B 1A              110. 		bmi	Outone_old_return	; Kolla om talet är <0
-001058 C0 08              111. 		subb	#8		
-00105A 2A 16              112. 		bpl	Outone_old_return	; Kolla om talet är >7
-00105C                    113. 		ldab	0,sp
-00105E                    114. 		
-00105E 86 01              115. 		ldaa	#1		; Påbörjat bitmönster för B. Kommer som minst vara 1 (bit 0)
-001060                    116. 		
-001060                    117. Outone_old_loop:	
-001060 D7                 118. 		tstb
-001061 26 13              119. 		bne	Outone_old_loop_nonzero	; B har fortfarande ett värde
-001063 F6 10 00           120. 		ldab	DCShadow		
-001066 41                 121. 		coma			; A<- A:s komplement
-001067 36                 122. 		psha			; Lägg A:s värde på stacken. A är nu bitmönstret för original-B
-001068                    123. 		orab	0,sp		; Ta DCShadow || B
-00106A 1B 81              124. 		leas	1,sp
-00106C 7B 04 00           125. 		stab	DrillControl	; Spara till borren
-00106F 7B 10 00           126. 		stab	DCShadow	; Spara till skuggningen
-001072 33                 127. Outone_old_return:	pulb			; Återställ originalvärden
-001073 38                 128. 		pulc
-001074 32                 129. 		pula
-001075 3D                 130. 		rts
-001076                    131. 		
-001076                    132. Outone_old_loop_nonzero:	
-001076 48                 133. 		asla			; Multiplicera A med två
-001077 53                 134. 		decb		
-001078 20 E6              135. 		bra	Outone_old_loop
-00107A                    136. 		
-00107A                    137. 		
-                          138. ;-------------------------------
-                          139. ;	MOTORSTART
-                          140. ;-------------------------------
-                          141. 
-00107A                    142. MotorStart:
-00107A 36                 143. 	psha
-00107B B6 10 00           144. 	ldaa	DCShadow
-00107E 84 04              145. 	anda	#4
-001080 26 15              146. 	bne	MotorStartExit	; Motorn redan startad
-001082 86 02              147. 	ldaa	#2
-001084 36                 148. 	psha
-001085 16 10 34           149. 	jsr	Outone		; Ettställ bit 2	
-001088 16 20 00           150. 	jsr	Delay		; 4*250ms fördröjning
-00108B 16 20 00           151. 	jsr	Delay
-00108E 16 20 00           152. 	jsr	Delay
-001091 16 20 00           153. 	jsr	Delay
-001094 7A 10 00           154. 	staa	DCShadow
-                          155. 
-001097                    156. MotorStartExit:
-001097 32                 157. 	pula
-001098 3D                 158. 	rts
-001099                    159. 	
-001099                    160. 		
-                          161. ; Nollställ biten i B-registrer, gammal version
-001099 36                 162. Outzero_old:	psha			; Lägg register på stacken för senare återställning
-00109A 39                 163. 		pshc	
-00109B 37                 164. 		pshb
-00109C D7                 165. 		tstb
-00109D 2B 1A              166. 		bmi	Outzero_old_return	; Kolla om talet är <0
-00109F C0 08              167. 		subb	#8		
-0010A1 2A 16              168. 		bpl	Outzero_old_return	; Kolla om talet är >7
-0010A3                    169. 		ldab	0,sp
-0010A5                    170. 		
-0010A5 86 01              171. 		ldaa	#1		; Påbörjat bitmönster för B. Kommer som minst vara 1 (bit 0)
-0010A7                    172. 		
-0010A7                    173. Outzero_old_loop:	
-0010A7 D7                 174. 		tstb
-0010A8 26 13              175. 		bne	Outzero_old_loop_nonzero	; B har fortfarande ett värde
-0010AA F6 10 00           176. 		ldab	DCShadow		
-0010AD 41                 177. 		coma			; A<- A:s komplement
-0010AE 36                 178. 		psha			; Lägg A:s värde på stacken. A är nu bitmönstret för original-B
-0010AF                    179. 		andb	0,sp		; Ta DCShadow && A
-0010B1 1B 81              180. 		leas	1,sp
-0010B3 7B 04 00           181. 		stab	DrillControl	; Spara till borren
-0010B6 7B 10 00           182. 		stab	DCShadow	; Spara till skuggningen
-0010B9                    183. Outzero_old_return:	
-0010B9 33                 184. 		pulb			; Återställ originalvärden
-0010BA 38                 185. 		pulc
-0010BB 32                 186. 		pula
-0010BC 3D                 187. 		rts
-0010BD                    188. 		
-0010BD                    189. Outzero_old_loop_nonzero:	
-0010BD 48                 190. 		asla			; Multiplicera A med två
-0010BE 53                 191. 		decb		
-0010BF 20 E6              192. 		bra	Outzero_old_loop
-0010C1                    193. 		
-                          194. ; Bitmasks
-0010C1 01 02 04 08 10 20  195. Bitmask:	fcb	1,2,4,8,16,32,64,128
+                          105. ;-------------------------------
+                          106. ;	MOTORSTART
+                          107. ;-------------------------------
+                          108. 
+001052                    109. MotorStart:
+001052 36                 110. 	psha
+001053 B6 10 00           111. 	ldaa	DCShadow
+001056 84 04              112. 	anda	#4
+001058 26 15              113. 	bne	MotorStartExit	; Motorn redan startad
+00105A 86 02              114. 	ldaa	#2
+00105C 36                 115. 	psha
+00105D 16 10 34           116. 	jsr	Outone		; Ettställ bit 2	
+001060 16 20 00           117. 	jsr	Delay		; 4*250ms fördröjning
+001063 16 20 00           118. 	jsr	Delay
+001066 16 20 00           119. 	jsr	Delay
+001069 16 20 00           120. 	jsr	Delay
+00106C 7A 10 00           121. 	staa	DCShadow
+                          122. 
+00106F                    123. MotorStartExit:
+00106F 32                 124. 	pula
+001070 3D                 125. 	rts
+001071                    126. 	
+                          127. ;-------------------------------	
+                          128. ;	Bitmasks
+                          129. ;-------------------------------
+                          130. 
+001071 01 02 04 08 10 20  131. Bitmask:	fcb	1,2,4,8,16,32,64,128
        40 80            
-0010C9                    196. 		
-                          197. 
-0010C9                    198. 		
-0010C9                    199. 	
-0010C9                    200. 		
-0010C9                    201. 		
+001079                    132. 		
+                          133. 
+001079                    134. 		
+001079                    135. 	
+001079                    136. 		
+001079                    137. 		

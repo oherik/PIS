@@ -67,39 +67,6 @@ Outone_return:
 		pula
 		rts
 		
-; Ettställ biten i B-registret
-Outone_old:		psha			; Lägg register på stacken för senare återställning
-		pshc	
-		pshb
-		tstb
-		bmi	Outone_old_return	; Kolla om talet är <0
-		subb	#8		
-		bpl	Outone_old_return	; Kolla om talet är >7
-		ldab	0,sp
-		
-		ldaa	#1		; Påbörjat bitmönster för B. Kommer som minst vara 1 (bit 0)
-		
-Outone_old_loop:	
-		tstb
-		bne	Outone_old_loop_nonzero	; B har fortfarande ett värde
-		ldab	DCShadow		
-		coma			; A<- A:s komplement
-		psha			; Lägg A:s värde på stacken. A är nu bitmönstret för original-B
-		orab	0,sp		; Ta DCShadow || B
-		leas	1,sp
-		stab	DrillControl	; Spara till borren
-		stab	DCShadow	; Spara till skuggningen
-Outone_old_return:	pulb			; Återställ originalvärden
-		pulc
-		pula
-		rts
-		
-Outone_old_loop_nonzero:	
-		asla			; Multiplicera A med två
-		decb		
-		bra	Outone_old_loop
-		
-		
 ;-------------------------------
 ;	MOTORSTART
 ;-------------------------------
@@ -122,41 +89,10 @@ MotorStartExit:
 	pula
 	rts
 	
-		
-; Nollställ biten i B-registrer, gammal version
-Outzero_old:	psha			; Lägg register på stacken för senare återställning
-		pshc	
-		pshb
-		tstb
-		bmi	Outzero_old_return	; Kolla om talet är <0
-		subb	#8		
-		bpl	Outzero_old_return	; Kolla om talet är >7
-		ldab	0,sp
-		
-		ldaa	#1		; Påbörjat bitmönster för B. Kommer som minst vara 1 (bit 0)
-		
-Outzero_old_loop:	
-		tstb
-		bne	Outzero_old_loop_nonzero	; B har fortfarande ett värde
-		ldab	DCShadow		
-		coma			; A<- A:s komplement
-		psha			; Lägg A:s värde på stacken. A är nu bitmönstret för original-B
-		andb	0,sp		; Ta DCShadow && A
-		leas	1,sp
-		stab	DrillControl	; Spara till borren
-		stab	DCShadow	; Spara till skuggningen
-Outzero_old_return:	
-		pulb			; Återställ originalvärden
-		pulc
-		pula
-		rts
-		
-Outzero_old_loop_nonzero:	
-		asla			; Multiplicera A med två
-		decb		
-		bra	Outzero_old_loop
-		
-; Bitmasks
+;-------------------------------	
+;	Bitmasks
+;-------------------------------
+
 Bitmask:	fcb	1,2,4,8,16,32,64,128
 		
 

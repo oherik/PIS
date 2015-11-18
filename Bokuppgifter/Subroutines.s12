@@ -109,9 +109,9 @@ MotorStart:
 	ldaa	DCShadow
 	anda	#4
 	bne	MotorStartExit	; Motorn redan startad
-	ldaa	#4
-	adda	DCShadow
-	staa	DrillControl
+	ldaa	#2
+	psha
+	jsr	Outone		; Ettställ bit 2	
 	jsr	Delay		; 4*250ms fördröjning
 	jsr	Delay
 	jsr	Delay

@@ -86,6 +86,7 @@ MotorStart:
 MotorStartExit:
 	pulb
 	rts
+	
 ;-------------------------------
 ;	MOTORSTOP
 ;-------------------------------

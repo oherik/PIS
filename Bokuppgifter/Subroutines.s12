@@ -20,7 +20,9 @@ Loop:		ldab	InPort
 ;---------------------------------
 ;	OUTZERO
 ;---------------------------------
-; Nollställ biten i B-registrer, med förprogrammerade bitmönster
+
+; Nollställ biten i B-registret, med förprogrammerade bitmönster
+
 Outzero:	psha			; Lägg register på stacken för senare återställning
 		pshc	
 		pshb
@@ -46,7 +48,8 @@ Outzero_return:
 ;	OUTONE
 ;---------------------------------
 
-; Ettställ biten i B-registrer, med förprogrammerade bitmönster
+; Ettställ biten i B-registret, med förprogrammerade bitmönster
+
 Outone:		psha			; Lägg register på stacken för senare återställning
 		pshc	
 		pshb

@@ -33,7 +33,7 @@ File: KeyboardML15.lst
 00101E                     28. GetKbdML15:
 00101E 16 10 0E            29. 	jsr	CheckKbdML15
 001021 C1 FF               30. 	cmpb	#$FF
-001023 26 F9               31. 	bne	GetKbdML15
+001023 27 F9               31. 	beq	GetKbdML15
 001025 3D                  32. 	rts
 001026                     33. 	
 001026                     34. DisplayML15:

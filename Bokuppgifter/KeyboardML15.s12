@@ -28,7 +28,7 @@ CheckKbd_VA_active:
 GetKbdML15:
 	jsr	CheckKbdML15
 	cmpb	#$FF
-	bne	GetKbdML15
+	beq	GetKbdML15
 	rts
 	
 DisplayML15:

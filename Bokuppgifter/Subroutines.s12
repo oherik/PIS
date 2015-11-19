@@ -72,31 +72,29 @@ Outone_return:
 ;-------------------------------
 
 MotorStart:
-	psha
-	ldaa	DCShadow
-	anda	#4
+	pshb
+	ldab	DCShadow
+	andb	#4
 	bne	MotorStartExit	; Motorn redan startad
-	ldaa	#2
-	psha
-	jsr	Outone		; Ettställ bit 2	
+	ldab	#2
+	jsr	Outone		; Ettställ bit 2
 	jsr	DELAY		; 4*250ms fördröjning
 	jsr	DELAY
 	jsr	DELAY
 	jsr	DELAY
 
 MotorStartExit:
-	pula
+	pulb
 	rts
 ;-------------------------------
 ;	MOTORSTOP
 ;-------------------------------
 
 MotorStop:
-	psha
-	ldaa	#2
-	psha
+	pshb
+	ldab	#2
 	jsr	Outzero		; Nollställ bit 2
-	pula
+	pulb
 	rts
 	
 ;-------------------------------	

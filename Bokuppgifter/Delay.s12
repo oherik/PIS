@@ -1,13 +1,8 @@
-#ifdef	RUNFAST
-DelayConstant	equ	8
-#else
-DelayConstant	equ	1	;Minimum number for the constant, the delay will however be too long
-#endif
-	
+	use	Labdefs.s12
 	org	$2000
 DELAY:	pshx
 	pshy
-	ldx	#DelayConstant
+	ldx	#DelayConst
 NEXT:	leax	-1,x
 	ldy	#100
 NEXT2:	leay	-1,y

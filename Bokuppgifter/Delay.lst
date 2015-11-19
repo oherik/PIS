@@ -3,22 +3,29 @@ QA12 - MC68HC12 Absolute crossassembler, Version 1.6.3
 
 
 File: Delay.lst
-000000                      1. #ifdef	RUNFAST
-                            3. #else
-       0000 0001            4. DelayConstant	equ	1	;Minimum number for the constant, the delay will however be too long
-                            5. #endif
-000000                      6. 	
-002000                      7. 	org	$2000
-002000 34                   8. DELAY:	pshx
-002001 35                   9. 	pshy
-002002 CE 00 01            10. 	ldx	#DelayConstant
-002005 1A 1F               11. NEXT:	leax	-1,x
-002007 CD 00 64            12. 	ldy	#100
-00200A 19 5F               13. NEXT2:	leay	-1,y
-00200C 8D 00 00            14. 	cpy	#0
-00200F 26 F9               15. 	bne	NEXT2
-002011 8E 00 00            16. 	cpx	#0
-002014 26 EF               17. 	bne	NEXT
-002016 31                  18. 	puly
-002017 30                  19. 	pulx
-002018 3D                  20. 	rts	
+                            1. 	use	Labdefs.s12
+---- File: "Labdefs.s12"
+                            2. ;Adresser
+       0000 0600            3. DipSwitch	equ	$600
+       0000 0700            4. HexDisplay	equ	$700
+       0000 0400            5. DrillControl	equ	$400
+       0000 0401            6. DrillStatus	equ	$401
+                            7. 
+000000                      8. #ifdef	SIMULATOR
+                           14. #else
+       0000 0004           15. DelayConst	EQU	4
+                           16. #endif002000                     17. 	org	$2000
+---- File: "C:\Users\Erik\Documents\GitHub\PIS\Bokuppgifter\Delay.s12"
+002000 34                  18. DELAY:	pshx
+002001 35                  19. 	pshy
+002002 CE 00 04            20. 	ldx	#DelayConst
+002005 1A 1F               21. NEXT:	leax	-1,x
+002007 CD 00 64            22. 	ldy	#100
+00200A 19 5F               23. NEXT2:	leay	-1,y
+00200C 8D 00 00            24. 	cpy	#0
+00200F 26 F9               25. 	bne	NEXT2
+002011 8E 00 00            26. 	cpx	#0
+002014 26 EF               27. 	bne	NEXT
+002016 31                  28. 	puly
+002017 30                  29. 	pulx
+002018 3D                  30. 	rts	

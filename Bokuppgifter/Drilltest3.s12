@@ -1,4 +1,6 @@
-	use	Labdefs.s12
+	;use	Labdefs.s12
+#define	SIMULATOR
+#define RUNFAST
 	org	$1000
 start:	
 	jsr	Vrid1steg
@@ -8,8 +10,10 @@ start:
 	
 Vrid1steg:
 	ldaa	#2		;Medurs (ettställ bit 1, nollställ övriga)
-	staa	DrillControl	
+	staa	DrillControl
 	inca
 	staa	DrillControl	;Stega (addera 1 till 2 = 3 => bit 1 och 0 ettställda)
 	jsr	DELAY		;250 ms delay
 	rts	
+
+	use	Labdefs.s12

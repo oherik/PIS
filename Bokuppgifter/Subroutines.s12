@@ -145,7 +145,34 @@ AlarmReturn:
 	pulc
 	rts
 	
-;
+;-------------------------------
+;	STEP
+;-------------------------------
+
+Step:
+	ldaa	DrillStatus
+	anda	#2	; Maska ut bit 1
+	beq	StepAlarm
+			; Borren uppe
+	ldab	#1
+	jsr	Outone	; Ettställ bit 1 (medurs riktning)
+	
+	ldab	#0
+	jsr	Outone	; Ettställ bit 0 (stegpuls)
+	ldab	#2	
+	jsr	DELAY_B	; Skicka 2*250 ms delay
+	
+	ldab	#0
+	jsr	Outzero	; Nollställ bit 0 (stegpuls)
+	
+	ldab	#1	; Returnera 1
+	rts
+
+StepAlarm:		; Borren inte uppe
+	ldab	#2	
+	jsr	Alarm	; Skicka 2*250 ms delay
+	clrb		; Returnera 0
+	rts
 	
 	
 

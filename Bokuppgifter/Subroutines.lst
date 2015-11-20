@@ -72,7 +72,7 @@ File: Subroutines.lst
 002028 34                  74. 		pshx
 002029 C1 07               75. 		cmpb	#7		
 00202B 22 0F               76. 		bhi	Outzero_return	; Kolla om talet Ã¤r >7
-00202D CE 20 AE            77. 		ldx	#Bitmask
+00202D CE 20 D3            77. 		ldx	#Bitmask
 002030                     78. 		ldab	b,x				; Uppdatera b till bitmasken fÃ¶r b
 002032 51                  79. 		comb	
 002033 F4 20 25            80. 		andb	DCShadow		; Ta DCShadow && komplementet av bitmasken
@@ -96,7 +96,7 @@ File: Subroutines.lst
 002042 34                  98. 		pshx
 002043 C1 07               99. 		cmpb	#7		
 002045 22 0E              100. 		bhi	Outone_return	; Kolla om talet Ã¤r >7
-002047 CE 20 AE           101. 		ldx	#Bitmask
+002047 CE 20 D3           101. 		ldx	#Bitmask
 00204A                    102. 		ldab	b,x	
 00204C FA 20 25           103. 		orab	DCShadow	; Ta DCShadow || Bitmasken
 00204F 7B 04 00           104. 		stab	DrillControl	; Spara till borren
@@ -200,20 +200,47 @@ File: Subroutines.lst
 0020AC 38                 202. 	pulc
 0020AD 3D                 203. 	rts
 0020AE                    204. 	
-                          205. ;
-0020AE                    206. 	
-0020AE                    207. 	
+                          205. ;-------------------------------
+                          206. ;	STEP
+                          207. ;-------------------------------
                           208. 
-                          209. 
-                          210. ;-------------------------------	
-                          211. ;	Bitmasks
-                          212. ;-------------------------------
-                          213. 
-0020AE 01 02 04 08 10 20  214. Bitmask:	fcb	1,2,4,8,16,32,64,128
+0020AE                    209. Step:
+0020AE B6 04 01           210. 	ldaa	DrillStatus
+0020B1 84 02              211. 	anda	#2	; Maska ut bit 1
+0020B3 27 17              212. 	beq	StepAlarm
+0020B5                    213. 			; Borren uppe
+0020B5 C6 01              214. 	ldab	#1
+0020B7 16 20 40           215. 	jsr	Outone	; Ettställ bit 1 (medurs riktning)
+0020BA                    216. 	
+0020BA C6 00              217. 	ldab	#0
+0020BC 16 20 40           218. 	jsr	Outone	; Ettställ bit 0 (stegpuls)
+0020BF C6 02              219. 	ldab	#2	
+0020C1 16 20 19           220. 	jsr	DELAY_B	; Skicka 2*250 ms delay
+0020C4                    221. 	
+0020C4 C6 00              222. 	ldab	#0
+0020C6 16 20 26           223. 	jsr	Outzero	; Nollställ bit 0 (stegpuls)
+0020C9                    224. 	
+0020C9 C6 01              225. 	ldab	#1	; Returnera 1
+0020CB 3D                 226. 	rts
+                          227. 
+0020CC                    228. StepAlarm:		; Borren inte uppe
+0020CC C6 02              229. 	ldab	#2	
+0020CE 16 20 8D           230. 	jsr	Alarm	; Skicka 2*250 ms delay
+0020D1 C7                 231. 	clrb		; Returnera 0
+0020D2 3D                 232. 	rts
+0020D3                    233. 	
+0020D3                    234. 	
+                          235. 
+                          236. 
+                          237. ;-------------------------------	
+                          238. ;	Bitmasks
+                          239. ;-------------------------------
+                          240. 
+0020D3 01 02 04 08 10 20  241. Bitmask:	fcb	1,2,4,8,16,32,64,128
        40 80            
-0020B6                    215. 		
-                          216. 
-0020B6                    217. 		
-0020B6                    218. 	
-0020B6                    219. 		
-0020B6                    220. 		
+0020DB                    242. 		
+                          243. 
+0020DB                    244. 		
+0020DB                    245. 	
+0020DB                    246. 		
+0020DB                    247. 		

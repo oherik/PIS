@@ -29,7 +29,7 @@ CommandExit:
 ;	Tabell med kommandon
 
 JUMPTAB	fdb	MotorStart,MotorStop,DrillDown,DrillUp
-	fdb	SUB4,SUB5,SUB6,SUB7
+	fdb	Step,SUB5,SUB6,SUB7
 	
 ;---------------------------------
 ;	Subrutiner för test

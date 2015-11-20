@@ -44,9 +44,9 @@ File: Main.lst
                            43. ;---------------------------------
                            44. ;	Tabell med kommandon
                            45. 
-001015 20 55 20 6B 20 75   46. JUMPTAB	fdb	MotorStart,MotorStop,DrillDown,DrillUp
-       20 7F            
-00101D 10 25 10 2B 10 31   47. 	fdb	SUB4,SUB5,SUB6,SUB7
+001015 20 59 20 6F 20 79   46. JUMPTAB	fdb	MotorStart,MotorStop,DrillDown,DrillUp
+       20 83            
+00101D 20 AE 10 2B 10 31   47. 	fdb	Step,SUB5,SUB6,SUB7
        10 37            
 001025                     48. 	
                            49. ;---------------------------------
@@ -193,156 +193,185 @@ File: Main.lst
 002026                    196. Outzero:			
 002026 39                 197. 		pshc	; Lägg register på stacken för senare återställning
 002027 37                 198. 		pshb
-002028 C1 07              199. 		cmpb	#7		
-00202A 22 0F              200. 		bhi	Outzero_return	; Kolla om talet är >7
-00202C CE 20 AA           201. 		ldx	#Bitmask
-00202F                    202. Outzero_loop:
-00202F                    203. 		ldab	b,x				; Uppdatera b till bitmasken för b
-002031 51                 204. 		comb	
-002032 F4 20 25           205. 		andb	DCShadow		; Ta DCShadow && komplementet av bitmasken
-002035 7B 04 00           206. 		stab	DrillControl	; Spara till borren
-002038 7B 20 25           207. 		stab	DCShadow	; Spara till skuggningen
-00203B                    208. Outzero_return:	
-00203B 33                 209. 		pulb			; Återställ originalvärden
-00203C 38                 210. 		pulc
-00203D 3D                 211. 		rts
-00203E                    212. 	
-                          213. ;---------------------------------
-                          214. ;	OUTONE
-                          215. ;---------------------------------
-                          216. 
-                          217. ; Ettställ biten i B-registret, med förprogrammerade bitmönster
-                          218. 
-00203E                    219. Outone:			
-00203E 39                 220. 		pshc	; Lägg register på stacken för senare återställning
-00203F 37                 221. 		pshb
-002040 C1 07              222. 		cmpb	#7		
-002042 22 0E              223. 		bhi	Outone_return	; Kolla om talet är >7
-002044 CE 20 AA           224. 		ldx	#Bitmask
-002047                    225. Outone_loop:
-002047                    226. 		ldab	b,x	
-002049 FA 20 25           227. 		orab	DCShadow	; Ta DCShadow || Bitmasken
-00204C 7B 04 00           228. 		stab	DrillControl	; Spara till borren
-00204F 7B 20 25           229. 		stab	DCShadow	; Spara till skuggningen
-002052                    230. Outone_return:	
-002052 33                 231. 		pulb			; Återställ originalvärden
-002053 38                 232. 		pulc
-002054 3D                 233. 		rts
-002055                    234. 		
-                          235. ;-------------------------------
-                          236. ;	MOTORSTART
+002028 34                 199. 		pshx
+002029 C1 07              200. 		cmpb	#7		
+00202B 22 0F              201. 		bhi	Outzero_return	; Kolla om talet är >7
+00202D CE 20 D3           202. 		ldx	#Bitmask
+002030                    203. 		ldab	b,x				; Uppdatera b till bitmasken för b
+002032 51                 204. 		comb	
+002033 F4 20 25           205. 		andb	DCShadow		; Ta DCShadow && komplementet av bitmasken
+002036 7B 04 00           206. 		stab	DrillControl	; Spara till borren
+002039 7B 20 25           207. 		stab	DCShadow	; Spara till skuggningen
+00203C                    208. Outzero_return:	
+00203C 30                 209. 		pulx
+00203D 33                 210. 		pulb			; Återställ originalvärden
+00203E 38                 211. 		pulc
+00203F 3D                 212. 		rts
+002040                    213. 	
+                          214. ;---------------------------------
+                          215. ;	OUTONE
+                          216. ;---------------------------------
+                          217. 
+                          218. ; Ettställ biten i B-registret, med förprogrammerade bitmönster
+                          219. 
+002040                    220. Outone:			
+002040 39                 221. 		pshc	; Lägg register på stacken för senare återställning
+002041 37                 222. 		pshb
+002042 34                 223. 		pshx
+002043 C1 07              224. 		cmpb	#7		
+002045 22 0E              225. 		bhi	Outone_return	; Kolla om talet är >7
+002047 CE 20 D3           226. 		ldx	#Bitmask
+00204A                    227. 		ldab	b,x	
+00204C FA 20 25           228. 		orab	DCShadow	; Ta DCShadow || Bitmasken
+00204F 7B 04 00           229. 		stab	DrillControl	; Spara till borren
+002052 7B 20 25           230. 		stab	DCShadow	; Spara till skuggningen
+002055                    231. Outone_return:	
+002055 30                 232. 		pulx
+002056 33                 233. 		pulb			; Återställ originalvärden
+002057 38                 234. 		pulc
+002058 3D                 235. 		rts
+002059                    236. 		
                           237. ;-------------------------------
-                          238. 
-002055                    239. MotorStart:
-002055 37                 240. 	pshb
-002056 39                 241. 	pshc
-002057 F6 20 25           242. 	ldab	DCShadow
-00205A C4 04              243. 	andb	#4
-00205C 26 0A              244. 	bne	MotorStartExit	; Motorn redan startad
-00205E C6 02              245. 	ldab	#2
-002060 16 20 3E           246. 	jsr	Outone		; Ettställ bit 2
-002063                    247. 	
-002063 C6 02              248. 	ldab	#2
-002065 16 20 19           249. 	jsr	DELAY_B	; 4*250 ms delay
-                          250. 
-002068                    251. MotorStartExit:
-002068 38                 252. 	pulc
-002069 33                 253. 	pulb
-00206A 3D                 254. 	rts
-00206B                    255. 	
-                          256. ;-------------------------------
-                          257. ;	MOTORSTOP
+                          238. ;	MOTORSTART
+                          239. ;-------------------------------
+                          240. 
+002059                    241. MotorStart:
+002059 37                 242. 	pshb
+00205A 39                 243. 	pshc
+00205B F6 20 25           244. 	ldab	DCShadow
+00205E C4 04              245. 	andb	#4
+002060 26 0A              246. 	bne	MotorStartExit	; Motorn redan startad
+002062 C6 02              247. 	ldab	#2
+002064 16 20 40           248. 	jsr	Outone		; Ettställ bit 2
+002067                    249. 	
+002067 C6 02              250. 	ldab	#2
+002069 16 20 19           251. 	jsr	DELAY_B	; 4*250 ms delay
+                          252. 
+00206C                    253. MotorStartExit:
+00206C 38                 254. 	pulc
+00206D 33                 255. 	pulb
+00206E 3D                 256. 	rts
+00206F                    257. 	
                           258. ;-------------------------------
-                          259. 
-00206B                    260. MotorStop:
-00206B 37                 261. 	pshb
-00206C 39                 262. 	pshc
-00206D C6 02              263. 	ldab	#2
-00206F 16 20 26           264. 	jsr	Outzero		; Nollställ bit 2
-002072 38                 265. 	pulc
-002073 33                 266. 	pulb
-002074 3D                 267. 	rts
-002075                    268. 	
-                          269. ;-------------------------------
-                          270. ;	DRILLDOWN
+                          259. ;	MOTORSTOP
+                          260. ;-------------------------------
+                          261. 
+00206F                    262. MotorStop:
+00206F 37                 263. 	pshb
+002070 39                 264. 	pshc
+002071 C6 02              265. 	ldab	#2
+002073 16 20 26           266. 	jsr	Outzero		; Nollställ bit 2
+002076 38                 267. 	pulc
+002077 33                 268. 	pulb
+002078 3D                 269. 	rts
+002079                    270. 	
                           271. ;-------------------------------
-                          272. 
-002075                    273. DrillDown:
-002075 37                 274. 	pshb
-002076 39                 275. 	pshc
-002077 C6 03              276. 	ldab	#3		; Bit nummer 3 �r vridmagneten
-002079 16 20 3E           277. 	jsr	Outone		; Ettst�ll denna
-00207C 38                 278. 	pulc
-00207D 33                 279. 	pulb
-00207E 3D                 280. 	rts
-00207F                    281. 	
-                          282. ;-------------------------------
-                          283. ;	DRILLUP
+                          272. ;	DRILLDOWN
+                          273. ;-------------------------------
+                          274. 
+002079                    275. DrillDown:
+002079 37                 276. 	pshb
+00207A 39                 277. 	pshc
+00207B C6 03              278. 	ldab	#3		; Bit nummer 3 �r vridmagneten
+00207D 16 20 40           279. 	jsr	Outone		; Ettst�ll denna
+002080 38                 280. 	pulc
+002081 33                 281. 	pulb
+002082 3D                 282. 	rts
+002083                    283. 	
                           284. ;-------------------------------
-                          285. 
-00207F                    286. DrillUp:
-00207F 37                 287. 	pshb
-002080 39                 288. 	pshc
-002081 C6 03              289. 	ldab	#3		; Bit nummer 3 �r vridmagneten
-002083 16 20 26           290. 	jsr	Outzero		; Nollst�ll denna
-002086 38                 291. 	pulc
-002087 33                 292. 	pulb
-002088 3D                 293. 	rts
-002089                    294. 	
-                          295. ;-------------------------------
-                          296. ;	ALARM
+                          285. ;	DRILLUP
+                          286. ;-------------------------------
+                          287. 
+002083                    288. DrillUp:
+002083 37                 289. 	pshb
+002084 39                 290. 	pshc
+002085 C6 03              291. 	ldab	#3		; Bit nummer 3 �r vridmagneten
+002087 16 20 26           292. 	jsr	Outzero		; Nollst�ll denna
+00208A 38                 293. 	pulc
+00208B 33                 294. 	pulb
+00208C 3D                 295. 	rts
+00208D                    296. 	
                           297. ;-------------------------------
-                          298. 
-                          299. ; Antalet alarm ska finnas i B-registret
+                          298. ;	ALARM
+                          299. ;-------------------------------
                           300. 
-002089                    301. Alarm:
-002089 39                 302. 	pshc
-00208A B7 10              303. 	tfr	b,a
-00208C 97                 304. 	tsta
-00208D 27 19              305. 	beq	AlarmReturn
-00208F                    306. 			; Bit nummer 4 �r larm
-00208F                    307. AlarmSend:
-00208F C6 04              308. 	ldab	#4		; S�tt p� alarm
-002091 16 20 3E           309. 	jsr	Outone
-002094                    310. 	
-002094 C6 04              311. 	ldab	#4
-002096 16 20 19           312. 	jsr	DELAY_B		; 4*250 ms delay
-002099                    313. 	
-002099 C6 04              314. 	ldab	#4		; St�ng av alarm
-00209B 16 20 26           315. 	jsr	Outzero
-00209E                    316. 	
-00209E 43                 317. 	deca			
-00209F 27 07              318. 	beq	AlarmReturn
-0020A1                    319. 	
-0020A1 C6 02              320. 	ldab	#2		; 2*250 ms delay
-0020A3 16 20 19           321. 	jsr	DELAY_B
-0020A6                    322. 	
-0020A6 20 E7              323. 	bra	AlarmSend
-0020A8                    324. AlarmReturn:
-0020A8 38                 325. 	pulc
-0020A9 3D                 326. 	rts
-0020AA                    327. 	
-0020AA                    328. 	
-0020AA                    329. 	
-0020AA                    330. 	
-                          331. 
-                          332. 
-                          333. ;-------------------------------	
-                          334. ;	Bitmasks
-                          335. ;-------------------------------
-                          336. 
-0020AA 01 02 04 08 10 20  337. Bitmask:	fcb	1,2,4,8,16,32,64,128
+                          301. ; Antalet alarm ska finnas i B-registret
+                          302. 
+00208D                    303. Alarm:
+00208D 39                 304. 	pshc
+00208E B7 10              305. 	tfr	b,a
+002090 97                 306. 	tsta
+002091 27 19              307. 	beq	AlarmReturn
+002093                    308. 			
+002093                    309. AlarmSend:
+002093 C6 04              310. 	ldab	#4		; Bit nummer 4 �r larm
+002095 16 20 40           311. 	jsr	Outone		; S�tt p� alarm
+002098                    312. 	
+002098 C6 04              313. 	ldab	#4
+00209A 16 20 19           314. 	jsr	DELAY_B		; 4*250 ms delay
+00209D                    315. 	
+00209D C6 04              316. 	ldab	#4		; St�ng av alarm
+00209F 16 20 26           317. 	jsr	Outzero
+0020A2                    318. 	
+0020A2 43                 319. 	deca			; A<-A-1, returnera om A �r 0
+0020A3 27 07              320. 	beq	AlarmReturn
+0020A5                    321. 	
+0020A5 C6 02              322. 	ldab	#2		; A �r inte 0. Skicka 2*250 ms delay
+0020A7 16 20 19           323. 	jsr	DELAY_B
+0020AA                    324. 	
+0020AA 20 E7              325. 	bra	AlarmSend	; Loopa om alarmet
+0020AC                    326. AlarmReturn:
+0020AC 38                 327. 	pulc
+0020AD 3D                 328. 	rts
+0020AE                    329. 	
+                          330. ;-------------------------------
+                          331. ;	STEP
+                          332. ;-------------------------------
+                          333. 
+0020AE                    334. Step:
+0020AE B6 04 01           335. 	ldaa	DrillStatus
+0020B1 84 02              336. 	anda	#2	; Maska ut bit 1
+0020B3 27 17              337. 	beq	StepAlarm
+0020B5                    338. 			; Borren uppe
+0020B5 C6 01              339. 	ldab	#1
+0020B7 16 20 40           340. 	jsr	Outone	; Ettst�ll bit 1 (medurs riktning)
+0020BA                    341. 	
+0020BA C6 00              342. 	ldab	#0
+0020BC 16 20 40           343. 	jsr	Outone	; Ettst�ll bit 0 (stegpuls)
+0020BF C6 02              344. 	ldab	#2	
+0020C1 16 20 19           345. 	jsr	DELAY_B	; Skicka 2*250 ms delay
+0020C4                    346. 	
+0020C4 C6 00              347. 	ldab	#0
+0020C6 16 20 26           348. 	jsr	Outzero	; Nollst�ll bit 0 (stegpuls)
+0020C9                    349. 	
+0020C9 C6 01              350. 	ldab	#1	; Returnera 1
+0020CB 3D                 351. 	rts
+                          352. 
+0020CC                    353. StepAlarm:		; Borren inte uppe
+0020CC C6 02              354. 	ldab	#2	
+0020CE 16 20 8D           355. 	jsr	Alarm	; Skicka 2*250 ms delay
+0020D1 C7                 356. 	clrb		; Returnera 0
+0020D2 3D                 357. 	rts
+0020D3                    358. 	
+0020D3                    359. 	
+                          360. 
+                          361. 
+                          362. ;-------------------------------	
+                          363. ;	Bitmasks
+                          364. ;-------------------------------
+                          365. 
+0020D3 01 02 04 08 10 20  366. Bitmask:	fcb	1,2,4,8,16,32,64,128
        40 80            
-0020B2                    338. 		
-                          339. 
-0020B2                    340. 		
-0020B2                    341. 	
-0020B2                    342. 		
-0020B2                    343. 		
-0020B2                    344. 	
+0020DB                    367. 		
+                          368. 
+0020DB                    369. 		
+0020DB                    370. 	
+0020DB                    371. 		
+0020DB                    372. 		
+0020DB                    373. 	
 ---- File: "C:\Users\Erik\Documents\GitHub\PIS\Bokuppgifter\Main.s12"
-                          345. ;------------------------------
-                          346. ;	Globala variabler
-                          347. ;------------------------------
-                          348. 
-0020B2                    349. 	
+                          374. ;------------------------------
+                          375. ;	Globala variabler
+                          376. ;------------------------------
+                          377. 
+0020DB                    378. 	

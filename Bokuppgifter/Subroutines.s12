@@ -2,8 +2,6 @@
 #define	RUNFAST
 		use	Labdefs.s12
 		use	Delay.s12
-
-DCShadow	rmb	1	; DrillControl shadow	
 		
 ;---------------------------------
 ;	OUTZERO
@@ -241,11 +239,13 @@ Nstep:
 NstepReturn1:
 	ldab	#2
 	rts		; Returnera med 1 (framme)
-;-------------------------------	
-;	Bitmasks
+	
 ;-------------------------------
+;	
+;-------------------------------	
 
-Bitmask:	fcb	1,2,4,8,16,32,64,128
+
+
 		
 
 		

@@ -209,7 +209,23 @@ DrillHole:
 	jsr	DrillDown
 	jsr	DrillDownTest
 	jsr	DrillUp
-	rts		; Returnerar svaret från DrilLDownTest
+	rts		; Returnerar svaret från DrillDownTest
+	
+;-------------------------------
+;	REFPOS
+;-------------------------------
+
+RefPos:
+	ldaa	DrillStatus
+	anda	#1	; Maska fram bit 0 (referensposition)
+	bne	RefPosReturn1
+	jsr	Step
+	tstb		; Testa svaret från step
+	bne	RefPos
+	rts		; Returnera med 0
+RefPosReturn1:
+	ldab	#1
+	rts		; Returnera med 1 (har nått referensposition)
 
 ;-------------------------------	
 ;	Bitmasks

@@ -29,19 +29,13 @@ CommandExit:
 ;	Tabell med kommandon
 
 JUMPTAB	fdb	MotorStart,MotorStop,DrillDown,DrillUp
-	fdb	Step,DrillHole,SUB6,SUB7
+	fdb	Step,DrillHole,RefPos,SUB7
 	
 ;---------------------------------
 ;	Subrutiner för test
 
 OutPortM	equ	$400
 
-SUB4	movb	#0,OutPortM
-	rts
-SUB5	movb	#0,OutPortM
-	rts
-SUB6	movb	#0,OutPortM
-	rts
 SUB7	movb	#0,OutPortM
 	rts
 		

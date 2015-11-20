@@ -59,7 +59,7 @@ SUB7	movb	#0,OutPortM
 	
 	;use	ML15drvr.s12
 	use	KeyboardML15.s12
-	use	Delay.s12
+	;use	Delay.s12
 	use	Subroutines.s12
 	
 ;------------------------------

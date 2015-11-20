@@ -1,21 +1,9 @@
-		#define	SIMUATOR
+#define	SIMUATOR
+#define	RUNFAST
 		use	Labdefs.s12
 		use	Delay.s12
-InPort		equ	$0401	; Läsa in?
-;OutPort		equ	$0400	; Läsa in?
 
-		org	$1000	
-DCShadow	rmb	1	; DrillControl shadow
-Start:		ldab	#$00
-		stab	DCShadow
-		
-Loop:		ldab	InPort
-		jsr	Outone
-		
-		ldaa	DCShadow
-		;staa	OutPort
-		
-		jmp	Start		
+DCShadow	rmb	1	; DrillControl shadow	
 		
 ;---------------------------------
 ;	OUTZERO

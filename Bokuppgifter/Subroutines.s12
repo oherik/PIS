@@ -18,7 +18,6 @@ Outzero:
 		cmpb	#7		
 		bhi	Outzero_return	; Kolla om talet är >7
 		ldx	#Bitmask
-Outzero_loop:
 		ldab	b,x				; Uppdatera b till bitmasken för b
 		comb	
 		andb	DCShadow		; Ta DCShadow && komplementet av bitmasken
@@ -43,7 +42,6 @@ Outone:
 		cmpb	#7		
 		bhi	Outone_return	; Kolla om talet är >7
 		ldx	#Bitmask
-Outone_loop:
 		ldab	b,x	
 		orab	DCShadow	; Ta DCShadow || Bitmasken
 		stab	DrillControl	; Spara till borren

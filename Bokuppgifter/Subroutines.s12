@@ -56,17 +56,18 @@ Outone_return:
 
 MotorStart:
 	pshb
+	pshc
 	ldab	DCShadow
 	andb	#4
 	bne	MotorStartExit	; Motorn redan startad
 	ldab	#2
 	jsr	Outone		; Ettst√§ll bit 2
-	jsr	DELAY		; 4*250ms f√∂rdr√∂jning
-	jsr	DELAY
-	jsr	DELAY
-	jsr	DELAY
+	
+	ldab	#2
+	jsr	DELAY_B	; 4*250 ms delay
 
 MotorStartExit:
+	pulc
 	pulb
 	rts
 	
@@ -76,8 +77,10 @@ MotorStartExit:
 
 MotorStop:
 	pshb
+	pshc
 	ldab	#2
 	jsr	Outzero		; Nollst√§ll bit 2
+	pulc
 	pulb
 	rts
 	
@@ -87,8 +90,10 @@ MotorStop:
 
 DrillDown:
 	pshb
+	pshc
 	ldab	#3		; Bit nummer 3 ‰r vridmagneten
 	jsr	Outone		; Ettst‰ll denna
+	pulc
 	pulb
 	rts
 	
@@ -98,11 +103,51 @@ DrillDown:
 
 DrillUp:
 	pshb
+	pshc
 	ldab	#3		; Bit nummer 3 ‰r vridmagneten
 	jsr	Outzero		; Nollst‰ll denna
+	pulc
 	pulb
 	rts
 	
+;-------------------------------
+;	ALARM
+;-------------------------------
+
+; Antalet alarm ska finnas i B-registret
+
+Alarm:
+	pshc
+	tfr	b,a
+	tsta
+	beq	AlarmReturn
+			; Bit nummer 4 ‰r larm
+AlarmSend:
+	ldab	#4		; S‰tt pÂ alarm
+	jsr	Outone
+	
+	ldab	#4
+	jsr	DELAY_B		; 4*250 ms delay
+	
+	ldab	#4		; St‰ng av alarm
+	jsr	Outzero
+	
+	deca			
+	beq	AlarmReturn
+	
+	ldab	#2		; 2*250 ms delay
+	jsr	DELAY_B
+	
+	bra	AlarmSend
+AlarmReturn:
+	pulc
+	rts
+	
+	
+	
+	
+
+
 ;-------------------------------	
 ;	Bitmasks
 ;-------------------------------

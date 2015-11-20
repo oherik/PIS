@@ -1,8 +1,8 @@
 		#define	SIMUATOR
 		use	Labdefs.s12
 		use	Delay.s12
-InPort		equ	$0401	; L‰sa in?
-;OutPort		equ	$0400	; L‰sa in?
+InPort		equ	$0401	; L√§sa in?
+;OutPort		equ	$0400	; L√§sa in?
 
 		org	$1000	
 DCShadow	rmb	1	; DrillControl shadow
@@ -21,53 +21,45 @@ Loop:		ldab	InPort
 ;	OUTZERO
 ;---------------------------------
 
-; Nollst‰ll biten i B-registret, med fˆrprogrammerade bitmˆnster
+; Nollst√§ll biten i B-registret, med f√∂rprogrammerade bitm√∂nster
 
-Outzero:	psha			; L‰gg register pÂ stacken fˆr senare Âterst‰llning
-		pshc	
+Outzero:			
+		pshc	; L√§gg register p√• stacken f√∂r senare √•terst√§llning
 		pshb
 		cmpb	#7		
-		bhi	Outzero_return	; Kolla om talet ‰r >7
+		bhi	Outzero_return	; Kolla om talet √§r >7
 		ldx	#Bitmask
 Outzero_loop:
-		ldab	b,x
+		ldab	b,x				; Uppdatera b till bitmasken f√∂r b
 		comb	
-		pshb
-		ldaa	DCShadow
-		anda	0,sp		; Ta DCShadow && B
-		leas	1,sp
-		staa	DrillControl	; Spara till borren
-		staa	DCShadow	; Spara till skuggningen
+		andb	DCShadow		; Ta DCShadow && komplementet av bitmasken
+		stab	DrillControl	; Spara till borren
+		stab	DCShadow	; Spara till skuggningen
 Outzero_return:	
-		pulb			; ≈terst‰ll originalv‰rden
+		pulb			; √Öterst√§ll originalv√§rden
 		pulc
-		pula
 		rts
 	
 ;---------------------------------
 ;	OUTONE
 ;---------------------------------
 
-; Ettst‰ll biten i B-registret, med fˆrprogrammerade bitmˆnster
+; Ettst√§ll biten i B-registret, med f√∂rprogrammerade bitm√∂nster
 
-Outone:		psha			; L‰gg register pÂ stacken fˆr senare Âterst‰llning
-		pshc	
+Outone:			
+		pshc	; L√§gg register p√• stacken f√∂r senare √•terst√§llning
 		pshb
 		cmpb	#7		
-		bhi	Outone_return	; Kolla om talet ‰r >7
+		bhi	Outone_return	; Kolla om talet √§r >7
 		ldx	#Bitmask
 Outone_loop:
 		ldab	b,x	
-		pshb
-		ldaa	DCShadow
-		oraa	0,sp		; Ta DCShadow || B
-		leas	1,sp
-		staa	DrillControl	; Spara till borren
-		staa	DCShadow	; Spara till skuggningen
+		orab	DCShadow	; Ta DCShadow || Bitmasken
+		stab	DrillControl	; Spara till borren
+		stab	DCShadow	; Spara till skuggningen
 Outone_return:	
-		pulb			; ≈terst‰ll originalv‰rden
+		pulb			; √Öterst√§ll originalv√§rden
 		pulc
-		pula
 		rts
 		
 ;-------------------------------
@@ -80,8 +72,8 @@ MotorStart:
 	andb	#4
 	bne	MotorStartExit	; Motorn redan startad
 	ldab	#2
-	jsr	Outone		; Ettst‰ll bit 2
-	jsr	DELAY		; 4*250ms fˆrdrˆjning
+	jsr	Outone		; Ettst√§ll bit 2
+	jsr	DELAY		; 4*250ms f√∂rdr√∂jning
 	jsr	DELAY
 	jsr	DELAY
 	jsr	DELAY
@@ -97,7 +89,7 @@ MotorStartExit:
 MotorStop:
 	pshb
 	ldab	#2
-	jsr	Outzero		; Nollst‰ll bit 2
+	jsr	Outzero		; Nollst√§ll bit 2
 	pulb
 	rts
 	

@@ -29,14 +29,15 @@ CommandExit:
 ;	Tabell med kommandon
 
 JUMPTAB	fdb	MotorStart,MotorStop,DrillDown,DrillUp
-	fdb	Step,DrillHole,RefPos,SUB7
+	fdb	Step,DrillHole,RefPos,DoAutoMain
 	
-;---------------------------------
-;	Subrutiner för test
 
-OutPortM	equ	$400
-
-SUB7	movb	#0,OutPortM
+;--------------------------------
+;	DOAUTOMAIN
+;--------------------------------
+DoAutoMain:
+	ldx	#Pattern
+	jsr	DoAuto
 	rts
 		
 ;-------------------------------

@@ -169,12 +169,13 @@ Step:
 StepAlarm:		; Borren inte uppe
 	ldab	#2	
 	jsr	Alarm	; Skicka 2*250 ms delay
-	clrb		; Returnera 0
+	ldab	#0	; Returnera 0
 	rts
 	
 ;-------------------------------
 ;	DRILLDOWNTEST
 ;-------------------------------
+
 DrillDownTest:
 retry	rmb	1
 	movb	#20,retry
@@ -230,25 +231,44 @@ RefPosReturn1:
 ;-------------------------------
 Nstep:
 	tfr	b,a	; Lägg n i A
-	beq	NstepReturn1
+Nstep_loop:
+	tsta
+	beq	NstepReturn1	; A=0?
 	deca
+	psha
 	jsr	Step
-	tstb		; Testa svaret från step, kanske inte behövs
-	bne	Nstep
+	pula
+	tstb		; Testa svaret från step, kanske inte behövs (ldab ska ändra)
+	bne	Nstep_loop
 	rts		; Returnera med 0
 NstepReturn1:
-	ldab	#2
+	ldab	#1
 	rts		; Returnera med 1 (framme)
 	
 ;-------------------------------
-;	
+;	DOAUTO
 ;-------------------------------	
 
+DoAuto:	
+	jsr	RefPos
+	tstb		; Testa svaret från RefPos, kanske inte behövs (ldab ska ändra)
+	beq	DoAutoReturn
+	jsr	MotorStart
+DoAutoDrill:
+	ldab	,x
+	leax	1,x	; Öka X med 1
+	cmpb	#$FF	; Testa med slutmarkering
+	beq	DoAutoReturn
+	jsr	Nstep
+	tstb
+	beq	DoAutoReturn
+	jsr	DrillHole
+	tstb
+	beq	DoAutoReturn
+	bra	DoAutoDrill
+DoAutoReturn:
+	jsr	MotorStop
+	rts
 
-
-		
-
-		
-	
 		
 		

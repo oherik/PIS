@@ -46,7 +46,7 @@ File: Main.lst
                            45. 
 001015 20 59 20 6F 20 79   46. JUMPTAB	fdb	MotorStart,MotorStop,DrillDown,DrillUp
        20 83            
-00101D 20 AE 10 2B 10 31   47. 	fdb	Step,SUB5,SUB6,SUB7
+00101D 20 AE 20 FB 10 31   47. 	fdb	Step,DrillHole,SUB6,SUB7
        10 37            
 001025                     48. 	
                            49. ;---------------------------------
@@ -196,7 +196,7 @@ File: Main.lst
 002028 34                 199. 		pshx
 002029 C1 07              200. 		cmpb	#7		
 00202B 22 0F              201. 		bhi	Outzero_return	; Kolla om talet är >7
-00202D CE 20 D3           202. 		ldx	#Bitmask
+00202D CE 21 05           202. 		ldx	#Bitmask
 002030                    203. 		ldab	b,x				; Uppdatera b till bitmasken för b
 002032 51                 204. 		comb	
 002033 F4 20 25           205. 		andb	DCShadow		; Ta DCShadow && komplementet av bitmasken
@@ -220,7 +220,7 @@ File: Main.lst
 002042 34                 223. 		pshx
 002043 C1 07              224. 		cmpb	#7		
 002045 22 0E              225. 		bhi	Outone_return	; Kolla om talet är >7
-002047 CE 20 D3           226. 		ldx	#Bitmask
+002047 CE 21 05           226. 		ldx	#Bitmask
 00204A                    227. 		ldab	b,x	
 00204C FA 20 25           228. 		orab	DCShadow	; Ta DCShadow || Bitmasken
 00204F 7B 04 00           229. 		stab	DrillControl	; Spara till borren
@@ -353,25 +353,61 @@ File: Main.lst
 0020D1 C7                 356. 	clrb		; Returnera 0
 0020D2 3D                 357. 	rts
 0020D3                    358. 	
-0020D3                    359. 	
-                          360. 
-                          361. 
-                          362. ;-------------------------------	
-                          363. ;	Bitmasks
-                          364. ;-------------------------------
-                          365. 
-0020D3 01 02 04 08 10 20  366. Bitmask:	fcb	1,2,4,8,16,32,64,128
+                          359. ;-------------------------------
+                          360. ;	DRILLDOWNTEST
+                          361. ;-------------------------------
+0020D3                    362. DrillDownTest:
+0020D3 00                 363. retry	rmb	1
+0020D4 18 0B 02 20 D3     364. 	movb	#2,retry
+0020D9                    365. 	;ldaa	#20	; A = retry
+0020D9                    366. 	;staa	retry
+0020D9                    367. DrillDownTestRetry:
+0020D9 F6 04 01           368. 	ldab	DrillStatus
+0020DC C4 04              369. 	andb	#4	; Maska fram bit 2 (borr nere)
+0020DE 26 18              370. 	bne	DrillDownTestReturn1
+0020E0 C6 01              371. 	ldab	#1
+0020E2 16 20 19           372. 	jsr	DELAY_B	; 250 ms delay
+0020E5 73 20 D3           373. 	dec	retry
+0020E8 F7 20 D3           374. 	tst	retry	
+0020EB 26 EC              375. 	bne	DrillDownTestRetry
+0020ED C6 02              376. 	ldab	#2
+0020EF 16 20 8D           377. 	jsr	Alarm	; Skicka 2 alarmsignaler
+0020F2 C6 00              378. 	ldab	#0
+0020F4 3D                 379. 	rts		; Returnera 0
+0020F5                    380. DrillDowntTestReturn1:
+0020F5 C6 01              381. 	ldab	#1
+0020F7 3D                 382. 	rts		; Returnera 1
+0020F8                    383. 	
+0020F8                    384. DrillDownTestReturn1
+0020F8 C6 01              385. 	ldab	#1
+0020FA 3D                 386. 	rts
+0020FB                    387. 	
+                          388. ;-------------------------------
+                          389. ;	DRILLHOLE
+                          390. ;-------------------------------
+                          391. 
+0020FB                    392. DrillHole:
+0020FB 16 20 79           393. 	jsr	DrillDown
+0020FE 16 20 D3           394. 	jsr	DrillDownTest
+002101 16 20 83           395. 	jsr	DrillUp
+002104 3D                 396. 	rts		; Returnerar svaret fr�n DrilLDownTest
+                          397. 
+                          398. ;-------------------------------	
+                          399. ;	Bitmasks
+                          400. ;-------------------------------
+                          401. 
+002105 01 02 04 08 10 20  402. Bitmask:	fcb	1,2,4,8,16,32,64,128
        40 80            
-0020DB                    367. 		
-                          368. 
-0020DB                    369. 		
-0020DB                    370. 	
-0020DB                    371. 		
-0020DB                    372. 		
-0020DB                    373. 	
+00210D                    403. 		
+                          404. 
+00210D                    405. 		
+00210D                    406. 	
+00210D                    407. 		
+00210D                    408. 		
+00210D                    409. 	
 ---- File: "C:\Users\Erik\Documents\GitHub\PIS\Bokuppgifter\Main.s12"
-                          374. ;------------------------------
-                          375. ;	Globala variabler
-                          376. ;------------------------------
-                          377. 
-0020DB                    378. 	
+                          410. ;------------------------------
+                          411. ;	Globala variabler
+                          412. ;------------------------------
+                          413. 
+00210D                    414. 	

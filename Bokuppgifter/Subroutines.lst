@@ -72,7 +72,7 @@ File: Subroutines.lst
 002028 34                  74. 		pshx
 002029 C1 07               75. 		cmpb	#7		
 00202B 22 0F               76. 		bhi	Outzero_return	; Kolla om talet är >7
-00202D CE 20 D3            77. 		ldx	#Bitmask
+00202D CE 21 05            77. 		ldx	#Bitmask
 002030                     78. 		ldab	b,x				; Uppdatera b till bitmasken för b
 002032 51                  79. 		comb	
 002033 F4 20 25            80. 		andb	DCShadow		; Ta DCShadow && komplementet av bitmasken
@@ -96,7 +96,7 @@ File: Subroutines.lst
 002042 34                  98. 		pshx
 002043 C1 07               99. 		cmpb	#7		
 002045 22 0E              100. 		bhi	Outone_return	; Kolla om talet är >7
-002047 CE 20 D3           101. 		ldx	#Bitmask
+002047 CE 21 05           101. 		ldx	#Bitmask
 00204A                    102. 		ldab	b,x	
 00204C FA 20 25           103. 		orab	DCShadow	; Ta DCShadow || Bitmasken
 00204F 7B 04 00           104. 		stab	DrillControl	; Spara till borren
@@ -229,18 +229,52 @@ File: Subroutines.lst
 0020D1 C7                 231. 	clrb		; Returnera 0
 0020D2 3D                 232. 	rts
 0020D3                    233. 	
-0020D3                    234. 	
-                          235. 
-                          236. 
-                          237. ;-------------------------------	
-                          238. ;	Bitmasks
-                          239. ;-------------------------------
-                          240. 
-0020D3 01 02 04 08 10 20  241. Bitmask:	fcb	1,2,4,8,16,32,64,128
+                          234. ;-------------------------------
+                          235. ;	DRILLDOWNTEST
+                          236. ;-------------------------------
+0020D3                    237. DrillDownTest:
+0020D3 00                 238. retry	rmb	1
+0020D4 18 0B 14 20 D3     239. 	movb	#20,retry
+0020D9                    240. DrillDownTestRetry:
+0020D9 F6 04 01           241. 	ldab	DrillStatus
+0020DC C4 04              242. 	andb	#4	; Maska fram bit 2 (borr nere)
+0020DE 26 18              243. 	bne	DrillDownTestReturn1
+0020E0 C6 01              244. 	ldab	#1
+0020E2 16 20 19           245. 	jsr	DELAY_B	; 250 ms delay
+0020E5 73 20 D3           246. 	dec	retry
+0020E8 F7 20 D3           247. 	tst	retry	
+0020EB 26 EC              248. 	bne	DrillDownTestRetry
+0020ED C6 02              249. 	ldab	#2
+0020EF 16 20 8D           250. 	jsr	Alarm	; Skicka 2 alarmsignaler
+0020F2 C6 00              251. 	ldab	#0
+0020F4 3D                 252. 	rts		; Returnera 0
+0020F5                    253. DrillDowntTestReturn1:
+0020F5 C6 01              254. 	ldab	#1
+0020F7 3D                 255. 	rts		; Returnera 1
+0020F8                    256. 	
+0020F8                    257. DrillDownTestReturn1
+0020F8 C6 01              258. 	ldab	#1
+0020FA 3D                 259. 	rts
+0020FB                    260. 	
+                          261. ;-------------------------------
+                          262. ;	DRILLHOLE
+                          263. ;-------------------------------
+                          264. 
+0020FB                    265. DrillHole:
+0020FB 16 20 79           266. 	jsr	DrillDown
+0020FE 16 20 D3           267. 	jsr	DrillDownTest
+002101 16 20 83           268. 	jsr	DrillUp
+002104 3D                 269. 	rts		; Returnerar svaret fr�n DrilLDownTest
+                          270. 
+                          271. ;-------------------------------	
+                          272. ;	Bitmasks
+                          273. ;-------------------------------
+                          274. 
+002105 01 02 04 08 10 20  275. Bitmask:	fcb	1,2,4,8,16,32,64,128
        40 80            
-0020DB                    242. 		
-                          243. 
-0020DB                    244. 		
-0020DB                    245. 	
-0020DB                    246. 		
-0020DB                    247. 		
+00210D                    276. 		
+                          277. 
+00210D                    278. 		
+00210D                    279. 	
+00210D                    280. 		
+00210D                    281. 		

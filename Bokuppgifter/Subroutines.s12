@@ -174,8 +174,42 @@ StepAlarm:		; Borren inte uppe
 	clrb		; Returnera 0
 	rts
 	
+;-------------------------------
+;	DRILLDOWNTEST
+;-------------------------------
+DrillDownTest:
+retry	rmb	1
+	movb	#20,retry
+DrillDownTestRetry:
+	ldab	DrillStatus
+	andb	#4	; Maska fram bit 2 (borr nere)
+	bne	DrillDownTestReturn1
+	ldab	#1
+	jsr	DELAY_B	; 250 ms delay
+	dec	retry
+	tst	retry	
+	bne	DrillDownTestRetry
+	ldab	#2
+	jsr	Alarm	; Skicka 2 alarmsignaler
+	ldab	#0
+	rts		; Returnera 0
+DrillDowntTestReturn1:
+	ldab	#1
+	rts		; Returnera 1
 	
+DrillDownTestReturn1
+	ldab	#1
+	rts
+	
+;-------------------------------
+;	DRILLHOLE
+;-------------------------------
 
+DrillHole:
+	jsr	DrillDown
+	jsr	DrillDownTest
+	jsr	DrillUp
+	rts		; Returnerar svaret från DrilLDownTest
 
 ;-------------------------------	
 ;	Bitmasks

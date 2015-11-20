@@ -190,7 +190,7 @@ File: Main.lst
 002028 34                 193. 		pshx
 002029 C1 07              194. 		cmpb	#7		
 00202B 22 0F              195. 		bhi	Outzero_return	; Kolla om talet Ã¤r >7
-00202D CE 21 16           196. 		ldx	#Bitmask
+00202D CE 21 25           196. 		ldx	#Bitmask
 002030                    197. 		ldab	b,x				; Uppdatera b till bitmasken fÃ¶r b
 002032 51                 198. 		comb	
 002033 F4 20 25           199. 		andb	DCShadow		; Ta DCShadow && komplementet av bitmasken
@@ -214,7 +214,7 @@ File: Main.lst
 002042 34                 217. 		pshx
 002043 C1 07              218. 		cmpb	#7		
 002045 22 0E              219. 		bhi	Outone_return	; Kolla om talet Ã¤r >7
-002047 CE 21 16           220. 		ldx	#Bitmask
+002047 CE 21 25           220. 		ldx	#Bitmask
 00204A                    221. 		ldab	b,x	
 00204C FA 20 25           222. 		orab	DCShadow	; Ta DCShadow || Bitmasken
 00204F 7B 04 00           223. 		stab	DrillControl	; Spara till borren
@@ -399,23 +399,37 @@ File: Main.lst
 002113                    402. RefPosReturn1:
 002113 C6 01              403. 	ldab	#1
 002115 3D                 404. 	rts		; Returnera med 1 (har nått referensposition)
-                          405. 
-                          406. ;-------------------------------	
-                          407. ;	Bitmasks
+002116                    405. 	
+                          406. ;-------------------------------
+                          407. ;	NSTEP
                           408. ;-------------------------------
-                          409. 
-002116 01 02 04 08 10 20  410. Bitmask:	fcb	1,2,4,8,16,32,64,128
+002116                    409. Nstep:
+002116 B7 10              410. 	tfr	b,a	; Lägg n i A
+002118 27 08              411. 	beq	NstepReturn1
+00211A 43                 412. 	deca
+00211B 16 20 AE           413. 	jsr	Step
+00211E D7                 414. 	tstb		; Testa svaret från step, kanske inte behövs
+00211F 26 F5              415. 	bne	Nstep
+002121 3D                 416. 	rts		; Returnera med 0
+002122                    417. NstepReturn1:
+002122 C6 02              418. 	ldab	#2
+002124 3D                 419. 	rts		; Returnera med 1 (framme)
+                          420. ;-------------------------------	
+                          421. ;	Bitmasks
+                          422. ;-------------------------------
+                          423. 
+002125 01 02 04 08 10 20  424. Bitmask:	fcb	1,2,4,8,16,32,64,128
        40 80            
-00211E                    411. 		
-                          412. 
-00211E                    413. 		
-00211E                    414. 	
-00211E                    415. 		
-00211E                    416. 		
-00211E                    417. 	
+00212D                    425. 		
+                          426. 
+00212D                    427. 		
+00212D                    428. 	
+00212D                    429. 		
+00212D                    430. 		
+00212D                    431. 	
 ---- File: "C:\Users\Erik\Documents\GitHub\PIS\Bokuppgifter\Main.s12"
-                          418. ;------------------------------
-                          419. ;	Globala variabler
-                          420. ;------------------------------
-                          421. 
-00211E                    422. 	
+                          432. ;------------------------------
+                          433. ;	Globala variabler
+                          434. ;------------------------------
+                          435. 
+00212D                    436. 	

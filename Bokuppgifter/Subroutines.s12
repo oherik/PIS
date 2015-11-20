@@ -226,7 +226,21 @@ RefPos:
 RefPosReturn1:
 	ldab	#1
 	rts		; Returnera med 1 (har nått referensposition)
-
+	
+;-------------------------------
+;	NSTEP
+;-------------------------------
+Nstep:
+	tfr	b,a	; Lägg n i A
+	beq	NstepReturn1
+	deca
+	jsr	Step
+	tstb		; Testa svaret från step, kanske inte behövs
+	bne	Nstep
+	rts		; Returnera med 0
+NstepReturn1:
+	ldab	#2
+	rts		; Returnera med 1 (framme)
 ;-------------------------------	
 ;	Bitmasks
 ;-------------------------------

@@ -72,7 +72,7 @@ File: Subroutines.lst
 002028 34                  74. 		pshx
 002029 C1 07               75. 		cmpb	#7		
 00202B 22 0F               76. 		bhi	Outzero_return	; Kolla om talet Ã¤r >7
-00202D CE 21 05            77. 		ldx	#Bitmask
+00202D CE 21 25            77. 		ldx	#Bitmask
 002030                     78. 		ldab	b,x				; Uppdatera b till bitmasken fÃ¶r b
 002032 51                  79. 		comb	
 002033 F4 20 25            80. 		andb	DCShadow		; Ta DCShadow && komplementet av bitmasken
@@ -96,7 +96,7 @@ File: Subroutines.lst
 002042 34                  98. 		pshx
 002043 C1 07               99. 		cmpb	#7		
 002045 22 0E              100. 		bhi	Outone_return	; Kolla om talet Ã¤r >7
-002047 CE 21 05           101. 		ldx	#Bitmask
+002047 CE 21 25           101. 		ldx	#Bitmask
 00204A                    102. 		ldab	b,x	
 00204C FA 20 25           103. 		orab	DCShadow	; Ta DCShadow || Bitmasken
 00204F 7B 04 00           104. 		stab	DrillControl	; Spara till borren
@@ -264,17 +264,47 @@ File: Subroutines.lst
 0020FB 16 20 79           266. 	jsr	DrillDown
 0020FE 16 20 D3           267. 	jsr	DrillDownTest
 002101 16 20 83           268. 	jsr	DrillUp
-002104 3D                 269. 	rts		; Returnerar svaret från DrilLDownTest
-                          270. 
-                          271. ;-------------------------------	
-                          272. ;	Bitmasks
+002104 3D                 269. 	rts		; Returnerar svaret från DrillDownTest
+002105                    270. 	
+                          271. ;-------------------------------
+                          272. ;	REFPOS
                           273. ;-------------------------------
                           274. 
-002105 01 02 04 08 10 20  275. Bitmask:	fcb	1,2,4,8,16,32,64,128
+002105                    275. RefPos:
+002105 B6 04 01           276. 	ldaa	DrillStatus
+002108 84 01              277. 	anda	#1	; Maska fram bit 0 (referensposition)
+00210A 26 07              278. 	bne	RefPosReturn1
+00210C 16 20 AE           279. 	jsr	Step
+00210F D7                 280. 	tstb		; Testa svaret från step
+002110 26 F3              281. 	bne	RefPos
+002112 3D                 282. 	rts		; Returnera med 0
+002113                    283. RefPosReturn1:
+002113 C6 01              284. 	ldab	#1
+002115 3D                 285. 	rts		; Returnera med 1 (har nått referensposition)
+002116                    286. 	
+                          287. ;-------------------------------
+                          288. ;	NSTEP
+                          289. ;-------------------------------
+002116                    290. Nstep:
+002116 B7 10              291. 	tfr	b,a	; Lägg n i A
+002118 27 08              292. 	beq	NstepReturn1
+00211A 43                 293. 	deca
+00211B 16 20 AE           294. 	jsr	Step
+00211E D7                 295. 	tstb		; Testa svaret från step, kanske inte behövs
+00211F 26 F5              296. 	bne	Nstep
+002121 3D                 297. 	rts		; Returnera med 0
+002122                    298. NstepReturn1:
+002122 C6 02              299. 	ldab	#2
+002124 3D                 300. 	rts		; Returnera med 1 (framme)
+                          301. ;-------------------------------	
+                          302. ;	Bitmasks
+                          303. ;-------------------------------
+                          304. 
+002125 01 02 04 08 10 20  305. Bitmask:	fcb	1,2,4,8,16,32,64,128
        40 80            
-00210D                    276. 		
-                          277. 
-00210D                    278. 		
-00210D                    279. 	
-00210D                    280. 		
-00210D                    281. 		
+00212D                    306. 		
+                          307. 
+00212D                    308. 		
+00212D                    309. 	
+00212D                    310. 		
+00212D                    311. 		

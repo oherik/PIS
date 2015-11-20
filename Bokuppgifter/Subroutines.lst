@@ -178,10 +178,10 @@ File: Subroutines.lst
 00208E B7 10              180. 	tfr	b,a
 002090 97                 181. 	tsta
 002091 27 19              182. 	beq	AlarmReturn
-002093                    183. 			; Bit nummer 4 är larm
+002093                    183. 			
 002093                    184. AlarmSend:
-002093 C6 04              185. 	ldab	#4		; Sätt på alarm
-002095 16 20 40           186. 	jsr	Outone
+002093 C6 04              185. 	ldab	#4		; Bit nummer 4 är larm
+002095 16 20 40           186. 	jsr	Outone		; Sätt på alarm
 002098                    187. 	
 002098 C6 04              188. 	ldab	#4
 00209A 16 20 19           189. 	jsr	DELAY_B		; 4*250 ms delay
@@ -189,18 +189,18 @@ File: Subroutines.lst
 00209D C6 04              191. 	ldab	#4		; Stäng av alarm
 00209F 16 20 26           192. 	jsr	Outzero
 0020A2                    193. 	
-0020A2 43                 194. 	deca			
+0020A2 43                 194. 	deca			; A<-A-1, returnera om A är 0
 0020A3 27 07              195. 	beq	AlarmReturn
 0020A5                    196. 	
-0020A5 C6 02              197. 	ldab	#2		; 2*250 ms delay
+0020A5 C6 02              197. 	ldab	#2		; A är inte 0. Skicka 2*250 ms delay
 0020A7 16 20 19           198. 	jsr	DELAY_B
 0020AA                    199. 	
-0020AA 20 E7              200. 	bra	AlarmSend
+0020AA 20 E7              200. 	bra	AlarmSend	; Loopa om alarmet
 0020AC                    201. AlarmReturn:
 0020AC 38                 202. 	pulc
 0020AD 3D                 203. 	rts
 0020AE                    204. 	
-0020AE                    205. 	
+                          205. ;
 0020AE                    206. 	
 0020AE                    207. 	
                           208. 

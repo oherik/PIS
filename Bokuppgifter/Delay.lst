@@ -16,7 +16,7 @@ File: Delay.lst
        0000 0004           15. DelayConst	EQU	4
                            16. #endif002000                     17. 	org	$2000
 ---- File: "C:\Users\Erik\Documents\GitHub\PIS\Bokuppgifter\Delay.s12"
-002000 34                  18. DELAY:	pshx
+002000 34                  18. DELAY:	pshx		; 250 ms delay
 002001 35                  19. 	pshy
 002002 CE 00 04            20. 	ldx	#DelayConst
 002005 1A 1F               21. NEXT:	leax	-1,x
@@ -29,3 +29,15 @@ File: Delay.lst
 002016 31                  28. 	puly
 002017 30                  29. 	pulx
 002018 3D                  30. 	rts	
+002019                     31. 	
+002019                     32. DELAY_B:		; Calls DELAY the number of times specified in B
+002019 37                  33. 	pshb
+00201A D7                  34. 	tstb
+00201B                     35. DELAY_B_LOOP:
+00201B 27 06               36. 	beq	DELAY_B_RETURN
+00201D 16 20 00            37. 	jsr	DELAY
+002020 53                  38. 	decb
+002021 20 F8               39. 	bra	DELAY_B_LOOP
+002023                     40. DELAY_B_RETURN:
+002023 33                  41. 	pulb
+002024 3D                  42. 	rts 

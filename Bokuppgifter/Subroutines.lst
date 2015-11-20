@@ -3,156 +3,219 @@ QA12 - MC68HC12 Absolute crossassembler, Version 1.6.3
 
 
 File: Subroutines.lst
-                            1. 		#define	SIMUATOR
+                            1. #define	SIMUATOR
 ---- File: "C:\Users\Erik\Documents\GitHub\PIS\Bokuppgifter\Subroutines.s12"
-                            2. 		use	Labdefs.s12
+                            2. #define	RUNFAST
+                            3. 		use	Labdefs.s12
 ---- File: "Labdefs.s12"
-                            3. ;Adresser
-       0000 0600            4. DipSwitch	equ	$600
-       0000 0700            5. HexDisplay	equ	$700
-       0000 0400            6. DrillControl	equ	$400
-       0000 0401            7. DrillStatus	equ	$401
-                            8. 
-000000                      9. #ifdef	SIMULATOR
-                           15. #else
-       0000 0004           16. DelayConst	EQU	4
-                           17. #endif                           18. 		use	Delay.s12
+                            4. ;Adresser
+       0000 0600            5. DipSwitch	equ	$600
+       0000 0700            6. HexDisplay	equ	$700
+       0000 0400            7. DrillControl	equ	$400
+       0000 0401            8. DrillStatus	equ	$401
+                            9. 
+000000                     10. #ifdef	SIMULATOR
+                           16. #else
+       0000 0004           17. DelayConst	EQU	4
+                           18. #endif                           19. 		use	Delay.s12
 ---- File: "Delay.s12"
-                           19. 	use	Labdefs.s12
+                           20. 	use	Labdefs.s12
 ---- File: "Labdefs.s12"
-                           20. ;Adresser
-       0000 0600           21. DipSwitch	equ	$600
-       0000 0700           22. HexDisplay	equ	$700
-       0000 0400           23. DrillControl	equ	$400
-       0000 0401           24. DrillStatus	equ	$401
-                           25. 
-000000                     26. #ifdef	SIMULATOR
-                           32. #else
-       0000 0004           33. DelayConst	EQU	4
-                           34. #endif002000                     35. 	org	$2000
+                           21. ;Adresser
+       0000 0600           22. DipSwitch	equ	$600
+       0000 0700           23. HexDisplay	equ	$700
+       0000 0400           24. DrillControl	equ	$400
+       0000 0401           25. DrillStatus	equ	$401
+                           26. 
+000000                     27. #ifdef	SIMULATOR
+                           33. #else
+       0000 0004           34. DelayConst	EQU	4
+                           35. #endif002000                     36. 	org	$2000
 ---- File: "Delay.s12"
-002000 34                  36. DELAY:	pshx
-002001 35                  37. 	pshy
-002002 CE 00 04            38. 	ldx	#DelayConst
-002005 1A 1F               39. NEXT:	leax	-1,x
-002007 CD 00 64            40. 	ldy	#100
-00200A 19 5F               41. NEXT2:	leay	-1,y
-00200C 8D 00 00            42. 	cpy	#0
-00200F 26 F9               43. 	bne	NEXT2
-002011 8E 00 00            44. 	cpx	#0
-002014 26 EF               45. 	bne	NEXT
-002016 31                  46. 	puly
-002017 30                  47. 	pulx
-002018 3D                  48. 	rts	       0000 0401           49. InPort		equ	$0401	; L‰sa in?
+002000 34                  37. DELAY:	pshx		; 250 ms delay
+002001 35                  38. 	pshy
+002002 CE 00 04            39. 	ldx	#DelayConst
+002005 1A 1F               40. NEXT:	leax	-1,x
+002007 CD 00 64            41. 	ldy	#100
+00200A 19 5F               42. NEXT2:	leay	-1,y
+00200C 8D 00 00            43. 	cpy	#0
+00200F 26 F9               44. 	bne	NEXT2
+002011 8E 00 00            45. 	cpx	#0
+002014 26 EF               46. 	bne	NEXT
+002016 31                  47. 	puly
+002017 30                  48. 	pulx
+002018 3D                  49. 	rts	
+002019                     50. 	
+002019                     51. DELAY_B:		; Calls DELAY the number of times specified in B
+002019 37                  52. 	pshb
+00201A D7                  53. 	tstb
+00201B                     54. DELAY_B_LOOP:
+00201B 27 06               55. 	beq	DELAY_B_RETURN
+00201D 16 20 00            56. 	jsr	DELAY
+002020 53                  57. 	decb
+002021 20 F8               58. 	bra	DELAY_B_LOOP
+002023                     59. DELAY_B_RETURN:
+002023 33                  60. 	pulb
+002024 3D                  61. 	rts                            62. 
 ---- File: "C:\Users\Erik\Documents\GitHub\PIS\Bokuppgifter\Subroutines.s12"
-                           50. ;OutPort		equ	$0400	; L‰sa in?
-                           51. 
-001000                     52. 		org	$1000	
-001000 00                  53. DCShadow	rmb	1	; DrillControl shadow
-001001 C6 00               54. Start:		ldab	#$00
-001003 7B 10 00            55. 		stab	DCShadow
-001006                     56. 		
-001006 F6 04 01            57. Loop:		ldab	InPort
-001009 16 10 31            58. 		jsr	Outone
-00100C                     59. 		
-00100C B6 10 00            60. 		ldaa	DCShadow
-00100F                     61. 		;staa	OutPort
-00100F                     62. 		
-00100F 06 10 01            63. 		jmp	Start		
-001012                     64. 		
+002025 00                  63. DCShadow	rmb	1	; DrillControl shadow	
+002026                     64. 		
                            65. ;---------------------------------
                            66. ;	OUTZERO
                            67. ;---------------------------------
                            68. 
-                           69. ; Nollst‰ll biten i B-registret, med fˆrprogrammerade bitmˆnster
+                           69. ; Nollst√§ll biten i B-registret, med f√∂rprogrammerade bitm√∂nster
                            70. 
-001012 36                  71. Outzero:	psha			; L‰gg register pÂ stacken fˆr senare Âterst‰llning
-001013 39                  72. 		pshc	
-001014 37                  73. 		pshb
-001015 C1 07               74. 		cmpb	#7		
-001017 22 14               75. 		bhi	Outzero_return	; Kolla om talet ‰r >7
-001019 CE 10 72            76. 		ldx	#Bitmask
-00101C                     77. Outzero_loop:
-00101C                     78. 		ldab	b,x
-00101E 51                  79. 		comb	
-00101F 37                  80. 		pshb
-001020 B6 10 00            81. 		ldaa	DCShadow
-001023                     82. 		anda	0,sp		; Ta DCShadow && B
-001025 1B 81               83. 		leas	1,sp
-001027 7A 04 00            84. 		staa	DrillControl	; Spara till borren
-00102A 7A 10 00            85. 		staa	DCShadow	; Spara till skuggningen
-00102D                     86. Outzero_return:	
-00102D 33                  87. 		pulb			; ≈terst‰ll originalv‰rden
-00102E 38                  88. 		pulc
-00102F 32                  89. 		pula
-001030 3D                  90. 		rts
-001031                     91. 	
+002026                     71. Outzero:			
+002026 39                  72. 		pshc	; L√§gg register p√• stacken f√∂r senare √•terst√§llning
+002027 37                  73. 		pshb
+002028 34                  74. 		pshx
+002029 C1 07               75. 		cmpb	#7		
+00202B 22 0F               76. 		bhi	Outzero_return	; Kolla om talet √§r >7
+00202D CE 20 AE            77. 		ldx	#Bitmask
+002030                     78. Outzero_loop:
+002030                     79. 		ldab	b,x				; Uppdatera b till bitmasken f√∂r b
+002032 51                  80. 		comb	
+002033 F4 20 25            81. 		andb	DCShadow		; Ta DCShadow && komplementet av bitmasken
+002036 7B 04 00            82. 		stab	DrillControl	; Spara till borren
+002039 7B 20 25            83. 		stab	DCShadow	; Spara till skuggningen
+00203C                     84. Outzero_return:	
+00203C 30                  85. 		pulx
+00203D 33                  86. 		pulb			; √Öterst√§ll originalv√§rden
+00203E 38                  87. 		pulc
+00203F 3D                  88. 		rts
+002040                     89. 	
+                           90. ;---------------------------------
+                           91. ;	OUTONE
                            92. ;---------------------------------
-                           93. ;	OUTONE
-                           94. ;---------------------------------
+                           93. 
+                           94. ; Ettst√§ll biten i B-registret, med f√∂rprogrammerade bitm√∂nster
                            95. 
-                           96. ; Ettst‰ll biten i B-registret, med fˆrprogrammerade bitmˆnster
-                           97. 
-001031 36                  98. Outone:		psha			; L‰gg register pÂ stacken fˆr senare Âterst‰llning
-001032 39                  99. 		pshc	
-001033 37                 100. 		pshb
-001034 C1 07              101. 		cmpb	#7		
-001036 22 13              102. 		bhi	Outone_return	; Kolla om talet ‰r >7
-001038 CE 10 72           103. 		ldx	#Bitmask
-00103B                    104. Outone_loop:
-00103B                    105. 		ldab	b,x	
-00103D 37                 106. 		pshb
-00103E B6 10 00           107. 		ldaa	DCShadow
-001041                    108. 		oraa	0,sp		; Ta DCShadow || B
-001043 1B 81              109. 		leas	1,sp
-001045 7A 04 00           110. 		staa	DrillControl	; Spara till borren
-001048 7A 10 00           111. 		staa	DCShadow	; Spara till skuggningen
-00104B                    112. Outone_return:	
-00104B 33                 113. 		pulb			; ≈terst‰ll originalv‰rden
-00104C 38                 114. 		pulc
-00104D 32                 115. 		pula
-00104E 3D                 116. 		rts
-00104F                    117. 		
-                          118. ;-------------------------------
-                          119. ;	MOTORSTART
-                          120. ;-------------------------------
-                          121. 
-00104F                    122. MotorStart:
-00104F 37                 123. 	pshb
-001050 F6 10 00           124. 	ldab	DCShadow
-001053 C4 04              125. 	andb	#4
-001055 26 11              126. 	bne	MotorStartExit	; Motorn redan startad
-001057 C6 02              127. 	ldab	#2
-001059 16 10 31           128. 	jsr	Outone		; Ettst‰ll bit 2
-00105C 16 20 00           129. 	jsr	DELAY		; 4*250ms fˆrdrˆjning
-00105F 16 20 00           130. 	jsr	DELAY
-001062 16 20 00           131. 	jsr	DELAY
-001065 16 20 00           132. 	jsr	DELAY
-                          133. 
-001068                    134. MotorStartExit:
-001068 33                 135. 	pulb
-001069 3D                 136. 	rts
-00106A                    137. 	
-                          138. ;-------------------------------
-                          139. ;	MOTORSTOP
-                          140. ;-------------------------------
-                          141. 
-00106A                    142. MotorStop:
-00106A 37                 143. 	pshb
-00106B C6 02              144. 	ldab	#2
-00106D 16 10 12           145. 	jsr	Outzero		; Nollst‰ll bit 2
-001070 33                 146. 	pulb
-001071 3D                 147. 	rts
-001072                    148. 	
-                          149. ;-------------------------------	
-                          150. ;	Bitmasks
-                          151. ;-------------------------------
-                          152. 
-001072 01 02 04 08 10 20  153. Bitmask:	fcb	1,2,4,8,16,32,64,128
+002040                     96. Outone:			
+002040 39                  97. 		pshc	; L√§gg register p√• stacken f√∂r senare √•terst√§llning
+002041 37                  98. 		pshb
+002042 34                  99. 		pshx
+002043 C1 07              100. 		cmpb	#7		
+002045 22 0E              101. 		bhi	Outone_return	; Kolla om talet √§r >7
+002047 CE 20 AE           102. 		ldx	#Bitmask
+00204A                    103. Outone_loop:
+00204A                    104. 		ldab	b,x	
+00204C FA 20 25           105. 		orab	DCShadow	; Ta DCShadow || Bitmasken
+00204F 7B 04 00           106. 		stab	DrillControl	; Spara till borren
+002052 7B 20 25           107. 		stab	DCShadow	; Spara till skuggningen
+002055                    108. Outone_return:	
+002055 30                 109. 		pulx
+002056 33                 110. 		pulb			; √Öterst√§ll originalv√§rden
+002057 38                 111. 		pulc
+002058 3D                 112. 		rts
+002059                    113. 		
+                          114. ;-------------------------------
+                          115. ;	MOTORSTART
+                          116. ;-------------------------------
+                          117. 
+002059                    118. MotorStart:
+002059 37                 119. 	pshb
+00205A 39                 120. 	pshc
+00205B F6 20 25           121. 	ldab	DCShadow
+00205E C4 04              122. 	andb	#4
+002060 26 0A              123. 	bne	MotorStartExit	; Motorn redan startad
+002062 C6 02              124. 	ldab	#2
+002064 16 20 40           125. 	jsr	Outone		; Ettst√§ll bit 2
+002067                    126. 	
+002067 C6 02              127. 	ldab	#2
+002069 16 20 19           128. 	jsr	DELAY_B	; 4*250 ms delay
+                          129. 
+00206C                    130. MotorStartExit:
+00206C 38                 131. 	pulc
+00206D 33                 132. 	pulb
+00206E 3D                 133. 	rts
+00206F                    134. 	
+                          135. ;-------------------------------
+                          136. ;	MOTORSTOP
+                          137. ;-------------------------------
+                          138. 
+00206F                    139. MotorStop:
+00206F 37                 140. 	pshb
+002070 39                 141. 	pshc
+002071 C6 02              142. 	ldab	#2
+002073 16 20 26           143. 	jsr	Outzero		; Nollst√§ll bit 2
+002076 38                 144. 	pulc
+002077 33                 145. 	pulb
+002078 3D                 146. 	rts
+002079                    147. 	
+                          148. ;-------------------------------
+                          149. ;	DRILLDOWN
+                          150. ;-------------------------------
+                          151. 
+002079                    152. DrillDown:
+002079 37                 153. 	pshb
+00207A 39                 154. 	pshc
+00207B C6 03              155. 	ldab	#3		; Bit nummer 3 ‰r vridmagneten
+00207D 16 20 40           156. 	jsr	Outone		; Ettst‰ll denna
+002080 38                 157. 	pulc
+002081 33                 158. 	pulb
+002082 3D                 159. 	rts
+002083                    160. 	
+                          161. ;-------------------------------
+                          162. ;	DRILLUP
+                          163. ;-------------------------------
+                          164. 
+002083                    165. DrillUp:
+002083 37                 166. 	pshb
+002084 39                 167. 	pshc
+002085 C6 03              168. 	ldab	#3		; Bit nummer 3 ‰r vridmagneten
+002087 16 20 26           169. 	jsr	Outzero		; Nollst‰ll denna
+00208A 38                 170. 	pulc
+00208B 33                 171. 	pulb
+00208C 3D                 172. 	rts
+00208D                    173. 	
+                          174. ;-------------------------------
+                          175. ;	ALARM
+                          176. ;-------------------------------
+                          177. 
+                          178. ; Antalet alarm ska finnas i B-registret
+                          179. 
+00208D                    180. Alarm:
+00208D 39                 181. 	pshc
+00208E B7 10              182. 	tfr	b,a
+002090 97                 183. 	tsta
+002091 27 19              184. 	beq	AlarmReturn
+002093                    185. 			; Bit nummer 4 ‰r larm
+002093                    186. AlarmSend:
+002093 C6 04              187. 	ldab	#4		; S‰tt pÂ alarm
+002095 16 20 40           188. 	jsr	Outone
+002098                    189. 	
+002098 C6 04              190. 	ldab	#4
+00209A 16 20 19           191. 	jsr	DELAY_B		; 4*250 ms delay
+00209D                    192. 	
+00209D C6 04              193. 	ldab	#4		; St‰ng av alarm
+00209F 16 20 26           194. 	jsr	Outzero
+0020A2                    195. 	
+0020A2 43                 196. 	deca			
+0020A3 27 07              197. 	beq	AlarmReturn
+0020A5                    198. 	
+0020A5 C6 02              199. 	ldab	#2		; 2*250 ms delay
+0020A7 16 20 19           200. 	jsr	DELAY_B
+0020AA                    201. 	
+0020AA 20 E7              202. 	bra	AlarmSend
+0020AC                    203. AlarmReturn:
+0020AC 38                 204. 	pulc
+0020AD 3D                 205. 	rts
+0020AE                    206. 	
+0020AE                    207. 	
+0020AE                    208. 	
+0020AE                    209. 	
+                          210. 
+                          211. 
+                          212. ;-------------------------------	
+                          213. ;	Bitmasks
+                          214. ;-------------------------------
+                          215. 
+0020AE 01 02 04 08 10 20  216. Bitmask:	fcb	1,2,4,8,16,32,64,128
        40 80            
-00107A                    154. 		
-                          155. 
-00107A                    156. 		
-00107A                    157. 	
-00107A                    158. 		
-00107A                    159. 		
+0020B6                    217. 		
+                          218. 
+0020B6                    219. 		
+0020B6                    220. 	
+0020B6                    221. 		
+0020B6                    222. 		

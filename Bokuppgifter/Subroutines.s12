@@ -1,21 +1,9 @@
-		#define	SIMUATOR
+#define	SIMUATOR
+#define	RUNFAST
 		use	Labdefs.s12
 		use	Delay.s12
-InPort		equ	$0401	; Läsa in?
-;OutPort		equ	$0400	; Läsa in?
 
-		org	$1000	
-DCShadow	rmb	1	; DrillControl shadow
-Start:		ldab	#$00
-		stab	DCShadow
-		
-Loop:		ldab	InPort
-		jsr	Outone
-		
-		ldaa	DCShadow
-		;staa	OutPort
-		
-		jmp	Start		
+DCShadow	rmb	1	; DrillControl shadow	
 		
 ;---------------------------------
 ;	OUTZERO
@@ -26,6 +14,7 @@ Loop:		ldab	InPort
 Outzero:			
 		pshc	; Lägg register på stacken för senare återställning
 		pshb
+		pshx
 		cmpb	#7		
 		bhi	Outzero_return	; Kolla om talet är >7
 		ldx	#Bitmask
@@ -36,6 +25,7 @@ Outzero_loop:
 		stab	DrillControl	; Spara till borren
 		stab	DCShadow	; Spara till skuggningen
 Outzero_return:	
+		pulx
 		pulb			; Återställ originalvärden
 		pulc
 		rts
@@ -49,6 +39,7 @@ Outzero_return:
 Outone:			
 		pshc	; Lägg register på stacken för senare återställning
 		pshb
+		pshx
 		cmpb	#7		
 		bhi	Outone_return	; Kolla om talet är >7
 		ldx	#Bitmask
@@ -58,6 +49,7 @@ Outone_loop:
 		stab	DrillControl	; Spara till borren
 		stab	DCShadow	; Spara till skuggningen
 Outone_return:	
+		pulx
 		pulb			; Återställ originalvärden
 		pulc
 		rts
@@ -68,17 +60,18 @@ Outone_return:
 
 MotorStart:
 	pshb
+	pshc
 	ldab	DCShadow
 	andb	#4
 	bne	MotorStartExit	; Motorn redan startad
 	ldab	#2
 	jsr	Outone		; Ettställ bit 2
-	jsr	DELAY		; 4*250ms fördröjning
-	jsr	DELAY
-	jsr	DELAY
-	jsr	DELAY
+	
+	ldab	#2
+	jsr	DELAY_B	; 4*250 ms delay
 
 MotorStartExit:
+	pulc
 	pulb
 	rts
 	
@@ -88,11 +81,77 @@ MotorStartExit:
 
 MotorStop:
 	pshb
+	pshc
 	ldab	#2
 	jsr	Outzero		; Nollställ bit 2
+	pulc
 	pulb
 	rts
 	
+;-------------------------------
+;	DRILLDOWN
+;-------------------------------
+
+DrillDown:
+	pshb
+	pshc
+	ldab	#3		; Bit nummer 3 �r vridmagneten
+	jsr	Outone		; Ettst�ll denna
+	pulc
+	pulb
+	rts
+	
+;-------------------------------
+;	DRILLUP
+;-------------------------------
+
+DrillUp:
+	pshb
+	pshc
+	ldab	#3		; Bit nummer 3 �r vridmagneten
+	jsr	Outzero		; Nollst�ll denna
+	pulc
+	pulb
+	rts
+	
+;-------------------------------
+;	ALARM
+;-------------------------------
+
+; Antalet alarm ska finnas i B-registret
+
+Alarm:
+	pshc
+	tfr	b,a
+	tsta
+	beq	AlarmReturn
+			; Bit nummer 4 �r larm
+AlarmSend:
+	ldab	#4		; S�tt p� alarm
+	jsr	Outone
+	
+	ldab	#4
+	jsr	DELAY_B		; 4*250 ms delay
+	
+	ldab	#4		; St�ng av alarm
+	jsr	Outzero
+	
+	deca			
+	beq	AlarmReturn
+	
+	ldab	#2		; 2*250 ms delay
+	jsr	DELAY_B
+	
+	bra	AlarmSend
+AlarmReturn:
+	pulc
+	rts
+	
+	
+	
+	
+
+
 ;-------------------------------	
 ;	Bitmasks
 ;-------------------------------

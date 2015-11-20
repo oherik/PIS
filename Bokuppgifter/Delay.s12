@@ -1,6 +1,6 @@
 	use	Labdefs.s12
 	org	$2000
-DELAY:	pshx
+DELAY:	pshx		; 250 ms delay
 	pshy
 	ldx	#DelayConst
 NEXT:	leax	-1,x
@@ -13,3 +13,15 @@ NEXT2:	leay	-1,y
 	puly
 	pulx
 	rts	
+	
+DELAY_B:		; Calls DELAY the number of times specified in B
+	pshb
+	tstb
+DELAY_B_LOOP:
+	beq	DELAY_B_RETURN
+	jsr	DELAY
+	decb
+	bra	DELAY_B_LOOP
+DELAY_B_RETURN:
+	pulb
+	rts 

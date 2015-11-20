@@ -28,7 +28,7 @@ CommandExit:
 ;---------------------------------
 ;	Tabell med kommandon
 
-JUMPTAB	fdb	MotorStart,MotorStop,SUB2,SUB3
+JUMPTAB	fdb	MotorStart,MotorStop,DrillDown,DrillUp
 	fdb	SUB4,SUB5,SUB6,SUB7
 	
 ;---------------------------------
@@ -36,14 +36,6 @@ JUMPTAB	fdb	MotorStart,MotorStop,SUB2,SUB3
 
 OutPortM	equ	$400
 
-SUB0	movb	#0,OutPortM
-	rts
-SUB1	movb	#0,OutPortM
-	rts
-SUB2	movb	#0,OutPortM
-	rts
-SUB3	movb	#0,OutPortM
-	rts
 SUB4	movb	#0,OutPortM
 	rts
 SUB5	movb	#0,OutPortM

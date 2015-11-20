@@ -59,7 +59,7 @@ File: Subroutines.lst
 00201B 37                  61. 		pshb
 00201C C1 07               62. 		cmpb	#7		
 00201E 22 0F               63. 		bhi	Outzero_return	; Kolla om talet Ã¤r >7
-002020 CE 20 6C            64. 		ldx	#Bitmask
+002020 CE 20 7C            64. 		ldx	#Bitmask
 002023                     65. Outzero_loop:
 002023                     66. 		ldab	b,x				; Uppdatera b till bitmasken fÃ¶r b
 002025 51                  67. 		comb	
@@ -82,7 +82,7 @@ File: Subroutines.lst
 002033 37                  84. 		pshb
 002034 C1 07               85. 		cmpb	#7		
 002036 22 0E               86. 		bhi	Outone_return	; Kolla om talet Ã¤r >7
-002038 CE 20 6C            87. 		ldx	#Bitmask
+002038 CE 20 7C            87. 		ldx	#Bitmask
 00203B                     88. Outone_loop:
 00203B                     89. 		ldab	b,x	
 00203D FA 20 19            90. 		orab	DCShadow	; Ta DCShadow || Bitmasken
@@ -124,15 +124,37 @@ File: Subroutines.lst
 00206A 33                 126. 	pulb
 00206B 3D                 127. 	rts
 00206C                    128. 	
-                          129. ;-------------------------------	
-                          130. ;	Bitmasks
+                          129. ;-------------------------------
+                          130. ;	DRILLDOWN
                           131. ;-------------------------------
                           132. 
-00206C 01 02 04 08 10 20  133. Bitmask:	fcb	1,2,4,8,16,32,64,128
+00206C                    133. DrillDown:
+00206C 37                 134. 	pshb
+00206D C6 03              135. 	ldab	#3		; Bit nummer 3 är vridmagneten
+00206F 16 20 32           136. 	jsr	Outone		; Ettställ denna
+002072 33                 137. 	pulb
+002073 3D                 138. 	rts
+002074                    139. 	
+                          140. ;-------------------------------
+                          141. ;	DRILLUP
+                          142. ;-------------------------------
+                          143. 
+002074                    144. DrillUp:
+002074 37                 145. 	pshb
+002075 C6 03              146. 	ldab	#3		; Bit nummer 3 är vridmagneten
+002077 16 20 1A           147. 	jsr	Outzero		; Nollställ denna
+00207A 33                 148. 	pulb
+00207B 3D                 149. 	rts
+00207C                    150. 	
+                          151. ;-------------------------------	
+                          152. ;	Bitmasks
+                          153. ;-------------------------------
+                          154. 
+00207C 01 02 04 08 10 20  155. Bitmask:	fcb	1,2,4,8,16,32,64,128
        40 80            
-002074                    134. 		
-                          135. 
-002074                    136. 		
-002074                    137. 	
-002074                    138. 		
-002074                    139. 		
+002084                    156. 		
+                          157. 
+002084                    158. 		
+002084                    159. 	
+002084                    160. 		
+002084                    161. 		

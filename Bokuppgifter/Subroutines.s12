@@ -81,6 +81,28 @@ MotorStop:
 	pulb
 	rts
 	
+;-------------------------------
+;	DRILLDOWN
+;-------------------------------
+
+DrillDown:
+	pshb
+	ldab	#3		; Bit nummer 3 är vridmagneten
+	jsr	Outone		; Ettställ denna
+	pulb
+	rts
+	
+;-------------------------------
+;	DRILLUP
+;-------------------------------
+
+DrillUp:
+	pshb
+	ldab	#3		; Bit nummer 3 är vridmagneten
+	jsr	Outzero		; Nollställ denna
+	pulb
+	rts
+	
 ;-------------------------------	
 ;	Bitmasks
 ;-------------------------------

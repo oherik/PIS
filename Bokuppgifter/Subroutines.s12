@@ -14,6 +14,7 @@ DCShadow	rmb	1	; DrillControl shadow
 Outzero:			
 		pshc	; Lägg register på stacken för senare återställning
 		pshb
+		pshx
 		cmpb	#7		
 		bhi	Outzero_return	; Kolla om talet är >7
 		ldx	#Bitmask
@@ -24,6 +25,7 @@ Outzero_loop:
 		stab	DrillControl	; Spara till borren
 		stab	DCShadow	; Spara till skuggningen
 Outzero_return:	
+		pulx
 		pulb			; Återställ originalvärden
 		pulc
 		rts
@@ -37,6 +39,7 @@ Outzero_return:
 Outone:			
 		pshc	; Lägg register på stacken för senare återställning
 		pshb
+		pshx
 		cmpb	#7		
 		bhi	Outone_return	; Kolla om talet är >7
 		ldx	#Bitmask
@@ -46,6 +49,7 @@ Outone_loop:
 		stab	DrillControl	; Spara till borren
 		stab	DCShadow	; Spara till skuggningen
 Outone_return:	
+		pulx
 		pulb			; Återställ originalvärden
 		pulc
 		rts

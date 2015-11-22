@@ -1,6 +1,6 @@
 	use	Labdefs.s12
-	org	$2000
-DELAY:	pshx		; 250 ms delay
+DELAY:			; 250 ms delay
+	pshx		
 	pshy
 	ldx	#DelayConst
 NEXT:	leax	-1,x

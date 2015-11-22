@@ -63,9 +63,12 @@ MotorStart:
 	ldab	#2
 	jsr	Outone		; Ettst√§ll bit 2
 	
-	ldab	#2
-	jsr	DELAY_B	; 4*250 ms delay
-
+	;ldab	#4
+	;jsr	DELAY_B	; 4*250 ms delay
+	jsr 	DELAY
+	jsr 	DELAY
+	jsr 	DELAY
+	jsr 	DELAY
 MotorStartExit:
 	pulc
 	pulb
@@ -135,9 +138,10 @@ AlarmSend:
 	deca			; A<-A-1, returnera om A ‰r 0
 	beq	AlarmReturn
 	
-	ldab	#2		; A ‰r inte 0. Skicka 2*250 ms delay
-	jsr	DELAY_B
-	
+	;ldab	#2		; A ‰r inte 0. Skicka 2*250 ms delay
+	;jsr	DELAY_B
+	jsr 	DELAY
+	jsr 	DELAY
 	bra	AlarmSend	; Loopa om alarmet
 AlarmReturn:
 	pulc
@@ -157,9 +161,10 @@ Step:
 	
 	ldab	#0
 	jsr	Outone	; Ettst‰ll bit 0 (stegpuls)
-	ldab	#2	
-	jsr	DELAY_B	; Skicka 2*250 ms delay
-	
+	;ldab	#2	
+	;jsr	DELAY_B	; Skicka 2*250 ms delay
+	jsr 	DELAY
+	jsr 	DELAY
 	ldab	#0
 	jsr	Outzero	; Nollst‰ll bit 0 (stegpuls)
 	
@@ -183,8 +188,9 @@ DrillDownTestRetry:
 	ldab	DrillStatus
 	andb	#4	; Maska fram bit 2 (borr nere)
 	bne	DrillDownTestReturn1
-	ldab	#1
-	jsr	DELAY_B	; 250 ms delay
+	;ldab	#1
+	;jsr	DELAY_B	; 250 ms delay
+	jsr 	DELAY
 	dec	retry
 	tst	retry	
 	bne	DrillDownTestRetry

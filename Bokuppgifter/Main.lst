@@ -3,469 +3,467 @@ QA12 - MC68HC12 Absolute crossassembler, Version 1.6.3
 
 
 File: Main.lst
-                            1. 	use	Labdefs.s12
----- File: "Labdefs.s12"
-                            2. ;Adresser
-       0000 0600            3. DipSwitch	equ	$600
-       0000 0700            4. HexDisplay	equ	$700
-       0000 0400            5. DrillControl	equ	$400
-       0000 0401            6. DrillStatus	equ	$401
-                            7. 
-000000                      8. #ifdef	SIMULATOR
-                           14. #else
-       0000 0004           15. DelayConst	EQU	4
-                           16. #endif000000                     17. 	
+                            1. 	#define	SIMULATOR
 ---- File: "C:\Users\Erik\Documents\GitHub\PIS\Bokuppgifter\Main.s12"
-001000                     18. 	org	$1000
-001000                     19. 	
-                           20. ;----------------------------------
-                           21. ;	MAIN
-                           22. ;----------------------------------	
-001000                     23. 	
-001000                     24. main_loop:
-001000 16 10 3C            25. 	jsr	GetKbdML15	; Tangent till register B
-001003 16 10 08            26. 	jsr	Command
-001006 20 F8               27. 	bra	main_loop
-001008                     28. 	
-                           29. ;----------------------------------
-                           30. ;	COMMAND
-                           31. ;----------------------------------	
-                           32. 
-001008                     33. Command:
-001008 C1 07               34. 	cmpb	#7
-00100A 22 08               35. 	bhi	CommandExit
-00100C CE 10 15            36. 	ldx	#JUMPTAB
-00100F 58                  37. 	aslb		; 2 bytes per adress
-001010                     38. 	ldx	b,x	; ladda rutinen
-001012 15 00               39. 	jsr	,x
-001014                     40. CommandExit:
-001014 3D                  41. 	rts
-                           42. 
-                           43. ;---------------------------------
-                           44. ;	Tabell med kommandon
+                            2. 	#define	RUNFAST
+000000                      3. 	
+                            4. 	use	Labdefs.s12
+---- File: "Labdefs.s12"
+                            5. ;Adresser
+       0000 0600            6. DipSwitch	equ	$600
+       0000 0700            7. HexDisplay	equ	$700
+       0000 0400            8. DrillControl	equ	$400
+       0000 0401            9. DrillStatus	equ	$401
+                           10. 
+                           11. #ifdef	SIMULATOR
+                           12. #ifdef	RUNFAST
+       0000 000A           13. DelayConst	EQU	10
+                           16. #endif
+                           19. #endif000000                     20. 	
+---- File: "C:\Users\Erik\Documents\GitHub\PIS\Bokuppgifter\Main.s12"
+001000                     21. 	org	$1000
+001000                     22. 	
+                           23. ;----------------------------------
+                           24. ;	MAIN
+                           25. ;----------------------------------	
+001000                     26. 	
+001000                     27. main_loop:
+001000 16 10 3C            28. 	jsr	GetKbdML15	; Tangent till register B
+001003 16 10 08            29. 	jsr	Command
+001006 20 F8               30. 	bra	main_loop
+001008                     31. 	
+                           32. ;----------------------------------
+                           33. ;	COMMAND
+                           34. ;----------------------------------	
+                           35. 
+001008                     36. Command:
+001008 C1 07               37. 	cmpb	#7
+00100A 22 08               38. 	bhi	CommandExit
+00100C CE 10 15            39. 	ldx	#JUMPTAB
+00100F 58                  40. 	aslb		; 2 bytes per adress
+001010                     41. 	ldx	b,x	; ladda rutinen
+001012 15 00               42. 	jsr	,x
+001014                     43. CommandExit:
+001014 3D                  44. 	rts
                            45. 
-001015 10 C0 10 DD 10 E7   46. JUMPTAB	fdb	MotorStart,MotorStop,DrillDown,DrillUp
-       10 F1            
-00101D 11 1D 11 6A 11 74   47. 	fdb	Step,DrillHole,RefPos,DoAutoMain
+                           46. ;---------------------------------
+                           47. ;	Tabell med kommandon
+                           48. 
+001015 10 C0 10 D6 10 E0   49. JUMPTAB	fdb	MotorStart,MotorStop,DrillDown,DrillUp
+       10 EA            
+00101D 11 15 11 5B 11 65   50. 	fdb	Step,DrillHole,RefPos,DoAutoMain
        10 25            
-001025                     48. 	
-                           49. 
-                           50. ;--------------------------------
-                           51. ;	DOAUTOMAIN
-                           52. ;--------------------------------
-001025                     53. DoAutoMain:
-001025 CE 11 BA            54. 	ldx	#Pattern
-001028 16 11 97            55. 	jsr	DoAuto
-00102B 3D                  56. 	rts
-00102C                     57. 		
-                           58. ;-------------------------------
-                           59. ;	File uses
-                           60. ;-------------------------------	
-00102C                     61. 	
-                           62. 	use	KeyboardML15.s12
+001025                     51. 	
+                           52. 
+                           53. ;--------------------------------
+                           54. ;	DOAUTOMAIN
+                           55. ;--------------------------------
+001025                     56. DoAutoMain:
+001025 CE 11 AB            57. 	ldx	#Pattern
+001028 16 11 88            58. 	jsr	DoAuto
+00102B 3D                  59. 	rts
+00102C                     60. 		
+                           61. ;-------------------------------
+                           62. ;	File uses
+                           63. ;-------------------------------	
+00102C                     64. 	
+                           65. 	use	KeyboardML15.s12
 ---- File: "KeyboardML15.s12"
-                           63. ;Testprogram
-                           64. ;	org	$1000
-                           65. ;start:	jsr	GetKbdML15
-                           66. ;	cmpb	#$FF
-                           67. ;	beq	start
-                           68. ;	nop
-                           69. ;	bra	start
-                           70. ;	ldx	#tabell
-                           71. ;start:	jsr	DisplayML15
+                           66. ;Testprogram
+                           67. ;	org	$1000
+                           68. ;start:	jsr	GetKbdML15
+                           69. ;	cmpb	#$FF
+                           70. ;	beq	start
+                           71. ;	nop
                            72. ;	bra	start
-                           73. ;
-                           74. ;tabell:	fcb	1,2,3,4,5,6
-                           75. 
-00102C                     76. 	
-00102C                     77. CheckKbdML15:
-00102C F6 09 C0            78. 	ldab	$9c0
-00102F 2A 03               79. 	bpl	CheckKbd_VA
-001031 C6 FF               80. 	ldab	#$FF	
-001033 3D                  81. 	rts
-001034                     82. CheckKbd_VA:
-001034 37                  83. 	pshb
-001035                     84. CheckKbd_VA_active:
-001035 F6 09 C0            85. 	ldab	$9c0
-001038 2A FB               86. 	bpl	CheckKbd_VA_active
-00103A 33                  87. 	pulb
-00103B 3D                  88. 	rts
-00103C                     89. 	
-00103C                     90. GetKbdML15:
-00103C 16 10 2C            91. 	jsr	CheckKbdML15
-00103F C1 FF               92. 	cmpb	#$FF
-001041 27 F9               93. 	beq	GetKbdML15
-001043 3D                  94. 	rts
-001044                     95. 	
-001044                     96. DisplayML15:
-001044 86 01               97. 	ldaa	#1
-001046 7A 09 C2            98. 	staa	$9c2
-001049 86 D0               99. 	ldaa	#$d0
-00104B 7A 09 C3           100. 	staa	$9c3
-00104E 86 00              101. 	ldaa	#0
-001050 7A 09 C2           102. 	staa	$9c2
-001053                    103. DisplayML15_compare_loop:
-001053 81 06              104. 	cmpa	#6
-001055 26 09              105. 	bne	DisplayML15_not_6
-001057 86 00              106. 	ldaa	#0
-001059 7A 09 C3           107. 	staa	$9c3
-00105C 7A 09 C3           108. 	staa	$9c3
-00105F 3D                 109. 	rts
-001060                    110. DisplayML15_not_6
-001060                    111. 	ldab	a,x
-001062 7B 09 C3           112. 	stab	$9c3
-001065 42                 113. 	inca
-001066 20 EB              114. 	bra	DisplayML15_compare_loop
-                          115. 
-001068                    116. 	
-001068                    117. 	                          118. 	use	Subroutines.s12
+                           73. ;	ldx	#tabell
+                           74. ;start:	jsr	DisplayML15
+                           75. ;	bra	start
+                           76. ;
+                           77. ;tabell:	fcb	1,2,3,4,5,6
+                           78. 
+00102C                     79. 	
+00102C                     80. CheckKbdML15:
+00102C F6 09 C0            81. 	ldab	$9c0
+00102F 2A 03               82. 	bpl	CheckKbd_VA
+001031 C6 FF               83. 	ldab	#$FF	
+001033 3D                  84. 	rts
+001034                     85. CheckKbd_VA:
+001034 37                  86. 	pshb
+001035                     87. CheckKbd_VA_active:
+001035 F6 09 C0            88. 	ldab	$9c0
+001038 2A FB               89. 	bpl	CheckKbd_VA_active
+00103A 33                  90. 	pulb
+00103B 3D                  91. 	rts
+00103C                     92. 	
+00103C                     93. GetKbdML15:
+00103C 16 10 2C            94. 	jsr	CheckKbdML15
+00103F C1 FF               95. 	cmpb	#$FF
+001041 27 F9               96. 	beq	GetKbdML15
+001043 3D                  97. 	rts
+001044                     98. 	
+001044                     99. DisplayML15:
+001044 86 01              100. 	ldaa	#1
+001046 7A 09 C2           101. 	staa	$9c2
+001049 86 D0              102. 	ldaa	#$d0
+00104B 7A 09 C3           103. 	staa	$9c3
+00104E 86 00              104. 	ldaa	#0
+001050 7A 09 C2           105. 	staa	$9c2
+001053                    106. DisplayML15_compare_loop:
+001053 81 06              107. 	cmpa	#6
+001055 26 09              108. 	bne	DisplayML15_not_6
+001057 86 00              109. 	ldaa	#0
+001059 7A 09 C3           110. 	staa	$9c3
+00105C 7A 09 C3           111. 	staa	$9c3
+00105F 3D                 112. 	rts
+001060                    113. DisplayML15_not_6
+001060                    114. 	ldab	a,x
+001062 7B 09 C3           115. 	stab	$9c3
+001065 42                 116. 	inca
+001066 20 EB              117. 	bra	DisplayML15_compare_loop
+                          118. 
+001068                    119. 	
+001068                    120. 	                          121. 	use	Subroutines.s12
 ---- File: "Subroutines.s12"
-                          119. #define	SIMUATOR
-                          120. #define	RUNFAST
-                          121. 		use	Labdefs.s12
+                          122. 		use	Labdefs.s12
 ---- File: "Labdefs.s12"
-                          122. ;Adresser
-       0000 0600          123. DipSwitch	equ	$600
-       0000 0700          124. HexDisplay	equ	$700
-       0000 0400          125. DrillControl	equ	$400
-       0000 0401          126. DrillStatus	equ	$401
-                          127. 
-001068                    128. #ifdef	SIMULATOR
-                          134. #else
-       0000 0004          135. DelayConst	EQU	4
-                          136. #endif                          137. 		use	Delay.s12
+                          123. ;Adresser
+       0000 0600          124. DipSwitch	equ	$600
+       0000 0700          125. HexDisplay	equ	$700
+       0000 0400          126. DrillControl	equ	$400
+       0000 0401          127. DrillStatus	equ	$401
+                          128. 
+                          129. #ifdef	SIMULATOR
+                          130. #ifdef	RUNFAST
+       0000 000A          131. DelayConst	EQU	10
+                          134. #endif
+                          137. #endif                          138. 		use	Delay.s12
 ---- File: "Delay.s12"
-                          138. 	use	Labdefs.s12
+                          139. 	use	Labdefs.s12
 ---- File: "Labdefs.s12"
-                          139. ;Adresser
-       0000 0600          140. DipSwitch	equ	$600
-       0000 0700          141. HexDisplay	equ	$700
-       0000 0400          142. DrillControl	equ	$400
-       0000 0401          143. DrillStatus	equ	$401
-                          144. 
-001068                    145. #ifdef	SIMULATOR
-                          151. #else
-       0000 0004          152. DelayConst	EQU	4
-                          153. #endif001068                    154. DELAY:			; 250 ms delay
+                          140. ;Adresser
+       0000 0600          141. DipSwitch	equ	$600
+       0000 0700          142. HexDisplay	equ	$700
+       0000 0400          143. DrillControl	equ	$400
+       0000 0401          144. DrillStatus	equ	$401
+                          145. 
+                          146. #ifdef	SIMULATOR
+                          147. #ifdef	RUNFAST
+       0000 000A          148. DelayConst	EQU	10
+                          151. #endif
+                          154. #endif001068                    155. DELAY:			; 250 ms delay
 ---- File: "Delay.s12"
-001068 34                 155. 	pshx		
-001069 35                 156. 	pshy
-00106A CE 00 04           157. 	ldx	#DelayConst
-00106D 1A 1F              158. NEXT:	leax	-1,x
-00106F CD 00 64           159. 	ldy	#100
-001072 19 5F              160. NEXT2:	leay	-1,y
-001074 8D 00 00           161. 	cpy	#0
-001077 26 F9              162. 	bne	NEXT2
-001079 8E 00 00           163. 	cpx	#0
-00107C 26 EF              164. 	bne	NEXT
-00107E 31                 165. 	puly
-00107F 30                 166. 	pulx
-001080 3D                 167. 	rts	
-001081                    168. 	
-001081                    169. DELAY_B:		; Calls DELAY the number of times specified in B
-001081 37                 170. 	pshb
-001082 D7                 171. 	tstb
-001083                    172. DELAY_B_LOOP:
-001083 27 06              173. 	beq	DELAY_B_RETURN
-001085 16 10 68           174. 	jsr	DELAY
-001088 53                 175. 	decb
-001089 20 F8              176. 	bra	DELAY_B_LOOP
-00108B                    177. DELAY_B_RETURN:
-00108B 33                 178. 	pulb
-00108C 3D                 179. 	rts 00108D                    180. 		
+001068 34                 156. 	pshx		
+001069 35                 157. 	pshy
+00106A CE 00 0A           158. 	ldx	#DelayConst
+00106D 1A 1F              159. NEXT:	leax	-1,x
+00106F CD 00 64           160. 	ldy	#100
+001072 19 5F              161. NEXT2:	leay	-1,y
+001074 8D 00 00           162. 	cpy	#0
+001077 26 F9              163. 	bne	NEXT2
+001079 8E 00 00           164. 	cpx	#0
+00107C 26 EF              165. 	bne	NEXT
+00107E 31                 166. 	puly
+00107F 30                 167. 	pulx
+001080 3D                 168. 	rts	
+001081                    169. 	
+001081                    170. DELAY_B:		; Calls DELAY the number of times specified in B
+001081 37                 171. 	pshb
+001082 D7                 172. 	tstb
+001083                    173. DELAY_B_LOOP:
+001083 27 06              174. 	beq	DELAY_B_RETURN
+001085 16 10 68           175. 	jsr	DELAY
+001088 53                 176. 	decb
+001089 20 F8              177. 	bra	DELAY_B_LOOP
+00108B                    178. DELAY_B_RETURN:
+00108B 33                 179. 	pulb
+00108C 3D                 180. 	rts 00108D                    181. 		
 ---- File: "Subroutines.s12"
-                          181. ;---------------------------------
-                          182. ;	OUTZERO
-                          183. ;---------------------------------
-                          184. 
-                          185. ; Nollst√§ll biten i B-registret, med f√∂rprogrammerade bitm√∂nster
-                          186. 
-00108D                    187. Outzero:			
-00108D 39                 188. 		pshc	; L√§gg register p√• stacken f√∂r senare √•terst√§llning
-00108E 37                 189. 		pshb
-00108F 34                 190. 		pshx
-001090 C1 07              191. 		cmpb	#7		
-001092 22 0F              192. 		bhi	Outzero_return	; Kolla om talet √§r >7
-001094 CE 11 CF           193. 		ldx	#Bitmask
-001097                    194. 		ldab	b,x				; Uppdatera b till bitmasken f√∂r b
-001099 51                 195. 		comb	
-00109A F4 11 D7           196. 		andb	DCShadow		; Ta DCShadow && komplementet av bitmasken
-00109D 7B 04 00           197. 		stab	DrillControl	; Spara till borren
-0010A0 7B 11 D7           198. 		stab	DCShadow	; Spara till skuggningen
-0010A3                    199. Outzero_return:	
-0010A3 30                 200. 		pulx
-0010A4 33                 201. 		pulb			; √Öterst√§ll originalv√§rden
-0010A5 38                 202. 		pulc
-0010A6 3D                 203. 		rts
-0010A7                    204. 	
-                          205. ;---------------------------------
-                          206. ;	OUTONE
-                          207. ;---------------------------------
-                          208. 
-                          209. ; Ettst√§ll biten i B-registret, med f√∂rprogrammerade bitm√∂nster
-                          210. 
-0010A7                    211. Outone:			
-0010A7 39                 212. 		pshc	; L√§gg register p√• stacken f√∂r senare √•terst√§llning
-0010A8 37                 213. 		pshb
-0010A9 34                 214. 		pshx
-0010AA C1 07              215. 		cmpb	#7		
-0010AC 22 0E              216. 		bhi	Outone_return	; Kolla om talet √§r >7
-0010AE CE 11 CF           217. 		ldx	#Bitmask
-0010B1                    218. 		ldab	b,x	
-0010B3 FA 11 D7           219. 		orab	DCShadow	; Ta DCShadow || Bitmasken
-0010B6 7B 04 00           220. 		stab	DrillControl	; Spara till borren
-0010B9 7B 11 D7           221. 		stab	DCShadow	; Spara till skuggningen
-0010BC                    222. Outone_return:	
-0010BC 30                 223. 		pulx
-0010BD 33                 224. 		pulb			; √Öterst√§ll originalv√§rden
-0010BE 38                 225. 		pulc
-0010BF 3D                 226. 		rts
-0010C0                    227. 		
-                          228. ;-------------------------------
-                          229. ;	MOTORSTART
-                          230. ;-------------------------------
-                          231. 
-0010C0                    232. MotorStart:
-0010C0 37                 233. 	pshb
-0010C1 39                 234. 	pshc
-0010C2 F6 11 D7           235. 	ldab	DCShadow
-0010C5 C4 04              236. 	andb	#4
-0010C7 26 11              237. 	bne	MotorStartExit	; Motorn redan startad
-0010C9 C6 02              238. 	ldab	#2
-0010CB 16 10 A7           239. 	jsr	Outone		; Ettst√§ll bit 2
-0010CE                    240. 	
-0010CE                    241. 	;ldab	#4
-0010CE                    242. 	;jsr	DELAY_B	; 4*250 ms delay
-0010CE 16 10 68           243. 	jsr 	DELAY
-0010D1 16 10 68           244. 	jsr 	DELAY
-0010D4 16 10 68           245. 	jsr 	DELAY
-0010D7 16 10 68           246. 	jsr 	DELAY
-0010DA                    247. MotorStartExit:
-0010DA 38                 248. 	pulc
-0010DB 33                 249. 	pulb
-0010DC 3D                 250. 	rts
-0010DD                    251. 	
+                          182. ;---------------------------------
+                          183. ;	OUTZERO
+                          184. ;---------------------------------
+                          185. 
+                          186. ; Nollst√§ll biten i B-registret, med f√∂rprogrammerade bitm√∂nster
+                          187. 
+00108D                    188. Outzero:			
+00108D 39                 189. 		pshc	; L√§gg register p√• stacken f√∂r senare √•terst√§llning
+00108E 37                 190. 		pshb
+00108F 34                 191. 		pshx
+001090 C1 07              192. 		cmpb	#7		
+001092 22 0F              193. 		bhi	Outzero_return	; Kolla om talet √§r >7
+001094 CE 11 C0           194. 		ldx	#Bitmask
+001097                    195. 		ldab	b,x				; Uppdatera b till bitmasken f√∂r b
+001099 51                 196. 		comb	
+00109A F4 11 C8           197. 		andb	DCShadow		; Ta DCShadow && komplementet av bitmasken
+00109D 7B 04 00           198. 		stab	DrillControl	; Spara till borren
+0010A0 7B 11 C8           199. 		stab	DCShadow	; Spara till skuggningen
+0010A3                    200. Outzero_return:	
+0010A3 30                 201. 		pulx
+0010A4 33                 202. 		pulb			; √Öterst√§ll originalv√§rden
+0010A5 38                 203. 		pulc
+0010A6 3D                 204. 		rts
+0010A7                    205. 	
+                          206. ;---------------------------------
+                          207. ;	OUTONE
+                          208. ;---------------------------------
+                          209. 
+                          210. ; Ettst√§ll biten i B-registret, med f√∂rprogrammerade bitm√∂nster
+                          211. 
+0010A7                    212. Outone:			
+0010A7 39                 213. 		pshc	; L√§gg register p√• stacken f√∂r senare √•terst√§llning
+0010A8 37                 214. 		pshb
+0010A9 34                 215. 		pshx
+0010AA C1 07              216. 		cmpb	#7		
+0010AC 22 0E              217. 		bhi	Outone_return	; Kolla om talet √§r >7
+0010AE CE 11 C0           218. 		ldx	#Bitmask
+0010B1                    219. 		ldab	b,x	
+0010B3 FA 11 C8           220. 		orab	DCShadow	; Ta DCShadow || Bitmasken
+0010B6 7B 04 00           221. 		stab	DrillControl	; Spara till borren
+0010B9 7B 11 C8           222. 		stab	DCShadow	; Spara till skuggningen
+0010BC                    223. Outone_return:	
+0010BC 30                 224. 		pulx
+0010BD 33                 225. 		pulb			; √Öterst√§ll originalv√§rden
+0010BE 38                 226. 		pulc
+0010BF 3D                 227. 		rts
+0010C0                    228. 		
+                          229. ;-------------------------------
+                          230. ;	MOTORSTART
+                          231. ;-------------------------------
+                          232. 
+0010C0                    233. MotorStart:
+0010C0 37                 234. 	pshb
+0010C1 39                 235. 	pshc
+0010C2 F6 11 C8           236. 	ldab	DCShadow
+0010C5 C4 04              237. 	andb	#4
+0010C7 26 0A              238. 	bne	MotorStartExit	; Motorn redan startad
+0010C9 C6 02              239. 	ldab	#2
+0010CB 16 10 A7           240. 	jsr	Outone		; Ettst√§ll bit 2
+0010CE                    241. 	
+0010CE C6 02              242. 	ldab	#2
+0010D0 16 10 81           243. 	jsr	DELAY_B	; 4*250 ms delay
+                          244. 
+0010D3                    245. MotorStartExit:
+0010D3 38                 246. 	pulc
+0010D4 33                 247. 	pulb
+0010D5 3D                 248. 	rts
+0010D6                    249. 	
+                          250. ;-------------------------------
+                          251. ;	MOTORSTOP
                           252. ;-------------------------------
-                          253. ;	MOTORSTOP
-                          254. ;-------------------------------
-                          255. 
-0010DD                    256. MotorStop:
-0010DD 37                 257. 	pshb
-0010DE 39                 258. 	pshc
-0010DF C6 02              259. 	ldab	#2
-0010E1 16 10 8D           260. 	jsr	Outzero		; Nollst√§ll bit 2
-0010E4 38                 261. 	pulc
-0010E5 33                 262. 	pulb
-0010E6 3D                 263. 	rts
-0010E7                    264. 	
+                          253. 
+0010D6                    254. MotorStop:
+0010D6 37                 255. 	pshb
+0010D7 39                 256. 	pshc
+0010D8 C6 02              257. 	ldab	#2
+0010DA 16 10 8D           258. 	jsr	Outzero		; Nollst√§ll bit 2
+0010DD 38                 259. 	pulc
+0010DE 33                 260. 	pulb
+0010DF 3D                 261. 	rts
+0010E0                    262. 	
+                          263. ;-------------------------------
+                          264. ;	DRILLDOWN
                           265. ;-------------------------------
-                          266. ;	DRILLDOWN
-                          267. ;-------------------------------
-                          268. 
-0010E7                    269. DrillDown:
-0010E7 37                 270. 	pshb
-0010E8 39                 271. 	pshc
-0010E9 C6 03              272. 	ldab	#3		; Bit nummer 3 ‰r vridmagneten
-0010EB 16 10 A7           273. 	jsr	Outone		; Ettst‰ll denna
-0010EE 38                 274. 	pulc
-0010EF 33                 275. 	pulb
-0010F0 3D                 276. 	rts
-0010F1                    277. 	
+                          266. 
+0010E0                    267. DrillDown:
+0010E0 37                 268. 	pshb
+0010E1 39                 269. 	pshc
+0010E2 C6 03              270. 	ldab	#3		; Bit nummer 3 ‰r vridmagneten
+0010E4 16 10 A7           271. 	jsr	Outone		; Ettst‰ll denna
+0010E7 38                 272. 	pulc
+0010E8 33                 273. 	pulb
+0010E9 3D                 274. 	rts
+0010EA                    275. 	
+                          276. ;-------------------------------
+                          277. ;	DRILLUP
                           278. ;-------------------------------
-                          279. ;	DRILLUP
-                          280. ;-------------------------------
-                          281. 
-0010F1                    282. DrillUp:
-0010F1 37                 283. 	pshb
-0010F2 39                 284. 	pshc
-0010F3 C6 03              285. 	ldab	#3		; Bit nummer 3 ‰r vridmagneten
-0010F5 16 10 8D           286. 	jsr	Outzero		; Nollst‰ll denna
-0010F8 38                 287. 	pulc
-0010F9 33                 288. 	pulb
-0010FA 3D                 289. 	rts
-0010FB                    290. 	
+                          279. 
+0010EA                    280. DrillUp:
+0010EA 37                 281. 	pshb
+0010EB 39                 282. 	pshc
+0010EC C6 03              283. 	ldab	#3		; Bit nummer 3 ‰r vridmagneten
+0010EE 16 10 8D           284. 	jsr	Outzero		; Nollst‰ll denna
+0010F1 38                 285. 	pulc
+0010F2 33                 286. 	pulb
+0010F3 3D                 287. 	rts
+0010F4                    288. 	
+                          289. ;-------------------------------
+                          290. ;	ALARM
                           291. ;-------------------------------
-                          292. ;	ALARM
-                          293. ;-------------------------------
+                          292. 
+                          293. ; Antalet alarm ska finnas i B-registret
                           294. 
-                          295. ; Antalet alarm ska finnas i B-registret
-                          296. 
-0010FB                    297. Alarm:
-0010FB 39                 298. 	pshc
-0010FC B7 10              299. 	tfr	b,a
-0010FE 97                 300. 	tsta
-0010FF 27 1A              301. 	beq	AlarmReturn
-001101                    302. 			
-001101                    303. AlarmSend:
-001101 C6 04              304. 	ldab	#4		; Bit nummer 4 ‰r larm
-001103 16 10 A7           305. 	jsr	Outone		; S‰tt pÂ alarm
-001106                    306. 	
-001106 C6 04              307. 	ldab	#4
-001108 16 10 81           308. 	jsr	DELAY_B		; 4*250 ms delay
-00110B                    309. 	
-00110B C6 04              310. 	ldab	#4		; St‰ng av alarm
-00110D 16 10 8D           311. 	jsr	Outzero
-001110                    312. 	
-001110 43                 313. 	deca			; A<-A-1, returnera om A ‰r 0
-001111 27 08              314. 	beq	AlarmReturn
-001113                    315. 	
-001113                    316. 	;ldab	#2		; A ‰r inte 0. Skicka 2*250 ms delay
-001113                    317. 	;jsr	DELAY_B
-001113 16 10 68           318. 	jsr 	DELAY
-001116 16 10 68           319. 	jsr 	DELAY
-001119 20 E6              320. 	bra	AlarmSend	; Loopa om alarmet
-00111B                    321. AlarmReturn:
-00111B 38                 322. 	pulc
-00111C 3D                 323. 	rts
-00111D                    324. 	
-                          325. ;-------------------------------
-                          326. ;	STEP
-                          327. ;-------------------------------
-                          328. 
-00111D                    329. Step:
-00111D B6 04 01           330. 	ldaa	DrillStatus
-001120 84 02              331. 	anda	#2	; Maska ut bit 1
-001122 27 18              332. 	beq	StepAlarm
-001124                    333. 			; Borren uppe
-001124 C6 01              334. 	ldab	#1
-001126 16 10 A7           335. 	jsr	Outone	; Ettst‰ll bit 1 (medurs riktning)
-001129                    336. 	
-001129 C6 00              337. 	ldab	#0
-00112B 16 10 A7           338. 	jsr	Outone	; Ettst‰ll bit 0 (stegpuls)
-00112E                    339. 	;ldab	#2	
-00112E                    340. 	;jsr	DELAY_B	; Skicka 2*250 ms delay
-00112E 16 10 68           341. 	jsr 	DELAY
-001131 16 10 68           342. 	jsr 	DELAY
-001134 C6 00              343. 	ldab	#0
-001136 16 10 8D           344. 	jsr	Outzero	; Nollst‰ll bit 0 (stegpuls)
-001139                    345. 	
-001139 C6 01              346. 	ldab	#1	; Returnera 1
-00113B 3D                 347. 	rts
-                          348. 
-00113C                    349. StepAlarm:		; Borren inte uppe
-00113C C6 02              350. 	ldab	#2	
-00113E 16 10 FB           351. 	jsr	Alarm	; Skicka 2*250 ms delay
-001141 C6 00              352. 	ldab	#0	; Returnera 0
-001143 3D                 353. 	rts
-001144                    354. 	
-                          355. ;-------------------------------
-                          356. ;	DRILLDOWNTEST
-                          357. ;-------------------------------
-                          358. 
-001144                    359. DrillDownTest:
-001144 00                 360. retry	rmb	1
-001145 18 0B 14 11 44     361. 	movb	#20,retry
-00114A                    362. DrillDownTestRetry:
-00114A F6 04 01           363. 	ldab	DrillStatus
-00114D C4 04              364. 	andb	#4	; Maska fram bit 2 (borr nere)
-00114F 26 16              365. 	bne	DrillDownTestReturn1
-001151                    366. 	;ldab	#1
-001151                    367. 	;jsr	DELAY_B	; 250 ms delay
-001151 16 10 68           368. 	jsr 	DELAY
-001154 73 11 44           369. 	dec	retry
-001157 F7 11 44           370. 	tst	retry	
-00115A 26 EE              371. 	bne	DrillDownTestRetry
-00115C C6 02              372. 	ldab	#2
-00115E 16 10 FB           373. 	jsr	Alarm	; Skicka 2 alarmsignaler
-001161 C6 00              374. 	ldab	#0
-001163 3D                 375. 	rts		; Returnera 0
-001164                    376. DrillDowntTestReturn1:
-001164 C6 01              377. 	ldab	#1
-001166 3D                 378. 	rts		; Returnera 1
-001167                    379. 	
-001167                    380. DrillDownTestReturn1
-001167 C6 01              381. 	ldab	#1
-001169 3D                 382. 	rts
-00116A                    383. 	
-                          384. ;-------------------------------
-                          385. ;	DRILLHOLE
-                          386. ;-------------------------------
-                          387. 
-00116A                    388. DrillHole:
-00116A 16 10 E7           389. 	jsr	DrillDown
-00116D 16 11 44           390. 	jsr	DrillDownTest
-001170 16 10 F1           391. 	jsr	DrillUp
-001173 3D                 392. 	rts		; Returnerar svaret frÂn DrillDownTest
-001174                    393. 	
-                          394. ;-------------------------------
-                          395. ;	REFPOS
-                          396. ;-------------------------------
-                          397. 
-001174                    398. RefPos:
-001174 B6 04 01           399. 	ldaa	DrillStatus
-001177 84 01              400. 	anda	#1	; Maska fram bit 0 (referensposition)
-001179 26 07              401. 	bne	RefPosReturn1
-00117B 16 11 1D           402. 	jsr	Step
-00117E D7                 403. 	tstb		; Testa svaret frÂn step
-00117F 26 F3              404. 	bne	RefPos
-001181 3D                 405. 	rts		; Returnera med 0
-001182                    406. RefPosReturn1:
-001182 C6 01              407. 	ldab	#1
-001184 3D                 408. 	rts		; Returnera med 1 (har nÂtt referensposition)
-001185                    409. 	
-                          410. ;-------------------------------
-                          411. ;	NSTEP
-                          412. ;-------------------------------
-001185                    413. Nstep:
-001185 B7 10              414. 	tfr	b,a	; L‰gg n i A
-001187                    415. Nstep_loop:
-001187 97                 416. 	tsta
-001188 27 0A              417. 	beq	NstepReturn1	; A=0?
-00118A 43                 418. 	deca
-00118B 36                 419. 	psha
-00118C 16 11 1D           420. 	jsr	Step
-00118F 32                 421. 	pula
-001190 D7                 422. 	tstb		; Testa svaret frÂn step, kanske inte behˆvs (ldab ska ‰ndra)
-001191 26 F4              423. 	bne	Nstep_loop
-001193 3D                 424. 	rts		; Returnera med 0
-001194                    425. NstepReturn1:
-001194 C6 01              426. 	ldab	#1
-001196 3D                 427. 	rts		; Returnera med 1 (framme)
-001197                    428. 	
-                          429. ;-------------------------------
-                          430. ;	DOAUTO
-                          431. ;-------------------------------	
-                          432. 
-001197                    433. DoAuto:	
-001197 16 11 74           434. 	jsr	RefPos
-00119A D7                 435. 	tstb		; Testa svaret frÂn RefPos, kanske inte behˆvs (ldab ska ‰ndra)
-00119B 27 19              436. 	beq	DoAutoReturn
-00119D 16 10 C0           437. 	jsr	MotorStart
-0011A0                    438. DoAutoDrill:
-0011A0                    439. 	ldab	,x
-0011A2 1A 01              440. 	leax	1,x	; ÷ka X med 1
-0011A4 C1 FF              441. 	cmpb	#$FF	; Testa med slutmarkering
-0011A6 27 0E              442. 	beq	DoAutoReturn
-0011A8 16 11 85           443. 	jsr	Nstep
-0011AB D7                 444. 	tstb
-0011AC 27 08              445. 	beq	DoAutoReturn
-0011AE 16 11 6A           446. 	jsr	DrillHole
-0011B1 D7                 447. 	tstb
-0011B2 27 02              448. 	beq	DoAutoReturn
-0011B4 20 EA              449. 	bra	DoAutoDrill
-0011B6                    450. DoAutoReturn:
-0011B6 16 10 DD           451. 	jsr	MotorStop
-0011B9 3D                 452. 	rts
-                          453. 
-0011BA                    454. 		
-0011BA                    455. 		
-0011BA                    456. 	
+0010F4                    295. Alarm:
+0010F4 39                 296. 	pshc
+0010F5 B7 10              297. 	tfr	b,a
+0010F7 97                 298. 	tsta
+0010F8 27 19              299. 	beq	AlarmReturn
+0010FA                    300. 			
+0010FA                    301. AlarmSend:
+0010FA C6 04              302. 	ldab	#4		; Bit nummer 4 ‰r larm
+0010FC 16 10 A7           303. 	jsr	Outone		; S‰tt pÂ alarm
+0010FF                    304. 	
+0010FF C6 04              305. 	ldab	#4
+001101 16 10 81           306. 	jsr	DELAY_B		; 4*250 ms delay
+001104                    307. 	
+001104 C6 04              308. 	ldab	#4		; St‰ng av alarm
+001106 16 10 8D           309. 	jsr	Outzero
+001109                    310. 	
+001109 43                 311. 	deca			; A<-A-1, returnera om A ‰r 0
+00110A 27 07              312. 	beq	AlarmReturn
+00110C                    313. 	
+00110C C6 02              314. 	ldab	#2		; A ‰r inte 0. Skicka 2*250 ms delay
+00110E 16 10 81           315. 	jsr	DELAY_B
+001111                    316. 	
+001111 20 E7              317. 	bra	AlarmSend	; Loopa om alarmet
+001113                    318. AlarmReturn:
+001113 38                 319. 	pulc
+001114 3D                 320. 	rts
+001115                    321. 	
+                          322. ;-------------------------------
+                          323. ;	STEP
+                          324. ;-------------------------------
+                          325. 
+001115                    326. Step:
+001115 B6 04 01           327. 	ldaa	DrillStatus
+001118 84 02              328. 	anda	#2	; Maska ut bit 1
+00111A 27 17              329. 	beq	StepAlarm
+00111C                    330. 			; Borren uppe
+00111C C6 01              331. 	ldab	#1
+00111E 16 10 A7           332. 	jsr	Outone	; Ettst‰ll bit 1 (medurs riktning)
+001121                    333. 	
+001121 C6 00              334. 	ldab	#0
+001123 16 10 A7           335. 	jsr	Outone	; Ettst‰ll bit 0 (stegpuls)
+001126 C6 02              336. 	ldab	#2	
+001128 16 10 81           337. 	jsr	DELAY_B	; Skicka 2*250 ms delay
+00112B                    338. 	
+00112B C6 00              339. 	ldab	#0
+00112D 16 10 8D           340. 	jsr	Outzero	; Nollst‰ll bit 0 (stegpuls)
+001130                    341. 	
+001130 C6 01              342. 	ldab	#1	; Returnera 1
+001132 3D                 343. 	rts
+                          344. 
+001133                    345. StepAlarm:		; Borren inte uppe
+001133 C6 02              346. 	ldab	#2	
+001135 16 10 F4           347. 	jsr	Alarm	; Skicka 2*250 ms delay
+001138 C6 00              348. 	ldab	#0	; Returnera 0
+00113A 3D                 349. 	rts
+00113B                    350. 	
+                          351. ;-------------------------------
+                          352. ;	DRILLDOWNTEST
+                          353. ;-------------------------------
+                          354. 
+00113B                    355. DrillDownTest:
+00113B 86 14              356. 	ldaa	#20	; Retry
+00113D                    357. DrillDownTestRetry:
+00113D F6 04 01           358. 	ldab	DrillStatus
+001140 C4 04              359. 	andb	#4	; Maska fram bit 2 (borr nere)
+001142 26 14              360. 	bne	DrillDownTestReturn1
+001144 C6 01              361. 	ldab	#1
+001146 16 10 81           362. 	jsr	DELAY_B	; 250 ms delay
+001149 43                 363. 	deca
+00114A 97                 364. 	tsta		; TODO onˆdigt?
+00114B 26 F0              365. 	bne	DrillDownTestRetry
+00114D C6 02              366. 	ldab	#2
+00114F 16 10 F4           367. 	jsr	Alarm	; Skicka 2 alarmsignaler
+001152 C6 00              368. 	ldab	#0
+001154 3D                 369. 	rts		; Returnera 0
+001155                    370. DrillDowntTestReturn1:
+001155 C6 01              371. 	ldab	#1
+001157 3D                 372. 	rts		; Returnera 1
+001158                    373. 	
+001158                    374. DrillDownTestReturn1
+001158 C6 01              375. 	ldab	#1
+00115A 3D                 376. 	rts
+00115B                    377. 	
+                          378. ;-------------------------------
+                          379. ;	DRILLHOLE
+                          380. ;-------------------------------
+                          381. 
+00115B                    382. DrillHole:
+00115B 16 10 E0           383. 	jsr	DrillDown
+00115E 16 11 3B           384. 	jsr	DrillDownTest
+001161 16 10 EA           385. 	jsr	DrillUp
+001164 3D                 386. 	rts		; Returnerar svaret frÂn DrillDownTest
+001165                    387. 	
+                          388. ;-------------------------------
+                          389. ;	REFPOS
+                          390. ;-------------------------------
+                          391. 
+001165                    392. RefPos:
+001165 B6 04 01           393. 	ldaa	DrillStatus
+001168 84 01              394. 	anda	#1	; Maska fram bit 0 (referensposition)
+00116A 26 07              395. 	bne	RefPosReturn1
+00116C 16 11 15           396. 	jsr	Step
+00116F D7                 397. 	tstb		; Testa svaret frÂn step
+001170 26 F3              398. 	bne	RefPos
+001172 3D                 399. 	rts		; Returnera med 0
+001173                    400. RefPosReturn1:
+001173 C6 01              401. 	ldab	#1
+001175 3D                 402. 	rts		; Returnera med 1 (har nÂtt referensposition)
+001176                    403. 	
+                          404. ;-------------------------------
+                          405. ;	NSTEP
+                          406. ;-------------------------------
+001176                    407. Nstep:
+001176 B7 10              408. 	tfr	b,a	; L‰gg n i A
+001178                    409. Nstep_loop:
+001178 97                 410. 	tsta
+001179 27 0A              411. 	beq	NstepReturn1	; A=0?
+00117B 43                 412. 	deca
+00117C 36                 413. 	psha
+00117D 16 11 15           414. 	jsr	Step
+001180 32                 415. 	pula
+001181 D7                 416. 	tstb		; Testa svaret frÂn step, kanske inte behˆvs (ldab ska ‰ndra)
+001182 26 F4              417. 	bne	Nstep_loop
+001184 3D                 418. 	rts		; Returnera med 0
+001185                    419. NstepReturn1:
+001185 C6 01              420. 	ldab	#1
+001187 3D                 421. 	rts		; Returnera med 1 (framme)
+001188                    422. 	
+                          423. ;-------------------------------
+                          424. ;	DOAUTO
+                          425. ;-------------------------------	
+                          426. 
+001188                    427. DoAuto:	
+001188 16 11 65           428. 	jsr	RefPos
+00118B D7                 429. 	tstb		; Testa svaret frÂn RefPos, kanske inte behˆvs (ldab ska ‰ndra)
+00118C 27 19              430. 	beq	DoAutoReturn
+00118E 16 10 C0           431. 	jsr	MotorStart
+001191                    432. DoAutoDrill:
+001191                    433. 	ldab	,x
+001193 1A 01              434. 	leax	1,x	; ÷ka X med 1
+001195 C1 FF              435. 	cmpb	#$FF	; Testa med slutmarkering
+001197 27 0E              436. 	beq	DoAutoReturn
+001199 16 11 76           437. 	jsr	Nstep
+00119C D7                 438. 	tstb
+00119D 27 08              439. 	beq	DoAutoReturn
+00119F 16 11 5B           440. 	jsr	DrillHole
+0011A2 D7                 441. 	tstb
+0011A3 27 02              442. 	beq	DoAutoReturn
+0011A5 20 EA              443. 	bra	DoAutoDrill
+0011A7                    444. DoAutoReturn:
+0011A7 16 10 D6           445. 	jsr	MotorStop
+0011AA 3D                 446. 	rts
+                          447. 
+0011AB                    448. 		
+0011AB                    449. 		
+0011AB                    450. 	
 ---- File: "C:\Users\Erik\Documents\GitHub\PIS\Bokuppgifter\Main.s12"
-                          457. ;------------------------------
-                          458. ;	Global constants
-                          459. ;------------------------------
-0011BA                    460. Pattern:	
-0011BA 00 01 01 01 01 01  461. 	fcb	0,1,1,1,1,1,1,1,2,1
+                          451. ;------------------------------
+                          452. ;	Global constants
+                          453. ;------------------------------
+0011AB                    454. Pattern:	
+0011AB 00 01 01 01 01 01  455. 	fcb	0,1,1,1,1,1,1,1,2,1
        01 01 02 01      
-0011C4 05 02 02 02 02 04  462. 	fcb	5,2,2,2,2,4,4,3,8,2
+0011B5 05 02 02 02 02 04  456. 	fcb	5,2,2,2,2,4,4,3,8,2
        04 03 08 02      
-0011CE FF                 463. 	fcb	$FF
-0011CF                    464. 	
-0011CF                    465. Bitmask:	
-0011CF 01 02 04 08 10 20  466. 	fcb	1,2,4,8,16,32,64,128
+0011BF FF                 457. 	fcb	$FF
+0011C0                    458. 	
+0011C0                    459. Bitmask:	
+0011C0 01 02 04 08 10 20  460. 	fcb	1,2,4,8,16,32,64,128
        40 80            
-                          467. 
-0011D7                    468. DCShadow:
-0011D7 00                 469. 	rmb	1
-                          470. 
-0011D8                    471. 	
+                          461. 
+0011C8                    462. DCShadow:
+0011C8 00                 463. 	rmb	1
+                          464. 
+0011C9                    465. 	

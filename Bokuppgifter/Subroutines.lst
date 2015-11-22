@@ -3,347 +3,338 @@ QA12 - MC68HC12 Absolute crossassembler, Version 1.6.3
 
 
 File: Subroutines.lst
-                            1. #define	SIMUATOR
----- File: "C:\Users\Erik\Documents\GitHub\PIS\Bokuppgifter\Subroutines.s12"
-                            2. #define	RUNFAST
-                            3. 		use	Labdefs.s12
+                            1. 		use	Labdefs.s12
 ---- File: "Labdefs.s12"
-                            4. ;Adresser
-       0000 0600            5. DipSwitch	equ	$600
-       0000 0700            6. HexDisplay	equ	$700
-       0000 0400            7. DrillControl	equ	$400
-       0000 0401            8. DrillStatus	equ	$401
-                            9. 
-000000                     10. #ifdef	SIMULATOR
-                           16. #else
-       0000 0004           17. DelayConst	EQU	4
-                           18. #endif                           19. 		use	Delay.s12
+                            2. ;Adresser
+       0000 0600            3. DipSwitch	equ	$600
+       0000 0700            4. HexDisplay	equ	$700
+       0000 0400            5. DrillControl	equ	$400
+       0000 0401            6. DrillStatus	equ	$401
+                            7. 
+000000                      8. #ifdef	SIMULATOR
+                           14. #else
+       0000 0004           15. DelayConst	EQU	4
+                           16. #endif                           17. 		use	Delay.s12
 ---- File: "Delay.s12"
-                           20. 	use	Labdefs.s12
+                           18. 	use	Labdefs.s12
 ---- File: "Labdefs.s12"
-                           21. ;Adresser
-       0000 0600           22. DipSwitch	equ	$600
-       0000 0700           23. HexDisplay	equ	$700
-       0000 0400           24. DrillControl	equ	$400
-       0000 0401           25. DrillStatus	equ	$401
-                           26. 
-000000                     27. #ifdef	SIMULATOR
-                           33. #else
-       0000 0004           34. DelayConst	EQU	4
-                           35. #endif000000                     36. DELAY:			; 250 ms delay
+                           19. ;Adresser
+       0000 0600           20. DipSwitch	equ	$600
+       0000 0700           21. HexDisplay	equ	$700
+       0000 0400           22. DrillControl	equ	$400
+       0000 0401           23. DrillStatus	equ	$401
+                           24. 
+000000                     25. #ifdef	SIMULATOR
+                           31. #else
+       0000 0004           32. DelayConst	EQU	4
+                           33. #endif000000                     34. DELAY:			; 250 ms delay
 ---- File: "Delay.s12"
-000000 34                  37. 	pshx		
-000001 35                  38. 	pshy
-000002 CE 00 04            39. 	ldx	#DelayConst
-000005 1A 1F               40. NEXT:	leax	-1,x
-000007 CD 00 64            41. 	ldy	#100
-00000A 19 5F               42. NEXT2:	leay	-1,y
-00000C 8D 00 00            43. 	cpy	#0
-00000F 26 F9               44. 	bne	NEXT2
-000011 8E 00 00            45. 	cpx	#0
-000014 26 EF               46. 	bne	NEXT
-000016 31                  47. 	puly
-000017 30                  48. 	pulx
-000018 3D                  49. 	rts	
-000019                     50. 	
-000019                     51. DELAY_B:		; Calls DELAY the number of times specified in B
-000019 37                  52. 	pshb
-00001A D7                  53. 	tstb
-00001B                     54. DELAY_B_LOOP:
-00001B 27 06               55. 	beq	DELAY_B_RETURN
-00001D 16 00 00            56. 	jsr	DELAY
-000020 53                  57. 	decb
-000021 20 F8               58. 	bra	DELAY_B_LOOP
-000023                     59. DELAY_B_RETURN:
-000023 33                  60. 	pulb
-000024 3D                  61. 	rts 000025                     62. 		
----- File: "C:\Users\Erik\Documents\GitHub\PIS\Bokuppgifter\Subroutines.s12"
+000000 34                  35. 	pshx		
+000001 35                  36. 	pshy
+000002 CE 00 04            37. 	ldx	#DelayConst
+000005 1A 1F               38. NEXT:	leax	-1,x
+000007 CD 00 64            39. 	ldy	#100
+00000A 19 5F               40. NEXT2:	leay	-1,y
+00000C 8D 00 00            41. 	cpy	#0
+00000F 26 F9               42. 	bne	NEXT2
+000011 8E 00 00            43. 	cpx	#0
+000014 26 EF               44. 	bne	NEXT
+000016 31                  45. 	puly
+000017 30                  46. 	pulx
+000018 3D                  47. 	rts	
+000019                     48. 	
+000019                     49. DELAY_B:		; Calls DELAY the number of times specified in B
+000019 37                  50. 	pshb
+00001A D7                  51. 	tstb
+00001B                     52. DELAY_B_LOOP:
+00001B 27 06               53. 	beq	DELAY_B_RETURN
+00001D 16 00 00            54. 	jsr	DELAY
+000020 53                  55. 	decb
+000021 20 F8               56. 	bra	DELAY_B_LOOP
+000023                     57. DELAY_B_RETURN:
+000023 33                  58. 	pulb
+000024 3D                  59. 	rts 000025                     60. 		
+---- File: "Subroutines.s12"
+                           61. ;---------------------------------
+                           62. ;	OUTZERO
                            63. ;---------------------------------
-                           64. ;	OUTZERO
-                           65. ;---------------------------------
+                           64. 
+                           65. ; Nollst√§ll biten i B-registret, med f√∂rprogrammerade bitm√∂nster
                            66. 
-                           67. ; Nollst√§ll biten i B-registret, med f√∂rprogrammerade bitm√∂nster
-                           68. 
-000025                     69. Outzero:			
-000025 39                  70. 		pshc	; L√§gg register p√• stacken f√∂r senare √•terst√§llning
-000026 37                  71. 		pshb
-000027 34                  72. 		pshx
-000028 C1 07               73. 		cmpb	#7		
-00002A 22 0F               74. 		bhi	Outzero_return	; Kolla om talet √§r >7
-"C:/Users/Erik/Documents/GitHub/PIS/Bokuppgifter/Subroutines.s12" line 18, ERROR: Undefined symbol 'Bitmask'
-00002C CE 00 00            75. 		ldx	#Bitmask
-00002F                     76. 		ldab	b,x				; Uppdatera b till bitmasken f√∂r b
-000031 51                  77. 		comb	
-"C:/Users/Erik/Documents/GitHub/PIS/Bokuppgifter/Subroutines.s12" line 21, ERROR: Undefined symbol 'DCShadow'
-000032 F4 00 00            78. 		andb	DCShadow		; Ta DCShadow && komplementet av bitmasken
-000035 7B 04 00            79. 		stab	DrillControl	; Spara till borren
-"C:/Users/Erik/Documents/GitHub/PIS/Bokuppgifter/Subroutines.s12" line 23, ERROR: Undefined symbol 'DCShadow'
-000038 7B 00 00            80. 		stab	DCShadow	; Spara till skuggningen
-00003B                     81. Outzero_return:	
-00003B 30                  82. 		pulx
-00003C 33                  83. 		pulb			; √Öterst√§ll originalv√§rden
-00003D 38                  84. 		pulc
-00003E 3D                  85. 		rts
-00003F                     86. 	
+000025                     67. Outzero:			
+000025 39                  68. 		pshc	; L√§gg register p√• stacken f√∂r senare √•terst√§llning
+000026 37                  69. 		pshb
+000027 34                  70. 		pshx
+000028 C1 07               71. 		cmpb	#7		
+00002A 22 0F               72. 		bhi	Outzero_return	; Kolla om talet √§r >7
+"Subroutines.s12" line 16, ERROR: Undefined symbol 'Bitmask'
+00002C CE 00 00            73. 		ldx	#Bitmask
+00002F                     74. 		ldab	b,x				; Uppdatera b till bitmasken f√∂r b
+000031 51                  75. 		comb	
+"Subroutines.s12" line 19, ERROR: Undefined symbol 'DCShadow'
+000032 F4 00 00            76. 		andb	DCShadow		; Ta DCShadow && komplementet av bitmasken
+000035 7B 04 00            77. 		stab	DrillControl	; Spara till borren
+"Subroutines.s12" line 21, ERROR: Undefined symbol 'DCShadow'
+000038 7B 00 00            78. 		stab	DCShadow	; Spara till skuggningen
+00003B                     79. Outzero_return:	
+00003B 30                  80. 		pulx
+00003C 33                  81. 		pulb			; √Öterst√§ll originalv√§rden
+00003D 38                  82. 		pulc
+00003E 3D                  83. 		rts
+00003F                     84. 	
+                           85. ;---------------------------------
+                           86. ;	OUTONE
                            87. ;---------------------------------
-                           88. ;	OUTONE
-                           89. ;---------------------------------
+                           88. 
+                           89. ; Ettst√§ll biten i B-registret, med f√∂rprogrammerade bitm√∂nster
                            90. 
-                           91. ; Ettst√§ll biten i B-registret, med f√∂rprogrammerade bitm√∂nster
-                           92. 
-00003F                     93. Outone:			
-00003F 39                  94. 		pshc	; L√§gg register p√• stacken f√∂r senare √•terst√§llning
-000040 37                  95. 		pshb
-000041 34                  96. 		pshx
-000042 C1 07               97. 		cmpb	#7		
-000044 22 0E               98. 		bhi	Outone_return	; Kolla om talet √§r >7
-"C:/Users/Erik/Documents/GitHub/PIS/Bokuppgifter/Subroutines.s12" line 42, ERROR: Undefined symbol 'Bitmask'
-000046 CE 00 00            99. 		ldx	#Bitmask
-000049                    100. 		ldab	b,x	
-"C:/Users/Erik/Documents/GitHub/PIS/Bokuppgifter/Subroutines.s12" line 44, ERROR: Undefined symbol 'DCShadow'
-00004B FA 00 00           101. 		orab	DCShadow	; Ta DCShadow || Bitmasken
-00004E 7B 04 00           102. 		stab	DrillControl	; Spara till borren
-"C:/Users/Erik/Documents/GitHub/PIS/Bokuppgifter/Subroutines.s12" line 46, ERROR: Undefined symbol 'DCShadow'
-000051 7B 00 00           103. 		stab	DCShadow	; Spara till skuggningen
-000054                    104. Outone_return:	
-000054 30                 105. 		pulx
-000055 33                 106. 		pulb			; √Öterst√§ll originalv√§rden
-000056 38                 107. 		pulc
-000057 3D                 108. 		rts
-000058                    109. 		
+00003F                     91. Outone:			
+00003F 39                  92. 		pshc	; L√§gg register p√• stacken f√∂r senare √•terst√§llning
+000040 37                  93. 		pshb
+000041 34                  94. 		pshx
+000042 C1 07               95. 		cmpb	#7		
+000044 22 0E               96. 		bhi	Outone_return	; Kolla om talet √§r >7
+"Subroutines.s12" line 40, ERROR: Undefined symbol 'Bitmask'
+000046 CE 00 00            97. 		ldx	#Bitmask
+000049                     98. 		ldab	b,x	
+"Subroutines.s12" line 42, ERROR: Undefined symbol 'DCShadow'
+00004B FA 00 00            99. 		orab	DCShadow	; Ta DCShadow || Bitmasken
+00004E 7B 04 00           100. 		stab	DrillControl	; Spara till borren
+"Subroutines.s12" line 44, ERROR: Undefined symbol 'DCShadow'
+000051 7B 00 00           101. 		stab	DCShadow	; Spara till skuggningen
+000054                    102. Outone_return:	
+000054 30                 103. 		pulx
+000055 33                 104. 		pulb			; √Öterst√§ll originalv√§rden
+000056 38                 105. 		pulc
+000057 3D                 106. 		rts
+000058                    107. 		
+                          108. ;-------------------------------
+                          109. ;	MOTORSTART
                           110. ;-------------------------------
-                          111. ;	MOTORSTART
-                          112. ;-------------------------------
-                          113. 
-000058                    114. MotorStart:
-000058 37                 115. 	pshb
-000059 39                 116. 	pshc
-"C:/Users/Erik/Documents/GitHub/PIS/Bokuppgifter/Subroutines.s12" line 60, ERROR: Undefined symbol 'DCShadow'
-00005A F6 00 00           117. 	ldab	DCShadow
-00005D C4 04              118. 	andb	#4
-00005F 26 05              119. 	bne	MotorStartExit	; Motorn redan startad
-000061 C6 02              120. 	ldab	#2
-000063 16 00 3F           121. 	jsr	Outone		; Ettst√§ll bit 2
-000066                    122. 	
-000066                    123. 	;ldab	#4
-000066                    124. 	;jsr	DELAY_B	; 4*250 ms delay
-"C:/Users/Erik/Documents/GitHub/PIS/Bokuppgifter/Subroutines.s12" line 68, ERROR: Illegal mnemonic
-000066                    125. jsr 	DELAY
-"C:/Users/Erik/Documents/GitHub/PIS/Bokuppgifter/Subroutines.s12" line 69, ERROR: Illegal mnemonic
-000066                    126. jsr 	DELAY
-"C:/Users/Erik/Documents/GitHub/PIS/Bokuppgifter/Subroutines.s12" line 70, ERROR: Illegal mnemonic
-000066                    127. jsr 	DELAY
-"C:/Users/Erik/Documents/GitHub/PIS/Bokuppgifter/Subroutines.s12" line 71, ERROR: Illegal mnemonic
-000066                    128. jsr 	DELAY
-000066                    129. MotorStartExit:
-000066 38                 130. 	pulc
-000067 33                 131. 	pulb
-000068 3D                 132. 	rts
-000069                    133. 	
-                          134. ;-------------------------------
-                          135. ;	MOTORSTOP
-                          136. ;-------------------------------
-                          137. 
-000069                    138. MotorStop:
-000069 37                 139. 	pshb
-00006A 39                 140. 	pshc
-00006B C6 02              141. 	ldab	#2
-00006D 16 00 25           142. 	jsr	Outzero		; Nollst√§ll bit 2
-000070 38                 143. 	pulc
-000071 33                 144. 	pulb
-000072 3D                 145. 	rts
-000073                    146. 	
-                          147. ;-------------------------------
-                          148. ;	DRILLDOWN
-                          149. ;-------------------------------
-                          150. 
-000073                    151. DrillDown:
-000073 37                 152. 	pshb
-000074 39                 153. 	pshc
-000075 C6 03              154. 	ldab	#3		; Bit nummer 3 ‰r vridmagneten
-000077 16 00 3F           155. 	jsr	Outone		; Ettst‰ll denna
-00007A 38                 156. 	pulc
-00007B 33                 157. 	pulb
-00007C 3D                 158. 	rts
-00007D                    159. 	
-                          160. ;-------------------------------
-                          161. ;	DRILLUP
-                          162. ;-------------------------------
-                          163. 
-00007D                    164. DrillUp:
-00007D 37                 165. 	pshb
-00007E 39                 166. 	pshc
-00007F C6 03              167. 	ldab	#3		; Bit nummer 3 ‰r vridmagneten
-000081 16 00 25           168. 	jsr	Outzero		; Nollst‰ll denna
-000084 38                 169. 	pulc
-000085 33                 170. 	pulb
-000086 3D                 171. 	rts
-000087                    172. 	
-                          173. ;-------------------------------
-                          174. ;	ALARM
-                          175. ;-------------------------------
-                          176. 
-                          177. ; Antalet alarm ska finnas i B-registret
-                          178. 
-000087                    179. Alarm:
-000087 39                 180. 	pshc
-000088 B7 10              181. 	tfr	b,a
-00008A 97                 182. 	tsta
-00008B 27 1A              183. 	beq	AlarmReturn
-00008D                    184. 			
-00008D                    185. AlarmSend:
-00008D C6 04              186. 	ldab	#4		; Bit nummer 4 ‰r larm
-00008F 16 00 3F           187. 	jsr	Outone		; S‰tt pÂ alarm
-000092                    188. 	
-000092 C6 04              189. 	ldab	#4
-000094 16 00 19           190. 	jsr	DELAY_B		; 4*250 ms delay
-000097                    191. 	
-000097 C6 04              192. 	ldab	#4		; St‰ng av alarm
-000099 16 00 25           193. 	jsr	Outzero
-00009C                    194. 	
-00009C 43                 195. 	deca			; A<-A-1, returnera om A ‰r 0
-00009D 27 08              196. 	beq	AlarmReturn
-00009F                    197. 	
-00009F                    198. 	;ldab	#2		; A ‰r inte 0. Skicka 2*250 ms delay
-00009F                    199. 	;jsr	DELAY_B
-00009F 16 00 00           200. 	jsr 	DELAY
-0000A2 16 00 00           201. 	jsr 	DELAY
-0000A5 20 E6              202. 	bra	AlarmSend	; Loopa om alarmet
-0000A7                    203. AlarmReturn:
-0000A7 38                 204. 	pulc
-0000A8 3D                 205. 	rts
-0000A9                    206. 	
-                          207. ;-------------------------------
-                          208. ;	STEP
-                          209. ;-------------------------------
-                          210. 
-0000A9                    211. Step:
-0000A9 B6 04 01           212. 	ldaa	DrillStatus
-0000AC 84 02              213. 	anda	#2	; Maska ut bit 1
-0000AE 27 18              214. 	beq	StepAlarm
-0000B0                    215. 			; Borren uppe
-0000B0 C6 01              216. 	ldab	#1
-0000B2 16 00 3F           217. 	jsr	Outone	; Ettst‰ll bit 1 (medurs riktning)
-0000B5                    218. 	
-0000B5 C6 00              219. 	ldab	#0
-0000B7 16 00 3F           220. 	jsr	Outone	; Ettst‰ll bit 0 (stegpuls)
-0000BA                    221. 	;ldab	#2	
-0000BA                    222. 	;jsr	DELAY_B	; Skicka 2*250 ms delay
-0000BA 16 00 00           223. 	jsr 	DELAY
-0000BD 16 00 00           224. 	jsr 	DELAY
-0000C0 C6 00              225. 	ldab	#0
-0000C2 16 00 25           226. 	jsr	Outzero	; Nollst‰ll bit 0 (stegpuls)
-0000C5                    227. 	
-0000C5 C6 01              228. 	ldab	#1	; Returnera 1
-0000C7 3D                 229. 	rts
-                          230. 
-0000C8                    231. StepAlarm:		; Borren inte uppe
-0000C8 C6 02              232. 	ldab	#2	
-0000CA 16 00 87           233. 	jsr	Alarm	; Skicka 2*250 ms delay
-0000CD C6 00              234. 	ldab	#0	; Returnera 0
-0000CF 3D                 235. 	rts
-0000D0                    236. 	
-                          237. ;-------------------------------
-                          238. ;	DRILLDOWNTEST
-                          239. ;-------------------------------
-                          240. 
-0000D0                    241. DrillDownTest:
-0000D0 00                 242. retry	rmb	1
-0000D1 18 0B 14 00 D0     243. 	movb	#20,retry
-0000D6                    244. DrillDownTestRetry:
-0000D6 F6 04 01           245. 	ldab	DrillStatus
-0000D9 C4 04              246. 	andb	#4	; Maska fram bit 2 (borr nere)
-0000DB 26 16              247. 	bne	DrillDownTestReturn1
-0000DD                    248. 	;ldab	#1
-0000DD                    249. 	;jsr	DELAY_B	; 250 ms delay
-0000DD 16 00 00           250. 	jsr 	DELAY
-0000E0 73 00 D0           251. 	dec	retry
-0000E3 F7 00 D0           252. 	tst	retry	
-0000E6 26 EE              253. 	bne	DrillDownTestRetry
-0000E8 C6 02              254. 	ldab	#2
-0000EA 16 00 87           255. 	jsr	Alarm	; Skicka 2 alarmsignaler
-0000ED C6 00              256. 	ldab	#0
-0000EF 3D                 257. 	rts		; Returnera 0
-0000F0                    258. DrillDowntTestReturn1:
-0000F0 C6 01              259. 	ldab	#1
-0000F2 3D                 260. 	rts		; Returnera 1
-0000F3                    261. 	
-0000F3                    262. DrillDownTestReturn1
-0000F3 C6 01              263. 	ldab	#1
-0000F5 3D                 264. 	rts
-0000F6                    265. 	
-                          266. ;-------------------------------
-                          267. ;	DRILLHOLE
+                          111. 
+000058                    112. MotorStart:
+000058 37                 113. 	pshb
+000059 39                 114. 	pshc
+"Subroutines.s12" line 58, ERROR: Undefined symbol 'DCShadow'
+00005A F6 00 00           115. 	ldab	DCShadow
+00005D C4 04              116. 	andb	#4
+00005F 26 0A              117. 	bne	MotorStartExit	; Motorn redan startad
+000061 C6 02              118. 	ldab	#2
+000063 16 00 3F           119. 	jsr	Outone		; Ettst√§ll bit 2
+000066                    120. 	
+000066 C6 02              121. 	ldab	#2
+000068 16 00 19           122. 	jsr	DELAY_B	; 4*250 ms delay
+                          123. 
+00006B                    124. MotorStartExit:
+00006B 38                 125. 	pulc
+00006C 33                 126. 	pulb
+00006D 3D                 127. 	rts
+00006E                    128. 	
+                          129. ;-------------------------------
+                          130. ;	MOTORSTOP
+                          131. ;-------------------------------
+                          132. 
+00006E                    133. MotorStop:
+00006E 37                 134. 	pshb
+00006F 39                 135. 	pshc
+000070 C6 02              136. 	ldab	#2
+000072 16 00 25           137. 	jsr	Outzero		; Nollst√§ll bit 2
+000075 38                 138. 	pulc
+000076 33                 139. 	pulb
+000077 3D                 140. 	rts
+000078                    141. 	
+                          142. ;-------------------------------
+                          143. ;	DRILLDOWN
+                          144. ;-------------------------------
+                          145. 
+000078                    146. DrillDown:
+000078 37                 147. 	pshb
+000079 39                 148. 	pshc
+00007A C6 03              149. 	ldab	#3		; Bit nummer 3 ‰r vridmagneten
+00007C 16 00 3F           150. 	jsr	Outone		; Ettst‰ll denna
+00007F 38                 151. 	pulc
+000080 33                 152. 	pulb
+000081 3D                 153. 	rts
+000082                    154. 	
+                          155. ;-------------------------------
+                          156. ;	DRILLUP
+                          157. ;-------------------------------
+                          158. 
+000082                    159. DrillUp:
+000082 37                 160. 	pshb
+000083 39                 161. 	pshc
+000084 C6 03              162. 	ldab	#3		; Bit nummer 3 ‰r vridmagneten
+000086 16 00 25           163. 	jsr	Outzero		; Nollst‰ll denna
+000089 38                 164. 	pulc
+00008A 33                 165. 	pulb
+00008B 3D                 166. 	rts
+00008C                    167. 	
+                          168. ;-------------------------------
+                          169. ;	ALARM
+                          170. ;-------------------------------
+                          171. 
+                          172. ; Antalet alarm ska finnas i B-registret
+                          173. 
+00008C                    174. Alarm:
+00008C 39                 175. 	pshc
+00008D B7 10              176. 	tfr	b,a
+00008F 97                 177. 	tsta
+000090 27 19              178. 	beq	AlarmReturn
+000092                    179. 			
+000092                    180. AlarmSend:
+000092 C6 04              181. 	ldab	#4		; Bit nummer 4 ‰r larm
+000094 16 00 3F           182. 	jsr	Outone		; S‰tt pÂ alarm
+000097                    183. 	
+000097 C6 04              184. 	ldab	#4
+000099 16 00 19           185. 	jsr	DELAY_B		; 4*250 ms delay
+00009C                    186. 	
+00009C C6 04              187. 	ldab	#4		; St‰ng av alarm
+00009E 16 00 25           188. 	jsr	Outzero
+0000A1                    189. 	
+0000A1 43                 190. 	deca			; A<-A-1, returnera om A ‰r 0
+0000A2 27 07              191. 	beq	AlarmReturn
+0000A4                    192. 	
+0000A4 C6 02              193. 	ldab	#2		; A ‰r inte 0. Skicka 2*250 ms delay
+0000A6 16 00 19           194. 	jsr	DELAY_B
+0000A9                    195. 	
+0000A9 20 E7              196. 	bra	AlarmSend	; Loopa om alarmet
+0000AB                    197. AlarmReturn:
+0000AB 38                 198. 	pulc
+0000AC 3D                 199. 	rts
+0000AD                    200. 	
+                          201. ;-------------------------------
+                          202. ;	STEP
+                          203. ;-------------------------------
+                          204. 
+0000AD                    205. Step:
+0000AD B6 04 01           206. 	ldaa	DrillStatus
+0000B0 84 02              207. 	anda	#2	; Maska ut bit 1
+0000B2 27 17              208. 	beq	StepAlarm
+0000B4                    209. 			; Borren uppe
+0000B4 C6 01              210. 	ldab	#1
+0000B6 16 00 3F           211. 	jsr	Outone	; Ettst‰ll bit 1 (medurs riktning)
+0000B9                    212. 	
+0000B9 C6 00              213. 	ldab	#0
+0000BB 16 00 3F           214. 	jsr	Outone	; Ettst‰ll bit 0 (stegpuls)
+0000BE C6 02              215. 	ldab	#2	
+0000C0 16 00 19           216. 	jsr	DELAY_B	; Skicka 2*250 ms delay
+0000C3                    217. 	
+0000C3 C6 00              218. 	ldab	#0
+0000C5 16 00 25           219. 	jsr	Outzero	; Nollst‰ll bit 0 (stegpuls)
+0000C8                    220. 	
+0000C8 C6 01              221. 	ldab	#1	; Returnera 1
+0000CA 3D                 222. 	rts
+                          223. 
+0000CB                    224. StepAlarm:		; Borren inte uppe
+0000CB C6 02              225. 	ldab	#2	
+0000CD 16 00 8C           226. 	jsr	Alarm	; Skicka 2*250 ms delay
+0000D0 C6 00              227. 	ldab	#0	; Returnera 0
+0000D2 3D                 228. 	rts
+0000D3                    229. 	
+                          230. ;-------------------------------
+                          231. ;	DRILLDOWNTEST
+                          232. ;-------------------------------
+                          233. 
+0000D3                    234. DrillDownTest:
+0000D3 00                 235. retry	rmb	1
+0000D4 18 0B 14 00 D3     236. 	movb	#20,retry
+0000D9                    237. DrillDownTestRetry:
+0000D9 F6 04 01           238. 	ldab	DrillStatus
+0000DC C4 04              239. 	andb	#4	; Maska fram bit 2 (borr nere)
+0000DE 26 18              240. 	bne	DrillDownTestReturn1
+0000E0 C6 01              241. 	ldab	#1
+0000E2 16 00 19           242. 	jsr	DELAY_B	; 250 ms delay
+0000E5 73 00 D3           243. 	dec	retry
+0000E8 F7 00 D3           244. 	tst	retry	
+0000EB 26 EC              245. 	bne	DrillDownTestRetry
+0000ED C6 02              246. 	ldab	#2
+0000EF 16 00 8C           247. 	jsr	Alarm	; Skicka 2 alarmsignaler
+0000F2 C6 00              248. 	ldab	#0
+0000F4 3D                 249. 	rts		; Returnera 0
+0000F5                    250. DrillDowntTestReturn1:
+0000F5 C6 01              251. 	ldab	#1
+0000F7 3D                 252. 	rts		; Returnera 1
+0000F8                    253. 	
+0000F8                    254. DrillDownTestReturn1
+0000F8 C6 01              255. 	ldab	#1
+0000FA 3D                 256. 	rts
+0000FB                    257. 	
+                          258. ;-------------------------------
+                          259. ;	DRILLHOLE
+                          260. ;-------------------------------
+                          261. 
+0000FB                    262. DrillHole:
+0000FB 16 00 78           263. 	jsr	DrillDown
+0000FE 16 00 D3           264. 	jsr	DrillDownTest
+000101 16 00 82           265. 	jsr	DrillUp
+000104 3D                 266. 	rts		; Returnerar svaret frÂn DrillDownTest
+000105                    267. 	
                           268. ;-------------------------------
-                          269. 
-0000F6                    270. DrillHole:
-0000F6 16 00 73           271. 	jsr	DrillDown
-0000F9 16 00 D0           272. 	jsr	DrillDownTest
-0000FC 16 00 7D           273. 	jsr	DrillUp
-0000FF 3D                 274. 	rts		; Returnerar svaret frÂn DrillDownTest
-000100                    275. 	
-                          276. ;-------------------------------
-                          277. ;	REFPOS
-                          278. ;-------------------------------
-                          279. 
-000100                    280. RefPos:
-000100 B6 04 01           281. 	ldaa	DrillStatus
-000103 84 01              282. 	anda	#1	; Maska fram bit 0 (referensposition)
-000105 26 07              283. 	bne	RefPosReturn1
-000107 16 00 A9           284. 	jsr	Step
-00010A D7                 285. 	tstb		; Testa svaret frÂn step
-00010B 26 F3              286. 	bne	RefPos
-00010D 3D                 287. 	rts		; Returnera med 0
-00010E                    288. RefPosReturn1:
-00010E C6 01              289. 	ldab	#1
-000110 3D                 290. 	rts		; Returnera med 1 (har nÂtt referensposition)
-000111                    291. 	
-                          292. ;-------------------------------
-                          293. ;	NSTEP
-                          294. ;-------------------------------
-000111                    295. Nstep:
-000111 B7 10              296. 	tfr	b,a	; L‰gg n i A
-000113                    297. Nstep_loop:
-000113 97                 298. 	tsta
-000114 27 0A              299. 	beq	NstepReturn1	; A=0?
-000116 43                 300. 	deca
-000117 36                 301. 	psha
-000118 16 00 A9           302. 	jsr	Step
-00011B 32                 303. 	pula
-00011C D7                 304. 	tstb		; Testa svaret frÂn step, kanske inte behˆvs (ldab ska ‰ndra)
-00011D 26 F4              305. 	bne	Nstep_loop
-00011F 3D                 306. 	rts		; Returnera med 0
-000120                    307. NstepReturn1:
-000120 C6 01              308. 	ldab	#1
-000122 3D                 309. 	rts		; Returnera med 1 (framme)
-000123                    310. 	
-                          311. ;-------------------------------
-                          312. ;	DOAUTO
-                          313. ;-------------------------------	
-                          314. 
-000123                    315. DoAuto:	
-000123 16 01 00           316. 	jsr	RefPos
-000126 D7                 317. 	tstb		; Testa svaret frÂn RefPos, kanske inte behˆvs (ldab ska ‰ndra)
-000127 27 19              318. 	beq	DoAutoReturn
-000129 16 00 58           319. 	jsr	MotorStart
-00012C                    320. DoAutoDrill:
-00012C                    321. 	ldab	,x
-00012E 1A 01              322. 	leax	1,x	; ÷ka X med 1
-000130 C1 FF              323. 	cmpb	#$FF	; Testa med slutmarkering
-000132 27 0E              324. 	beq	DoAutoReturn
-000134 16 01 11           325. 	jsr	Nstep
-000137 D7                 326. 	tstb
-000138 27 08              327. 	beq	DoAutoReturn
-00013A 16 00 F6           328. 	jsr	DrillHole
-00013D D7                 329. 	tstb
-00013E 27 02              330. 	beq	DoAutoReturn
-000140 20 EA              331. 	bra	DoAutoDrill
-000142                    332. DoAutoReturn:
-000142 16 00 69           333. 	jsr	MotorStop
-000145 3D                 334. 	rts
-                          335. 
-000146                    336. 		
-000146                    337. 		
+                          269. ;	REFPOS
+                          270. ;-------------------------------
+                          271. 
+000105                    272. RefPos:
+000105 B6 04 01           273. 	ldaa	DrillStatus
+000108 84 01              274. 	anda	#1	; Maska fram bit 0 (referensposition)
+00010A 26 07              275. 	bne	RefPosReturn1
+00010C 16 00 AD           276. 	jsr	Step
+00010F D7                 277. 	tstb		; Testa svaret frÂn step
+000110 26 F3              278. 	bne	RefPos
+000112 3D                 279. 	rts		; Returnera med 0
+000113                    280. RefPosReturn1:
+000113 C6 01              281. 	ldab	#1
+000115 3D                 282. 	rts		; Returnera med 1 (har nÂtt referensposition)
+000116                    283. 	
+                          284. ;-------------------------------
+                          285. ;	NSTEP
+                          286. ;-------------------------------
+000116                    287. Nstep:
+000116 B7 10              288. 	tfr	b,a	; L‰gg n i A
+000118                    289. Nstep_loop:
+000118 97                 290. 	tsta
+000119 27 0A              291. 	beq	NstepReturn1	; A=0?
+00011B 43                 292. 	deca
+00011C 36                 293. 	psha
+00011D 16 00 AD           294. 	jsr	Step
+000120 32                 295. 	pula
+000121 D7                 296. 	tstb		; Testa svaret frÂn step, kanske inte behˆvs (ldab ska ‰ndra)
+000122 26 F4              297. 	bne	Nstep_loop
+000124 3D                 298. 	rts		; Returnera med 0
+000125                    299. NstepReturn1:
+000125 C6 01              300. 	ldab	#1
+000127 3D                 301. 	rts		; Returnera med 1 (framme)
+000128                    302. 	
+                          303. ;-------------------------------
+                          304. ;	DOAUTO
+                          305. ;-------------------------------	
+                          306. 
+000128                    307. DoAuto:	
+000128 16 01 05           308. 	jsr	RefPos
+00012B D7                 309. 	tstb		; Testa svaret frÂn RefPos, kanske inte behˆvs (ldab ska ‰ndra)
+00012C 27 19              310. 	beq	DoAutoReturn
+00012E 16 00 58           311. 	jsr	MotorStart
+000131                    312. DoAutoDrill:
+"Subroutines.s12" line 256, ERROR: Illegal mnemonic
+000131                    313. jsr	DELAY
+"Subroutines.s12" line 257, ERROR: Illegal mnemonic
+000131                    314. jsr	DELAY
+000131                    315. 	ldab	,x
+000133 1A 01              316. 	leax	1,x	; ÷ka X med 1
+000135 C1 FF              317. 	cmpb	#$FF	; Testa med slutmarkering
+000137 27 0E              318. 	beq	DoAutoReturn
+000139 16 01 16           319. 	jsr	Nstep
+00013C D7                 320. 	tstb
+00013D 27 08              321. 	beq	DoAutoReturn
+00013F 16 00 FB           322. 	jsr	DrillHole
+000142 D7                 323. 	tstb
+000143 27 02              324. 	beq	DoAutoReturn
+000145 20 EA              325. 	bra	DoAutoDrill
+000147                    326. DoAutoReturn:
+000147 16 00 6E           327. 	jsr	MotorStop
+00014A 3D                 328. 	rts
+                          329. 
+00014B                    330. 		
+00014B                    331. 		
 
 
-****** Total Errors: 11
+****** Total Errors: 9

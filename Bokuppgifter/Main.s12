@@ -1,3 +1,6 @@
+	#define	SIMULATOR
+	#define	RUNFAST
+	
 	use	Labdefs.s12
 	
 	org	$1000

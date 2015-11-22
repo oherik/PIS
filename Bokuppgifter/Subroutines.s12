@@ -1,5 +1,5 @@
-		use	Labdefs.s12
-		use	Delay.s12
+	use	Labdefs.s12
+	use	Delay.s12
 		
 ;---------------------------------
 ;	OUTZERO
@@ -8,22 +8,22 @@
 ; Nollställ biten i B-registret, med förprogrammerade bitmönster
 
 Outzero:			
-		pshc	; Lägg register på stacken för senare återställning
-		pshb
-		pshx
-		cmpb	#7		
-		bhi	Outzero_return	; Kolla om talet är >7
-		ldx	#Bitmask
-		ldab	b,x				; Uppdatera b till bitmasken för b
-		comb	
-		andb	DCShadow		; Ta DCShadow && komplementet av bitmasken
-		stab	DrillControl	; Spara till borren
-		stab	DCShadow	; Spara till skuggningen
+	pshc	; Lägg register på stacken för senare återställning
+	pshb
+	pshx
+	cmpb	#7		
+	bhi	Outzero_return	; Kolla om talet är >7
+	ldx	#Bitmask
+	ldab	b,x				; Uppdatera b till bitmasken för b
+	comb	
+	andb	DCShadow		; Ta DCShadow && komplementet av bitmasken
+	stab	DrillControl	; Spara till borren
+	stab	DCShadow	; Spara till skuggningen
 Outzero_return:	
-		pulx
-		pulb			; Återställ originalvärden
-		pulc
-		rts
+	pulx
+	pulb			; Återställ originalvärden
+	pulc
+	rts
 	
 ;---------------------------------
 ;	OUTONE
@@ -32,21 +32,21 @@ Outzero_return:
 ; Ettställ biten i B-registret, med förprogrammerade bitmönster
 
 Outone:			
-		pshc	; Lägg register på stacken för senare återställning
-		pshb
-		pshx
-		cmpb	#7		
-		bhi	Outone_return	; Kolla om talet är >7
-		ldx	#Bitmask
-		ldab	b,x	
-		orab	DCShadow	; Ta DCShadow || Bitmasken
-		stab	DrillControl	; Spara till borren
-		stab	DCShadow	; Spara till skuggningen
+	pshc	; Lägg register på stacken för senare återställning
+	pshb
+	pshx
+	cmpb	#7		
+	bhi	Outone_return	; Kolla om talet är >7
+	ldx	#Bitmask
+	ldab	b,x	
+	orab	DCShadow	; Ta DCShadow || Bitmasken
+	stab	DrillControl	; Spara till borren
+	stab	DCShadow	; Spara till skuggningen
 Outone_return:	
-		pulx
-		pulb			; Återställ originalvärden
-		pulc
-		rts
+	pulx
+	pulb			; Återställ originalvärden
+	pulc
+	rts
 		
 ;-------------------------------
 ;	MOTORSTART
@@ -180,10 +180,8 @@ DrillDownTestRetry:
 	ldab	DrillStatus
 	andb	#4	; Maska fram bit 2 (borr nere)
 	bne	DrillDownTestReturn1
-	ldab	#1
-	jsr	DELAY_B	; 250 ms delay
+	jsr	DELAY	; 250 ms delay
 	deca
-	tsta		; TODO on�digt?
 	bne	DrillDownTestRetry
 	ldab	#2
 	jsr	Alarm	; Skicka 2 alarmsignaler

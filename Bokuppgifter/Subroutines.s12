@@ -61,7 +61,7 @@ MotorStart:
 	ldab	#2
 	jsr	Outone		; Ettställ bit 2
 	
-	ldab	#2
+	ldab	#4
 	jsr	DELAY_B	; 4*250 ms delay
 
 MotorStartExit:

@@ -16,6 +16,7 @@ NEXT2:	leay	-1,y
 	
 DELAY_B:		; Calls DELAY the number of times specified in B
 	pshb
+	pshc
 	tstb
 DELAY_B_LOOP:
 	beq	DELAY_B_RETURN
@@ -23,5 +24,6 @@ DELAY_B_LOOP:
 	decb
 	bra	DELAY_B_LOOP
 DELAY_B_RETURN:
+	pulc
 	pulb
 	rts 

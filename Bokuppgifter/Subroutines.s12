@@ -5,23 +5,23 @@
 ;	OUTZERO
 ;---------------------------------
 
-; Nollställ biten i B-registret, med förprogrammerade bitmönster
+; NollstÃ¤ll biten i B-registret, med fÃ¶rprogrammerade bitmÃ¶nster
 
 Outzero:			
-	pshc	; Lägg register på stacken för senare återställning
+	pshc	; LÃ¤gg register pÃ¥ stacken fÃ¶r senare Ã¥terstÃ¤llning
 	pshb
 	pshx
 	cmpb	#7		
-	bhi	Outzero_return	; Kolla om talet är >7
+	bhi	Outzero_return	; Kolla om talet Ã¤r >7
 	ldx	#Bitmask
-	ldab	b,x				; Uppdatera b till bitmasken för b
+	ldab	b,x				; Uppdatera b till bitmasken fÃ¶r b
 	comb	
 	andb	DCShadow		; Ta DCShadow && komplementet av bitmasken
 	stab	DrillControl	; Spara till borren
 	stab	DCShadow	; Spara till skuggningen
 Outzero_return:	
 	pulx
-	pulb			; Återställ originalvärden
+	pulb			; Ã…terstÃ¤ll originalvÃ¤rden
 	pulc
 	rts
 	
@@ -29,14 +29,14 @@ Outzero_return:
 ;	OUTONE
 ;---------------------------------
 
-; Ettställ biten i B-registret, med förprogrammerade bitmönster
+; EttstÃ¤ll biten i B-registret, med fÃ¶rprogrammerade bitmÃ¶nster
 
 Outone:			
-	pshc	; Lägg register på stacken för senare återställning
+	pshc	; LÃ¤gg register pÃ¥ stacken fÃ¶r senare Ã¥terstÃ¤llning
 	pshb
 	pshx
 	cmpb	#7		
-	bhi	Outone_return	; Kolla om talet är >7
+	bhi	Outone_return	; Kolla om talet Ã¤r >7
 	ldx	#Bitmask
 	ldab	b,x	
 	orab	DCShadow	; Ta DCShadow || Bitmasken
@@ -44,7 +44,7 @@ Outone:
 	stab	DCShadow	; Spara till skuggningen
 Outone_return:	
 	pulx
-	pulb			; Återställ originalvärden
+	pulb			; Ã…terstÃ¤ll originalvÃ¤rden
 	pulc
 	rts
 		
@@ -59,7 +59,7 @@ MotorStart:
 	andb	#4
 	bne	MotorStartExit	; Motorn redan startad
 	ldab	#2
-	jsr	Outone		; Ettställ bit 2
+	jsr	Outone		; EttstÃ¤ll bit 2
 	
 	ldab	#4
 	jsr	DELAY_B	; 4*250 ms delay
@@ -77,7 +77,7 @@ MotorStop:
 	pshb
 	pshc
 	ldab	#2
-	jsr	Outzero		; Nollställ bit 2
+	jsr	Outzero		; NollstÃ¤ll bit 2
 	pulc
 	pulb
 	rts
@@ -89,8 +89,8 @@ MotorStop:
 DrillDown:
 	pshb
 	pshc
-	ldab	#3		; Bit nummer 3 �r vridmagneten
-	jsr	Outone		; Ettst�ll denna
+	ldab	#3		; Bit nummer 3 är vridmagneten
+	jsr	Outone		; Ettställ denna
 	pulc
 	pulb
 	rts
@@ -102,8 +102,8 @@ DrillDown:
 DrillUp:
 	pshb
 	pshc
-	ldab	#3		; Bit nummer 3 �r vridmagneten
-	jsr	Outzero		; Nollst�ll denna
+	ldab	#3		; Bit nummer 3 är vridmagneten
+	jsr	Outzero		; Nollställ denna
 	pulc
 	pulb
 	rts
@@ -121,19 +121,19 @@ Alarm:
 	beq	AlarmReturn
 			
 AlarmSend:
-	ldab	#4		; Bit nummer 4 �r larm
-	jsr	Outone		; S�tt p� alarm
+	ldab	#4		; Bit nummer 4 är larm
+	jsr	Outone		; Sätt på alarm
 	
 	ldab	#4
 	jsr	DELAY_B		; 4*250 ms delay
 	
-	ldab	#4		; St�ng av alarm
+	ldab	#4		; Stäng av alarm
 	jsr	Outzero
 	
-	deca			; A<-A-1, returnera om A �r 0
+	deca			; A<-A-1, returnera om A är 0
 	beq	AlarmReturn
 	
-	ldab	#2		; A �r inte 0. Skicka 2*250 ms delay
+	ldab	#2		; A är inte 0. Skicka 2*250 ms delay
 	jsr	DELAY_B
 	
 	bra	AlarmSend	; Loopa om alarmet
@@ -151,15 +151,15 @@ Step:
 	beq	StepAlarm
 			; Borren uppe
 	ldab	#1
-	jsr	Outone	; Ettst�ll bit 1 (medurs riktning)
+	jsr	Outone	; Ettställ bit 1 (medurs riktning)
 	
 	ldab	#0
-	jsr	Outone	; Ettst�ll bit 0 (stegpuls)
+	jsr	Outone	; Ettställ bit 0 (stegpuls)
 	ldab	#2	
 	jsr	DELAY_B	; Skicka 2*250 ms delay
 	
 	ldab	#0
-	jsr	Outzero	; Nollst�ll bit 0 (stegpuls)
+	jsr	Outzero	; Nollställ bit 0 (stegpuls)
 	
 	ldab	#1	; Returnera 1
 	rts
@@ -203,7 +203,7 @@ DrillHole:
 	jsr	DrillDown
 	jsr	DrillDownTest
 	jsr	DrillUp
-	rts		; Returnerar svaret fr�n DrillDownTest
+	rts		; Returnerar svaret från DrillDownTest
 	
 ;-------------------------------
 ;	REFPOS
@@ -214,18 +214,18 @@ RefPos:
 	anda	#1	; Maska fram bit 0 (referensposition)
 	bne	RefPosReturn1
 	jsr	Step
-	tstb		; Testa svaret fr�n step
+	tstb		; Testa svaret från step
 	bne	RefPos
 	rts		; Returnera med 0
 RefPosReturn1:
 	ldab	#1
-	rts		; Returnera med 1 (har n�tt referensposition)
+	rts		; Returnera med 1 (har nått referensposition)
 	
 ;-------------------------------
 ;	NSTEP
 ;-------------------------------
 Nstep:
-	tfr	b,a	; L�gg n i A
+	tfr	b,a	; Lägg n i A
 Nstep_loop:
 	tsta
 	beq	NstepReturn1	; A=0?
@@ -233,7 +233,7 @@ Nstep_loop:
 	psha
 	jsr	Step
 	pula
-	tstb		; Testa svaret fr�n step, kanske inte beh�vs (ldab ska �ndra)
+	tstb		; Testa svaret från step, kanske inte behövs (ldab ska ändra)
 	bne	Nstep_loop
 	rts		; Returnera med 0
 NstepReturn1:
@@ -246,14 +246,15 @@ NstepReturn1:
 
 DoAuto:	
 	jsr	RefPos
-	tstb		; Testa svaret fr�n RefPos, kanske inte beh�vs (ldab ska �ndra)
+	tstb		; Testa svaret från RefPos, kanske inte behövs (ldab ska ändra)
 	beq	DoAutoReturn
 	jsr	MotorStart
 DoAutoDrill:
 	ldab	,x
-	leax	1,x	; �ka X med 1
+	leax	1,x	; Öka X med 1
 	cmpb	#$FF	; Testa med slutmarkering
 	beq	DoAutoReturn
+	jsr	DELAY
 	jsr	Nstep
 	tstb
 	beq	DoAutoReturn

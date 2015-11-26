@@ -25,12 +25,14 @@ Main:
 	jsr	Process_Drill	; Börja med borrprocessen
 
 Process_Drill:
-	;jsr	Drill_main	; Borrens huvudprogram
+	cli
+	jsr	Drill_main	; Borrens huvudprogram
 	inc	Var2
 	movb	Var2,$c01
 	bra	Process_Drill
 
 Process_Display
+	cli
 	;jsr	DISPLAY
 	inc	Var1
 	movb	Var1,$c00
@@ -43,6 +45,9 @@ IrqR:
 	psha
 	pshx
 	pshy
+	ldd	14,sp	;Ladda pc
+	pshd
+	
 	
 	inc	ProcCounter+1
 	ldd	ProcCounter
@@ -54,14 +59,15 @@ IrqR:
 	beq	IrqR_Drill
 ; Display
 	sts	SPS_Display		;Spara stackpekaren
-	lds	#Stack_Drill
+	lds	#SPS_Drill
+	;lds	#Stack_Drill
 	clr	ML19_AckIrq_1
 	rti
 	
 ; Borr	
 IrqR_Drill:
 	sts	SPS_Drill		;Spara stackpekaren
-	lds	#Stack_Display
+	lds	#SPS_Display
 	clr	ML19_AckIrq_1
 	rti
 	
@@ -84,7 +90,7 @@ Var2:	rmb	1
 	fdb	0	;X
 	fdb	0	;Y
 	fdb	Process_Drill	
-SPS_Drill:	rmb	2	;PC (börjar på borrens process)
+SPS_Drill:	fdb	Stack_Drill	;PC (börjar på borrens process)
 	;Display
 	org	Stack_Display
 	fcb	$c0	;CC	(börjar med i=0)
@@ -93,4 +99,4 @@ SPS_Drill:	rmb	2	;PC (börjar på borrens process)
 	fdb	0	;X
 	fdb	0	;Y
 	fdb	Process_Display	
-SPS_Display:	rmb	2	;PC (börjar på displayens process)
+SPS_Display:	fdb	Stack_Display	;PC (börjar på displayens process)

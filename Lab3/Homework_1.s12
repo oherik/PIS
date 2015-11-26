@@ -1,7 +1,6 @@
 	use	Labdefs.s12
 	
 IrqVector	equ	$3ff2
-IrqFlipFlop	equ	$0dc0
 Stack_Drill	equ	$3000
 Stack_Display	equ	$3100
 
@@ -14,8 +13,8 @@ main:
 	ldx	#IrqR
 	stx	IrqVector
 ; Nolla gamla interrupts
-	clr	IrqFlipFlop+2
-	clr	IrqFlipFlop+3	
+	clr	ML19_AckIrq_1
+	clr	ML19_AckIrq_2
 ; Gör så att avbrott tillåts (sätt i = 0)
 	cli	
 	
@@ -37,18 +36,21 @@ IrqR:
 	psha
 	pshx
 	pshy
-; Borr
-	sts	SPS_Drill		;Spara stackpekaren
-	lds	SPS_Display
-	clr	ML19_AckIrq_1
-	rti
-
+	ldaa	ML19_Stat
+	bita	#1
+	beq	IrqR_Drill
 ; Display
 	sts	SPS_Display		;Spara stackpekaren
 	lds	SPS_Drill
 	clr	ML19_AckIrq_2
 	rti
 	
+; Borr	
+IrqR_Drill:
+	sts	SPS_Drill		;Spara stackpekaren
+	lds	SPS_Display
+	clr	ML19_AckIrq_1
+	rti
 	
 ; Filer
 	use	Drill.s12

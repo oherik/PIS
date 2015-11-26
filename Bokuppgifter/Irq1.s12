@@ -1,0 +1,27 @@
+Port1:	equ	$400
+Port2:	equ	$401
+
+	org	$1000
+	
+main:
+	clr	Var1
+	clr	Var2
+; Avbrottsvektor, go!
+	ldx	#IrqR
+	stx	$3ff2
+	cli
+	
+main_loop:
+	inc	Var1
+	movb	Var1,Port1
+	movb	Var2,Port2
+	bra	main_loop
+
+; Avbrottsrutin
+IrqR:	
+	inc	Var2
+	rti
+
+; Variable
+Var1:	rmb	1
+Var2:	rmb	1

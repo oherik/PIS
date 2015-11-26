@@ -1,0 +1,39 @@
+	use	Labdefs.s12
+Port1:	equ	$400
+Port2:	equ	$401
+
+	org	$1000
+	
+main:
+; Cleara variablerna
+	clr	Var1
+	clr	Var2
+; Avbrottsvektor, go!
+	ldx	#IrqR
+	stx	$3ff2
+	cli		; Gör så att avbrott tillåts (sätt i = 0)
+	
+main_loop:
+	inc	Var1
+	movb	Var1,Port1
+	movb	Var2,Port2
+	bra	main_loop
+
+; Avbrottsrutin
+IrqR:	
+	ldaa	ML19_Stat
+	bita	#1
+	beq	IrqR_test_2
+	inc	Var2
+	clr	ML19_AckIrq_1
+IrqR_test_2:
+	bita	#2
+	beq	IrqR_return
+	clr	Var2
+	clr	ML19_AckIrq_2
+IrqR_return:
+	rti
+
+; Variabler
+Var1:	rmb	1
+Var2:	rmb	1

@@ -1,3 +1,6 @@
+	#define	SIMULATOR
+	#define	RUNFAST
+	
 	use	Labdefs.s12
 	
 IrqVector	equ	$3ff2
@@ -22,11 +25,15 @@ Main:
 	jsr	Process_Drill	; Börja med borrprocessen
 
 Process_Drill:
-	jsr	Drill_main	; Borrens huvudprogram
+	;jsr	Drill_main	; Borrens huvudprogram
+	inc	Var2
+	movb	Var2,$c01
 	bra	Process_Drill
 
 Process_Display
-	jsr	DISPLAY
+	;jsr	DISPLAY
+	inc	Var1
+	movb	Var1,$c00
 	bra	Process_Display
 
 ; Avbrottsrutin
@@ -36,19 +43,25 @@ IrqR:
 	psha
 	pshx
 	pshy
-	ldaa	ML19_Stat
-	bita	#1
+	
+	inc	ProcCounter+1
+	ldd	ProcCounter
+	ldx	#2
+	idiv
+	std	ProcCounter
+	
+	tstb		
 	beq	IrqR_Drill
 ; Display
 	sts	SPS_Display		;Spara stackpekaren
-	lds	SPS_Drill
-	clr	ML19_AckIrq_2
+	lds	#Stack_Drill
+	clr	ML19_AckIrq_1
 	rti
 	
 ; Borr	
 IrqR_Drill:
 	sts	SPS_Drill		;Spara stackpekaren
-	lds	SPS_Display
+	lds	#Stack_Display
 	clr	ML19_AckIrq_1
 	rti
 	
@@ -57,7 +70,9 @@ IrqR_Drill:
 	use	Display_Ml5.s12
 
 ; Variabler
-ReadyProcess	rmb	2
+ProcCounter	fdb	0
+Var1:	rmb	1
+Var2:	rmb	1
 	
 ; Stacks
 ;----------------------------------
@@ -68,9 +83,8 @@ ReadyProcess	rmb	2
 	fcb	0	;A
 	fdb	0	;X
 	fdb	0	;Y
-SPS_Drill:
-	fdb	Process_Drill	;PC (börjar på borrens process)
-	
+	fdb	Process_Drill	
+SPS_Drill:	rmb	2	;PC (börjar på borrens process)
 	;Display
 	org	Stack_Display
 	fcb	$c0	;CC	(börjar med i=0)
@@ -78,5 +92,5 @@ SPS_Drill:
 	fcb	0	;A
 	fdb	0	;X
 	fdb	0	;Y
-SPS_Display:
-	fdb	Process_Display	;PC (börjar på displayens process)
+	fdb	Process_Display	
+SPS_Display:	rmb	2	;PC (börjar på displayens process)

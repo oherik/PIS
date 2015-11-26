@@ -25,60 +25,58 @@ Main:
 	jsr	Process_Drill	; Börja med borrprocessen
 
 Process_Drill:
-	cli
 	jsr	Drill_main	; Borrens huvudprogram
 	inc	Var2
 	movb	Var2,$c01
 	bra	Process_Drill
 
 Process_Display
-	cli
 	;jsr	DISPLAY
-	inc	Var1
-	movb	Var1,$c00
+	inc	Var1		; Test
+	movb	Var1,$c00	; Test
 	bra	Process_Display
 
 ; Avbrottsrutin
+;----------------------------------
+
 IrqR:	
-	pshc
-	pshb
-	psha
-	pshx
-	pshy
-	ldd	14,sp	;Ladda pc
-	pshd
+	ldab	ProcCounter	; Hämta vilket processnummer vi är på just nu
+	clra			; Sätt D = B
+	lslb			; Offset med 2 (double byte)
+	ldy	#StackPointers	; Addressen till den första stackpekaren
+	sts	d,y		; Spara nuvarande adress stackpekare (0 eller 2 plus adressen till första stackpekaren)
 	
+	inc	ProcCounter	; Öka process-talet för att visa på nästa process
+	ldab	ProcCounter	; Läs in detta
+	clra			; Sätt D = B
+	ldx	#2		; Vi ska ta modulo(antal processer), dvs 2
+	idiv			; Utför D modulo X, resten sparas i D
+	stab	ProcCounter	; Spara resten till processnumret, detta kommer variera med 1 och 0 varannan gång
 	
-	inc	ProcCounter+1
-	ldd	ProcCounter
-	ldx	#2
-	idiv
-	std	ProcCounter
+	lslb			; Offset med 2 (double byte)
+	lds	d,y		; Sätt stackpekaren till nästa process stackpekare
 	
-	tstb		
-	beq	IrqR_Drill
-; Display
-	sts	SPS_Display		;Spara stackpekaren
-	lds	#SPS_Drill
-	;lds	#Stack_Drill
-	clr	ML19_AckIrq_1
-	rti
-	
-; Borr	
-IrqR_Drill:
-	sts	SPS_Drill		;Spara stackpekaren
-	lds	#SPS_Display
-	clr	ML19_AckIrq_1
-	rti
+	clr	ML19_AckIrq_1	; Nollställ interruptvippan
+	rti			; Returnera
 	
 ; Filer
+;-----------------------------------
+
 	use	Drill.s12
 	use	Display_Ml5.s12
 
 ; Variabler
-ProcCounter	fdb	0
-Var1:	rmb	1
-Var2:	rmb	1
+;-----------------------------------
+
+; Räknar upp vilken process som körs. 0 = borr, 1 = display
+ProcCounter	fcb	0
+	
+; Pekare till stackerna. Laddas initialt med den första stacken som initieras, men kan sedan ändras
+StackPointers:	fdb	Stack_Drill,Stack_Display
+
+; Temporära testvariabler	
+Var1:	rmb	1	; För test
+Var2:	rmb	1	; För test
 	
 ; Stacks
 ;----------------------------------
@@ -89,8 +87,8 @@ Var2:	rmb	1
 	fcb	0	;A
 	fdb	0	;X
 	fdb	0	;Y
-	fdb	Process_Drill	
-SPS_Drill:	fdb	Stack_Drill	;PC (börjar på borrens process)
+	fdb	Process_Drill	; Ska i början returneras till starten för drillprocessen
+
 	;Display
 	org	Stack_Display
 	fcb	$c0	;CC	(börjar med i=0)
@@ -98,5 +96,4 @@ SPS_Drill:	fdb	Stack_Drill	;PC (börjar på borrens process)
 	fcb	0	;A
 	fdb	0	;X
 	fdb	0	;Y
-	fdb	Process_Display	
-SPS_Display:	fdb	Stack_Display	;PC (börjar på displayens process)
+	fdb	Process_Display	; Ska i början returneras till starten för displayprocessen

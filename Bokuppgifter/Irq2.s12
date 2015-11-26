@@ -1,3 +1,4 @@
+	use	Labdefs.s12
 Port1:	equ	$400
 Port2:	equ	$401
 
@@ -21,8 +22,9 @@ main_loop:
 ; Avbrottsrutin
 IrqR:	
 	inc	Var2
+	clr	ML19_AckIrq_1
 	rti
 
-; Variable  1 l
+; Variabler
 Var1:	rmb	1
 Var2:	rmb	1

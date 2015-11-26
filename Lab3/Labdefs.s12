@@ -1,0 +1,21 @@
+;Adresser
+DipSwitch	equ	$600
+HexDisplay	equ	$700
+DrillControl	equ	$400
+
+
+#ifdef	SIMULATOR
+DrillStatus	equ	$401
+#ifdef	RUNFAST
+DelayConst	EQU	3
+#else
+DelayConst	EQU	1
+#endif
+#else
+DrillStatus	equ	$600
+DelayConst	EQU	2765
+#endif
+
+ML19_Stat	equ	$0dc0
+ML19_AckIrq_1	equ	$0dc2
+ML19_AckIrq_2	equ	$0dc3

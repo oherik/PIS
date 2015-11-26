@@ -1,0 +1,80 @@
+	use	Labdefs.s12
+	
+IrqVector	equ	$3ff2
+IrqFlipFlop	equ	$0dc0
+Stack_Drill	equ	$3000
+Stack_Display	equ	$3100
+
+	org	$1000
+	
+main:
+; Ladda borrens stack
+	lds	#Stack_Drill
+; Avbrottsvektor, go!
+	ldx	#IrqR
+	stx	IrqVector
+; Nolla gamla interrupts
+	clr	IrqFlipFlop+2
+	clr	IrqFlipFlop+3	
+; Gör så att avbrott tillåts (sätt i = 0)
+	cli	
+	
+Main:	
+	jsr	Process_Drill	; Börja med borrprocessen
+
+Process_Drill:
+	jsr	Drill_main	; Borrens huvudprogram
+	bra	Process_Drill
+
+Process_Display
+	jsr	DISPLAY
+	bra	Process_Display
+
+; Avbrottsrutin
+IrqR:	
+	pshc
+	pshb
+	psha
+	pshx
+	pshy
+; Borr
+	sts	SPS_Drill		;Spara stackpekaren
+	lds	SPS_Display
+	clr	ML19_AckIrq_1
+	rti
+
+; Display
+	sts	SPS_Display		;Spara stackpekaren
+	lds	SPS_Drill
+	clr	ML19_AckIrq_2
+	rti
+	
+	
+; Filer
+	use	Drill.s12
+	use	Display_Ml5.s12
+
+; Variabler
+ReadyProcess	rmb	2
+	
+; Stacks
+;----------------------------------
+	; Borr
+	org	Stack_Drill
+	fcb	$c0	;CC	(börjar med i=0)
+	fcb	0	;B
+	fcb	0	;A
+	fdb	0	;X
+	fdb	0	;Y
+SPS_Drill:
+	fdb	Process_Drill	;PC (börjar på borrens process)
+	
+	;Display
+	org	Stack_Display
+	fcb	$c0	;CC	(börjar med i=0)
+	fcb	0	;B
+	fcb	0	;A
+	fdb	0	;X
+	fdb	0	;Y
+SPS_Display:
+	fdb	Process_Display	;PC (börjar på displayens process)

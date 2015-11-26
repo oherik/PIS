@@ -1,44 +1,14 @@
 	#define	SIMULATOR
 	#define	RUNFAST
 	
-;------------------------------------------------------------------------------
-;Adresser
-DipSwitch	equ	$600
-HexDisplay	equ	$700
-DrillControl	equ	$400
-
-
-#ifdef	SIMULATOR
-DrillStatus	equ	$401
-#ifdef	RUNFAST
-DelayConst	EQU	3
-#else
-DelayConst	EQU	1
-#endif
-#else
-DrillStatus	equ	$600
-DelayConst	EQU	2765
-#endif
-
-; ML19-gojs
-ML19_Stat	equ	$dc0
-; Kvittera (???) händelse 1
-ML19_AckIrq_1	equ	$dc2
-; Nolla händelse 2
-ML19_AckIrq_2	equ	$dc3
-
-;----------------------------------------------------------------------------------------
-	
-	org	$1000
-	
 ;----------------------------------
 ;	MAIN
 ;----------------------------------	
 	
-main_loop:
+Drill_main:
 	jsr	GetKbdML15	; Tangent till register B
 	jsr	Command
-	bra	main_loop
+	bra	Drill_main
 	
 ;----------------------------------
 ;	COMMAND

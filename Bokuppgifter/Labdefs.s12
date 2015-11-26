@@ -15,10 +15,3 @@ DelayConst	EQU	1
 DrillStatus	equ	$600
 DelayConst	EQU	2765
 #endif
-
-; ML19-gojs
-ML19_Stat	equ	$dc0
-; Kvittera (???) händelse 1
-ML19_AckIrq_1	equ	$dc2
-; Nolla händelse 2
-ML19_AckIrq_2	equ	$dc3

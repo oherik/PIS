@@ -7,8 +7,6 @@
 QueuePtr new_queue() {
     QueuePtr head =  malloc(sizeof head);   // Allocates memory for the head
     head->prio = MAX_PRIO;
-    head->data = NULL;
-    head->next = NULL;
     return head;                      
 }
 

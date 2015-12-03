@@ -8,7 +8,7 @@ QueuePtr new_queue() {
     QueuePtr head =  malloc(sizeof head);   // Allocates memory for the head
     head->prio = MAX_PRIO;
     head->data = NULL;
-    head->next=NULL;
+    head->next = NULL;
     return head;                      
 };
 
@@ -16,9 +16,9 @@ QueuePtr new_queue() {
  * Inserts an element after another
  */
 void insert(QueuePtr q_before, QueuePtr q_after){
-    q_after->next=q_before->next;
-    q_before->next=q_after;
-}
+    q_after->next = q_before->next;
+    q_before->next =q_after;
+} 
 
 /*
  * Adds a new element to the queue based on the priority. R

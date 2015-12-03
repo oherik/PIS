@@ -10,7 +10,7 @@ QueuePtr new_queue() {
     head->data = NULL;
     head->next = NULL;
     return head;                      
-};
+}
 
 /*
  * Inserts an element after another
@@ -31,7 +31,7 @@ void add(QueuePtr q, int prio, DataPtr d) {
         q = q->next;                            // ...step to the next element
     }
     insert(q, new_element);                         // Either the list has ended or an element with lower priority has been found. Insert the new element after the other.    
-};
+}
 
 /*
  * Returns the first data value. q is the head of the queue.
@@ -42,7 +42,7 @@ DataPtr get_first(QueuePtr q){
     } else{
         return q->next->data;   // Return the data of the first element (can be NULL)
     }
-};
+}
 
 /*
  * Returns the length of the queue. q is the head of the queue.
@@ -54,5 +54,5 @@ int size(QueuePtr q){
         q = q->next;    
     }
     return length;
-};
+}
 

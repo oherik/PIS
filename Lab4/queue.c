@@ -9,5 +9,14 @@ QueuePtr head;
  */
 QueuePtr new_queue() {
     head->prio = MAX_PRIO;
-    head->data = 0;
+    head->data = NULL;
+    head->next=NULL;
+    return 0;
+};
+
+/*
+ * Adds a new element to the queue
+ */
+void add(QueuePtr q, int prio, DataPtr d){
+ QueuePtr new_element = malloc(sizeof new_element);
 };

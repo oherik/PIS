@@ -27,11 +27,10 @@ void add(QueuePtr q, int prio, DataPtr d) {
     QueuePtr new_element = malloc(sizeof new_element);  // Allocates memory for the new element
     new_element->prio = prio;
     new_element->data = d;
-    QueuePtr other = q;     //The head of the other queue
-    while (other->next && other->next->prio>=prio){     // If the other element has a pointer to another element and that element's priority isn't lower than the new one
-        other = other->next;                            // ...step to the next element
+    while (q->next && q->next->prio>=prio){     // If the other element has a pointer to another element and that element's priority isn't lower than the new one
+        q = q->next;                            // ...step to the next element
     }
-    insert(other, new_element);                         // Either the list has ended or an element with lower prioity has been found. Insert the new element after the other.    
+    insert(q, new_element);                         // Either the list has ended or an element with lower priority has been found. Insert the new element after the other.    
 };
 
 /*
@@ -50,10 +49,9 @@ DataPtr get_first(QueuePtr q){
  */
 int size(QueuePtr q){
     int length = 0;
-    QueuePtr other = q;
-    while(other->next){         // Steps through the whole queue
+    while(q->next){         // Steps through the whole queue
         ++length;
-        other = other->next;    
+        q = q->next;    
     }
     return length;
 };

@@ -61,6 +61,5 @@ int size(QueuePtr q){
         ++length;
     }
     return length;
-
-}
+};
 

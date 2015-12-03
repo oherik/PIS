@@ -30,14 +30,11 @@ void add(QueuePtr q, int prio, DataPtr d) {
     new_element->prio = prio;
     new_element->data = d;
     QueuePtr other = q;     //The head of the other queue
-    while (1) {
-        if (other->prio >= prio && other->next != NULL) {
+    while (other->prio >= prio && other->next != NULL) {
             other = other->next;
-        } else {
-            insert(other, new_element);
-            return;
-        }
     }
+    insert(other, new_element);
+    return;
 };
 
 /*

@@ -11,7 +11,7 @@ QueuePtr new_queue() {
     head->prio = MAX_PRIO;
     head->data = NULL;
     head->next=NULL;
-    return 0;
+    return head;
 };
 
 /*
@@ -27,10 +27,9 @@ void insert(QueuePtr q_before, QueuePtr q_after){
  */
 void add(QueuePtr q, int prio, DataPtr d) {
     QueuePtr new_element = malloc(sizeof new_element);
-    new_element->next = q;
     new_element->prio = prio;
     new_element->data = d;
-    QueuePtr other = head;
+    QueuePtr other = q;     //The head of the other queue
     while (1) {
         if (other->prio >= prio && other->next != NULL) {
             other = other->next;
@@ -39,6 +38,29 @@ void add(QueuePtr q, int prio, DataPtr d) {
             return;
         }
     }
-
 };
+
+/*
+ * Returns the first data value. q is the head of the queue.
+ */
+DataPtr get_first(QueuePtr q){
+    if(!q->next){
+        return NULL;
+    } else{
+        return q->next->data;
+    }
+};
+
+/*
+ * Returns the length of the queue. q is the head of the queue.
+ */
+int size(QueuePtr q){
+    int length = 0;
+    QueuePtr other = q;
+    while(other->next){
+        ++length;
+    }
+    return length;
+
+}
 

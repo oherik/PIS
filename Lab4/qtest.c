@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "queue.h"
 
-#define TESTS_TO_TRY 3
+#define TESTS_TO_TRY 1
 #define CHECK_CONDITION(condition, message) if (!(condition)) { printf("%s\n", message); return 1; }
 
 void print_queue(QueuePtr q) {
@@ -15,7 +15,6 @@ void print_queue(QueuePtr q) {
 }
 
 int checkQueue(QueuePtr q, const char *data[], const int order[], int startOffset, int qsize) {
-	
 	QueuePtr currentElement;
 	int i = startOffset;
 	if (size(q) != qsize) {
@@ -40,27 +39,27 @@ int checkQueue(QueuePtr q, const char *data[], const int order[], int startOffse
 
 
 int main(int argc, char *argv[]) {
+
     const char *daniel = "Daniel";
     const char *lisa = "Lisa";
     const char *a[] = {"Kalle", "Olle", "Eva", lisa, "Stina", 
                       "Peter", "Anna", daniel, "Johan", "Maria"};
     const int correctOrder1[] = {3, 7, 2, 6, 1, 5, 9, 0, 4, 8 };
-    const int correctOrder2[] = {5, 4, 7, 3, 6};
+  //const int correctOrder2[] = {5, 4, 7, 3, 6}
 
 
 	////////////////////////////////////////////////////////////////////////////
 	// Kolla funktionen för att lägga till element
 	////////////////////////////////////////////////////////////////////////////
 #if TESTS_TO_TRY > 0
-	
 	QueuePtr q = new_queue();
     int i;
-	
     for (i=0; i<10; i++) {
-      add(q, i%4, a[i]); 
+		add(q, i%4, a[i]);
+        print_queue(q);
     }
-	
-	printf("------------------------------ TEST 1/3 ------------------------------\n");
+
+	printf("------------------------------ TEST 1/3 ----------------------------    --\n");
     printf("Vi har lagt till 10 element. Storleken ska vara 10.\n");
     printf("Storlek = %d\n\n", size(q));
 	printf("print_queue ska skriva ut 10 element: (\"%s\" först och \"%s\" sist)\n", a[3], a[8]);

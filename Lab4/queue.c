@@ -1,13 +1,12 @@
 #include "queue.h"
 #include <stdlib.h>
-
-/* Implementera interface från queue.h här */
-QueuePtr head;
+#include <stdio.h>
 
 /*
  * New queue. Skapar en ny kö, det vill säga läser in startvärden till köns HEAD.
  */
 QueuePtr new_queue() {
+    QueuePtr head =  malloc(sizeof head);;
     head->prio = MAX_PRIO;
     head->data = NULL;
     head->next=NULL;
@@ -30,10 +29,11 @@ void add(QueuePtr q, int prio, DataPtr d) {
     new_element->prio = prio;
     new_element->data = d;
     QueuePtr other = q;     //The head of the other queue
-    while (other->prio >= prio && other->next != NULL) {
-            other = other->next;
+    while (other->next && other->next->prio>=prio){
+        other = other->next;
     }
     insert(other, new_element);
+
     return;
 };
 
@@ -56,6 +56,7 @@ int size(QueuePtr q){
     QueuePtr other = q;
     while(other->next){
         ++length;
+        other = other->next;
     }
     return length;
 };

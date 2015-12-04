@@ -46,7 +46,7 @@ DataPtr get_first(QueuePtr q){
     if(!q->next){
         return NULL;            // No data exists
     } else{
-        return q->next->data;   // Return the data of the first element (can be NULL)
+        return q->next->data;   // Return the data of the first element (can be null)
     }
 }
 
@@ -64,8 +64,13 @@ int size(QueuePtr q){
 }
 
 /**
- * @brief
- * @param q
+ * @brief   Removes the first queue element
+ * @param q The head of the queue
  */
-
-
+void remove_first(QueuePtr q){
+    QueuePtr first_element = q->next;
+    if(first_element){
+        q->next = first_element->next;  // The first element isn't null. Set the head's next element pointer to the second element (this can be null)
+        free(first_element);             // Free the first element (the data is kept intact)
+    }
+}

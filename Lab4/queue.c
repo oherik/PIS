@@ -99,3 +99,10 @@ void remove_first(QueuePtr q){
      q->next=NULL;
  }
  
+ /**
+  * @brief Removes the queue
+  * @param q    The head of the queue
+  */
+ void delete_queue(QueuePtr q){
+    internal_clear(q);
+ }

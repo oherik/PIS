@@ -74,3 +74,16 @@ void remove_first(QueuePtr q){
         free(first_element);             // Free the first element (the data is kept intact)
     }
 }
+
+/**
+ * @brief   Removes the queue's elements but keeps the queue itself
+ * @param   q   The head of the queue
+ */
+ void clear(QueuePtr q){
+     if(!q){
+         return;
+     } 
+     QueuePtr temp = q->next;
+     free(q);
+     clear(temp);
+ }

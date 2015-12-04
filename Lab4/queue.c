@@ -6,7 +6,7 @@
  * @return  The head of the new queue
  */
 QueuePtr new_queue() {
-    QueuePtr head =  malloc(sizeof head);   // Allocates memory for the head
+    QueuePtr head =  malloc(sizeof (QueuePtr) + sizeof (DataPtr) + sizeof (int));   // Allocates memory for the head
     head->prio = MAX_PRIO;
     return head;                      
 }
@@ -28,7 +28,7 @@ void insert(QueuePtr q_before, QueuePtr q_after){
  * @param   d   The data pointer of the element
  */
 void add(QueuePtr q, int prio, DataPtr d) {
-    QueuePtr new_element = malloc(sizeof new_element);  // Allocates memory for the new element
+    QueuePtr new_element = malloc(sizeof (QueuePtr) + sizeof (DataPtr) + sizeof (int));  // Allocates memory for the new element
     new_element->prio = prio;
     new_element->data = d;
     while (q->next && q->next->prio>=prio){     // If the other element has a pointer to another element and that element's priority isn't lower than the new one
@@ -82,7 +82,7 @@ void remove_first(QueuePtr q){
   */
  void internal_clear(QueuePtr q){
      QueuePtr current_node;
-     while(q){
+     while(q != NULL){
          current_node = q;
          q = q->next;
          current_node->next = NULL;

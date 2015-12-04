@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="PIS" Database="">
   <Project Name="Lab4" Path="Lab4/Lab4.project" Active="Yes"/>
-  <Project Name="HelloTestErik" Path="HelloTestErik/HelloTestErik.project"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
+      <Environment/>
       <Project Name="Lab4" ConfigName="Debug"/>
-      <Project Name="HelloTestErik" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Environment/>
       <Project Name="Lab4" ConfigName="Release"/>
-      <Project Name="HelloTestErik" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>

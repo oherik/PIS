@@ -55,12 +55,10 @@ DataPtr get_first(QueuePtr q){
  * @param  q    The head of the queue
  */
 int size(QueuePtr q){
-    int length = 0;
-    while(q->next){         // Steps through the whole queue
-        ++length;
-        q = q->next;    
+    if(!q->next){       //The head needs to be excluded, hence !q->next and not simply !q
+        return 0;
     }
-    return length;
+    return 1+size(q->next); //Makes a recursive size call
 }
 
 /**
@@ -85,5 +83,5 @@ void remove_first(QueuePtr q){
      } 
      QueuePtr temp = q->next;
      free(q);
-     clear(temp);
+     clear(temp);           //Make a recursive call on the next element
  }

@@ -1,0 +1,33 @@
+;ML19 definitioner
+ML19_Stat	EQU	$DC0
+;kvittera händelse 1
+ML19_AckIrq_1	EQU	$DC2
+;Nollställ händelse 2
+ML19_AckIrq_2	EQU	$DC3
+
+
+
+
+
+
+;Adress till omkopplare, display och borrmaskinens styrregister
+DipSwitch	EQU	$600
+HexDisplay	EQU	$700
+DrillControl	EQU	$400
+
+;borrmaskinens statusregister
+#ifdef		SIMULATOR
+DrillStatus	EQU	$401
+#else	
+DrillStatus	EQU	$600
+#endif
+
+#ifdef		SIMULATOR
+#ifdef		RUNFAST
+DelayConst	EQU	8
+#else
+DelayConst	EQU	1
+#endif
+#else
+DelayConst	EQU	2765
+#endif

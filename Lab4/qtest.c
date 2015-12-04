@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "queue.h"
 
-#define TESTS_TO_TRY 1
+#define TESTS_TO_TRY 2
 #define CHECK_CONDITION(condition, message) if (!(condition)) { printf("%s\n", message); return 1; }
 
 void print_queue(QueuePtr q) {
@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
     const char *a[] = {"Kalle", "Olle", "Eva", lisa, "Stina", 
                       "Peter", "Anna", daniel, "Johan", "Maria"};
     const int correctOrder1[] = {3, 7, 2, 6, 1, 5, 9, 0, 4, 8 };
-  //const int correctOrder2[] = {5, 4, 7, 3, 6}
+    const int correctOrder2[] = {5, 4, 7, 3, 6};
 
 
 	////////////////////////////////////////////////////////////////////////////
@@ -100,9 +100,9 @@ int main(int argc, char *argv[]) {
 	
 	for (i=0; i<7; i++) {
       add(q, i%4, a[i]); 
-    }
+    }print_queue(q);
 	clear(q);
-	
+
 	printf("Vi har lagt till element och sedan anropat clear(). Alla element ska \nvara borttagna (storleken lika med 0) och inga element skall skrivas ut:\n");
 	printf("Storlek = %d\n", size(q));
 	print_queue(q);

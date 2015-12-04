@@ -55,10 +55,13 @@ DataPtr get_first(QueuePtr q){
  * @param  q    The head of the queue
  */
 int size(QueuePtr q){
-    if(!q->next){       //The head needs to be excluded, hence !q->next and not simply !q
-        return 0;
+    int length = 0;
+    while(q->next){         // Steps through the whole queue
+        ++length;
+        q = q->next;    
     }
-    return 1+size(q->next); //Makes a recursive size call
+    return length;
+    
 }
 
 /**
@@ -73,15 +76,26 @@ void remove_first(QueuePtr q){
     }
 }
 
+ /**
+  * @brief Clears all elements including q and the elements which follow q
+  * @param q    A given element
+  */
+ void internal_clear(QueuePtr q){
+     QueuePtr current_node;
+     while(q){
+         current_node = q;
+         q = q->next;
+         current_node->next = NULL;
+         free(current_node);
+     }
+ }
+
 /**
  * @brief   Removes the queue's elements but keeps the queue itself
  * @param   q   The head of the queue
  */
  void clear(QueuePtr q){
-     if(!q){
-         return;
-     } 
-     QueuePtr temp = q->next;
-     free(q);
-     clear(temp);           //Make a recursive call on the next element
+     internal_clear(q->next);
+     q->next=NULL;
  }
+ 

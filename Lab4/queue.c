@@ -82,7 +82,7 @@ void remove_first(QueuePtr q){
   */
  void internal_clear(QueuePtr q){
      QueuePtr current_node;
-     while(q != NULL){
+     while(!q){
          current_node = q;
          q = q->next;
          current_node->next = NULL;

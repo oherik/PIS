@@ -1,0 +1,400 @@
+	#define	SIMULATOR
+	#define	RUNFAST
+	
+;----------------------------------
+;	MAIN
+;----------------------------------	
+	
+Drill_main:
+	jsr	GetKbdML15	; Tangent till register B
+	jsr	Command
+	bra	Drill_main
+	
+;----------------------------------
+;	COMMAND
+;----------------------------------	
+
+Command:
+	cmpb	#7
+	bhi	CommandExit
+	ldx	#JUMPTAB
+	aslb		; 2 bytes per adress
+	ldx	b,x	; ladda rutinen
+	jsr	,x
+CommandExit:
+	rts
+
+;---------------------------------
+;	Tabell med kommandon
+
+JUMPTAB	fdb	MotorStart,MotorStop,DrillDown,DrillUp
+	fdb	Step,DrillHole,RefPos,DoAutoMain
+	
+
+;--------------------------------
+;	DOAUTOMAIN
+;--------------------------------
+DoAutoMain:
+	ldx	#Pattern
+	jsr	DoAuto
+	rts
+		
+;-------------------------------
+;	File uses
+;-------------------------------	
+	
+;------------------------------
+;	Global constants
+;------------------------------
+Pattern:	
+	fcb	0,1,1,1,1,1,1,1,2,1
+	fcb	5,2,2,2,2,4,4,3,8,2
+	fcb	$FF
+	
+Bitmask:	
+	fcb	1,2,4,8,16,32,64,128
+
+DCShadow:
+	rmb	1
+
+;--------------------------------------------------------------------------
+
+;---------------------------------
+;	OUTZERO
+;---------------------------------
+
+; NollstÃ¤ll biten i B-registret, med fÃ¶rprogrammerade bitmÃ¶nster
+
+Outzero:			
+	pshc	; LÃ¤gg register pÃ¥ stacken fÃ¶r senare Ã¥terstÃ¤llning
+	pshb
+	pshx
+	cmpb	#7		
+	bhi	Outzero_return	; Kolla om talet Ã¤r >7
+	ldx	#Bitmask
+	ldab	b,x				; Uppdatera b till bitmasken fÃ¶r b
+	comb	
+	andb	DCShadow		; Ta DCShadow && komplementet av bitmasken
+	stab	DrillControl	; Spara till borren
+	stab	DCShadow	; Spara till skuggningen
+Outzero_return:	
+	pulx
+	pulb			; Ã…terstÃ¤ll originalvÃ¤rden
+	pulc
+	rts
+	
+;---------------------------------
+;	OUTONE
+;---------------------------------
+
+; EttstÃ¤ll biten i B-registret, med fÃ¶rprogrammerade bitmÃ¶nster
+
+Outone:			
+	pshc	; LÃ¤gg register pÃ¥ stacken fÃ¶r senare Ã¥terstÃ¤llning
+	pshb
+	pshx
+	cmpb	#7		
+	bhi	Outone_return	; Kolla om talet Ã¤r >7
+	ldx	#Bitmask
+	ldab	b,x	
+	orab	DCShadow	; Ta DCShadow || Bitmasken
+	stab	DrillControl	; Spara till borren
+	stab	DCShadow	; Spara till skuggningen
+Outone_return:	
+	pulx
+	pulb			; Ã…terstÃ¤ll originalvÃ¤rden
+	pulc
+	rts
+		
+;-------------------------------
+;	MOTORSTART
+;-------------------------------
+
+MotorStart:
+	pshb
+	pshc
+	ldab	DCShadow
+	andb	#4
+	bne	MotorStartExit	; Motorn redan startad
+	ldab	#2
+	jsr	Outone		; EttstÃ¤ll bit 2
+	
+	ldab	#4
+	jsr	DELAY_B	; 4*250 ms delay
+
+MotorStartExit:
+	pulc
+	pulb
+	rts
+	
+;-------------------------------
+;	MOTORSTOP
+;-------------------------------
+
+MotorStop:
+	pshb
+	pshc
+	ldab	#2
+	jsr	Outzero		; NollstÃ¤ll bit 2
+	pulc
+	pulb
+	rts
+	
+;-------------------------------
+;	DRILLDOWN
+;-------------------------------
+
+DrillDown:
+	pshb
+	pshc
+	ldab	#3		; Bit nummer 3 är vridmagneten
+	jsr	Outone		; Ettställ denna
+	pulc
+	pulb
+	rts
+	
+;-------------------------------
+;	DRILLUP
+;-------------------------------
+
+DrillUp:
+	pshb
+	pshc
+	ldab	#3		; Bit nummer 3 är vridmagneten
+	jsr	Outzero		; Nollställ denna
+	pulc
+	pulb
+	rts
+	
+;-------------------------------
+;	ALARM
+;-------------------------------
+
+; Antalet alarm ska finnas i B-registret
+
+Alarm:
+	pshc
+	tfr	b,a
+	tsta
+	beq	AlarmReturn
+			
+AlarmSend:
+	ldab	#4		; Bit nummer 4 är larm
+	jsr	Outone		; Sätt på alarm
+	
+	ldab	#4
+	jsr	DELAY_B		; 4*250 ms delay
+	
+	ldab	#4		; Stäng av alarm
+	jsr	Outzero
+	
+	deca			; A<-A-1, returnera om A är 0
+	beq	AlarmReturn
+	
+	ldab	#2		; A är inte 0. Skicka 2*250 ms delay
+	jsr	DELAY_B
+	
+	bra	AlarmSend	; Loopa om alarmet
+AlarmReturn:
+	pulc
+	rts
+	
+;-------------------------------
+;	STEP
+;-------------------------------
+
+Step:
+	ldaa	DrillStatus
+	anda	#2	; Maska ut bit 1
+	beq	StepAlarm
+			; Borren uppe
+	ldab	#1
+	jsr	Outone	; Ettställ bit 1 (medurs riktning)
+	
+	ldab	#0
+	jsr	Outone	; Ettställ bit 0 (stegpuls)
+	ldab	#2	
+	jsr	DELAY_B	; Skicka 2*250 ms delay
+	
+	ldab	#0
+	jsr	Outzero	; Nollställ bit 0 (stegpuls)
+	
+	ldab	#1	; Returnera 1
+	rts
+
+StepAlarm:		; Borren inte uppe
+	ldab	#2	
+	jsr	Alarm	; Skicka 2*250 ms delay
+	ldab	#0	; Returnera 0
+	rts
+	
+;-------------------------------
+;	DRILLDOWNTEST
+;-------------------------------
+
+DrillDownTest:
+	ldaa	#20	; Retry
+DrillDownTestRetry:
+	ldab	DrillStatus
+	andb	#4	; Maska fram bit 2 (borr nere)
+	bne	DrillDownTestReturn1
+	jsr	DELAY	; 250 ms delay
+	deca
+	bne	DrillDownTestRetry
+	ldab	#2
+	jsr	Alarm	; Skicka 2 alarmsignaler
+	ldab	#0
+	rts		; Returnera 0
+DrillDowntTestReturn1:
+	ldab	#1
+	rts		; Returnera 1
+	
+DrillDownTestReturn1
+	ldab	#1
+	rts
+	
+;-------------------------------
+;	DRILLHOLE
+;-------------------------------
+
+DrillHole:
+	jsr	DrillDown
+	jsr	DrillDownTest
+	jsr	DrillUp
+	rts		; Returnerar svaret från DrillDownTest
+	
+;-------------------------------
+;	REFPOS
+;-------------------------------
+
+RefPos:
+	ldaa	DrillStatus
+	anda	#1	; Maska fram bit 0 (referensposition)
+	bne	RefPosReturn1
+	jsr	Step
+	tstb		; Testa svaret från step
+	bne	RefPos
+	rts		; Returnera med 0
+RefPosReturn1:
+	ldab	#1
+	rts		; Returnera med 1 (har nått referensposition)
+	
+;-------------------------------
+;	NSTEP
+;-------------------------------
+Nstep:
+	tfr	b,a	; Lägg n i A
+Nstep_loop:
+	tsta
+	beq	NstepReturn1	; A=0?
+	deca
+	psha
+	jsr	Step
+	pula
+	tstb		; Testa svaret från step, kanske inte behövs (ldab ska ändra)
+	bne	Nstep_loop
+	rts		; Returnera med 0
+NstepReturn1:
+	ldab	#1
+	rts		; Returnera med 1 (framme)
+	
+;-------------------------------
+;	DOAUTO
+;-------------------------------	
+
+DoAuto:	
+	jsr	RefPos
+	tstb		; Testa svaret från RefPos, kanske inte behövs (ldab ska ändra)
+	beq	DoAutoReturn
+	jsr	MotorStart
+DoAutoDrill:
+	ldab	,x
+	leax	1,x	; Öka X med 1
+	cmpb	#$FF	; Testa med slutmarkering
+	beq	DoAutoReturn
+	jsr	DELAY
+	jsr	Nstep
+	tstb
+	beq	DoAutoReturn
+	jsr	DrillHole
+	tstb
+	beq	DoAutoReturn
+	bra	DoAutoDrill
+DoAutoReturn:
+	jsr	MotorStop
+	rts
+
+		
+		
+;--------------------------------------------------------------------------------------
+
+DELAY:			; 250 ms delay
+	pshx		
+	pshy
+	ldx	#DelayConst
+NEXT:	leax	-1,x
+	ldy	#100
+NEXT2:	leay	-1,y
+	cpy	#0
+	bne	NEXT2
+	cpx	#0
+	bne	NEXT
+	puly
+	pulx
+	rts	
+	
+DELAY_B:		; Calls DELAY the number of times specified in B
+	pshb
+	pshc
+	tstb
+DELAY_B_LOOP:
+	beq	DELAY_B_RETURN
+	jsr	DELAY
+	decb
+	bra	DELAY_B_LOOP
+DELAY_B_RETURN:
+	pulc
+	pulb
+	rts 
+
+;-----------------------------------------------------------------------------------------
+
+
+CheckKbdML15:
+	ldab	$9c0
+	bpl	CheckKbd_VA
+	ldab	#$FF	
+	rts
+CheckKbd_VA:
+	pshb
+CheckKbd_VA_active:
+	ldab	$9c0
+	bpl	CheckKbd_VA_active
+	pulb
+	rts
+	
+GetKbdML15:
+	jsr	CheckKbdML15
+	cmpb	#$FF
+	beq	GetKbdML15
+	rts
+	
+DisplayML15:
+	ldaa	#1
+	staa	$9c2
+	ldaa	#$d0
+	staa	$9c3
+	ldaa	#0
+	staa	$9c2
+DisplayML15_compare_loop:
+	cmpa	#6
+	bne	DisplayML15_not_6
+	ldaa	#0
+	staa	$9c3
+	staa	$9c3
+	rts
+DisplayML15_not_6
+	ldab	a,x
+	stab	$9c3
+	inca
+	bra	DisplayML15_compare_loop

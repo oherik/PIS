@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="PIS" Database="">
+<<<<<<< HEAD
   <Project Name="Lab4" Path="Lab4/Lab4.project" Active="No"/>
   <Project Name="ErikTest2" Path="ErikTest2/ErikTest2.project" Active="No"/>
   <Project Name="ErikTest23" Path="ErikTest23/ErikTest23.project" Active="Yes"/>
+=======
+  <Project Name="Lab4" Path="Lab4/Lab4.project" Active="Yes"/>
+>>>>>>> b158b4b0e4cb3e16d9f916416b13297bc5dc336b
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
+      <Environment/>
       <Project Name="Lab4" ConfigName="Debug"/>
+<<<<<<< HEAD
       <Project Name="ErikTest2" ConfigName="Debug"/>
       <Project Name="ErikTest23" ConfigName="Debug"/>
+=======
+>>>>>>> b158b4b0e4cb3e16d9f916416b13297bc5dc336b
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Environment/>
       <Project Name="Lab4" ConfigName="Release"/>
+<<<<<<< HEAD
       <Project Name="ErikTest2" ConfigName="Release"/>
       <Project Name="ErikTest23" ConfigName="Release"/>
+=======
+>>>>>>> b158b4b0e4cb3e16d9f916416b13297bc5dc336b
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>

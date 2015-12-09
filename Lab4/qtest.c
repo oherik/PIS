@@ -15,7 +15,6 @@ void print_queue(QueuePtr q) {
 }
 
 int checkQueue(QueuePtr q, const char *data[], const int order[], int startOffset, int qsize) {
-	
 	QueuePtr currentElement;
 	int i = startOffset;
 	if (size(q) != qsize) {
@@ -40,6 +39,7 @@ int checkQueue(QueuePtr q, const char *data[], const int order[], int startOffse
 
 
 int main(int argc, char *argv[]) {
+
     const char *daniel = "Daniel";
     const char *lisa = "Lisa";
     const char *a[] = {"Kalle", "Olle", "Eva", lisa, "Stina", 
@@ -52,15 +52,14 @@ int main(int argc, char *argv[]) {
 	// Kolla funktionen för att lägga till element
 	////////////////////////////////////////////////////////////////////////////
 #if TESTS_TO_TRY > 0
-	
 	QueuePtr q = new_queue();
     int i;
-	
     for (i=0; i<10; i++) {
-      add(q, i%4, a[i]); 
+		add(q, i%4, a[i]);
+        print_queue(q);
     }
-	
-	printf("------------------------------ TEST 1/3 ------------------------------\n");
+
+	printf("------------------------------ TEST 1/3 ----------------------------    --\n");
     printf("Vi har lagt till 10 element. Storleken ska vara 10.\n");
     printf("Storlek = %d\n\n", size(q));
 	printf("print_queue ska skriva ut 10 element: (\"%s\" först och \"%s\" sist)\n", a[3], a[8]);
@@ -101,9 +100,9 @@ int main(int argc, char *argv[]) {
 	
 	for (i=0; i<7; i++) {
       add(q, i%4, a[i]); 
-    }
+    }print_queue(q);
 	clear(q);
-	
+
 	printf("Vi har lagt till element och sedan anropat clear(). Alla element ska \nvara borttagna (storleken lika med 0) och inga element skall skrivas ut:\n");
 	printf("Storlek = %d\n", size(q));
 	print_queue(q);

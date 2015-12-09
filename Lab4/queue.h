@@ -14,7 +14,7 @@ struct QueueElement {       					// typen för ett köelement
 
 typedef struct QueueElement *QueuePtr;
 
-QueuePtr new_queue();						// Skapar en ny (tom) kö
+QueuePtr new_queue();						// Skapar en ny (tom) kö        
 void delete_queue(QueuePtr q);          	// tar bort kön helt och hållet
 void clear(QueuePtr q);                 	// tar bort köelementen men behåller kön
 int  size(QueuePtr q);						// räknar köns aktuella längd

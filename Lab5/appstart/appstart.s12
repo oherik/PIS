@@ -1,0 +1,11 @@
+	export	_exit
+	import	_main
+	segment init
+	function	__start_appstart,__start_end
+;Stackpekarfix
+__start_appstart:
+	LDS	#$2FFF
+	JSR	_main
+_exit:	NOP
+	BRA	_exit	;Safeguard. Busy-wait.
+__start_end:

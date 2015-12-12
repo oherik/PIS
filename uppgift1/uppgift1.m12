@@ -47,7 +47,8 @@
 
 FILES= \
 	"..\Lab5_foreal\ports.h" "" "1"  \
-	"..\Lab5_foreal\startup.s12" "" "1" 
+	"..\Lab5_foreal\startup.s12" "" "1"  \
+	"..\Lab5_foreal\main.c" "" "1" 
 #-----------------------------------------------
 #PROJECT OPTIONS SECTION
 
@@ -64,7 +65,8 @@ LNFLAGS=-g -i default.lsc
 #OBJECT FILES SECTION
 
 OBJ= \
-	"debug\startup.o12"
+	"debug\startup.o12" \
+	"debug\main.o12"
 #-----------------------------------------------
 #DEFINES/UNDEFINES SECTION
 
@@ -120,6 +122,7 @@ clean:
 	RMFI "debug\uppgift1_Debug.s19"
 	RMFI "debug\ports.o12"
 	RMFI "debug\startup.o12"
+	RMFI "debug\main.o12"
 #-----------------------------------------------
 
 
@@ -128,6 +131,9 @@ clean:
 "debug\startup.o12":	\
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/startup.s12"
 	ASSM  $(ASFLAGS) $(ASMDEF) -o"debug\startup.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/startup.s12"
+"debug\main.o12":	\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/main.c"
+	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  $(INC) -o"debug\main.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/main.c"
 !EICONF	Debug
 
 !IFCONF	Final
@@ -143,7 +149,8 @@ LNFLAGS=-i default.lsc
 #OBJECT FILES SECTION
 
 OBJ= \
-	"final\startup.o12"
+	"final\startup.o12" \
+	"final\main.o12"
 #-----------------------------------------------
 #DEFINES/UNDEFINES SECTION
 
@@ -195,6 +202,7 @@ clean:
 	RMFI "final\uppgift1_Final.s19"
 	RMFI "final\ports.o12"
 	RMFI "final\startup.o12"
+	RMFI "final\main.o12"
 #-----------------------------------------------
 
 
@@ -203,4 +211,8 @@ clean:
 "final\startup.o12":	\
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/startup.s12"
 	ASSM  $(ASFLAGS) $(ASMDEF) -o"final\startup.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/startup.s12"
+"final\main.o12":	\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/main.c"
+	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
+	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"final\main.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/main.c"
 !EICONF	Final

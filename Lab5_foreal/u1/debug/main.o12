@@ -1,0 +1,10 @@
+mod:main:O12:main.o12
+seg:text:1
+seg:bss:0
+seg:data:1
+seg:rodata:0
+C:text	3D
+C:data	00
+G:text:main:00000000:_main
+G:data:main:00000000:_ML4shadow
+e

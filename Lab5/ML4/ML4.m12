@@ -42,8 +42,6 @@
 ##OTYPE=1
 #-----------------------------------------------
 #OPEN FILE SECTION
-##OF "..\appstart\m14.c"
-##OF "..\appstart\appstart.s12"
 #-----------------------------------------------
 #PROJECT FILES SECTION
 

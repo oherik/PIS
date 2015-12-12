@@ -17,10 +17,10 @@ SCRIPT READ FROM THE FOLLOWING FILE(S):
 ---------------------------
  GROUPS AND SEGMENTS:
 
-  GROUP 'test_group', READ/WRITE ,allocation to: 00001000 - 0000100D, (size: 14 Bytes)
+  GROUP 'test_group', READ/WRITE ,allocation to: 00001000 - 00001025, (size: 38 Bytes)
    00001000 00001009 'init'
-   0000100A 0000100B 'text'
-   0000100C 0000100D 'data'
+   0000100A 00001023 'text'
+   00001024 00001025 'data'
 
   GROUP 'interrupt_vectors', READ/WRITE
    NO SEGMENTS
@@ -33,15 +33,15 @@ LINKER DEFINED CONSTANTS:
    __heap_start = 00000000
   from segment 'text'
    0000100A '__text__start'
-   0000100C '__text__end'
-   00000002 '__text__size'
+   00001024 '__text__end'
+   0000001A '__text__size'
   from segment 'bss'
    00000000 '__bss__start'
    00000000 '__bss__end'
    00000000 '__bss__size'
   from segment 'data'
-   0000100C '__data__start'
-   0000100E '__data__end'
+   00001024 '__data__start'
+   00001026 '__data__end'
    00000002 '__data__size'
   from segment 'rodata'
    00000000 '__rodata__start'
@@ -58,7 +58,7 @@ GLOBAL SYMBOL(S):
   in segment: 'text'
    0000100A '_main'
   in segment: 'data'
-   0000100C '_ML4shadow'
+   00001024 '_ML4shadow'
 
  in module: 'startup' of type 'O12' defined in file 'startup.o12'
   in segment: 'init'

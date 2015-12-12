@@ -42,11 +42,13 @@
 ##OTYPE=1
 #-----------------------------------------------
 #OPEN FILE SECTION
+##OF "..\ML4\globals.c"
 #-----------------------------------------------
 #PROJECT FILES SECTION
 
 FILES= \
-	"..\..\..\..\..\..\..\Program Files (x86)\GMV\EducDist\src\startup\xcc12\_startup.s12" "" "1" 
+	"..\..\..\..\..\..\..\Program Files (x86)\GMV\EducDist\src\startup\xcc12\_startup.s12" "" "1"  \
+	"..\ML4\globals.c" "" "1" 
 #-----------------------------------------------
 #PROJECT OPTIONS SECTION
 
@@ -63,7 +65,8 @@ LNFLAGS=-g -i default.lsc
 #OBJECT FILES SECTION
 
 OBJ= \
-	"debug\_startup.o12"
+	"debug\_startup.o12" \
+	"debug\globals.o12"
 #-----------------------------------------------
 #DEFINES/UNDEFINES SECTION
 
@@ -118,6 +121,7 @@ LIBPATH=
 clean:
 	RMFI "debug\codegen_Debug.s19"
 	RMFI "debug\_startup.o12"
+	RMFI "debug\globals.o12"
 #-----------------------------------------------
 
 
@@ -126,6 +130,10 @@ clean:
 "debug\_startup.o12":	\
 	"C:/Program Files (x86)/GMV/EducDist/src/startup/xcc12/_startup.s12"
 	ASSM  $(ASFLAGS) $(ASMDEF) -o"debug\_startup.o12" "C:/Program Files (x86)/GMV/EducDist/src/startup/xcc12/_startup.s12"
+"debug\globals.o12":	\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5/ML4/globals.c"
+	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
+	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"debug\globals.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5/ML4/globals.c"
 !EICONF	Debug
 
 !IFCONF	Final
@@ -141,7 +149,8 @@ LNFLAGS=-i default.lsc
 #OBJECT FILES SECTION
 
 OBJ= \
-	"final\_startup.o12"
+	"final\_startup.o12" \
+	"final\globals.o12"
 #-----------------------------------------------
 #DEFINES/UNDEFINES SECTION
 
@@ -192,6 +201,7 @@ LIBPATH=
 clean:
 	RMFI "final\codegen_Final.s19"
 	RMFI "final\_startup.o12"
+	RMFI "final\globals.o12"
 #-----------------------------------------------
 
 
@@ -200,4 +210,8 @@ clean:
 "final\_startup.o12":	\
 	"C:/Program Files (x86)/GMV/EducDist/src/startup/xcc12/_startup.s12"
 	ASSM  $(ASFLAGS) $(ASMDEF) -o"final\_startup.o12" "C:/Program Files (x86)/GMV/EducDist/src/startup/xcc12/_startup.s12"
+"final\globals.o12":	\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5/ML4/globals.c"
+	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
+	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"final\globals.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5/ML4/globals.c"
 !EICONF	Final

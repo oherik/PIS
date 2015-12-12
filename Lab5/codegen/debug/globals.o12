@@ -1,0 +1,38 @@
+mod:globals:O12:globals.o12
+seg:text:61
+seg:bss:105
+seg:data:0
+seg:rodata:0
+C:text	1B9ACC000A6C84CC000B6C82CC000C6C
+C:text	801600001600007C0000FC00003BFC00
+C:text	003B1600001B847C0000CC00203BCE00
+C:text	00341600001B847C00001B863D
+C:bss	00000000000000000000000000000000
+C:bss	00000000000000000000000000000000
+C:bss	00000000000000000000000000000000
+C:bss	00000000000000000000000000000000
+C:bss	00000000000000000000000000000000
+C:bss	00000000000000000000000000000000
+C:bss	000000000000000000
+RG:text:globals:00000012:O:W:_do_nothing:92
+RG:text:globals:00000015:O:W:_do_something:94
+RG:text:globals:00000018:O:W:_result:95
+RG:text:globals:0000001B:O:W:_high:97
+RG:text:globals:0000001F:O:W:_low:99
+RG:text:globals:00000023:O:W:_max:101
+RG:text:globals:00000028:O:W:_result:103
+RG:text:globals:0000002F:O:W:_pvec:107
+RG:text:globals:00000033:O:W:_scalar:109
+RG:text:globals:00000038:O:W:_size:111
+G:text:globals:00000000:_main
+G:bss:globals:00000022:_pvec
+G:bss:globals:00000062:_size
+G:bss:globals:00000002:_longint
+G:bss:globals:00000064:_komplex
+G:bss:globals:00000006:_justint
+G:bss:globals:0000001E:_low
+G:bss:globals:00000000:_shortint
+G:bss:globals:00000008:_intvec
+G:bss:globals:0000001C:_result
+G:bss:globals:00000020:_high
+e

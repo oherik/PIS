@@ -14,9 +14,9 @@ SCRIPT READ FROM THE FOLLOWING FILE(S):
 ---------------------------
  GROUPS AND SEGMENTS:
 
-  GROUP 'test_group', READ/WRITE ,allocation to: 00001000 - 00001021, (size: 34 Bytes)
+  GROUP 'test_group', READ/WRITE ,allocation to: 00001000 - 0000101F, (size: 32 Bytes)
    00001000 00001009 'init'
-   0000100A 00001021 'text'
+   0000100A 0000101F 'text'
 
   GROUP 'interrupt_vectors', READ/WRITE
    NO SEGMENTS
@@ -29,8 +29,8 @@ LINKER DEFINED CONSTANTS:
    __heap_start = 00000000
   from segment 'text'
    0000100A '__text__start'
-   00001022 '__text__end'
-   00000018 '__text__size'
+   00001020 '__text__end'
+   00000016 '__text__size'
   from segment 'init'
    00001000 '__init__start'
    0000100A '__init__end'

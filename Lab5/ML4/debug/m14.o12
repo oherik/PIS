@@ -1,10 +1,10 @@
 mod:m14:O12:m14.o12
-seg:text:23
+seg:text:22
 seg:bss:0
 seg:data:0
 seg:rodata:0
-C:text	1B9FF606006B80E680B71447566B80E6
-C:text	807B04001B813D
+C:text	1B9FF606006B80E680B714596B80E680
+C:text	7B04001B813D
 G:text:m14:00000000:_main
 SY:C:M:m14$C:/Users/Erik/Documents/GitHub/PIS/Lab5/appstart/m14.c
 SY:C:F:m14:text:_main:00000000:7
@@ -14,10 +14,10 @@ SY:C:S:F:m14:__func__:___func__:(typ11)
 SY:C:S:L:m14:main:c:0:(typ3)
 SY:C:X:m14:9:22:text:2
 SY:C:X:m14:10:11:text:7
-SY:C:X:m14:11:22:text:F
-SY:C:X:m14:12:1:text:14
-SY:C:Z:m14:12:1:text:14
-SY:C:E:m14:text:_main:00000017:12
+SY:C:X:m14:11:22:text:E
+SY:C:X:m14:12:1:text:13
+SY:C:Z:m14:12:1:text:13
+SY:C:E:m14:text:_main:00000016:12
 SY:C:T:  typ0 V (-1)
 SY:C:T:  typ1 L (4)
 SY:C:T:  typ2 l (4)

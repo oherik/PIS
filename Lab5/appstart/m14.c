@@ -7,6 +7,6 @@
 void main(void){
 	char c;
 	c = ML4READ;
-	c = c >> 1;
+	c = c << 1;
 	ML4WRITE = c;
 }

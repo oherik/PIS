@@ -42,6 +42,9 @@
 ##OTYPE=1
 #-----------------------------------------------
 #OPEN FILE SECTION
+##OF ".\appstart.s12"
+##OF "..\..\..\..\..\..\..\Program Files (x86)\GMV\EducDist\src\startup\xcc12\_startup.s12"
+##OF ".\m14.c"
 #-----------------------------------------------
 #PROJECT FILES SECTION
 

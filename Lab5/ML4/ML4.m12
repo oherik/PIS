@@ -4,7 +4,6 @@
 #
 #-----------------------------------------------
 #SETTINGS SECTION
-##CSIMSET=".\console.hc12sim"
 ##EXTMAKEFILE=""
 ##EXTMAKEFILEPARAM=""
 #+[BackCol(0)]=
@@ -39,35 +38,34 @@
 #+0
 #-----------------------------------------------
 ##TYPE E
-##USESTARTUP=1
+##USESTARTUP=0
 ##OTYPE=1
 #-----------------------------------------------
 #OPEN FILE SECTION
-##OF "..\..\..\..\..\..\..\Program Files (x86)\GMV\EducDist\src\startup\xcc12\_startup.s12"
 #-----------------------------------------------
 #PROJECT FILES SECTION
 
 FILES= \
-	"..\..\..\..\..\..\..\Program Files (x86)\GMV\EducDist\src\startup\xcc12\_startup.s12" "" "1"  \
-	".\src\hello.c" "" "1" 
+	"..\appstart\appstart.s12" "" "1"  \
+	"..\appstart\m14.c" "" "1" 
 #-----------------------------------------------
 #PROJECT OPTIONS SECTION
 
 !IFCONF	Debug
-##TARGETNAME="hello_Debug"
+##TARGETNAME="ML4_Debug"
 ##OBJDIR="debug"
 ##TARGDIR="debug"
-##STDINCPATH=1
-##STDLIBPATH=1
+##STDINCPATH=0
+##STDLIBPATH=0
 ASFLAGS=-g -e
-CCFLAGS=-g -w4 -O
+CCFLAGS=-g -w2
 LNFLAGS=-g -i default.lsc
 #-----------------------------------------------
 #OBJECT FILES SECTION
 
 OBJ= \
-	"debug\_startup.o12" \
-	"debug\hello.o12"
+	"debug\appstart.o12" \
+	"debug\m14.o12"
 #-----------------------------------------------
 #DEFINES/UNDEFINES SECTION
 
@@ -84,10 +82,7 @@ UNDEFINES=
 
 INCLUDES=
 
-LIBRARIES= \
-	"libcd.e12" \
-	"libed.e12" \
-	"librtkd.e12"
+LIBRARIES=
 
 LIBRARYPATHS=
 #-----------------------------------------------
@@ -103,42 +98,38 @@ DEF= \
 
 UNDEF=
 
-LIB= \
-	-l"libcd.e12" \
-	-l"libed.e12" \
-	-l"librtkd.e12"
+LIB=
 
 LIBPATH=
 #-----------------------------------------------
 #RULES SECTION CONFIGURATION 
 
 # Application
-"debug\hello_Debug.s19": $(OBJ)
-	LINK -o"debug\hello_Debug.s19" $(LNFLAGS)  $(LIBPATH) $(LIB) -L"C:\Program Files (x86)\GMV\EducDist\bin\..\lib\xcc12" -l"C:\Program Files (x86)\GMV\EducDist\bin\..\lib\xcc12\libccd.e12"  $(OBJ)
+"debug\ML4_Debug.s19": $(OBJ)
+	LINK -o"debug\ML4_Debug.s19" $(LNFLAGS)  $(LIBPATH) $(LIB) -l"C:\Program Files (x86)\GMV\EducDist\bin\..\lib\xcc12\libccd.e12"  $(OBJ)
 #-----------------------------------------------
 
 
 # Clean
 clean:
-	RMFI "debug\hello_Debug.s19"
-	RMFI "debug\_startup.o12"
-	RMFI "debug\hello.o12"
+	RMFI "debug\ML4_Debug.s19"
+	RMFI "debug\appstart.o12"
+	RMFI "debug\m14.o12"
 #-----------------------------------------------
 
 
 # Dependencies and their build rules
 
-"debug\_startup.o12":	\
-	"C:/Program Files (x86)/GMV/EducDist/src/startup/xcc12/_startup.s12"
-	ASSM  $(ASFLAGS) $(ASMDEF) -o"debug\_startup.o12" "C:/Program Files (x86)/GMV/EducDist/src/startup/xcc12/_startup.s12"
-"debug\hello.o12":	\
-	"C:/Users/Erik/Documents/GitHub/PIS/Lab5/hello/src/hello.c"
-	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
-	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"debug\hello.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5/hello/src/hello.c"
+"debug\appstart.o12":	\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5/appstart/appstart.s12"
+	ASSM  $(ASFLAGS) $(ASMDEF) -o"debug\appstart.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5/appstart/appstart.s12"
+"debug\m14.o12":	\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5/appstart/m14.c"
+	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  $(INC) -o"debug\m14.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5/appstart/m14.c"
 !EICONF	Debug
 
 !IFCONF	Final
-##TARGETNAME="hello_Final"
+##TARGETNAME="ML4_Final"
 ##OBJDIR="final"
 ##TARGDIR="final"
 ##STDINCPATH=1
@@ -150,8 +141,8 @@ LNFLAGS=-i default.lsc
 #OBJECT FILES SECTION
 
 OBJ= \
-	"final\_startup.o12" \
-	"final\hello.o12"
+	"final\appstart.o12" \
+	"final\m14.o12"
 #-----------------------------------------------
 #DEFINES/UNDEFINES SECTION
 
@@ -193,26 +184,26 @@ LIBPATH=
 #RULES SECTION CONFIGURATION 
 
 # Application
-"final\hello_Final.s19": $(OBJ)
-	LINK -o"final\hello_Final.s19" $(LNFLAGS)  $(LIBPATH) $(LIB) -L"C:\Program Files (x86)\GMV\EducDist\bin\..\lib\xcc12" -l"C:\Program Files (x86)\GMV\EducDist\bin\..\lib\xcc12\libcc.e12"  $(OBJ)
+"final\ML4_Final.s19": $(OBJ)
+	LINK -o"final\ML4_Final.s19" $(LNFLAGS)  $(LIBPATH) $(LIB) -L"C:\Program Files (x86)\GMV\EducDist\bin\..\lib\xcc12" -l"C:\Program Files (x86)\GMV\EducDist\bin\..\lib\xcc12\libcc.e12"  $(OBJ)
 #-----------------------------------------------
 
 
 # Clean
 clean:
-	RMFI "final\hello_Final.s19"
-	RMFI "final\_startup.o12"
-	RMFI "final\hello.o12"
+	RMFI "final\ML4_Final.s19"
+	RMFI "final\appstart.o12"
+	RMFI "final\m14.o12"
 #-----------------------------------------------
 
 
 # Dependencies and their build rules
 
-"final\_startup.o12":	\
-	"C:/Program Files (x86)/GMV/EducDist/src/startup/xcc12/_startup.s12"
-	ASSM  $(ASFLAGS) $(ASMDEF) -o"final\_startup.o12" "C:/Program Files (x86)/GMV/EducDist/src/startup/xcc12/_startup.s12"
-"final\hello.o12":	\
-	"C:/Users/Erik/Documents/GitHub/PIS/Lab5/hello/src/hello.c"
+"final\appstart.o12":	\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5/appstart/appstart.s12"
+	ASSM  $(ASFLAGS) $(ASMDEF) -o"final\appstart.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5/appstart/appstart.s12"
+"final\m14.o12":	\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5/appstart/m14.c"
 	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
-	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"final\hello.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5/hello/src/hello.c"
+	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"final\m14.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5/appstart/m14.c"
 !EICONF	Final

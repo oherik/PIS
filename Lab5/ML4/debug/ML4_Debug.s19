@@ -1,0 +1,46 @@
+S0030000FC
+S10D1000CF2FFF16100AA720FD00F1
+S11B100A1B9FF606006B80E680B71447566B80E6807B04001B813D00B2
+S9031000EC
+SX:C:s:__start
+SX:A:M:appstart$C:/Users/Erik/Documents/GitHub/PIS/Lab5/appstart/appstart.s12
+SX:C:T: typ2 l (4)
+SX:C:T: typ4 c (1)
+SX:C:T: typ6 s (2)
+SX:C:M:m14$C:/Users/Erik/Documents/GitHub/PIS/Lab5/appstart/m14.c
+SX:C:S:F:m14:main:_main:(typ0)(typ0)
+SX:C:S:F:m14:__func__:___func__:(typ11)
+SX:C:S:L:m14:main:c:0:(typ3)
+SX:C:T:  typ0 V (-1)
+SX:C:T:  typ1 L (4)
+SX:C:T:  typ2 l (4)
+SX:C:T:  typ3 C (1)
+SX:C:T:  typ4 c (1)
+SX:C:T:  typ5 S (2)
+SX:C:T:  typ6 s (2)
+SX:C:T:  typ7 g (4)
+SX:C:T:  typ8 G (4)
+SX:C:T:  typ9 h (4)
+SX:C:T:  typ10 R (2)
+SX:C:T:  typ11 I (2)
+SX:C:T:  typ12 i (2)
+SX:C:T:  typ13 E (2)
+SX:C:T:  typ14 F (2)
+SX:C:T:  typ15 P (2)
+SX:C:T: typ2 l (4)
+SX:C:T: typ4 c (1)
+SX:C:T: typ6 s (2)
+SX:A:X:appstart:7:1000
+SX:A:X:appstart:8:1003
+SX:A:X:appstart:9:1006
+SX:A:X:appstart:10:1007
+SX:A:F:appstart:__start:1000:6
+SX:A:E:appstart:__start:1009:11
+SX:C:F:m14:_main:0000100A:7
+SX:C:X:m14:7:1:100A
+SX:C:X:m14:9:22:100C
+SX:C:X:m14:10:11:1011
+SX:C:X:m14:11:22:1019
+SX:C:X:m14:12:1:101E
+SX:C:Z:m14:12:1:101E
+SX:C:E:m14:_main:00001021:12

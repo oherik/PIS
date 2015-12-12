@@ -33,8 +33,7 @@ _main:
 	LEAS	-2,SP
 _2:
 ;     9 | 	int value;
-;    10 | 	while(0){
-	BRA	_3
+;    10 | 	while(1){
 ;    11 | 		value = ML4IN;
 	LDAB	$600
 	CLRA

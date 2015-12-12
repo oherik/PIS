@@ -7,7 +7,7 @@ unsigned char ML4shadow = 0;
 
 void main(void){
 	int value;
-	while(0){
+	while(1){
 		value = ML4IN;
 		ML4shadow = value;
 		ML4OUT = value;

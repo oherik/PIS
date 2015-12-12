@@ -46,7 +46,8 @@
 #PROJECT FILES SECTION
 
 FILES= \
-	"..\Lab5_foreal\ports.h" "" "1" 
+	"..\Lab5_foreal\ports.h" "" "1"  \
+	"..\Lab5_foreal\startup.s12" "" "1" 
 #-----------------------------------------------
 #PROJECT OPTIONS SECTION
 
@@ -62,7 +63,8 @@ LNFLAGS=-g -i default.lsc
 #-----------------------------------------------
 #OBJECT FILES SECTION
 
-OBJ=
+OBJ= \
+	"debug\startup.o12"
 #-----------------------------------------------
 #DEFINES/UNDEFINES SECTION
 
@@ -117,11 +119,15 @@ LIBPATH=
 clean:
 	RMFI "debug\uppgift1_Debug.s19"
 	RMFI "debug\ports.o12"
+	RMFI "debug\startup.o12"
 #-----------------------------------------------
 
 
 # Dependencies and their build rules
 
+"debug\startup.o12":	\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/startup.s12"
+	ASSM  $(ASFLAGS) $(ASMDEF) -o"debug\startup.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/startup.s12"
 !EICONF	Debug
 
 !IFCONF	Final
@@ -136,7 +142,8 @@ LNFLAGS=-i default.lsc
 #-----------------------------------------------
 #OBJECT FILES SECTION
 
-OBJ=
+OBJ= \
+	"final\startup.o12"
 #-----------------------------------------------
 #DEFINES/UNDEFINES SECTION
 
@@ -187,9 +194,13 @@ LIBPATH=
 clean:
 	RMFI "final\uppgift1_Final.s19"
 	RMFI "final\ports.o12"
+	RMFI "final\startup.o12"
 #-----------------------------------------------
 
 
 # Dependencies and their build rules
 
+"final\startup.o12":	\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/startup.s12"
+	ASSM  $(ASFLAGS) $(ASMDEF) -o"final\startup.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/startup.s12"
 !EICONF	Final

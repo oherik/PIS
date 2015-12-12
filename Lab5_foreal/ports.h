@@ -1,7 +1,7 @@
 #define	ML4IN	0x600
 #define	ML4OUT	0x400
 
-typdef	port	char *;
+typdef	unsigned char * port8ptr;
 
-#define	ML4READ	*((port) ML4IN)
-#define	ML4WRITE *((port) ML4OUT)
+#define	ML4READ	*((port8ptr) ML4IN)
+#define	ML4WRITE *((port8ptr) ML4OUT)

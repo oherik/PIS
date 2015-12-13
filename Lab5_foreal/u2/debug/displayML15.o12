@@ -1,0 +1,11 @@
+mod:displayML15:O12:displayML15.o12
+seg:text:52
+seg:bss:0
+seg:data:0
+seg:rodata:0
+C:text	1B9FC6017B09C2C6907B09C37909C269
+C:text	80E680C1062D062012628020F4E6F300
+C:text	037B09C3EE83086E8320EE7909C37909
+C:text	C31B813D
+G:text:displayML15:00000000:_display_digits
+e

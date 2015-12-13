@@ -9,11 +9,10 @@
 	FILE	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/keyboardML15.c"
 
 ;     1 | #include "keyboardML15.h"
-;     2 | 
-;     3 | #define	set(x, mask)	(x) = (x) | (mask)
-;     4 | #define clear(x, mask)	(x) = (x) & ~(mask)
-;     5 | 
-;     6 | char get_key(void){
+;     2 | #include "ports.h"
+;     3 | #define clear(x, mask)	(x) &= ~(mask)
+;     4 | 
+;     5 | char get_key(void){
 ;	locals:
 ;		'key' at 0,SP (Value: -1,SP)
 
@@ -27,30 +26,29 @@ _get_key:
 	LDAB	$9C0
 	STAB	0,SP
 _2:
-;     7 | 	char key = ML15IN;
-;     8 | 	while(key<=0){
+;     6 | 	char key = ML15IN;		//Läs in fråm ML2
+;     7 | 	while(key<=0){			//key kommer vara >0 när en tangent finns tillgänglig
 	TST	0,SP
 	BGT	_3
-;     9 | 		key = ML15IN;	
+;     8 | 		key = ML15IN;	
 	LDAB	$9C0
 	STAB	0,SP
-;    10 | 	}
+;     9 | 	}
 	BRA	_2
 _3:
-;    11 | 	clear(key, 0xF0);
-	LDAB	0,SP
-	SEX	B,D
-	ANDB	#$0F
+;    10 | 	clear(key, 0xF0);		//Tangenten ligger i bit 0-3
+	LDAB	#$0F
+	ANDB	0,SP
 	STAB	0,SP
-;    12 | 	return key;	
+;    11 | 	return key;	
 	LDAB	0,SP
 	BRA	_4
 _4:
-;    13 | }
+;    12 | }
 	LEAS	1,SP
 	RTS
-;    14 | 
-;    15 | void main(void){
+;    13 | 
+;    14 | void main(void){
 	SEGMENT	rodata
 
 ;	No registers allocated
@@ -59,6 +57,6 @@ _4:
 	EXPORT	_main	[r,2]
 _main:
 
-;    16 |  
-;    17 | }
+;    15 |  
+;    16 | }
 	RTS

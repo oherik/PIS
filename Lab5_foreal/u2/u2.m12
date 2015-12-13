@@ -48,7 +48,10 @@
 FILES= \
 	".\startup.s12" "" "1"  \
 	".\keyboardML15.h" "" "1"  \
-	".\keyboardML15.c" "" "1" 
+	".\keyboardML15.c" "" "1"  \
+	".\displayML15.c" "" "1"  \
+	".\displayML15.h" "" "1"  \
+	".\ports.h" "" "1" 
 #-----------------------------------------------
 #PROJECT OPTIONS SECTION
 
@@ -66,7 +69,8 @@ LNFLAGS=-g -i default.lsc
 
 OBJ= \
 	"debug\startup.o12" \
-	"debug\keyboardML15.o12"
+	"debug\keyboardML15.o12" \
+	"debug\displayML15.o12"
 #-----------------------------------------------
 #DEFINES/UNDEFINES SECTION
 
@@ -123,6 +127,9 @@ clean:
 	RMFI "debug\startup.o12"
 	RMFI "debug\keyboardML15.o12"
 	RMFI "debug\keyboardML15.o12"
+	RMFI "debug\displayML15.o12"
+	RMFI "debug\displayML15.o12"
+	RMFI "debug\ports.o12"
 #-----------------------------------------------
 
 
@@ -132,8 +139,13 @@ clean:
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/startup.s12"
 	ASSM  $(ASFLAGS) $(ASMDEF) -o"debug\startup.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/startup.s12"
 "debug\keyboardML15.o12":	\
-	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/keyboardML15.c"
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/keyboardML15.c"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/keyboardML15.h"
 	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  $(INC) -o"debug\keyboardML15.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/keyboardML15.c"
+"debug\displayML15.o12":	\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/displayML15.c"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/displayML15.h"
+	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  $(INC) -o"debug\displayML15.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/displayML15.c"
 !EICONF	Debug
 
 !IFCONF	Final
@@ -150,7 +162,8 @@ LNFLAGS=-i default.lsc
 
 OBJ= \
 	"final\startup.o12" \
-	"final\keyboardML15.o12"
+	"final\keyboardML15.o12" \
+	"final\displayML15.o12"
 #-----------------------------------------------
 #DEFINES/UNDEFINES SECTION
 
@@ -203,6 +216,9 @@ clean:
 	RMFI "final\startup.o12"
 	RMFI "final\keyboardML15.o12"
 	RMFI "final\keyboardML15.o12"
+	RMFI "final\displayML15.o12"
+	RMFI "final\displayML15.o12"
+	RMFI "final\ports.o12"
 #-----------------------------------------------
 
 
@@ -212,7 +228,13 @@ clean:
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/startup.s12"
 	ASSM  $(ASFLAGS) $(ASMDEF) -o"final\startup.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/startup.s12"
 "final\keyboardML15.o12":	\
-	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/keyboardML15.c"
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/keyboardML15.c"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/keyboardML15.h"
 	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
 	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"final\keyboardML15.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/keyboardML15.c"
+"final\displayML15.o12":	\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/displayML15.c"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/displayML15.h"
+	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
+	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"final\displayML15.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/displayML15.c"
 !EICONF	Final

@@ -1,7 +1,6 @@
 #include "keyboardML15.h"
-
-#define	set(x, mask)	(x) = (x) | (mask)
-#define clear(x, mask)	(x) = (x) & ~(mask)
+#include "ports.h"
+#define clear(x, mask)	(x) &= ~(mask)
 
 char get_key(void){
 	char key = ML15IN;		//Läs in fråm ML2

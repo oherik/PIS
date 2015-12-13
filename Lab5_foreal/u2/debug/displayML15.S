@@ -73,14 +73,11 @@ _5:
 ;    25 | void display_dec(unsigned int value){
 	SEGMENT	rodata
 ;	parameters:
-;		'value' at 12,SP (Value: 2,SP)
+;		'value' at 10,SP (Value: 2,SP)
 ;	locals:
-;		'digits' at 4,SP (Value: -6,SP)
-;		'i' at 3,SP (Value: -7,SP)
-;		'b' at 2,SP (Value: -8,SP)
-;		'div' at 1,SP (Value: -9,SP)
-
-;	Total scratch space: 1 (bytes)
+;		'digits' at 2,SP (Value: -6,SP)
+;		'i' at 1,SP (Value: -7,SP)
+;		'b' at 0,SP (Value: -8,SP)
 
 ;	No registers allocated
 
@@ -88,55 +85,46 @@ _5:
 	EXPORT	_display_dec	[r,2]
 _display_dec:
 
-	LEAS	-10,SP
-	LDAB	#1
-	STAB	1,SP
+	LEAS	-8,SP
 ;    26 | 	unsigned char digits[6];
-;    27 | 	char i,b;
-;    28 | 	char div = 1;
-;    29 | 	
-;    30 | 	for(i=0; i<6; i++){
-	CLR	3,SP
+;    27 | 	unsigned char i,b;
+;    28 | 	
+;    29 | 	for(i=0; i<6; i++){
+	CLR	1,SP
 _7:
-	LDAB	3,SP
+	LDAB	1,SP
 	CMPB	#6
-	BLT	_9
-	LBRA	_10
+	BCS	_9
+	BRA	_10
 _8:
-	INC	3,SP
+	INC	1,SP
 	BRA	_7
 _9:
-;    31 | 		b = value % div;
-	LDD	12,SP
-	PSHD
-	LDAB	3,SP
-	SEX	B,X
-	PULD
+;    30 | 		b = value % 10;
+	LDD	10,SP
+	LDX	#$0A
 	IDIV
-	STAB	2,SP
-;    32 | 		digits[i] = b;
-	LDAB	2,SP
-	LEAX	4,SP
 	STAB	0,SP
-	LDAB	3,SP
-	SEX	B,D
+;    31 | 		value = value / 10;
+	LDD	10,SP
+	LDX	#$0A
+	IDIV
+	STX	10,SP
+;    32 | 		digits[i] = b;
+	LEAX	2,SP
+	LDAB	1,SP
+	CLRA
 	LEAX	D,X
 	LDAB	0,SP
 	STAB	0,X
-;    33 | 		div = div*10;
-	LDY	#$0A
-	LDAB	1,SP
-	SEX	B,D
-	EMUL
-	STAB	1,SP
-;    34 | 	}
-	LBRA	_8
+;    33 | 	}
+	BRA	_8
 _10:
-;    35 | 	display_digits(digits);
-	LEAX	4,SP
+;    34 | 	display_digits(digits);
+	LEAX	2,SP
 	PSHX
 	JSR	_display_digits
 	LEAS	2,SP
-;    36 | }
-	LEAS	10,SP
+;    35 | }
+	LEAS	8,SP
 	RTS

@@ -37,15 +37,20 @@ _2:
 ;    10 | 	}
 	BRA	_2
 _3:
-;    11 | 	return key;	
+;    11 | 	clear(key, 0xF0);
+	LDAB	0,SP
+	SEX	B,D
+	ANDB	#$0F
+	STAB	0,SP
+;    12 | 	return key;	
 	LDAB	0,SP
 	BRA	_4
 _4:
-;    12 | }
+;    13 | }
 	LEAS	1,SP
 	RTS
-;    13 | 
-;    14 | void main(void){
+;    14 | 
+;    15 | void main(void){
 	SEGMENT	rodata
 
 ;	No registers allocated
@@ -54,6 +59,6 @@ _4:
 	EXPORT	_main	[r,2]
 _main:
 
-;    15 |  
-;    16 | }
+;    16 |  
+;    17 | }
 	RTS

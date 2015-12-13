@@ -47,16 +47,3 @@ _4:
 ;    12 | }
 	LEAS	1,SP
 	RTS
-;    13 | 
-;    14 | void main(void){
-	SEGMENT	rodata
-
-;	No registers allocated
-
-	SEGMENT	text
-	EXPORT	_main	[r,2]
-_main:
-
-;    15 |  
-;    16 | }
-	RTS

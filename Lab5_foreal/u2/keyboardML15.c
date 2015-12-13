@@ -11,6 +11,3 @@ char get_key(void){
 	return key;	
 }
 
-void main(void){
- 
-}

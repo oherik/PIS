@@ -21,3 +21,16 @@ void display_digits(unsigned char * digits){	//Ta in en pekare till arrayen
 	ML15DATA = 0;
 
 }
+
+void display_dec(unsigned int value){
+	unsigned char digits[6];
+	char i,b;
+	char div = 1;
+	
+	for(i=0; i<6; i++){
+		b = value % div;
+		digits[i] = b;
+		div = div*10;
+	}
+	display_digits(digits);
+}

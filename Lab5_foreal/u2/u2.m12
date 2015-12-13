@@ -45,7 +45,10 @@
 #-----------------------------------------------
 #PROJECT FILES SECTION
 
-FILES=
+FILES= \
+	".\startup.s12" "" "1"  \
+	".\keyboardML15.h" "" "1"  \
+	".\keyboardML15.c" "" "1" 
 #-----------------------------------------------
 #PROJECT OPTIONS SECTION
 
@@ -61,7 +64,9 @@ LNFLAGS=-g -i default.lsc
 #-----------------------------------------------
 #OBJECT FILES SECTION
 
-OBJ=
+OBJ= \
+	"debug\startup.o12" \
+	"debug\keyboardML15.o12"
 #-----------------------------------------------
 #DEFINES/UNDEFINES SECTION
 
@@ -115,11 +120,20 @@ LIBPATH=
 # Clean
 clean:
 	RMFI "debug\u2_Debug.s19"
+	RMFI "debug\startup.o12"
+	RMFI "debug\keyboardML15.o12"
+	RMFI "debug\keyboardML15.o12"
 #-----------------------------------------------
 
 
 # Dependencies and their build rules
 
+"debug\startup.o12":	\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/startup.s12"
+	ASSM  $(ASFLAGS) $(ASMDEF) -o"debug\startup.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/startup.s12"
+"debug\keyboardML15.o12":	\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/keyboardML15.c"
+	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  $(INC) -o"debug\keyboardML15.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/keyboardML15.c"
 !EICONF	Debug
 
 !IFCONF	Final
@@ -134,7 +148,9 @@ LNFLAGS=-i default.lsc
 #-----------------------------------------------
 #OBJECT FILES SECTION
 
-OBJ=
+OBJ= \
+	"final\startup.o12" \
+	"final\keyboardML15.o12"
 #-----------------------------------------------
 #DEFINES/UNDEFINES SECTION
 
@@ -184,9 +200,19 @@ LIBPATH=
 # Clean
 clean:
 	RMFI "final\u2_Final.s19"
+	RMFI "final\startup.o12"
+	RMFI "final\keyboardML15.o12"
+	RMFI "final\keyboardML15.o12"
 #-----------------------------------------------
 
 
 # Dependencies and their build rules
 
+"final\startup.o12":	\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/startup.s12"
+	ASSM  $(ASFLAGS) $(ASMDEF) -o"final\startup.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/startup.s12"
+"final\keyboardML15.o12":	\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/keyboardML15.c"
+	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
+	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"final\keyboardML15.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/keyboardML15.c"
 !EICONF	Final

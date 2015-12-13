@@ -1,0 +1,11 @@
+mod:keyboardML15:O12:keyboardML15.o12
+seg:text:26
+seg:bss:0
+seg:data:0
+seg:rodata:0
+C:text	1B9FF609C06B80E7802E07F609C06B80
+C:text	20F5E68020001B813D
+C:text	3D
+G:text:keyboardML15:00000019:_main
+G:text:keyboardML15:00000000:_get_key
+e

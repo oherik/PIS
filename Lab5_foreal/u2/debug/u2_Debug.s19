@@ -1,0 +1,15 @@
+S0030000FC
+S10D1000CF2FFF161023A720FD00D8
+S11D100A1B9FF609C06B80E7802E07F609C06B8020F5E68020001B813D3D6D
+S9031000EC
+SX:C:s:__start
+SX:A:M:startup$C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/startup.s12
+SX:C:T: typ2 l (4)
+SX:C:T: typ4 c (1)
+SX:C:T: typ6 s (2)
+SX:A:X:startup:7:1000
+SX:A:X:startup:8:1003
+SX:A:X:startup:9:1006
+SX:A:X:startup:10:1007
+SX:A:F:startup:__start:1000:6
+SX:A:E:startup:__start:1009:11

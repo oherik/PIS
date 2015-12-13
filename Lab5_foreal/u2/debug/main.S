@@ -20,14 +20,19 @@
 _main:
 
 	LEAS	-1,SP
+_2:
 	JSR	_get_key
 	STAB	0,SP
-;     3 | 	char key = get_key();
-;     4 | 	display_dec(key);
+;     3 | while(1){
+;     4 | 	char key = get_key();
+;     5 | 	display_dec(key);
 	LDAB	0,SP
 	PSHB
 	JSR	_display_dec
 	LEAS	1,SP
-;     5 | }
+;     6 | 	}
+	BRA	_2
+_3:
+;     7 | }
 	LEAS	1,SP
 	RTS

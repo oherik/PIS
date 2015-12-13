@@ -1,11 +1,11 @@
 mod:main:O12:main.o12
-seg:text:18
+seg:text:20
 seg:bss:0
 seg:data:0
 seg:rodata:0
-C:text	1B9F1600006B80E680371600001B811B
-C:text	813D
-RG:text:main:00000003:O:W:_get_key:23
-RG:text:main:0000000B:O:W:_display_dec:29
+C:text	1B9F1600006B80E680371600001B8120
+C:text	F11B813D
+RG:text:main:00000003:O:W:_get_key:24
+RG:text:main:0000000B:O:W:_display_dec:31
 G:text:main:00000000:_main
 e

@@ -1,16 +1,32 @@
 mod:main:O12:main.o12
-seg:text:2
+seg:text:51
 seg:bss:0
 seg:data:0
 seg:rodata:0
-C:text	A73D
+C:text	1B9A160000160000CD00006D826C84CD
+C:text	0000CC03E83B35ED86EC883B35160000
+C:text	1B886C80EC803B1600001B821820FFD2
+C:text	1B863D
+RG:text:main:00000003:O:W:_init_clock:39
+RG:text:main:00000006:O:W:_get_time:42
+RG:text:main:0000001E:O:W:divu32:56
+RG:text:main:00000028:O:W:_display_dec:63
 G:text:main:00000000:_main
 SY:C:M:main$C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/main.c
-SY:C:F:main:text:_main:00000000:1
-SY:C:X:main:1:1:text:0
-SY:C:X:main:3:1:text:1
-SY:C:Z:main:3:1:text:1
-SY:C:E:main:text:_main:00000002:3
+SY:C:F:main:text:_main:00000000:2
+SY:C:X:main:2:1:text:0
+SY:C:S:F:main:main:_main:(typ0)(typ0)
+SY:C:S:F:main:__func__:___func__:(typ11)
+SY:C:S:L:main:main:tst:2:(typ2)
+SY:C:S:L:main:main:inten:0:(typ12)
+SY:C:X:main:5:6:text:2
+SY:C:X:main:6:12:text:2
+SY:C:X:main:7:17:text:5
+SY:C:X:main:8:17:text:F
+SY:C:X:main:9:18:text:24
+SY:C:X:main:11:1:text:30
+SY:C:Z:main:11:1:text:30
+SY:C:E:main:text:_main:00000033:11
 SY:C:T:  typ0 V (-1)
 SY:C:T:  typ1 L (4)
 SY:C:T:  typ2 l (4)

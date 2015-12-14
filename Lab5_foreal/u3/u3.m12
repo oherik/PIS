@@ -51,7 +51,9 @@ FILES= \
 	".\clock.c" "" "1"  \
 	".\clock.h" "" "1"  \
 	".\interrupt.s12" "" "1"  \
-	".\main.c" "" "1" 
+	".\main.c" "" "1"  \
+	".\displayML15.c" "" "1"  \
+	".\displayML15.h" "" "1" 
 #-----------------------------------------------
 #PROJECT OPTIONS SECTION
 
@@ -71,7 +73,8 @@ OBJ= \
 	"debug\startup.o12" \
 	"debug\clock.o12" \
 	"debug\interrupt.o12" \
-	"debug\main.o12"
+	"debug\main.o12" \
+	"debug\displayML15.o12"
 #-----------------------------------------------
 #DEFINES/UNDEFINES SECTION
 
@@ -131,6 +134,8 @@ clean:
 	RMFI "debug\clock.o12"
 	RMFI "debug\interrupt.o12"
 	RMFI "debug\main.o12"
+	RMFI "debug\displayML15.o12"
+	RMFI "debug\displayML15.o12"
 #-----------------------------------------------
 
 
@@ -141,8 +146,8 @@ clean:
 	ASSM  $(ASFLAGS) $(ASMDEF) -o"debug\startup.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/startup.s12"
 "debug\clock.o12":	\
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/clock.c"\
-	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/ports.h"\
-	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/clock.h"
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/clock.h"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/ports.h"
 	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
 	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"debug\clock.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/clock.c"
 "debug\interrupt.o12":	\
@@ -152,6 +157,12 @@ clean:
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/main.c"
 	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
 	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"debug\main.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/main.c"
+"debug\displayML15.o12":	\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/displayML15.c"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/displayML15.h"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/ports.h"
+	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
+	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"debug\displayML15.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/displayML15.c"
 !EICONF	Debug
 
 !IFCONF	Final
@@ -170,7 +181,8 @@ OBJ= \
 	"final\startup.o12" \
 	"final\clock.o12" \
 	"final\interrupt.o12" \
-	"final\main.o12"
+	"final\main.o12" \
+	"final\displayML15.o12"
 #-----------------------------------------------
 #DEFINES/UNDEFINES SECTION
 
@@ -226,6 +238,8 @@ clean:
 	RMFI "final\clock.o12"
 	RMFI "final\interrupt.o12"
 	RMFI "final\main.o12"
+	RMFI "final\displayML15.o12"
+	RMFI "final\displayML15.o12"
 #-----------------------------------------------
 
 
@@ -236,8 +250,8 @@ clean:
 	ASSM  $(ASFLAGS) $(ASMDEF) -o"final\startup.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/startup.s12"
 "final\clock.o12":	\
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/clock.c"\
-	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/ports.h"\
-	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/clock.h"
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/clock.h"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/ports.h"
 	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
 	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"final\clock.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/clock.c"
 "final\interrupt.o12":	\
@@ -247,4 +261,10 @@ clean:
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/main.c"
 	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
 	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"final\main.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/main.c"
+"final\displayML15.o12":	\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/displayML15.c"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/displayML15.h"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/ports.h"
+	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
+	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"final\displayML15.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/displayML15.c"
 !EICONF	Final

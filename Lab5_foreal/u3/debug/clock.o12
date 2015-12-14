@@ -1,47 +1,82 @@
 mod:clock:O12:clock.o12
-seg:text:21
-seg:bss:4
+seg:text:102
+seg:bss:6
 seg:data:0
 seg:rodata:0
-C:text	A7CC00007C3FF21600003D
-C:text	A73D
-C:text	A7CD000087C73D
+C:text	A787C77C00027C0000790000790000C6
+C:text	017B3FF7C680FA00007B0000F600007B
+C:text	3FF4CC00007C3FF01600003D
+C:text	A7FD0000FC0002C300012401027D0000
+C:text	7C0002C680FA00007B0000F600007B3F
+C:text	F33D
+C:text	A7CD0000CC000A3B35FD0000FC00023B
+C:text	351600001B883D
 C:text	3D
-C:bss	00000000
-RG:text:clock:00000002:O:W:_IRQ_r:39
-RG:text:clock:00000008:O:W:_clear_i:43
-G:text:clock:00000014:_hold
+C:bss	000000000000
+RG:text:clock:00000004:O:W:_tick:54
+RG:text:clock:00000007:O:W:_tick:55
+RG:text:clock:0000000A:O:W:_crgintshadow:58
+RG:text:clock:0000000D:O:W:_crgflgshadow:61
+RG:text:clock:00000017:O:W:_crgintshadow:71
+RG:text:clock:0000001A:O:W:_crgintshadow:72
+RG:text:clock:0000001D:O:W:_crgintshadow:75
+RG:text:clock:00000023:O:W:_IRQ_r:80
+RG:text:clock:00000029:O:W:_clear_i:84
+RG:text:clock:0000002E:O:W:_tick:104
+RG:text:clock:00000031:O:W:_tick:105
+RG:text:clock:0000003A:O:W:_tick:109
+RG:text:clock:0000003D:O:W:_tick:110
+RG:text:clock:00000042:O:W:_crgflgshadow:114
+RG:text:clock:00000045:O:W:_crgflgshadow:115
+RG:text:clock:00000048:O:W:_crgflgshadow:118
+RG:text:clock:00000058:O:W:_tick:144
+RG:text:clock:0000005B:O:W:_tick:145
+RG:text:clock:00000060:O:W:divu32:148
+G:text:clock:00000065:_hold
 G:bss:clock:00000000:_tick
+G:bss:clock:00000005:_crgflgshadow
+G:bss:clock:00000004:_crgintshadow
 G:text:clock:00000000:_init_clock
-G:text:clock:0000000D:_get_time
-G:text:clock:0000000B:_clock_inter
+G:text:clock:0000004E:_get_time
+G:text:clock:0000002C:_clock_inter
 SY:C:M:clock$C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/clock.c
 SY:C:S:G:clock:tick:_tick:(typ2)
-SY:C:F:clock:text:_init_clock:00000000:8
-SY:C:X:clock:8:1:text:0
-SY:C:X:clock:9:26:text:1
-SY:C:X:clock:10:9:text:7
-SY:C:X:clock:11:1:text:A
-SY:C:Z:clock:11:1:text:A
-SY:C:E:clock:text:_init_clock:0000000B:11
-SY:C:F:clock:text:_clock_inter:0000000B:12
-SY:C:X:clock:12:1:text:B
-SY:C:X:clock:14:1:text:C
-SY:C:Z:clock:14:1:text:C
-SY:C:E:clock:text:_clock_inter:0000000D:14
-SY:C:F:clock:text:_get_time:0000000D:16
-SY:C:X:clock:16:1:text:D
-SY:C:X:clock:18:1:text:13
-SY:C:Z:clock:18:1:text:13
-SY:C:E:clock:text:_get_time:00000014:18
-SY:C:F:clock:text:_hold:00000014:19
-SY:C:X:clock:19:1:text:14
+SY:C:S:G:clock:crgintshadow:_crgintshadow:(typ4)
+SY:C:S:G:clock:crgflgshadow:_crgflgshadow:(typ4)
+SY:C:F:clock:text:_init_clock:00000000:13
+SY:C:X:clock:13:1:text:0
+SY:C:X:clock:14:9:text:1
+SY:C:X:clock:15:17:text:9
+SY:C:X:clock:16:17:text:C
+SY:C:X:clock:18:27:text:F
+SY:C:X:clock:20:28:text:14
+SY:C:X:clock:21:38:text:1C
+SY:C:X:clock:23:26:text:22
+SY:C:X:clock:24:9:text:28
+SY:C:X:clock:25:1:text:2B
+SY:C:Z:clock:25:1:text:2B
+SY:C:E:clock:text:_init_clock:0000002C:25
+SY:C:F:clock:text:_clock_inter:0000002C:26
+SY:C:X:clock:26:1:text:2C
+SY:C:X:clock:27:5:text:2D
+SY:C:X:clock:28:28:text:3F
+SY:C:X:clock:29:38:text:47
+SY:C:X:clock:30:1:text:4D
+SY:C:Z:clock:30:1:text:4D
+SY:C:E:clock:text:_clock_inter:0000004E:30
+SY:C:F:clock:text:_get_time:0000004E:32
+SY:C:X:clock:32:1:text:4E
+SY:C:X:clock:35:1:text:64
+SY:C:Z:clock:35:1:text:64
+SY:C:E:clock:text:_get_time:00000065:35
+SY:C:F:clock:text:_hold:00000065:36
+SY:C:X:clock:36:1:text:65
 SY:C:S:F:clock:hold:_hold:(typ0)(typ2)
 SY:C:S:L:clock:hold:time:2:(typ2)
 SY:C:S:F:clock:__func__:___func__:(typ11)
-SY:C:X:clock:21:1:text:14
-SY:C:Z:clock:21:1:text:14
-SY:C:E:clock:text:_hold:00000015:21
+SY:C:X:clock:38:1:text:65
+SY:C:Z:clock:38:1:text:65
+SY:C:E:clock:text:_hold:00000066:38
 SY:C:T:  typ0 V (-1)
 SY:C:T:  typ1 L (4)
 SY:C:T:  typ2 l (4)

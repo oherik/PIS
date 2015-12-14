@@ -1,0 +1,95 @@
+S0030000FC
+S10D1000CF2FFF161026A720FD00D5
+S121100AA7CC10227C3FF216101F3DA73DA7CD000087C73D3D10EF3D1610150BA73D6A
+S107102800000000C0
+S9031000EC
+SX:C:s:__start
+SX:A:M:startup$C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/startup.s12
+SX:C:T: typ2 l (4)
+SX:C:T: typ4 c (1)
+SX:C:T: typ6 s (2)
+SX:C:M:clock$C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/clock.c
+SX:C:S:F:clock:hold:_hold:(typ0)(typ2)
+SX:C:S:L:clock:hold:time:2:(typ2)
+SX:C:S:F:clock:__func__:___func__:(typ11)
+SX:C:T:  typ0 V (-1)
+SX:C:T:  typ1 L (4)
+SX:C:T:  typ2 l (4)
+SX:C:T:  typ3 C (1)
+SX:C:T:  typ4 c (1)
+SX:C:T:  typ5 S (2)
+SX:C:T:  typ6 s (2)
+SX:C:T:  typ7 g (4)
+SX:C:T:  typ8 G (4)
+SX:C:T:  typ9 h (4)
+SX:C:T:  typ10 R (2)
+SX:C:T:  typ11 I (2)
+SX:C:T:  typ12 i (2)
+SX:C:T:  typ13 E (2)
+SX:C:T:  typ14 F (2)
+SX:C:T:  typ15 P (2)
+SX:C:T: typ2 l (4)
+SX:C:T: typ4 c (1)
+SX:C:T: typ6 s (2)
+SX:A:M:interrupt$C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/interrupt.s12
+SX:C:T: typ2 l (4)
+SX:C:T: typ4 c (1)
+SX:C:T: typ6 s (2)
+SX:C:M:main$C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/main.c
+SX:C:T:  typ0 V (-1)
+SX:C:T:  typ1 L (4)
+SX:C:T:  typ2 l (4)
+SX:C:T:  typ3 C (1)
+SX:C:T:  typ4 c (1)
+SX:C:T:  typ5 S (2)
+SX:C:T:  typ6 s (2)
+SX:C:T:  typ7 g (4)
+SX:C:T:  typ8 G (4)
+SX:C:T:  typ9 h (4)
+SX:C:T:  typ10 R (2)
+SX:C:T:  typ11 I (2)
+SX:C:T:  typ12 i (2)
+SX:C:T:  typ13 E (2)
+SX:C:T:  typ14 F (2)
+SX:C:T:  typ15 P (2)
+SX:C:T: typ2 l (4)
+SX:C:T: typ4 c (1)
+SX:C:T: typ6 s (2)
+SX:A:X:startup:7:1000
+SX:A:X:startup:8:1003
+SX:A:X:startup:9:1006
+SX:A:X:startup:10:1007
+SX:A:F:startup:__start:1000:6
+SX:A:E:startup:__start:1009:11
+SX:C:F:clock:_init_clock:0000100A:8
+SX:C:X:clock:8:1:100A
+SX:C:X:clock:9:26:100B
+SX:C:X:clock:10:9:1011
+SX:C:X:clock:11:1:1014
+SX:C:Z:clock:11:1:1014
+SX:C:E:clock:_init_clock:00001015:11
+SX:C:F:clock:_clock_inter:00001015:12
+SX:C:X:clock:12:1:1015
+SX:C:X:clock:14:1:1016
+SX:C:Z:clock:14:1:1016
+SX:C:E:clock:_clock_inter:00001017:14
+SX:C:F:clock:_get_time:00001017:16
+SX:C:X:clock:16:1:1017
+SX:C:X:clock:18:1:101D
+SX:C:Z:clock:18:1:101D
+SX:C:E:clock:_get_time:0000101E:18
+SX:C:F:clock:_hold:0000101E:19
+SX:C:X:clock:19:1:101E
+SX:C:X:clock:21:1:101E
+SX:C:Z:clock:21:1:101E
+SX:C:E:clock:_hold:0000101F:21
+SX:A:X:interrupt:9:101F
+SX:A:X:interrupt:10:1021
+SX:A:X:interrupt:14:1022
+SX:A:X:interrupt:15:1025
+SX:C:F:main:_main:00001026:1
+SX:C:X:main:1:1:1026
+SX:C:X:main:3:1:1027
+SX:C:Z:main:3:1:1027
+SX:C:E:main:_main:00001028:3
+SX:C:S:G:clock:tick:_tick:00001028:(typ2)

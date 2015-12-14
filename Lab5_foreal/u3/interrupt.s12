@@ -1,0 +1,17 @@
+	export	_clear_i
+	export	_IRQ_r
+	import	_clock_inter
+	;SEGMENT	text
+	;DEFINE	_clear_i, _IRQ_r
+	;FUNCTION	_clear_i, end_clear_i, _IRQ_r, end_IRQ_r
+
+_clear_i:
+	CLI
+	RTS
+end_clear_i
+
+_IRQ_r:
+	JSR	_clock_inter
+	RTI
+_end_IRQ_r	
+	

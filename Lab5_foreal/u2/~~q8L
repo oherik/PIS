@@ -1,0 +1,129 @@
+mod:_cmpf:O12:_cmpf.o12
+seg:text:398
+seg:bss:0
+seg:data:0
+seg:rodata:0
+C:text	1BF1E7EDF01BECF01D6DF0156CF017ED
+C:text	F01FECF0216DF0116CF013EDF011ECF0
+C:text	133B35EDF019ECF01B3B351600001B88
+C:text	2606C6041820012ECD0000CC00013B35
+C:text	CD0000CC001F3B35EDF01DECF01F3B35
+C:text	1600001B883B351600001B886C8ECD00
+C:text	00CC00013B35CD0000CC001F3B35EDF0
+C:text	19ECF01B3B351600001B883B35160000
+C:text	1B886C8CEC8EAC8C2C05C7182000D7EC
+C:text	8EAC8C2F06C608182000CBCD0000CC00
+C:text	FF3B35CD0000CC00173B35EDF01DECF0
+C:text	1F3B351600001B883B351600001B886C
+C:text	8ACD0000CC00FF3B35CD0000CC00173B
+C:text	35EDF019ECF01B3B351600001B883B35
+C:text	1600001B886C88EC8AAC882F05C71820
+C:text	0074EC8AAC882C06C60818200068CD00
+C:text	80CC00003B35CD007FCCFFFF3B35EDF0
+C:text	1DECF01F3B351600001B883B35160000
+C:text	1B886D846C86CD0080CC00003B35CD00
+C:text	7FCCFFFF3B35EDF019ECF01B3B351600
+C:text	001B883B351600001B886D806C82ED80
+C:text	EC823B35ED88EC8A3B351600001B8823
+C:text	03C72002C6081BF0193D
+C:text	1B9EED88EC8A3B35ED88EC8A3B351600
+C:text	001B886B81180A81AFB721C4F0EAB0B7
+C:text	121B823D
+RG:text:_cmpf:0000002C:O:W:cmp32:87
+RG:text:_cmpf:00000051:O:W:shru32:111
+RG:text:_cmpf:00000058:O:W:and32:115
+RG:text:_cmpf:00000077:O:W:shru32:132
+RG:text:_cmpf:0000007E:O:W:and32:136
+RG:text:_cmpf:000000B4:O:W:shru32:178
+RG:text:_cmpf:000000BB:O:W:and32:182
+RG:text:_cmpf:000000DA:O:W:shru32:199
+RG:text:_cmpf:000000E1:O:W:and32:203
+RG:text:_cmpf:00000117:O:W:and32:240
+RG:text:_cmpf:0000011E:O:W:or32:244
+RG:text:_cmpf:0000013F:O:W:and32:262
+RG:text:_cmpf:00000146:O:W:or32:266
+RG:text:_cmpf:0000015B:O:W:cmp32:281
+RL:text:_cmpf:00000179:O:W:00000000:text:338
+G:text:_cmpf:0000016A:cmpf
+SY:C:M:_cmpf$../src/libcc/common/_cmpf.c
+SY:C:F:_cmpf:text:_docmpf:00000000:9
+SY:C:X:_cmpf:9:8:text:0
+SY:C:S:F:_cmpf:docmpf:_docmpf:(typ3)(typ7)(typ7)
+SY:C:S:L:_cmpf:docmpf:a1:27:(typ7)
+SY:C:S:L:_cmpf:docmpf:a2:31:(typ7)
+SY:C:S:F:_cmpf:__func__:___func__:(typ11)
+SY:C:S:L:_cmpf:docmpf:fl1:21:(typ16-_cmpf)
+SY:C:S:L:_cmpf:docmpf:fl2:17:(typ16-_cmpf)
+SY:C:S:L:_cmpf:docmpf:cc:16:(typ3)
+SY:C:S:L:_cmpf:docmpf:a1sign:14:(typ11)
+SY:C:S:L:_cmpf:docmpf:a2sign:12:(typ11)
+SY:C:S:L:_cmpf:docmpf:a1exp:10:(typ11)
+SY:C:S:L:_cmpf:docmpf:a2exp:8:(typ11)
+SY:C:S:L:_cmpf:docmpf:a1mant:4:(typ2)
+SY:C:S:L:_cmpf:docmpf:a2mant:0:(typ2)
+SY:C:X:_cmpf:18:11:text:3
+SY:C:X:_cmpf:19:11:text:F
+SY:C:X:_cmpf:21:3:text:1B
+SY:C:X:_cmpf:26:62:text:38
+SY:C:X:_cmpf:27:62:text:5E
+SY:C:X:_cmpf:29:3:text:84
+SY:C:X:_cmpf:33:4:text:8F
+SY:C:X:_cmpf:39:64:text:9B
+SY:C:X:_cmpf:40:64:text:C1
+SY:C:X:_cmpf:42:3:text:E7
+SY:C:X:_cmpf:44:3:text:F2
+SY:C:X:_cmpf:47:76:text:FE
+SY:C:X:_cmpf:48:76:text:126
+SY:C:X:_cmpf:50:3:text:14E
+SY:C:X:_cmpf:54:1:text:166
+SY:C:Z:_cmpf:54:1:text:166
+SY:C:E:_cmpf:text:_docmpf:0000016A:54
+SY:C:F:_cmpf:text:cmpf:0000016A:56
+SY:C:X:_cmpf:56:13:text:16A
+SY:C:S:F:_cmpf:cmpf:cmpf:(typ0)(typ7)(typ7)
+SY:C:S:L:_cmpf:cmpf:a1:4:(typ7)
+SY:C:S:L:_cmpf:cmpf:a2:8:(typ7)
+SY:C:S:F:_cmpf:__func__:___func__:(typ11)
+SY:C:S:L:_cmpf:cmpf:cc:1:(typ3)
+SY:C:S:L:_cmpf:cmpf:ccr:0:(typ3)
+SY:C:X:_cmpf:62:21:text:16C
+SY:C:X:_cmpf:98:2:text:17F
+SY:C:X:_cmpf:99:2:text:183
+SY:C:X:_cmpf:100:2:text:185
+SY:C:X:_cmpf:101:2:text:187
+SY:C:X:_cmpf:102:2:text:189
+SY:C:X:_cmpf:104:1:text:18B
+SY:C:Z:_cmpf:104:1:text:18B
+SY:C:E:_cmpf:text:cmpf:0000018E:104
+SY:C:T:  typ0 V (-1)
+SY:C:T:  typ1 L (4)
+SY:C:T:  typ2 l (4)
+SY:C:T:  typ3 C (1)
+SY:C:T:  typ4 c (1)
+SY:C:T:  typ5 S (2)
+SY:C:T:  typ6 s (2)
+SY:C:T:  typ7 g (4)
+SY:C:T:  typ8 G (4)
+SY:C:T:  typ9 h (4)
+SY:C:T:  typ10 R (2)
+SY:C:T:  typ11 I (2)
+SY:C:T:  typ12 i (2)
+SY:C:T:  typ13 E (2)
+SY:C:T:  typ14 F (2)
+SY:C:T:  typ15 P (2)
+SY:C:T:_cmpf: typ16-_cmpf Z (4)U float_long {\
+f:(0):(typ7);\
+l:(0):(typ1);\
+}
+SY:C:T:_cmpf: typ17-_cmpf Z (4)U long_int {\
+l:(0):(typ1);\
+s:(0):(typ18-_cmpf);\
+}
+SY:C:T:_cmpf: typ18-_cmpf Z (4)S {\
+msw:(0):(typ12);\
+lsw:(2):(typ12);\
+}
+SY:C:T: typ2 l (4)
+SY:C:T: typ4 c (1)
+SY:C:T: typ6 s (2)
+e

@@ -1,0 +1,89 @@
+mod:fputc:O12:fputc.o12
+seg:text:159
+seg:bss:0
+seg:data:0
+seg:rodata:0
+C:text	1B9EEC868C0002182700398C00011827
+C:text	0032EE86EC066C80EC02A3F30006AC80
+C:text	2312CC0020EE86AA08EA096C08CCFFFF
+C:text	18200068EC84EE86ED026B706D02EC84
+C:text	182000581600008C00032603160000EC
+C:text	848C000A27098C0008271A18200033CC
+C:text	000A3B1600001B82CC000D3B1600001B
+C:text	8218200025CC00083B1600001B82CC00
+C:text	203B1600001B82CC00083B1600001B82
+C:text	2008EC843B1600001B82EC841B823D
+RG:text:fputc:00000045:O:W:__tstchar:93
+RG:text:fputc:0000004D:O:W:__lowexit:98
+RG:text:fputc:00000064:O:W:__outchar:117
+RG:text:fputc:0000006D:O:W:__outchar:123
+RG:text:fputc:0000007A:O:W:__outchar:134
+RG:text:fputc:00000083:O:W:__outchar:140
+RG:text:fputc:0000008C:O:W:__outchar:146
+RG:text:fputc:00000096:O:W:__outchar:158
+G:text:fputc:00000000:_fputc
+SY:C:M:fputc$../src/libc/common/fputc.c
+SY:C:F:fputc:text:_fputc:00000000:10
+SY:C:X:fputc:10:2:text:0
+SY:C:S:F:fputc:fputc:_fputc:(typ11)(typ11)(typ21-fputc)
+SY:C:S:L:fputc:fputc:c:4:(typ11)
+SY:C:S:L:fputc:fputc:f:6:(typ21-fputc)
+SY:C:S:F:fputc:__func__:___func__:(typ11)
+SY:C:X:fputc:12:3:text:2
+SY:C:X:fputc:15:5:text:12
+SY:C:X:fputc:17:19:text:22
+SY:C:X:fputc:20:23:text:34
+SY:C:X:fputc:28:3:text:44
+SY:C:X:fputc:29:11:text:4C
+SY:C:X:fputc:33:9:text:4F
+SY:C:X:fputc:34:2:text:5F
+SY:C:X:fputc:34:26:text:5F
+SY:C:X:fputc:35:17:text:68
+SY:C:X:fputc:36:5:text:71
+SY:C:X:fputc:37:2:text:75
+SY:C:X:fputc:37:26:text:75
+SY:C:X:fputc:38:16:text:7E
+SY:C:X:fputc:39:17:text:87
+SY:C:X:fputc:40:5:text:90
+SY:C:X:fputc:41:2:text:92
+SY:C:X:fputc:42:16:text:92
+SY:C:X:fputc:43:5:text:9A
+SY:C:X:fputc:46:1:text:9C
+SY:C:Z:fputc:46:1:text:9C
+SY:C:E:fputc:text:_fputc:0000009F:46
+SY:C:T:  typ0 V (-1)
+SY:C:T:  typ1 L (4)
+SY:C:T:  typ2 l (4)
+SY:C:T:  typ3 C (1)
+SY:C:T:  typ4 c (1)
+SY:C:T:  typ5 S (2)
+SY:C:T:  typ6 s (2)
+SY:C:T:  typ7 g (4)
+SY:C:T:  typ8 G (4)
+SY:C:T:  typ9 h (4)
+SY:C:T:  typ10 R (2)
+SY:C:T:  typ11 I (2)
+SY:C:T:  typ12 i (2)
+SY:C:T:  typ13 E (2)
+SY:C:T:  typ14 F (2)
+SY:C:T:  typ15 P (2)
+SY:C:T:fputc: typ16-fputc Z (4)U float_long {\
+f:(0):(typ8);\
+l:(0):(typ1);\
+}
+SY:C:T:fputc: typ17-fputc Z (12)S _iobuf {\
+_base:(0):(typ18-fputc);\
+_ptr:(2):(typ19-fputc);\
+_filename:(4):(typ20-fputc);\
+_cnt:(6):(typ12);\
+_flag:(8):(typ6);\
+_bufsiz:(10):(typ12);\
+}
+SY:C:T:fputc: typ18-fputc a *(typ3)
+SY:C:T:fputc: typ19-fputc a *(typ3)
+SY:C:T:fputc: typ20-fputc a *(typ3)
+SY:C:T:fputc: typ21-fputc a *(typ17-fputc)
+SY:C:T: typ2 l (4)
+SY:C:T: typ4 c (1)
+SY:C:T: typ6 s (2)
+e

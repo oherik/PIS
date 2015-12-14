@@ -1,0 +1,115 @@
+mod:_div32:O12:_div32.o12
+seg:text:413
+seg:bss:0
+seg:data:0
+seg:rodata:0
+C:text	1B9987C76C856C83C6206B82CD8000CC
+C:text	00003B35ED8DEC8F3B351600001B888D
+C:text	000026058C0000270210F72707CC0001
+C:text	6C80200487C76C80CD0000CC00013B35
+C:text	ED8DEC8F3B351600001B886D896C8BCD
+C:text	0000CC00013B35ED87EC893B35160000
+C:text	1B886D836C85EC808C00002717CD0000
+C:text	CC00013B35ED87EC893B351600001B88
+C:text	6D836C85ED8DEC8F3B35ED87EC893B35
+C:text	1600001B881825002CED8DEC8F3B35ED
+C:text	87EC893B351600001B886D836C85CD00
+C:text	00CC00013B35ED8DEC8F3B351600001B
+C:text	886D896C8B6382E6821826FF3FED89EC
+C:text	8B1B873D
+C:text	1B9ACD000087C73B35EDF010ECF0123B
+C:text	351600001B882C14ED8CEC8EB7C64151
+C:text	B7C64151C300012401022004ED8CEC8E
+C:text	3B35CD000087C73B35EDF010ECF0123B
+C:text	351600001B882C14ED8CEC8EB7C64151
+C:text	B7C64151C300012401022004ED8CEC8E
+C:text	3B351600001B886D826C84CD000087C7
+C:text	3B35EDF010ECF0123B351600001B882C
+C:text	05CC0001200287C76C80CD000087C73B
+C:text	35ED8CEC8E3B351600001B882C05CC00
+C:text	01200287C7E881A8808C00002714ED82
+C:text	EC84B7C64151B7C64151C30001240102
+C:text	2004ED82EC841B863D
+RG:text:_div32:0000001B:O:W:and32:70
+RG:text:_div32:00000047:O:W:shl32:101
+RG:text:_div32:0000005E:O:W:shl32:115
+RG:text:_div32:0000007C:O:W:or32:134
+RG:text:_div32:00000091:O:W:cmp32:150
+RG:text:_div32:000000A6:O:W:sub32:163
+RG:text:_div32:000000BD:O:W:or32:177
+RG:text:_div32:000000E6:O:W:cmp32:237
+RG:text:_div32:00000116:O:W:cmp32:267
+RG:text:_div32:00000137:O:W:divu32:288
+RG:text:_div32:0000014F:O:W:cmp32:304
+RG:text:_div32:0000016C:O:W:cmp32:323
+G:text:_div32:000000D4:divs32
+G:text:_div32:00000000:divu32
+SY:C:M:_div32$../src/libcc/common/_div32.c
+SY:C:F:_div32:text:divu32:00000000:9
+SY:C:X:_div32:9:13:text:0
+SY:C:S:F:_div32:divu32:divu32:(typ2)(typ2)(typ2)
+SY:C:S:L:_div32:divu32:a:9:(typ2)
+SY:C:S:L:_div32:divu32:b:13:(typ2)
+SY:C:S:F:_div32:__func__:___func__:(typ11)
+SY:C:S:L:_div32:divu32:rest:3:(typ2)
+SY:C:S:L:_div32:divu32:count:2:(typ4)
+SY:C:S:L:_div32:divu32:c:0:(typ5)
+SY:C:X:_div32:12:25:text:2
+SY:C:X:_div32:16:4:text:C
+SY:C:X:_div32:17:8:text:2D
+SY:C:X:_div32:19:8:text:34
+SY:C:X:_div32:20:9:text:38
+SY:C:X:_div32:21:12:text:4F
+SY:C:X:_div32:22:4:text:66
+SY:C:X:_div32:23:13:text:6D
+SY:C:X:_div32:25:4:text:84
+SY:C:X:_div32:26:12:text:99
+SY:C:X:_div32:27:10:text:AE
+SY:C:X:_div32:29:9:text:C5
+SY:C:X:_div32:31:1:text:D1
+SY:C:Z:_div32:31:1:text:D1
+SY:C:E:_div32:text:divu32:000000D4:31
+SY:C:F:_div32:text:divs32:000000D4:34
+SY:C:X:_div32:34:13:text:D4
+SY:C:S:F:_div32:divs32:divs32:(typ1)(typ1)(typ1)
+SY:C:S:L:_div32:divs32:a:8:(typ1)
+SY:C:S:L:_div32:divs32:b:12:(typ1)
+SY:C:S:F:_div32:__func__:___func__:(typ11)
+SY:C:S:L:_div32:divs32:r:2:(typ1)
+SY:C:X:_div32:38:46:text:D6
+SY:C:X:_div32:40:4:text:13F
+SY:C:X:_div32:44:1:text:19A
+SY:C:Z:_div32:44:1:text:19A
+SY:C:E:_div32:text:divs32:0000019D:44
+SY:C:T:  typ0 V (-1)
+SY:C:T:  typ1 L (4)
+SY:C:T:  typ2 l (4)
+SY:C:T:  typ3 C (1)
+SY:C:T:  typ4 c (1)
+SY:C:T:  typ5 S (2)
+SY:C:T:  typ6 s (2)
+SY:C:T:  typ7 g (4)
+SY:C:T:  typ8 G (4)
+SY:C:T:  typ9 h (4)
+SY:C:T:  typ10 R (2)
+SY:C:T:  typ11 I (2)
+SY:C:T:  typ12 i (2)
+SY:C:T:  typ13 E (2)
+SY:C:T:  typ14 F (2)
+SY:C:T:  typ15 P (2)
+SY:C:T:_div32: typ16-_div32 Z (4)U float_long {\
+f:(0):(typ7);\
+l:(0):(typ1);\
+}
+SY:C:T:_div32: typ17-_div32 Z (4)U long_int {\
+l:(0):(typ1);\
+s:(0):(typ18-_div32);\
+}
+SY:C:T:_div32: typ18-_div32 Z (4)S {\
+msw:(0):(typ12);\
+lsw:(2):(typ12);\
+}
+SY:C:T: typ2 l (4)
+SY:C:T: typ4 c (1)
+SY:C:T: typ6 s (2)
+e

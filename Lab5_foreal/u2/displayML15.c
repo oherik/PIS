@@ -25,11 +25,10 @@ void display_digits(unsigned char * digits){	//Ta in en pekare till arrayen
 void display_dec(unsigned int value){
 	unsigned char digits[6];
 	unsigned char i,b;
-	
 	for(i=0; i<6; i++){
-		b = value % 10;
-		value = value / 10;
-		digits[i] = b;
+		b = value%10;
+		value=value/10;;
+		digits[5-i] = b;
 	}
 	display_digits(digits);
 }

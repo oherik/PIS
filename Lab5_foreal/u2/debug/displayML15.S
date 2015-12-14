@@ -73,11 +73,15 @@ _5:
 ;    25 | void display_dec(unsigned int value){
 	SEGMENT	rodata
 ;	parameters:
-;		'value' at 10,SP (Value: 2,SP)
+;		'value' at 14,SP (Value: 2,SP)
 ;	locals:
-;		'digits' at 2,SP (Value: -6,SP)
-;		'i' at 1,SP (Value: -7,SP)
-;		'b' at 0,SP (Value: -8,SP)
+;		'digits' at 6,SP (Value: -6,SP)
+;		'i' at 5,SP (Value: -7,SP)
+;		'b' at 4,SP (Value: -8,SP)
+;		'btmp' at 3,SP (Value: -9,SP)
+;		'valuecpy' at 2,SP (Value: -10,SP)
+
+;	Total scratch space: 2 (bytes)
 
 ;	No registers allocated
 
@@ -85,46 +89,65 @@ _5:
 	EXPORT	_display_dec	[r,2]
 _display_dec:
 
-	LEAS	-8,SP
+	LEAS	-12,SP
+	LDD	14,SP
+	STAB	2,SP
 ;    26 | 	unsigned char digits[6];
-;    27 | 	unsigned char i,b;
-;    28 | 	
+;    27 | 	unsigned char i,b,btmp;
+;    28 | 	unsigned char valuecpy = value;
 ;    29 | 	for(i=0; i<6; i++){
-	CLR	1,SP
+	CLR	5,SP
 _7:
-	LDAB	1,SP
+	LDAB	5,SP
 	CMPB	#6
 	BCS	_9
-	BRA	_10
+	LBRA	_10
 _8:
-	INC	1,SP
+	INC	5,SP
 	BRA	_7
 _9:
-;    30 | 		b = value % 10;
-	LDD	10,SP
+;    30 | 		btmp = value%10;
+	LDD	14,SP
 	LDX	#$0A
 	IDIV
-	STAB	0,SP
-;    31 | 		value = value / 10;
-	LDD	10,SP
+	STAB	3,SP
+;    31 | 		value=value/10;
+	LDD	14,SP
 	LDX	#$0A
 	IDIV
-	STX	10,SP
-;    32 | 		digits[i] = b;
-	LEAX	2,SP
-	LDAB	1,SP
+	STX	14,SP
+;    32 | 		b = valuecpy%10;
+	LDAB	2,SP
 	CLRA
+	LDX	#$0A
+	IDIVS
+	STAB	4,SP
+;    33 | 		valuecpy/=10;
+	LDAB	#$0A
+	SEX	B,X
+	LDAB	2,SP
+	CLRA
+	IDIV
+	TFR	X,B
+	STAB	2,SP
+;    34 | 		digits[5-i] = b;
+	LEAX	6,SP
+	LDAB	5,SP
+	CLRA
+	STD	0,SP
+	LDD	#5
+	SUBD	0,SP
 	LEAX	D,X
-	LDAB	0,SP
+	LDAB	4,SP
 	STAB	0,X
-;    33 | 	}
-	BRA	_8
+;    35 | 	}
+	LBRA	_8
 _10:
-;    34 | 	display_digits(digits);
-	LEAX	2,SP
+;    36 | 	display_digits(digits);
+	LEAX	6,SP
 	PSHX
 	JSR	_display_digits
 	LEAS	2,SP
-;    35 | }
-	LEAS	8,SP
+;    37 | }
+	LEAS	12,SP
 	RTS

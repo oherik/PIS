@@ -1,0 +1,90 @@
+mod:_mod32:O12:_mod32.o12
+seg:text:250
+seg:bss:0
+seg:data:0
+seg:rodata:0
+C:text	1B9CED8AEC8C3B35ED8AEC8C3B351600
+C:text	001B886D806C82ED80EC823B35ED8EEC
+C:text	F0103B351600001B883B35ED8AEC8C3B
+C:text	351600001B881B843D
+C:text	1B9CCD000087C73B35ED8EECF0103B35
+C:text	1600001B882C14ED8AEC8CB7C64151B7
+C:text	C64151C300012401022004ED8AEC8C3B
+C:text	35CD000087C73B35ED8EECF0103B3516
+C:text	00001B882C14ED8AEC8CB7C64151B7C6
+C:text	4151C300012401022004ED8AEC8C3B35
+C:text	1600001B886D806C82CD000087C73B35
+C:text	ED8AEC8C3B351600001B882D15CD0000
+C:text	87C73B35ED8EECF0103B351600001B88
+C:text	2C28CD000087C73B35ED8AEC8C3B3516
+C:text	00001B882C14ED80EC82B7C64151B7C6
+C:text	4151C300012401022004ED80EC821B84
+C:text	3D
+RG:text:_mod32:0000000F:O:W:divu32:51
+RG:text:_mod32:00000025:O:W:mulu32:65
+RG:text:_mod32:00000032:O:W:sub32:73
+RG:text:_mod32:0000004A:O:W:cmp32:118
+RG:text:_mod32:00000079:O:W:cmp32:148
+RG:text:_mod32:0000009A:O:W:modu32:169
+RG:text:_mod32:000000B0:O:W:cmp32:184
+RG:text:_mod32:000000C5:O:W:cmp32:196
+RG:text:_mod32:000000D9:O:W:cmp32:212
+G:text:_mod32:00000039:mods32
+G:text:_mod32:00000000:modu32
+SY:C:M:_mod32$../src/libcc/common/_mod32.c
+SY:C:F:_mod32:text:modu32:00000000:8
+SY:C:X:_mod32:8:13:text:0
+SY:C:S:F:_mod32:modu32:modu32:(typ2)(typ2)(typ2)
+SY:C:S:L:_mod32:modu32:a:6:(typ2)
+SY:C:S:L:_mod32:modu32:b:10:(typ2)
+SY:C:S:F:_mod32:__func__:___func__:(typ11)
+SY:C:S:L:_mod32:modu32:c:0:(typ2)
+SY:C:X:_mod32:10:18:text:2
+SY:C:X:_mod32:12:1:text:36
+SY:C:Z:_mod32:12:1:text:36
+SY:C:E:_mod32:text:modu32:00000039:12
+SY:C:F:_mod32:text:mods32:00000039:14
+SY:C:X:_mod32:14:13:text:39
+SY:C:S:F:_mod32:mods32:mods32:(typ1)(typ1)(typ1)
+SY:C:S:L:_mod32:mods32:a:6:(typ1)
+SY:C:S:L:_mod32:mods32:b:10:(typ1)
+SY:C:S:F:_mod32:__func__:___func__:(typ11)
+SY:C:S:L:_mod32:mods32:r:0:(typ1)
+SY:C:X:_mod32:18:46:text:3B
+SY:C:X:_mod32:19:4:text:A2
+SY:C:X:_mod32:21:4:text:CB
+SY:C:X:_mod32:25:1:text:F7
+SY:C:Z:_mod32:25:1:text:F7
+SY:C:E:_mod32:text:mods32:000000FA:25
+SY:C:T:  typ0 V (-1)
+SY:C:T:  typ1 L (4)
+SY:C:T:  typ2 l (4)
+SY:C:T:  typ3 C (1)
+SY:C:T:  typ4 c (1)
+SY:C:T:  typ5 S (2)
+SY:C:T:  typ6 s (2)
+SY:C:T:  typ7 g (4)
+SY:C:T:  typ8 G (4)
+SY:C:T:  typ9 h (4)
+SY:C:T:  typ10 R (2)
+SY:C:T:  typ11 I (2)
+SY:C:T:  typ12 i (2)
+SY:C:T:  typ13 E (2)
+SY:C:T:  typ14 F (2)
+SY:C:T:  typ15 P (2)
+SY:C:T:_mod32: typ16-_mod32 Z (4)U float_long {\
+f:(0):(typ7);\
+l:(0):(typ1);\
+}
+SY:C:T:_mod32: typ17-_mod32 Z (4)U long_int {\
+l:(0):(typ1);\
+s:(0):(typ18-_mod32);\
+}
+SY:C:T:_mod32: typ18-_mod32 Z (4)S {\
+msw:(0):(typ12);\
+lsw:(2):(typ12);\
+}
+SY:C:T: typ2 l (4)
+SY:C:T: typ4 c (1)
+SY:C:T: typ6 s (2)
+e

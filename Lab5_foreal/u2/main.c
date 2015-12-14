@@ -1,7 +1,8 @@
 
 void main(void){
 while(1){
-	char key = get_key();
-	display_dec(key);
+	char key = (char) get_key();
+	unsigned int keyint = key;
+	display_dec(keyint);
 	}
 }

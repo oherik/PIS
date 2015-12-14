@@ -1,0 +1,525 @@
+mod:__doprint:O12:__doprint.o12
+seg:text:2597
+seg:bss:0
+seg:data:0
+seg:rodata:41
+C:text	1BF18B87C76C88E7F3007718270A0FE6
+C:text	F30077C1252718EEF07B34EEF079E630
+C:text	6EF079B7143B1600001B841820FFD8EE
+C:text	F077086EF07787C76CF06DCCFFFF6CF0
+C:text	6B87C76CF022C62D6BF01FC6206BF06A
+C:text	E6F30077C12D2617CC0010EAF023AAF0
+C:text	226CF022EEF077086EF0771820017DE6
+C:text	F30077C12B2708E6F30077C1202612E6
+C:text	F300776BF01FEEF077086EF077182001
+C:text	5BE6F30077C1302610C6306BF06AEEF0
+C:text	77086EF07718200143E6F30077C13018
+C:text	2D0039E6F30077C1392E31E6F30077C1
+C:text	302D25E6F30077C1392E1DEEF077E630
+C:text	6EF077B7148300306C80EDF06DCC000A
+C:text	13E3806CF06D20D318200100E6F30077
+C:text	C12A2634EEF079EC316EF0796CF06DEE
+C:text	F077086EF077ECF06D8C00002C16CC00
+C:text	10E8F023A8F0226CF022ECF06D405082
+C:text	006CF06D182000C4E6F30077C12E1826
+C:text	006DEEF077086EF077E6F30077C13018
+C:text	2D003EE6F30077C139182E003487C76C
+C:text	F06BE6F30077C1302D25E6F30077C139
+C:text	2E1DEEF077E6306EF077B7148300306C
+C:text	80EDF06BCC000A13E3806CF06B20D320
+C:text	1AE6F30077C12A2612EEF079EC316EF0
+C:text	796CF06BEEF077086EF0771820004DE6
+C:text	F30077C1232615CC0008EAF023AAF022
+C:text	6CF022EEF077086EF0772030E6F30077
+C:text	C16C2615CC0001EAF023AAF0226CF022
+C:text	EEF077086EF0772013E6F30077C16826
+C:text	09EEF077086EF077200220041820FE60
+C:text	87C76CF020CC00006CF01DC6656B8EE6
+C:text	F30077C16218270064C16318270094C1
+C:text	64182700A4C1691827009EC145182701
+C:text	34C1471827012EC1651827012CC16718
+C:text	270126C1661827024FC16E182702EFC1
+C:text	6F182702FDC1701827032DC173182703
+C:text	2BC17518270429C15818270459C17818
+C:text	270459C1001827079118200796CC0002
+C:text	6CF064ECF02287C4018C00002716EEF0
+C:text	79ED00EC021A046EF0796DF0156CF017
+C:text	1820044DEEF079EC316EF0796CF06618
+C:text	2005D7EEF07B34EEF07BEC316EF07B3B
+C:text	1600001B841820075ACC000A6CF064EC
+C:text	F02287C4018C00001827005AEEF079ED
+C:text	00EC021A046EF0796DF0196CF01BCD00
+C:text	0087C73B35EDF01DECF01F3B35160000
+C:text	1B882C22EDF019ECF01BB7C64151B7C6
+C:text	4151C300012401026DF0156CF017CC00
+C:text	016CF020200CEDF019ECF01B6DF0156C
+C:text	F017182003BBEEF079EC316EF0796CF0
+C:text	68ECF0688C00002D08ECF0686CF06620
+C:text	10ECF068405082006CF066CC00016CF0
+C:text	2018200525C6456B8EEEF079ED00EC02
+C:text	1A046EF0796DF0116CF013ECF06B8CFF
+C:text	FF2606CC00066CF06B1AF020341AF011
+C:text	34ECF06FC300013BEDF017ECF0193B35
+C:text	1600001B8A6CF071EE8F096E8FEC8F8C
+C:text	00002C0FCC00016C8CEC8F405082006C
+C:text	8F200487C76C8C1AF0636EF073CC0002
+C:text	6CF068EC8FCE000A1815E3F01DB745E6
+C:text	00EEF0736B3F6EF073CE000AEC8FCD00
+C:text	0018146D8FEDF068036DF068B7648C00
+C:text	002ED0EC8F8C00001826FFC7EC8C8C00
+C:text	00270CEEF073C62D6B3F6EF073200AEE
+C:text	F073C62B6B3F6EF073EEF073E68E6B3F
+C:text	6EF073ECF06B8C00002615ECF02287C4
+C:text	088C0000270AEEF073C62E6B3F6EF073
+C:text	ECF0716C8AE7F3000A2707EE8A086E8A
+C:text	20F3EC8AACF071232BED8A036D8AB764
+C:text	B745E600EEF0736B3F6EF073EC8AA3F0
+C:text	718C0001260AEEF073C62E6B3F6EF073
+C:text	1820FFCE182004BCEEF079ED00EC021A
+C:text	046EF0796DF0116CF013ECF06B8CFFFF
+C:text	2606CC00066CF06B1AF020341AF01134
+C:text	ECF06F3BEDF017ECF0193B351600001B
+C:text	8A6CF071ECF0716C8AE7F3000A2707EE
+C:text	8A086E8A20F31AF0636EF073ECF06B8C
+C:text	00002615ECF02287C4088C0000270AEE
+C:text	F073C62E6B3F6EF073EC8AACF071232A
+C:text	ED8A036D8AB764B745E600EEF0736B3F
+C:text	6EF073EC8AA3F071AC8F260AEEF073C6
+C:text	2E6B3F6EF0731820FFCF18200416EEF0
+C:text	79EC313BC300026C3130EC886C001820
+C:text	04D1CC00086CF064ECF02287C4018C00
+C:text	002716EEF079ED00EC021A046EF0796D
+C:text	F0156CF01718200178EEF079EC316EF0
+C:text	796CF0661820030218200140EEF079EC
+C:text	316EF0796CF073ECF0738C00002606CC
+C:text	00006CF073ECF06D8C0000182F006EEC
+C:text	F02287C4108C00001826006187C76CF0
+C:text	68ECF0736CF071E7F300732718CC0001
+C:text	405082006C80ECF06BAC802713ECF068
+C:text	ACF06B2D0B2012EEF073086EF07320D7
+C:text	EEF068086EF06820EEECF0716CF073EC
+C:text	F068ACF06D2C16EEF07B34CC00203B16
+C:text	00001B84EEF068086EF06820E287C76C
+C:text	F068E7F300731827002FECF068ACF06B
+C:text	2D08ECF06B8CFFFF261FEEF07B34EEF0
+C:text	75E6306EF075B7143B1600001B84EEF0
+C:text	68086EF0681820FFC9ECF068ACF06D18
+C:text	2C0029ECF02287C4108C0000271EECF0
+C:text	68ACF06D2C16EEF07B34CC00203B1600
+C:text	001B84EEF068086EF06820E218200393
+C:text	CC000A6CF064ECF02287C4018C000027
+C:text	16EEF079ED00EC021A046EF0796DF015
+C:text	6CF0171820003AEEF079EC316EF0796C
+C:text	F066182001C4CC00006CF01DCC00106C
+C:text	F064ECF02287C4018C0000182701A0EE
+C:text	F079ED00EC021A046EF0796DF0156CF0
+C:text	171AF0636EF073CD000087C73B35EDF0
+C:text	19ECF01B3B351600001B88260CCCFFF7
+C:text	E4F023A4F0226CF022ECF06B6CF068CD
+C:text	000087C73B35EDF019ECF01B3B351600
+C:text	001B88182400D4CD7FFFCCFFFF3B35CD
+C:text	0000CC00013B35EDF01DECF01F3B3516
+C:text	00001B883B351600001B886D846C86CD
+C:text	0000CC00013B35EDF019ECF01B3B3516
+C:text	00001B883B35CD0000CC00013B35ECF0
+C:text	6CCD000085802701033B35EDF010ECF0
+C:text	123B351600001B883B351600001B883B
+C:text	351600001B886C82EC82EEF0641815E3
+C:text	F01DB745E600EEF0736B3F6EF073EC82
+C:text	EEF0641815B754CD000085802701033B
+C:text	35CD0000CC00013B35ECF06CCD000085
+C:text	802701033B35EDF010ECF0123B351600
+C:text	001B883B351600001B883B351600001B
+C:text	886DF0156CF0171820003FECF064CD00
+C:text	003B35EDF019ECF01B3B351600001B88
+C:text	E3F01DB745E600EEF0736B3F6EF073EC
+C:text	F064CD00003B35EDF019ECF01B3B3516
+C:text	00001B886DF0156CF017EEF068096EF0
+C:text	68CD000087C73B35EDF019ECF01B3B35
+C:text	1600001B881826FEB6ECF06B8CFFFF27
+C:text	0AECF0688C0000182EFEA418200070EE
+C:text	F079EC316EF0796CF0661AF0636EF073
+C:text	ECF0668C0000260CCCFFF7E4F023A4F0
+C:text	226CF022ECF06B6CF068ECF066EEF064
+C:text	1810E3F01DB745E600EEF0736B3F6EF0
+C:text	73EEF064ECF066CD0000116DF066EEF0
+C:text	68096EF068ECF0668C000026CDECF06B
+C:text	8CFFFF270AECF0688C0000182EFFBBEC
+C:text	F02287C4088C000018270058E6F30077
+C:text	C1622710C1782722C16F2728C1582730
+C:text	18200040EEF073C6626B3F6EF073EEF0
+C:text	73C6306B3F6EF073202AEEF073C6786B
+C:text	3F6EF073EEF073C6306B3F6EF0732014
+C:text	EEF073C6586B3F6EF073EEF073C6306B
+C:text	3F6EF073ECF0208C0000270CEEF073C6
+C:text	2D6B3F6EF0732012E6F01FC12D270BEE
+C:text	F073E6F01F6B3F6EF0731AF063B754A3
+C:text	F0736CF06FECF06FACF06D182C002BEC
+C:text	F02287C4108C00002620ECF06DACF06F
+C:text	2F18EEF07B34E6F06CB7143B1600001B
+C:text	84EEF06D096EF06D20E0B774C300646C
+C:text	80EDF073026DF073B764AC802712EEF0
+C:text	7B34E6F30075B7143B1600001B8420DA
+C:text	ECF06FACF06D2C20ECF06DACF06F2F18
+C:text	EEF07B34E6F06CB7143B1600001B84EE
+C:text	F06D096EF06D20E02019EEF077096EF0
+C:text	772010EEF07B34E6F30079B7143B1600
+C:text	001B84EEF077086EF0771820F5E9CC00
+C:text	011BF0753D
+C:rodata	286E756C6C2900303132333435363738
+C:rodata	39414243444546003031323334353637
+C:rodata	383961626364656600
+RG:text:__doprint:00000027:O:W:_putc:206
+RG:text:__doprint:000002B1:O:W:_putc:628
+RG:text:__doprint:000002EE:O:W:cmp32:672
+RG:text:__doprint:00000391:O:W:_ecvt:794
+RG:text:__doprint:000004BD:O:W:_fcvt:1010
+RG:text:__doprint:00000600:O:W:_putc:1247
+RG:text:__doprint:0000063A:O:W:_putc:1291
+RG:text:__doprint:0000066F:O:W:_putc:1326
+RG:text:__doprint:000006F7:O:W:cmp32:1432
+RG:text:__doprint:0000071F:O:W:cmp32:1462
+RG:text:__doprint:00000740:O:W:shru32:1485
+RG:text:__doprint:00000747:O:W:and32:1489
+RG:text:__doprint:00000760:O:W:and32:1504
+RG:text:__doprint:00000784:O:W:mods32:1523
+RG:text:__doprint:0000078B:O:W:shl32:1527
+RG:text:__doprint:00000792:O:W:add32:1531
+RG:text:__doprint:000007DF:O:W:divs32:1575
+RG:text:__doprint:000007E6:O:W:shl32:1579
+RG:text:__doprint:000007ED:O:W:add32:1583
+RG:text:__doprint:0000080C:O:W:modu32:1602
+RG:text:__doprint:00000830:O:W:divu32:1620
+RG:text:__doprint:00000851:O:W:cmp32:1642
+RG:text:__doprint:0000099D:O:W:_putc:1871
+RG:text:__doprint:000009CA:O:W:_putc:1900
+RG:text:__doprint:000009EB:O:W:_putc:1925
+RG:text:__doprint:00000A0F:O:W:_putc:1963
+RL:text:__doprint:000001F6:O:W:00000018:rodata:533
+RL:text:__doprint:00000590:O:W:00000000:rodata:1171
+RL:text:__doprint:000006B7:O:W:00000007:rodata:1386
+G:text:__doprint:00000000:___doprint
+SY:C:M:__doprint$../src/libc/common/__doprint.c
+SY:C:S:S:__doprint:rodata:NULLPTR:00000000:(typ21-__doprint)
+SY:C:F:__doprint:text:___doprint:00000000:67
+SY:C:X:__doprint:67:2:text:0
+SY:C:S:F:__doprint:__doprint:___doprint:(typ11)(typ22-__doprint)(typ23-__doprint)(typ24-__doprint)
+SY:C:S:L:__doprint:__doprint:fmt:119:(typ22-__doprint)
+SY:C:S:L:__doprint:__doprint:argp:121:(typ23-__doprint)
+SY:C:S:L:__doprint:__doprint:fd:123:(typ24-__doprint)
+SY:C:S:F:__doprint:__func__:___func__:(typ11)
+SY:C:S:L:__doprint:__doprint:p:115:(typ25-__doprint)
+SY:C:S:L:__doprint:__doprint:p2:113:(typ26-__doprint)
+SY:C:S:L:__doprint:__doprint:size:111:(typ11)
+SY:C:S:L:__doprint:__doprint:width:109:(typ11)
+SY:C:S:L:__doprint:__doprint:prec:107:(typ11)
+SY:C:S:L:__doprint:__doprint:padc:106:(typ3)
+SY:C:S:L:__doprint:__doprint:n:104:(typ11)
+SY:C:S:L:__doprint:__doprint:u:102:(typ12)
+SY:C:S:L:__doprint:__doprint:base:100:(typ11)
+SY:C:S:L:__doprint:__doprint:buf:36:(typ27-__doprint)
+SY:C:S:L:__doprint:__doprint:flags:34:(typ11)
+SY:C:S:L:__doprint:__doprint:negflag:32:(typ11)
+SY:C:S:L:__doprint:__doprint:signflag:31:(typ3)
+SY:C:S:L:__doprint:__doprint:digs:29:(typ28-__doprint)
+SY:C:S:L:__doprint:__doprint:l:25:(typ1)
+SY:C:S:L:__doprint:__doprint:ul:21:(typ2)
+SY:C:S:L:__doprint:__doprint:d:17:(typ8)
+SY:C:S:L:__doprint:__doprint:decpt:15:(typ11)
+SY:C:S:L:__doprint:__doprint:echar:14:(typ3)
+SY:C:S:L:__doprint:__doprint:negexp:12:(typ11)
+SY:C:S:L:__doprint:__doprint:p3:10:(typ29-__doprint)
+SY:C:S:L:__doprint:__doprint:nprinted:8:(typ11)
+SY:C:S:L:__doprint:__doprint:ul2:4:(typ1)
+SY:C:S:L:__doprint:__doprint:rem:2:(typ11)
+SY:C:X:__doprint:90:15:text:3
+SY:C:X:__doprint:92:7:text:7
+SY:C:X:__doprint:94:4:text:F
+SY:C:X:__doprint:96:31:text:17
+SY:C:X:__doprint:97:4:text:2B
+SY:C:X:__doprint:100:5:text:2F
+SY:C:X:__doprint:102:11:text:36
+SY:C:X:__doprint:103:11:text:3B
+SY:C:X:__doprint:104:11:text:41
+SY:C:X:__doprint:105:16:text:46
+SY:C:X:__doprint:106:12:text:4B
+SY:C:X:__doprint:108:8:text:50
+SY:C:X:__doprint:110:4:text:50
+SY:C:X:__doprint:112:15:text:58
+SY:C:X:__doprint:113:6:text:64
+SY:C:X:__doprint:115:9:text:6F
+SY:C:X:__doprint:117:18:text:7F
+SY:C:X:__doprint:118:6:text:86
+SY:C:X:__doprint:120:9:text:91
+SY:C:X:__doprint:122:13:text:99
+SY:C:X:__doprint:123:6:text:9E
+SY:C:X:__doprint:125:9:text:A9
+SY:C:X:__doprint:127:9:text:BB
+SY:C:X:__doprint:128:40:text:CB
+SY:C:X:__doprint:130:9:text:EC
+SY:C:X:__doprint:132:33:text:F4
+SY:C:X:__doprint:133:6:text:FF
+SY:C:X:__doprint:134:5:text:106
+SY:C:X:__doprint:136:16:text:10E
+SY:C:X:__doprint:137:18:text:11A
+SY:C:X:__doprint:140:9:text:128
+SY:C:X:__doprint:142:6:text:132
+SY:C:X:__doprint:143:5:text:139
+SY:C:X:__doprint:145:12:text:14D
+SY:C:X:__doprint:146:10:text:152
+SY:C:X:__doprint:147:39:text:162
+SY:C:X:__doprint:149:10:text:181
+SY:C:X:__doprint:151:33:text:189
+SY:C:X:__doprint:152:7:text:194
+SY:C:X:__doprint:155:9:text:19F
+SY:C:X:__doprint:157:15:text:1A7
+SY:C:X:__doprint:158:6:text:1B3
+SY:C:X:__doprint:160:9:text:1BC
+SY:C:X:__doprint:162:14:text:1C4
+SY:C:X:__doprint:163:6:text:1D0
+SY:C:X:__doprint:165:9:text:1D9
+SY:C:X:__doprint:173:6:text:1E1
+SY:C:X:__doprint:175:8:text:1EA
+SY:C:X:__doprint:178:12:text:1F0
+SY:C:X:__doprint:179:26:text:1F5
+SY:C:X:__doprint:180:12:text:1FB
+SY:C:X:__doprint:182:12:text:1FF
+SY:C:X:__doprint:184:2:text:26D
+SY:C:X:__doprint:185:11:text:26D
+SY:C:X:__doprint:186:5:text:273
+SY:C:X:__doprint:188:33:text:27E
+SY:C:X:__doprint:189:5:text:290
+SY:C:X:__doprint:191:34:text:294
+SY:C:X:__doprint:192:4:text:29F
+SY:C:X:__doprint:193:2:text:2A3
+SY:C:X:__doprint:194:42:text:2A3
+SY:C:X:__doprint:195:4:text:2B5
+SY:C:X:__doprint:197:2:text:2B9
+SY:C:X:__doprint:198:2:text:2B9
+SY:C:X:__doprint:199:12:text:2B9
+SY:C:X:__doprint:200:5:text:2BF
+SY:C:X:__doprint:202:35:text:2CC
+SY:C:X:__doprint:204:6:text:2DE
+SY:C:X:__doprint:206:12:text:2F4
+SY:C:X:__doprint:207:16:text:30E
+SY:C:X:__doprint:209:15:text:316
+SY:C:X:__doprint:210:5:text:322
+SY:C:X:__doprint:212:29:text:326
+SY:C:X:__doprint:214:5:text:331
+SY:C:X:__doprint:215:9:text:339
+SY:C:X:__doprint:217:10:text:341
+SY:C:X:__doprint:218:15:text:34B
+SY:C:X:__doprint:221:4:text:351
+SY:C:X:__doprint:222:2:text:355
+SY:C:X:__doprint:223:2:text:355
+SY:C:X:__doprint:224:14:text:355
+SY:C:X:__doprint:225:2:text:359
+SY:C:X:__doprint:226:2:text:359
+SY:C:X:__doprint:227:32:text:359
+SY:C:X:__doprint:229:5:text:36B
+SY:C:X:__doprint:230:12:text:373
+SY:C:X:__doprint:232:51:text:379
+SY:C:X:__doprint:234:8:text:398
+SY:C:X:__doprint:236:5:text:39D
+SY:C:X:__doprint:238:14:text:3A4
+SY:C:X:__doprint:239:18:text:3A9
+SY:C:X:__doprint:241:18:text:3B3
+SY:C:X:__doprint:243:19:text:3B7
+SY:C:X:__doprint:245:8:text:3BD
+SY:C:X:__doprint:248:27:text:3C3
+SY:C:X:__doprint:249:15:text:3D9
+SY:C:X:__doprint:250:12:text:3E5
+SY:C:X:__doprint:252:5:text:3FC
+SY:C:X:__doprint:253:14:text:403
+SY:C:X:__doprint:254:18:text:40F
+SY:C:X:__doprint:256:15:text:419
+SY:C:X:__doprint:258:5:text:423
+SY:C:X:__doprint:259:14:text:436
+SY:C:X:__doprint:261:8:text:440
+SY:C:X:__doprint:261:17:text:445
+SY:C:X:__doprint:261:30:text:44B
+SY:C:X:__doprint:264:9:text:452
+SY:C:X:__doprint:266:16:text:459
+SY:C:X:__doprint:268:6:text:46C
+SY:C:X:__doprint:269:15:text:476
+SY:C:X:__doprint:272:4:text:484
+SY:C:X:__doprint:274:2:text:488
+SY:C:X:__doprint:275:32:text:488
+SY:C:X:__doprint:277:5:text:49A
+SY:C:X:__doprint:278:12:text:4A2
+SY:C:X:__doprint:280:39:text:4A8
+SY:C:X:__doprint:282:8:text:4C4
+SY:C:X:__doprint:282:17:text:4C9
+SY:C:X:__doprint:282:30:text:4CF
+SY:C:X:__doprint:285:19:text:4D6
+SY:C:X:__doprint:287:5:text:4DC
+SY:C:X:__doprint:288:14:text:4EF
+SY:C:X:__doprint:290:9:text:4F9
+SY:C:X:__doprint:292:16:text:500
+SY:C:X:__doprint:294:6:text:513
+SY:C:X:__doprint:295:15:text:51C
+SY:C:X:__doprint:298:4:text:52A
+SY:C:X:__doprint:300:2:text:52E
+SY:C:X:__doprint:301:40:text:52E
+SY:C:X:__doprint:302:4:text:53E
+SY:C:X:__doprint:303:0:text:542
+SY:C:X:__doprint:303:8:text:542
+SY:C:X:__doprint:304:11:text:542
+SY:C:X:__doprint:305:5:text:548
+SY:C:X:__doprint:307:33:text:553
+SY:C:X:__doprint:308:5:text:565
+SY:C:X:__doprint:310:34:text:569
+SY:C:X:__doprint:311:4:text:574
+SY:C:X:__doprint:313:2:text:578
+SY:C:X:__doprint:314:4:text:578
+SY:C:X:__doprint:316:2:text:57C
+SY:C:X:__doprint:317:32:text:57C
+SY:C:X:__doprint:318:5:text:587
+SY:C:X:__doprint:319:15:text:58F
+SY:C:X:__doprint:320:5:text:595
+SY:C:X:__doprint:322:9:text:5AC
+SY:C:X:__doprint:323:10:text:5B1
+SY:C:X:__doprint:325:11:text:5B7
+SY:C:X:__doprint:326:33:text:5D7
+SY:C:X:__doprint:327:6:text:5E0
+SY:C:X:__doprint:329:10:text:5E9
+SY:C:X:__doprint:331:10:text:5EF
+SY:C:X:__doprint:333:25:text:5F7
+SY:C:X:__doprint:334:6:text:604
+SY:C:X:__doprint:338:8:text:60D
+SY:C:X:__doprint:339:10:text:612
+SY:C:X:__doprint:341:7:text:61A
+SY:C:X:__doprint:342:7:text:62A
+SY:C:X:__doprint:344:31:text:62A
+SY:C:X:__doprint:345:6:text:63E
+SY:C:X:__doprint:348:5:text:649
+SY:C:X:__doprint:350:10:text:65E
+SY:C:X:__doprint:352:25:text:666
+SY:C:X:__doprint:353:6:text:673
+SY:C:X:__doprint:357:4:text:67C
+SY:C:X:__doprint:359:2:text:680
+SY:C:X:__doprint:360:13:text:680
+SY:C:X:__doprint:361:6:text:686
+SY:C:X:__doprint:363:42:text:691
+SY:C:X:__doprint:364:6:text:6A3
+SY:C:X:__doprint:366:39:text:6A7
+SY:C:X:__doprint:367:5:text:6B2
+SY:C:X:__doprint:369:2:text:6B6
+SY:C:X:__doprint:370:29:text:6B6
+SY:C:X:__doprint:371:0:text:6BC
+SY:C:X:__doprint:371:5:text:6BC
+SY:C:X:__doprint:372:13:text:6BC
+SY:C:X:__doprint:373:6:text:6C2
+SY:C:X:__doprint:375:42:text:6CF
+SY:C:X:__doprint:377:0:text:6E1
+SY:C:X:__doprint:377:26:text:6E1
+SY:C:X:__doprint:379:7:text:6E7
+SY:C:X:__doprint:380:20:text:6FD
+SY:C:X:__doprint:382:13:text:709
+SY:C:X:__doprint:386:7:text:70F
+SY:C:X:__doprint:393:59:text:727
+SY:C:X:__doprint:395:45:text:74F
+SY:C:X:__doprint:397:29:text:798
+SY:C:X:__doprint:400:20:text:7AE
+SY:C:X:__doprint:404:28:text:7FB
+SY:C:X:__doprint:405:16:text:81F
+SY:C:X:__doprint:407:6:text:83A
+SY:C:X:__doprint:408:13:text:841
+SY:C:X:__doprint:409:5:text:86B
+SY:C:X:__doprint:411:34:text:86F
+SY:C:X:__doprint:413:0:text:87A
+SY:C:X:__doprint:413:25:text:87A
+SY:C:X:__doprint:415:5:text:880
+SY:C:X:__doprint:416:18:text:888
+SY:C:X:__doprint:418:11:text:894
+SY:C:X:__doprint:421:25:text:89A
+SY:C:X:__doprint:422:13:text:8B1
+SY:C:X:__doprint:423:5:text:8BE
+SY:C:X:__doprint:424:12:text:8C5
+SY:C:X:__doprint:425:0:text:8DF
+SY:C:X:__doprint:426:5:text:8DF
+SY:C:X:__doprint:428:15:text:8EC
+SY:C:X:__doprint:430:5:text:904
+SY:C:X:__doprint:431:16:text:904
+SY:C:X:__doprint:432:16:text:90E
+SY:C:X:__doprint:433:7:text:918
+SY:C:X:__doprint:434:5:text:91A
+SY:C:X:__doprint:435:16:text:91A
+SY:C:X:__doprint:437:5:text:924
+SY:C:X:__doprint:438:16:text:924
+SY:C:X:__doprint:439:7:text:92E
+SY:C:X:__doprint:441:5:text:930
+SY:C:X:__doprint:442:16:text:930
+SY:C:X:__doprint:443:16:text:93A
+SY:C:X:__doprint:444:7:text:944
+SY:C:X:__doprint:447:0:text:944
+SY:C:X:__doprint:448:5:text:944
+SY:C:X:__doprint:449:14:text:94C
+SY:C:X:__doprint:450:10:text:958
+SY:C:X:__doprint:451:19:text:95F
+SY:C:X:__doprint:452:0:text:96A
+SY:C:X:__doprint:453:34:text:96A
+SY:C:X:__doprint:455:5:text:975
+SY:C:X:__doprint:457:10:text:98A
+SY:C:X:__doprint:459:31:text:992
+SY:C:X:__doprint:460:10:text:9A1
+SY:C:X:__doprint:463:9:text:9AA
+SY:C:X:__doprint:464:28:text:9BE
+SY:C:X:__doprint:466:5:text:9D0
+SY:C:X:__doprint:468:10:text:9D8
+SY:C:X:__doprint:470:31:text:9E0
+SY:C:X:__doprint:471:10:text:9EF
+SY:C:X:__doprint:475:4:text:9F8
+SY:C:X:__doprint:477:2:text:9FA
+SY:C:X:__doprint:478:6:text:9FA
+SY:C:X:__doprint:479:4:text:A01
+SY:C:X:__doprint:481:2:text:A03
+SY:C:X:__doprint:482:29:text:A03
+SY:C:X:__doprint:484:4:text:A13
+SY:C:X:__doprint:487:1:text:A21
+SY:C:Z:__doprint:487:1:text:A21
+SY:C:E:__doprint:text:___doprint:00000A25:487
+SY:C:T:  typ0 V (-1)
+SY:C:T:  typ1 L (4)
+SY:C:T:  typ2 l (4)
+SY:C:T:  typ3 C (1)
+SY:C:T:  typ4 c (1)
+SY:C:T:  typ5 S (2)
+SY:C:T:  typ6 s (2)
+SY:C:T:  typ7 g (4)
+SY:C:T:  typ8 G (4)
+SY:C:T:  typ9 h (4)
+SY:C:T:  typ10 R (2)
+SY:C:T:  typ11 I (2)
+SY:C:T:  typ12 i (2)
+SY:C:T:  typ13 E (2)
+SY:C:T:  typ14 F (2)
+SY:C:T:  typ15 P (2)
+SY:C:T:__doprint: typ16-__doprint Z (4)U float_long {\
+f:(0):(typ8);\
+l:(0):(typ1);\
+}
+SY:C:T:__doprint: typ17-__doprint Z (12)S _iobuf {\
+_base:(0):(typ18-__doprint);\
+_ptr:(2):(typ19-__doprint);\
+_filename:(4):(typ20-__doprint);\
+_cnt:(6):(typ12);\
+_flag:(8):(typ6);\
+_bufsiz:(10):(typ12);\
+}
+SY:C:T:__doprint: typ18-__doprint a *(typ3)
+SY:C:T:__doprint: typ19-__doprint a *(typ3)
+SY:C:T:__doprint: typ20-__doprint a *(typ3)
+SY:C:T:__doprint: typ21-__doprint A (7)(typ3)
+SY:C:T:__doprint: typ22-__doprint a *(typ3)
+SY:C:T:__doprint: typ23-__doprint a *(typ3)
+SY:C:T:__doprint: typ24-__doprint a *(typ17-__doprint)
+SY:C:T:__doprint: typ25-__doprint a *(typ3)
+SY:C:T:__doprint: typ26-__doprint a *(typ3)
+SY:C:T:__doprint: typ27-__doprint A (64)(typ3)
+SY:C:T:__doprint: typ28-__doprint a *(typ3)
+SY:C:T:__doprint: typ29-__doprint a *(typ3)
+SY:C:T: typ2 l (4)
+SY:C:T: typ4 c (1)
+SY:C:T: typ6 s (2)
+e

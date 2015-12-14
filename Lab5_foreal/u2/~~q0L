@@ -1,0 +1,59 @@
+mod:printf:O12:printf.o12
+seg:text:28
+seg:bss:0
+seg:data:0
+seg:rodata:0
+C:text	1B9C1A886E82CE000134EE8434EE8A34
+C:text	1600001B866C80EC801B843D
+RG:text:printf:00000011:O:W:___doprint:60
+G:text:printf:00000000:_printf
+SY:C:M:printf$../src/libc/common/printf.c
+SY:C:F:printf:text:_printf:00000000:11
+SY:C:X:printf:11:2:text:0
+SY:C:S:F:printf:printf:_printf:(typ11)(typ21-printf)(typ11)
+SY:C:S:L:printf:printf:fmt:6:(typ21-printf)
+SY:C:S:F:printf:__func__:___func__:(typ11)
+SY:C:S:L:printf:printf:argp:2:(typ22-printf)
+SY:C:S:L:printf:printf:r:0:(typ11)
+SY:C:X:printf:16:18:text:2
+SY:C:X:printf:17:38:text:6
+SY:C:X:printf:20:1:text:19
+SY:C:Z:printf:20:1:text:19
+SY:C:E:printf:text:_printf:0000001C:20
+SY:C:T:  typ0 V (-1)
+SY:C:T:  typ1 L (4)
+SY:C:T:  typ2 l (4)
+SY:C:T:  typ3 C (1)
+SY:C:T:  typ4 c (1)
+SY:C:T:  typ5 S (2)
+SY:C:T:  typ6 s (2)
+SY:C:T:  typ7 g (4)
+SY:C:T:  typ8 G (4)
+SY:C:T:  typ9 h (4)
+SY:C:T:  typ10 R (2)
+SY:C:T:  typ11 I (2)
+SY:C:T:  typ12 i (2)
+SY:C:T:  typ13 E (2)
+SY:C:T:  typ14 F (2)
+SY:C:T:  typ15 P (2)
+SY:C:T:printf: typ16-printf Z (4)U float_long {\
+f:(0):(typ8);\
+l:(0):(typ1);\
+}
+SY:C:T:printf: typ17-printf Z (12)S _iobuf {\
+_base:(0):(typ18-printf);\
+_ptr:(2):(typ19-printf);\
+_filename:(4):(typ20-printf);\
+_cnt:(6):(typ12);\
+_flag:(8):(typ6);\
+_bufsiz:(10):(typ12);\
+}
+SY:C:T:printf: typ18-printf a *(typ3)
+SY:C:T:printf: typ19-printf a *(typ3)
+SY:C:T:printf: typ20-printf a *(typ3)
+SY:C:T:printf: typ21-printf a *(typ3)
+SY:C:T:printf: typ22-printf a *(typ3)
+SY:C:T: typ2 l (4)
+SY:C:T: typ4 c (1)
+SY:C:T: typ6 s (2)
+e

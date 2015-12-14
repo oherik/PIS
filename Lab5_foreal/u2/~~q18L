@@ -1,0 +1,67 @@
+mod:_shrs32:O12:_shrs32.o12
+seg:text:25
+seg:bss:0
+seg:data:0
+seg:rodata:0
+C:text	EC84ED823635A68C841F270A67806681
+C:text	6682564326F631323D
+G:text:_shrs32:00000000:shrs32
+SY:C:M:_shrs32$../src/libcc/common/_shrs32.c
+SY:C:F:_shrs32:text:shrs32:00000000:9
+SY:C:X:_shrs32:9:13:text:0
+SY:C:S:F:_shrs32:shrs32:shrs32:(typ2)(typ2)(typ1)
+SY:C:S:L:_shrs32:shrs32:a:2:(typ2)
+SY:C:S:L:_shrs32:shrs32:amount:6:(typ1)
+SY:C:S:F:_shrs32:__func__:___func__:(typ11)
+SY:C:X:_shrs32:183:2:text:0
+SY:C:X:_shrs32:184:2:text:2
+SY:C:X:_shrs32:185:2:text:4
+SY:C:X:_shrs32:186:2:text:5
+SY:C:X:_shrs32:187:2:text:6
+SY:C:X:_shrs32:188:2:text:8
+SY:C:X:_shrs32:189:2:text:A
+SY:C:X:_shrs32:190:2:text:C
+SY:C:X:_shrs32:191:2:text:C
+SY:C:X:_shrs32:192:2:text:E
+SY:C:X:_shrs32:193:2:text:10
+SY:C:X:_shrs32:194:2:text:12
+SY:C:X:_shrs32:195:2:text:13
+SY:C:X:_shrs32:196:2:text:14
+SY:C:X:_shrs32:197:2:text:16
+SY:C:X:_shrs32:198:2:text:16
+SY:C:X:_shrs32:199:2:text:17
+SY:C:X:_shrs32:205:1:text:18
+SY:C:Z:_shrs32:205:1:text:18
+SY:C:E:_shrs32:text:shrs32:00000019:205
+SY:C:T:  typ0 V (-1)
+SY:C:T:  typ1 L (4)
+SY:C:T:  typ2 l (4)
+SY:C:T:  typ3 C (1)
+SY:C:T:  typ4 c (1)
+SY:C:T:  typ5 S (2)
+SY:C:T:  typ6 s (2)
+SY:C:T:  typ7 g (4)
+SY:C:T:  typ8 G (4)
+SY:C:T:  typ9 h (4)
+SY:C:T:  typ10 R (2)
+SY:C:T:  typ11 I (2)
+SY:C:T:  typ12 i (2)
+SY:C:T:  typ13 E (2)
+SY:C:T:  typ14 F (2)
+SY:C:T:  typ15 P (2)
+SY:C:T:_shrs32: typ16-_shrs32 Z (4)U float_long {\
+f:(0):(typ7);\
+l:(0):(typ1);\
+}
+SY:C:T:_shrs32: typ17-_shrs32 Z (4)U long_int {\
+l:(0):(typ1);\
+s:(0):(typ18-_shrs32);\
+}
+SY:C:T:_shrs32: typ18-_shrs32 Z (4)S {\
+msw:(0):(typ12);\
+lsw:(2):(typ12);\
+}
+SY:C:T: typ2 l (4)
+SY:C:T: typ4 c (1)
+SY:C:T: typ6 s (2)
+e

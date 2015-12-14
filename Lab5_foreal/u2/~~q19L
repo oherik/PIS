@@ -1,0 +1,67 @@
+mod:_shru32:O12:_shru32.o12
+seg:text:25
+seg:bss:0
+seg:data:0
+seg:rodata:0
+C:text	EC84ED823635A68C841F270A64806681
+C:text	6682564326F631323D
+G:text:_shru32:00000000:shru32
+SY:C:M:_shru32$../src/libcc/common/_shru32.c
+SY:C:F:_shru32:text:shru32:00000000:9
+SY:C:X:_shru32:9:13:text:0
+SY:C:S:F:_shru32:shru32:shru32:(typ2)(typ2)(typ1)
+SY:C:S:L:_shru32:shru32:a:2:(typ2)
+SY:C:S:L:_shru32:shru32:amount:6:(typ1)
+SY:C:S:F:_shru32:__func__:___func__:(typ11)
+SY:C:X:_shru32:183:1:text:0
+SY:C:X:_shru32:184:1:text:2
+SY:C:X:_shru32:185:1:text:4
+SY:C:X:_shru32:186:1:text:5
+SY:C:X:_shru32:187:1:text:6
+SY:C:X:_shru32:188:1:text:8
+SY:C:X:_shru32:189:1:text:A
+SY:C:X:_shru32:190:1:text:C
+SY:C:X:_shru32:191:1:text:C
+SY:C:X:_shru32:192:1:text:E
+SY:C:X:_shru32:193:1:text:10
+SY:C:X:_shru32:194:1:text:12
+SY:C:X:_shru32:195:1:text:13
+SY:C:X:_shru32:196:1:text:14
+SY:C:X:_shru32:197:1:text:16
+SY:C:X:_shru32:198:1:text:16
+SY:C:X:_shru32:199:1:text:17
+SY:C:X:_shru32:203:1:text:18
+SY:C:Z:_shru32:203:1:text:18
+SY:C:E:_shru32:text:shru32:00000019:203
+SY:C:T:  typ0 V (-1)
+SY:C:T:  typ1 L (4)
+SY:C:T:  typ2 l (4)
+SY:C:T:  typ3 C (1)
+SY:C:T:  typ4 c (1)
+SY:C:T:  typ5 S (2)
+SY:C:T:  typ6 s (2)
+SY:C:T:  typ7 g (4)
+SY:C:T:  typ8 G (4)
+SY:C:T:  typ9 h (4)
+SY:C:T:  typ10 R (2)
+SY:C:T:  typ11 I (2)
+SY:C:T:  typ12 i (2)
+SY:C:T:  typ13 E (2)
+SY:C:T:  typ14 F (2)
+SY:C:T:  typ15 P (2)
+SY:C:T:_shru32: typ16-_shru32 Z (4)U float_long {\
+f:(0):(typ7);\
+l:(0):(typ1);\
+}
+SY:C:T:_shru32: typ17-_shru32 Z (4)U long_int {\
+l:(0):(typ1);\
+s:(0):(typ18-_shru32);\
+}
+SY:C:T:_shru32: typ18-_shru32 Z (4)S {\
+msw:(0):(typ12);\
+lsw:(2):(typ12);\
+}
+SY:C:T: typ2 l (4)
+SY:C:T: typ4 c (1)
+SY:C:T: typ6 s (2)
+e

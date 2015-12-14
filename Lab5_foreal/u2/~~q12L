@@ -1,0 +1,92 @@
+mod:_ftosl:O12:_ftosl.o12
+seg:text:356
+seg:bss:0
+seg:data:0
+seg:rodata:0
+C:text	1B96ED8CEC8E6D866C88ED86EC888D00
+C:text	0026058C0000270210F72609CD000087
+C:text	C71820013CCD0000CC00FF3B35CD0000
+C:text	CC00173B35ED8EECF0103B351600001B
+C:text	883B351600001B888300962401036C84
+C:text	CD0080CC00003B35CD007FCCFFFF3B35
+C:text	ED8EECF0103B351600001B883B351600
+C:text	001B886D806C82EC848C00082F26ED86
+C:text	EC883B35CD8000CC00003B351600001B
+C:text	883B35CD7FFFCCFFFF3B351600001B88
+C:text	182000BDEC848C00002F23EC84CD0000
+C:text	85802701033B35ED84EC863B35160000
+C:text	1B886D806C82ED80EC8218200093EC84
+C:text	8C0000182C00388CFFE72F33ED80EC82
+C:text	8D000026058C0000270210F72721EC84
+C:text	40508200CD000085802701033B35ED84
+C:text	EC863B351600001B886D806C822009CD
+C:text	000087C718200049CD0000CC00013B35
+C:text	CD0000CC001F3B35ED8EECF0103B3516
+C:text	00001B883B351600001B888D00002605
+C:text	8C0000270210F72714ED80EC82B7C641
+C:text	51B7C64151C300012401022004ED80EC
+C:text	821B8A3D
+RG:text:_ftosl:0000003D:O:W:shru32:87
+RG:text:_ftosl:00000044:O:W:and32:91
+RG:text:_ftosl:00000068:O:W:and32:111
+RG:text:_ftosl:0000006F:O:W:or32:115
+RG:text:_ftosl:0000008D:O:W:and32:134
+RG:text:_ftosl:0000009C:O:W:or32:142
+RG:text:_ftosl:000000BE:O:W:shl32:165
+RG:text:_ftosl:00000105:O:W:shrs32:208
+RG:text:_ftosl:00000130:O:W:shru32:235
+RG:text:_ftosl:00000137:O:W:and32:239
+G:text:_ftosl:00000000:ftosl
+SY:C:M:_ftosl$../src/libcc/common/_ftosl.c
+SY:C:F:_ftosl:text:ftosl:00000000:9
+SY:C:X:_ftosl:9:13:text:0
+SY:C:S:F:_ftosl:ftosl:ftosl:(typ1)(typ7)
+SY:C:S:L:_ftosl:ftosl:a1:12:(typ7)
+SY:C:S:F:_ftosl:__func__:___func__:(typ11)
+SY:C:S:L:_ftosl:ftosl:fl1:6:(typ16-_ftosl)
+SY:C:S:L:_ftosl:ftosl:exp:4:(typ11)
+SY:C:S:L:_ftosl:ftosl:l:0:(typ1)
+SY:C:X:_ftosl:15:11:text:2
+SY:C:X:_ftosl:17:4:text:A
+SY:C:X:_ftosl:20:73:text:25
+SY:C:X:_ftosl:21:71:text:50
+SY:C:X:_ftosl:23:4:text:77
+SY:C:X:_ftosl:25:3:text:A4
+SY:C:X:_ftosl:27:14:text:AB
+SY:C:X:_ftosl:32:4:text:CE
+SY:C:X:_ftosl:33:12:text:EE
+SY:C:X:_ftosl:38:1:text:161
+SY:C:Z:_ftosl:38:1:text:161
+SY:C:E:_ftosl:text:ftosl:00000164:38
+SY:C:T:  typ0 V (-1)
+SY:C:T:  typ1 L (4)
+SY:C:T:  typ2 l (4)
+SY:C:T:  typ3 C (1)
+SY:C:T:  typ4 c (1)
+SY:C:T:  typ5 S (2)
+SY:C:T:  typ6 s (2)
+SY:C:T:  typ7 g (4)
+SY:C:T:  typ8 G (4)
+SY:C:T:  typ9 h (4)
+SY:C:T:  typ10 R (2)
+SY:C:T:  typ11 I (2)
+SY:C:T:  typ12 i (2)
+SY:C:T:  typ13 E (2)
+SY:C:T:  typ14 F (2)
+SY:C:T:  typ15 P (2)
+SY:C:T:_ftosl: typ16-_ftosl Z (4)U float_long {\
+f:(0):(typ7);\
+l:(0):(typ1);\
+}
+SY:C:T:_ftosl: typ17-_ftosl Z (4)U long_int {\
+l:(0):(typ1);\
+s:(0):(typ18-_ftosl);\
+}
+SY:C:T:_ftosl: typ18-_ftosl Z (4)S {\
+msw:(0):(typ12);\
+lsw:(2):(typ12);\
+}
+SY:C:T: typ2 l (4)
+SY:C:T: typ4 c (1)
+SY:C:T: typ6 s (2)
+e

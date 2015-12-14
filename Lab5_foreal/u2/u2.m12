@@ -4,6 +4,7 @@
 #
 #-----------------------------------------------
 #SETTINGS SECTION
+##CSIMSET=".\ml15.hc12sim"
 ##EXTMAKEFILE=""
 ##EXTMAKEFILEPARAM=""
 #+[BackCol(0)]=
@@ -60,10 +61,10 @@ FILES= \
 ##TARGETNAME="u2_Debug"
 ##OBJDIR="debug"
 ##TARGDIR="debug"
-##STDINCPATH=0
+##STDINCPATH=1
 ##STDLIBPATH=1
 ASFLAGS=-g -e
-CCFLAGS=-w2 -S
+CCFLAGS=-g -w4 -O
 LNFLAGS=-g -i default.lsc
 #-----------------------------------------------
 #OBJECT FILES SECTION
@@ -145,15 +146,18 @@ clean:
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/keyboardML15.c"\
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/keyboardML15.h"\
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/ports.h"
-	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  $(INC) -o"debug\keyboardML15.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/keyboardML15.c"
+	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
+	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"debug\keyboardML15.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/keyboardML15.c"
 "debug\displayML15.o12":	\
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/displayML15.c"\
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/displayML15.h"\
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/ports.h"
-	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  $(INC) -o"debug\displayML15.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/displayML15.c"
+	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
+	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"debug\displayML15.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/displayML15.c"
 "debug\main.o12":	\
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/main.c"
-	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  $(INC) -o"debug\main.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/main.c"
+	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
+	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"debug\main.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u2/main.c"
 !EICONF	Debug
 
 !IFCONF	Final

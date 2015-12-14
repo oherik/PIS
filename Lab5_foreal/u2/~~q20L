@@ -1,0 +1,58 @@
+mod:_sltof:O12:_sltof.o12
+seg:text:65
+seg:bss:0
+seg:data:0
+seg:rodata:0
+C:text	CD000087C73B35ED86EC883B35160000
+C:text	1B882C21ED82EC84B7C64151B7C64151
+C:text	C300012401023B351600001B84B7C688
+C:text	80B7C6200BED82EC843B351600001B84
+C:text	3D
+RG:text:_sltof:0000000E:O:W:cmp32:49
+RG:text:_sltof:00000029:O:W:ultof:67
+RG:text:_sltof:0000003C:O:W:ultof:81
+G:text:_sltof:00000000:sltof
+SY:C:M:_sltof$../src/libcc/common/_sltof.c
+SY:C:F:_sltof:text:sltof:00000000:10
+SY:C:X:_sltof:10:13:text:0
+SY:C:S:F:_sltof:sltof:sltof:(typ7)(typ1)
+SY:C:S:L:_sltof:sltof:a:2:(typ1)
+SY:C:S:F:_sltof:__func__:___func__:(typ11)
+SY:C:X:_sltof:12:4:text:0
+SY:C:X:_sltof:13:2:text:14
+SY:C:X:_sltof:15:2:text:35
+SY:C:X:_sltof:16:1:text:40
+SY:C:Z:_sltof:16:1:text:40
+SY:C:E:_sltof:text:sltof:00000041:16
+SY:C:T:  typ0 V (-1)
+SY:C:T:  typ1 L (4)
+SY:C:T:  typ2 l (4)
+SY:C:T:  typ3 C (1)
+SY:C:T:  typ4 c (1)
+SY:C:T:  typ5 S (2)
+SY:C:T:  typ6 s (2)
+SY:C:T:  typ7 g (4)
+SY:C:T:  typ8 G (4)
+SY:C:T:  typ9 h (4)
+SY:C:T:  typ10 R (2)
+SY:C:T:  typ11 I (2)
+SY:C:T:  typ12 i (2)
+SY:C:T:  typ13 E (2)
+SY:C:T:  typ14 F (2)
+SY:C:T:  typ15 P (2)
+SY:C:T:_sltof: typ16-_sltof Z (4)U float_long {\
+f:(0):(typ7);\
+l:(0):(typ1);\
+}
+SY:C:T:_sltof: typ17-_sltof Z (4)U long_int {\
+l:(0):(typ1);\
+s:(0):(typ18-_sltof);\
+}
+SY:C:T:_sltof: typ18-_sltof Z (4)S {\
+msw:(0):(typ12);\
+lsw:(2):(typ12);\
+}
+SY:C:T: typ2 l (4)
+SY:C:T: typ4 c (1)
+SY:C:T: typ6 s (2)
+e

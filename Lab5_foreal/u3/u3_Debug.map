@@ -17,10 +17,10 @@ SCRIPT READ FROM THE FOLLOWING FILE(S):
 ---------------------------
  GROUPS AND SEGMENTS:
 
-  GROUP 'test_group', READ/WRITE ,allocation to: 00001000 - 00001323, (size: 804 Bytes)
+  GROUP 'test_group', READ/WRITE ,allocation to: 00001000 - 00001361, (size: 866 Bytes)
    00001000 00001009 'init'
-   0000100A 0000131D 'text'
-   0000131E 00001323 'bss'
+   0000100A 0000135B 'text'
+   0000135C 00001361 'bss'
 
   GROUP 'interrupt_vectors', READ/WRITE
    NO SEGMENTS
@@ -30,18 +30,18 @@ SCRIPT READ FROM THE FOLLOWING FILE(S):
 ---------------------------
 LINKER DEFINED CONSTANTS:
    __rom_code_enabled = 0
-   __heap_start = 00001324
+   __heap_start = 00001362
   from segment 'text'
    0000100A '__text__start'
-   0000131E '__text__end'
-   00000314 '__text__size'
+   0000135C '__text__end'
+   00000352 '__text__size'
   from segment 'init'
    00001000 '__init__start'
    0000100A '__init__end'
    0000000A '__init__size'
   from segment 'bss'
-   0000131E '__bss__start'
-   00001324 '__bss__end'
+   0000135C '__bss__start'
+   00001362 '__bss__end'
    00000006 '__bss__size'
   from segment 'data'
    00000000 '__data__start'
@@ -61,52 +61,55 @@ GLOBAL SYMBOL(S):
 
  in module: 'clock' of type 'O12' defined in file 'clock.o12'
   in segment: 'text'
-   0000106F '_hold'
+   0000106B '_hold'
    0000100A '_init_clock'
-   00001058 '_get_time'
-   00001036 '_clock_inter'
+   00001063 '_get_time'
+   00001038 '_clock_inter'
   in segment: 'bss'
-   0000131E '_tick'
-   00001323 '_crgflgshadow'
-   00001322 '_crgintshadow'
+   00001361 '_crgflgshadow'
+   00001360 '_crgintshadow'
 
  in module: 'interrupt' of type 'O12' defined in file 'interrupt.o12'
   in segment: 'text'
-   00001073 '_IRQ_r'
-   00001070 '_clear_i'
+   00001099 '_IRQ_r'
+   00001096 '_clear_i'
 
  in module: 'main' of type 'O12' defined in file 'main.o12'
   in segment: 'text'
-   00001077 '_main'
+   0000109D '_main'
 
  in module: 'displayML15' of type 'O12' defined in file 'displayML15.o12'
   in segment: 'text'
-   000010AA '_display_digits'
-   000010DE '_display_dec'
+   000010DA '_display_digits'
+   0000110E '_display_dec'
 
- in module: '_div32' of type 'O12' defined in file '_div32.o12'
+ in module: '_add32' of type 'O12' defined in file '_add32.o12'
   in segment: 'text'
-   000011F5 'divs32'
-   00001121 'divu32'
-
- in module: '_and32' of type 'O12' defined in file '_and32.o12'
-  in segment: 'text'
-   000012BE 'and32'
+   00001151 'add32'
 
  in module: '_cmp32' of type 'O12' defined in file '_cmp32.o12'
   in segment: 'text'
-   000012CD 'cmp32'
+   00001160 'cmp32'
+
+ in module: '_div32' of type 'O12' defined in file '_div32.o12'
+  in segment: 'text'
+   0000124D 'divs32'
+   00001179 'divu32'
+
+ in module: '_and32' of type 'O12' defined in file '_and32.o12'
+  in segment: 'text'
+   00001316 'and32'
 
  in module: '_or32' of type 'O12' defined in file '_or32.o12'
   in segment: 'text'
-   000012E6 'or32'
+   00001325 'or32'
 
  in module: '_shl32' of type 'O12' defined in file '_shl32.o12'
   in segment: 'text'
-   000012F5 'shl32'
+   00001334 'shl32'
 
  in module: '_sub32' of type 'O12' defined in file '_sub32.o12'
   in segment: 'text'
-   0000130E 'sub32'
+   0000134D 'sub32'
 ---
  End of listfile

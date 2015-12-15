@@ -4,6 +4,7 @@
 #
 #-----------------------------------------------
 #SETTINGS SECTION
+##CSIMSET=".\ml3.hc12sim"
 ##EXTMAKEFILE=""
 ##EXTMAKEFILEPARAM=""
 #+[BackCol(0)]=
@@ -82,7 +83,8 @@ ASMDEFINES= \
 	_DEBUG
 
 DEFINES= \
-	_DEBUG
+	_DEBUG \
+	SIMULATOR
 
 UNDEFINES=
 #-----------------------------------------------
@@ -106,7 +108,8 @@ ASMDEF= \
  -D_DEBUG
 
 DEF= \
- -D_DEBUG
+ -D_DEBUG \
+ -DSIMULATOR
 
 UNDEF=
 
@@ -154,7 +157,9 @@ clean:
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/interrupt.s12"
 	ASSM  $(ASFLAGS) $(ASMDEF) -o"debug\interrupt.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/interrupt.s12"
 "debug\main.o12":	\
-	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/main.c"
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/main.c"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/clock.h"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/displayML15.h"
 	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
 	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"debug\main.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/main.c"
 "debug\displayML15.o12":	\
@@ -258,7 +263,9 @@ clean:
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/interrupt.s12"
 	ASSM  $(ASFLAGS) $(ASMDEF) -o"final\interrupt.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/interrupt.s12"
 "final\main.o12":	\
-	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/main.c"
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/main.c"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/clock.h"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/displayML15.h"
 	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
 	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"final\main.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u3/main.c"
 "final\displayML15.o12":	\

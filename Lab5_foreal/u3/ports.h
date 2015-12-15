@@ -10,20 +10,17 @@ typedef vec *vecptr;
 #define IRQ_VEC		*((vecptr) IRQ_VEC_ADR)
 
 //Klocka
-#define CLOCK_ADR	0x3ff0
+#define CLOCK_ADR	0x34
 #define CLOCK		*((port8ptr) CLOCK_ADR)
 
-#define CRGINT_ADR	CLOCK_ADR+4
-#define	CRGINT		*((port8ptr) CRGINT_ADR)
-
-#define CRGFLG_ADR	CLOCK_ADR+3
+#define CRGFLG_ADR	(CLOCK_ADR+3)
 #define	CRGFLG		*((port8ptr) CRGFLG_ADR)
 
-#define RTICTL_ADR	CLOCK_ADR+7
+#define CRGINT_ADR	(CLOCK_ADR+4)
+#define	CRGINT		*((port8ptr) CRGINT_ADR)
+
+#define RTICTL_ADR	(CLOCK_ADR+7)
 #define	RTICTL		*((port8ptr) RTICTL_ADR)
-
-
-
 
 //Ml4
 #define	ML4IN_ADDRESS	0x600

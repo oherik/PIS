@@ -1,39 +1,52 @@
 #include "clock.h"
 #include "ports.h"
 
-#define setbit(x, bit) (x) |= (1 << (bit))
-#define clearbit(x, bit) (x) &= ~(1 << (bit)) 
+#ifdef SIMULATOR
+	#define DIVIDER 0x10
+   #define RATIO 130
+#else
+	#define DIVIDER 0x49
+   #define RATIO 1
+#endif
 
-volatile time_type tick;	//Sparar antalet avbrottsticks
+static volatile time_type millis;
 port8	crgintshadow, crgflgshadow;
 
 extern void clear_i(void);	//Assemblerrutin, nollställ i-flaggan
 extern void IRQ_r(void);	//Assemblerrutin, avbrottsrutin
 
 void init_clock(void){
-	tick = 0;
-	crgintshadow = 0;
+int tst;
+	//Nollställ variabler
+	millis = 0;
 	crgflgshadow = 0;
 	
-	RTICTL = 1;
+	//Sätt avbrottstid
+	tst = DIVIDER;
+	RTICTL = tst;
 	
-	setbit(crgintshadow,7);
+	//Aktivera avbrott i CRG
+	crgintshadow = 0x80;
 	CRGINT = crgintshadow;
 	
+	//På med avbrottsurtinen
 	IRQ_VEC = IRQ_r;
+	
+	//Nollställ i-flaggan
 	clear_i();
 }
 void clock_inter(void){
-	tick++;
-	setbit(crgflgshadow, 7);
+	millis+=RATIO;
+	crgflgshadow |= 0x80L;
 	CRGFLG = crgflgshadow;
 }
 
 time_type get_time(void){
-	//beräkna? 
-	return tick/10;
+	return millis;
 }
 void hold(time_type time){
-
+	time_type start_time = get_time();
+	while(get_time()<(start_time+time)){
+	}					//busy wait
 }
 

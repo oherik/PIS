@@ -39,3 +39,14 @@ typedef vec *vecptr;
 #define ML15MODE 	*((port8ptr) DISPLAYMODE_ADDRESS) 
 #define ML15DATA 	*((port8ptr) DISPLAYDATA_ADDRESS)
 
+//Drill
+#ifdef SIMULATOR
+	#define DRILL_STATUS_ADR 0x401
+#else
+	#define DRILL_STATUS_ADR 0x600
+#endif
+#define	DRILL_CONTROL_ADR	0x400
+#define DRILLSTATUS	*((port8ptr) DRILL_STATUS_ADR) 
+#define DRILL		*((port8ptr) DRILL_CONTROL_ADR)
+	
+

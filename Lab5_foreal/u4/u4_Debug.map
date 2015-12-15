@@ -17,11 +17,11 @@ SCRIPT READ FROM THE FOLLOWING FILE(S):
 ---------------------------
  GROUPS AND SEGMENTS:
 
-  GROUP 'test_group', READ/WRITE ,allocation to: 00001000 - 000013E3, (size: 996 Bytes)
+  GROUP 'test_group', READ/WRITE ,allocation to: 00001000 - 000013E9, (size: 1002 Bytes)
    00001000 00001009 'init'
-   0000100A 000013B1 'text'
-   000013B2 000013DB 'data'
-   000013DC 000013E3 'bss'
+   0000100A 000013B7 'text'
+   000013B8 000013E1 'data'
+   000013E2 000013E9 'bss'
 
   GROUP 'interrupt_vectors', READ/WRITE
    NO SEGMENTS
@@ -31,18 +31,18 @@ SCRIPT READ FROM THE FOLLOWING FILE(S):
 ---------------------------
 LINKER DEFINED CONSTANTS:
    __rom_code_enabled = 0
-   __heap_start = 000013E4
+   __heap_start = 000013EA
   from segment 'text'
    0000100A '__text__start'
-   000013B2 '__text__end'
-   000003A8 '__text__size'
+   000013B8 '__text__end'
+   000003AE '__text__size'
   from segment 'bss'
-   000013DC '__bss__start'
-   000013E4 '__bss__end'
+   000013E2 '__bss__start'
+   000013EA '__bss__end'
    00000008 '__bss__size'
   from segment 'data'
-   000013B2 '__data__start'
-   000013DC '__data__end'
+   000013B8 '__data__start'
+   000013E2 '__data__end'
    0000002A '__data__size'
   from segment 'rodata'
    00000000 '__rodata__start'
@@ -62,8 +62,8 @@ GLOBAL SYMBOL(S):
    00001063 '_get_time'
    00001038 '_clock_inter'
   in segment: 'bss'
-   000013E1 '_crgflgshadow'
-   000013E0 '_crgintshadow'
+   000013E7 '_crgflgshadow'
+   000013E6 '_crgintshadow'
 
  in module: 'main' of type 'O12' defined in file 'main.o12'
   in segment: 'text'
@@ -80,32 +80,32 @@ GLOBAL SYMBOL(S):
    000011A5 '_DrillUp'
    000011B0 '_Alarm'
    00001136 '_Outzero'
-   00001242 '_Nstep'
+   0000123F '_Nstep'
    00001177 '_MotorStart'
-   00001263 '_DrillDownTest'
-   000012EA '_DoAuto'
-   000012C1 '_RefPos'
+   0000126A '_DrillDownTest'
+   000012F1 '_DoAuto'
+   000012C8 '_RefPos'
    000010FB '_Outone'
-   000012AF '_DrillHole'
+   000012B6 '_DrillHole'
    000010F6 '_DrillInit'
    0000119A '_DrillDown'
    000011F6 '_Step'
 
  in module: 'interrupt' of type 'O12' defined in file 'interrupt.o12'
   in segment: 'text'
-   00001358 '_IRQ_r'
-   00001355 '_clear_i'
+   0000135F '_IRQ_r'
+   0000135C '_clear_i'
 
  in module: 'keyboardML15' of type 'O12' defined in file 'keyboardML15.o12'
   in segment: 'text'
-   0000135C '_get_key'
+   00001363 '_get_key'
 
  in module: '_add32' of type 'O12' defined in file '_add32.o12'
   in segment: 'text'
-   00001389 'add32'
+   00001390 'add32'
 
  in module: '_cmp32' of type 'O12' defined in file '_cmp32.o12'
   in segment: 'text'
-   00001398 'cmp32'
+   0000139F 'cmp32'
 ---
  End of listfile

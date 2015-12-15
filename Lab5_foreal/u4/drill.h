@@ -7,6 +7,8 @@ int DrillDownTest(void);
 void Alarm(int);
 int DrillHole(void);
 int RefPos(void);
-void DoAuto(void);
+void DoAuto(int*);
 void Outzero(int);
 void Outone(int);
+
+//extern int* pattern;

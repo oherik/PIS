@@ -1,32 +1,43 @@
 mod:main:O12:main.o12
-seg:text:53
+seg:text:75
 seg:bss:0
 seg:data:0
-seg:rodata:0
-C:text	1B9A1600001600006D826C84CD0000CC
-C:text	03E83B35ED86EC883B351600001B886C
-C:text	80CD0000CC03E83B351600001B841820
-C:text	FFD31B863D
-RG:text:main:00000003:O:W:_init_clock:37
-RG:text:main:00000006:O:W:_get_time:43
-RG:text:main:0000001B:O:W:divu32:56
-RG:text:main:0000002A:O:W:_hold:65
+seg:rodata:84
+C:text	1BF1A41A88CD0000CC00544918027131
+C:text	0434F91A886E861600001600006D826C
+C:text	84CD0000CC03E83B35ED86EC883B3516
+C:text	00001B886C80CD0000CC03E83B351600
+C:text	001B841820FFD31BF05C3D
+C:rodata	000000003F8000003F8000003F800000
+C:rodata	3F8000003F8000003F8000003F800000
+C:rodata	400000003F80000040A0000040000000
+C:rodata	40000000400000004000000040800000
+C:rodata	40800000404000004100000040000000
+C:rodata	437F0000
+RG:text:main:00000018:O:W:_init_clock:77
+RG:text:main:0000001B:O:W:_get_time:83
+RG:text:main:00000030:O:W:divu32:96
+RG:text:main:0000003F:O:W:_hold:105
+RL:text:main:00000006:O:W:00000000:rodata:62
 G:text:main:00000000:_main
 SY:C:M:main$C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/main.c
-SY:C:F:main:text:_main:00000000:3
-SY:C:X:main:3:1:text:0
+SY:C:F:main:text:_main:00000000:4
+SY:C:X:main:4:1:text:0
 SY:C:S:F:main:main:_main:(typ0)(typ0)
 SY:C:S:F:main:__func__:___func__:(typ11)
+SY:C:S:L:main:main:pattern:8:(typ16-main)
+SY:C:S:L:main:main:pattern_ptr:6:(typ17-main)
 SY:C:S:L:main:main:time:2:(typ2)
 SY:C:S:L:main:main:time_sec:0:(typ12)
-SY:C:X:main:6:11:text:2
-SY:C:X:main:7:6:text:5
-SY:C:X:main:8:18:text:5
-SY:C:X:main:9:21:text:C
-SY:C:X:main:10:21:text:21
-SY:C:X:main:12:1:text:32
-SY:C:Z:main:12:1:text:32
-SY:C:E:main:text:_main:00000035:12
+SY:C:X:main:6:26:text:3
+SY:C:X:main:10:11:text:17
+SY:C:X:main:11:6:text:1A
+SY:C:X:main:12:18:text:1A
+SY:C:X:main:13:21:text:21
+SY:C:X:main:14:21:text:36
+SY:C:X:main:16:1:text:47
+SY:C:Z:main:16:1:text:47
+SY:C:E:main:text:_main:0000004B:16
 SY:C:T:  typ0 V (-1)
 SY:C:T:  typ1 L (4)
 SY:C:T:  typ2 l (4)
@@ -43,6 +54,8 @@ SY:C:T:  typ12 i (2)
 SY:C:T:  typ13 E (2)
 SY:C:T:  typ14 F (2)
 SY:C:T:  typ15 P (2)
+SY:C:T:main: typ16-main A (84)(typ8)
+SY:C:T:main: typ17-main a *(typ11)
 SY:C:T: typ2 l (4)
 SY:C:T: typ4 c (1)
 SY:C:T: typ6 s (2)

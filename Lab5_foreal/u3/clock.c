@@ -31,6 +31,7 @@ int tst;
 	
 	//På med avbrottsurtinen
 	IRQ_VEC = IRQ_r;
+	STD_IRQ_VEC = IRQ_r;
 	
 	//Nollställ i-flaggan
 	clear_i();

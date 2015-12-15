@@ -9,6 +9,10 @@ typedef vec *vecptr;
 #define IRQ_VEC_ADR	0x3ff0
 #define IRQ_VEC		*((vecptr) IRQ_VEC_ADR)
 
+//Avbrott
+#define STD_IRQ_VEC_ADR	0x3ff2
+#define STD_IRQ_VEC		*((vecptr) STD_IRQ_VEC_ADR)
+
 //Klocka
 #define CLOCK_ADR	0x34
 #define CLOCK		*((port8ptr) CLOCK_ADR)

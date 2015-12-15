@@ -107,7 +107,41 @@ int DrillHole(void){
 	return error;
 }
 
+int RefPos(void){
+	int step_error;
+	unsigned int status = DRILLSTATUS;
+	while(status & 0x01 == 0){
+		step_error = Step();
+		if(step_error == 0){
+			return 0;
+		}
+	}
+	return 1;
+}
 
-int DrillDownTest(void);
-int RefPos(void);
-void DoAuto(void);
+void DoAuto(int* pattern){
+	int error;
+	int* steps = pattern;
+
+	error = RefPos();
+	if(error == 0){
+		return;
+	}
+	MotorStart();
+	hold((time_type)250);
+	while(*steps != 0xFF){
+		error = NStep(*steps);
+		if(error == 0){
+			MotorStop();
+			return;
+		}
+		error = DrillHole();
+		if(error == 0){
+			MotorStop();
+			return;
+		}
+		steps = steps+ 1;
+		
+		}
+	MotorStop();
+}

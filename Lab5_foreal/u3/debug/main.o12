@@ -45,12 +45,6 @@ SY:C:T:  typ12 i (2)
 SY:C:T:  typ13 E (2)
 SY:C:T:  typ14 F (2)
 SY:C:T:  typ15 P (2)
-SY:C:T:main: typ16-main Z (4)S sCRG {\
-synr:(0):(typ4);\
-refdv:(1):(typ4);\
-ctflg:(2):(typ4);\
-crgflg:(3):(typ4);\
-}
 SY:C:T: typ2 l (4)
 SY:C:T: typ4 c (1)
 SY:C:T: typ6 s (2)

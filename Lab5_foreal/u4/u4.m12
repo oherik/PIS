@@ -151,14 +151,18 @@ clean:
 	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"debug\clock.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/clock.c"
 "debug\main.o12":	\
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/main.c"\
-	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/clock.h"
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/clock.h"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/drill.h"
 	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
 	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"debug\main.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/main.c"
 "debug\startup.o12":	\
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/startup.s12"
 	ASSM  $(ASFLAGS) $(ASMDEF) -o"debug\startup.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/startup.s12"
 "debug\drill.o12":	\
-	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/drill.c"
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/drill.c"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/ports.h"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/drill.h"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/clock.h"
 	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
 	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"debug\drill.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/drill.c"
 "debug\interrupt.o12":	\
@@ -254,14 +258,18 @@ clean:
 	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"final\clock.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/clock.c"
 "final\main.o12":	\
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/main.c"\
-	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/clock.h"
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/clock.h"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/drill.h"
 	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
 	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"final\main.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/main.c"
 "final\startup.o12":	\
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/startup.s12"
 	ASSM  $(ASFLAGS) $(ASMDEF) -o"final\startup.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/startup.s12"
 "final\drill.o12":	\
-	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/drill.c"
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/drill.c"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/ports.h"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/drill.h"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/clock.h"
 	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
 	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"final\drill.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/drill.c"
 "final\interrupt.o12":	\

@@ -2,7 +2,13 @@
 #include "drill.h"
 #include "clock.h"
 
-static unsigned int DCShadow;
+static unsigned char DCShadow;
+static int pattern[21] = { 0, 1, 1, 1, 1, 1, 1, 1, 2, 1, 5, 2, 2, 2, 2, 4, 4, 3, 8, 2, 0xFF};
+
+
+void DrillInit(void){
+	DCShadow = 0;
+}
 
 void Outone(int bit){		//Sätter en bit i borren till 1
 	unsigned int mask = 1;
@@ -27,10 +33,10 @@ void Outzero(int bit){ 		//Sätter en bit i borren till 0
 }
 
 void MotorStart(void){
-	if(DCShadow & 0x02 == 0){		//Kolla om motorn är startad
+	//if(DCShadow & 0x02 == 0){		//Kolla om motorn är startad
 		Outone(2);
 		hold((time_type)1000);	
-	}
+	//}
 }
 
 void MotorStop(void){
@@ -58,44 +64,47 @@ void Alarm(int count){
 }
 
 int Step(void){
-	unsigned int status = DRILLSTATUS;
-	if(status & 0x02 == 0){
+	unsigned char status = DRILLSTATUS;
+	if((status & 0x02) != 0){
 		Alarm(2);
 		return 0;
+	} else{
+		Outone(1);
+		Outone(0);
+		hold((time_type)500);
+		Outzero(0);
+		return 1;
 	}
-	Outone(1);
-	Outone(0);
-	hold((time_type)500);
-	Outzero(0);
-	return 1;
 
 }
 
-int NStep(int steps){
-int error;
-	while(steps>0){
-		error = Step();
-		if(error == 0){
-			return 0;
+int Nstep(int steps){
+	int error = 1;
+	while(error != 0){
+		if(steps==0){
+			return 1;
+		} else {
+			steps = steps - 1;
+			error = Step();	
 		}
+		return 0;
 	}
-	return 1;
 }
 
 int DrillDownTest(void){
 	char tries = 20;
-	unsigned int status;
-	while((status & 0x04 != 0)){
+	unsigned char status = DRILLSTATUS;
+	while(tries > 0){
 		status = DRILLSTATUS;
-		if(tries == 0){
-			Alarm(2);
-			return 0;
-		} else{
+		if((status & 4) != 0){
+			return 1;
+		} else {
 			hold((time_type)250);
-			tries--;
+			tries = tries - 1;
 		}
 	}
-	return 1;
+	Alarm(2);
+	return 0;
 }
 
 
@@ -119,7 +128,7 @@ int RefPos(void){
 	return 1;
 }
 
-void DoAuto(int* pattern){
+void DoAuto(void){
 	int error;
 	int* steps = pattern;
 
@@ -130,7 +139,7 @@ void DoAuto(int* pattern){
 	MotorStart();
 	hold((time_type)250);
 	while(*steps != 0xFF){
-		error = NStep(*steps);
+		error = Nstep(*steps);
 		if(error == 0){
 			MotorStop();
 			return;

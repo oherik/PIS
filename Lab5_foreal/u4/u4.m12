@@ -4,6 +4,7 @@
 #
 #-----------------------------------------------
 #SETTINGS SECTION
+##CSIMSET=".\drill_keyboard.hc12sim"
 ##EXTMAKEFILE=""
 ##EXTMAKEFILEPARAM=""
 #+[BackCol(0)]=
@@ -157,7 +158,8 @@ clean:
 "debug\main.o12":	\
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/main.c"\
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/clock.h"\
-	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/drill.h"
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/drill.h"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/keyboardML15.h"
 	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
 	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"debug\main.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/main.c"
 "debug\startup.o12":	\
@@ -273,7 +275,8 @@ clean:
 "final\main.o12":	\
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/main.c"\
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/clock.h"\
-	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/drill.h"
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/drill.h"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/keyboardML15.h"
 	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
 	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"final\main.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/main.c"
 "final\startup.o12":	\

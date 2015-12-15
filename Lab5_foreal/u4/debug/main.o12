@@ -1,43 +1,81 @@
 mod:main:O12:main.o12
-seg:text:75
+seg:text:110
 seg:bss:0
 seg:data:0
 seg:rodata:84
-C:text	1BF1A41A88CD0000CC00544918027131
-C:text	0434F91A886E861600001600006D826C
-C:text	84CD0000CC03E83B35ED86EC883B3516
-C:text	00001B886C80CD0000CC03E83B351600
-C:text	001B841820FFD31BF05C3D
+C:text	1BF1A91A83CD0000CC00544918027131
+C:text	0434F91A836E811600001600006B80E6
+C:text	80B714C1071822003159CE000005E716
+C:text	000020261600002021160000201C1600
+C:text	0020171600002012160000200D160000
+C:text	2008EE81341600001B821BF0573D
+C:text	00000000000000000000000000000000
 C:rodata	000000003F8000003F8000003F800000
 C:rodata	3F8000003F8000003F8000003F800000
 C:rodata	400000003F80000040A0000040000000
 C:rodata	40000000400000004000000040800000
 C:rodata	40800000404000004100000040000000
 C:rodata	437F0000
-RG:text:main:00000018:O:W:_init_clock:77
-RG:text:main:0000001B:O:W:_get_time:83
-RG:text:main:00000030:O:W:divu32:96
-RG:text:main:0000003F:O:W:_hold:105
-RL:text:main:00000006:O:W:00000000:rodata:62
+RG:text:main:00000018:O:W:_init_clock:75
+RG:text:main:0000001B:O:W:_get_key:79
+RG:text:main:00000030:O:W:_MotorStart:96
+RG:text:main:00000035:O:W:_MotorStop:105
+RG:text:main:0000003A:O:W:_DrillDown:114
+RG:text:main:0000003F:O:W:_DrillUp:123
+RG:text:main:00000044:O:W:_Step:132
+RG:text:main:00000049:O:W:_DrillHole:141
+RG:text:main:0000004E:O:W:_RefPos:150
+RG:text:main:00000056:O:W:_DoAuto:161
+RL:text:main:00000006:O:W:00000000:rodata:61
+RL:text:main:0000002B:O:W:0000005E:text:89
+RL:text:main:0000005E:O:W:0000002F:text:178
+RL:text:main:00000060:O:W:00000034:text:178
+RL:text:main:00000062:O:W:00000039:text:178
+RL:text:main:00000064:O:W:0000003E:text:178
+RL:text:main:00000066:O:W:00000043:text:178
+RL:text:main:00000068:O:W:00000048:text:178
+RL:text:main:0000006A:O:W:0000004D:text:178
+RL:text:main:0000006C:O:W:00000052:text:178
 G:text:main:00000000:_main
 SY:C:M:main$C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/main.c
-SY:C:F:main:text:_main:00000000:4
-SY:C:X:main:4:1:text:0
+SY:C:F:main:text:_main:00000000:5
+SY:C:X:main:5:1:text:0
 SY:C:S:F:main:main:_main:(typ0)(typ0)
 SY:C:S:F:main:__func__:___func__:(typ11)
-SY:C:S:L:main:main:pattern:8:(typ16-main)
-SY:C:S:L:main:main:pattern_ptr:6:(typ17-main)
-SY:C:S:L:main:main:time:2:(typ2)
-SY:C:S:L:main:main:time_sec:0:(typ12)
-SY:C:X:main:6:26:text:3
+SY:C:S:L:main:main:pattern:3:(typ16-main)
+SY:C:S:L:main:main:pattern_ptr:1:(typ17-main)
+SY:C:S:L:main:main:key:0:(typ3)
+SY:C:X:main:7:26:text:3
 SY:C:X:main:10:11:text:17
-SY:C:X:main:11:6:text:1A
-SY:C:X:main:12:18:text:1A
-SY:C:X:main:13:21:text:21
-SY:C:X:main:14:21:text:36
-SY:C:X:main:16:1:text:47
-SY:C:Z:main:16:1:text:47
-SY:C:E:main:text:_main:0000004B:16
+SY:C:X:main:12:15:text:1A
+SY:C:X:main:14:7:text:1F
+SY:C:X:main:15:6:text:2F
+SY:C:X:main:16:20:text:2F
+SY:C:X:main:17:10:text:32
+SY:C:X:main:18:6:text:34
+SY:C:X:main:19:11:text:34
+SY:C:X:main:20:2:text:37
+SY:C:X:main:21:1:text:39
+SY:C:X:main:22:11:text:39
+SY:C:X:main:23:2:text:3C
+SY:C:X:main:24:1:text:3E
+SY:C:X:main:25:9:text:3E
+SY:C:X:main:26:2:text:41
+SY:C:X:main:27:1:text:43
+SY:C:X:main:28:6:text:43
+SY:C:X:main:29:2:text:46
+SY:C:X:main:30:1:text:48
+SY:C:X:main:31:11:text:48
+SY:C:X:main:32:2:text:4B
+SY:C:X:main:33:1:text:4D
+SY:C:X:main:34:8:text:4D
+SY:C:X:main:35:2:text:50
+SY:C:X:main:36:1:text:52
+SY:C:X:main:37:19:text:52
+SY:C:X:main:38:2:text:5A
+SY:C:X:main:44:1:text:5A
+SY:C:Z:main:44:1:text:5A
+SY:C:E:main:text:_main:0000006E:44
 SY:C:T:  typ0 V (-1)
 SY:C:T:  typ1 L (4)
 SY:C:T:  typ2 l (4)

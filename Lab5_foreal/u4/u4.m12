@@ -53,7 +53,9 @@ FILES= \
 	".\startup.s12" "" "1"  \
 	".\drill.c" "" "1"  \
 	".\drill.h" "" "1"  \
-	".\interrupt.s12" "" "1" 
+	".\interrupt.s12" "" "1"  \
+	".\keyboardML15.c" "" "1"  \
+	".\keyboardML15.h" "" "1" 
 #-----------------------------------------------
 #PROJECT OPTIONS SECTION
 
@@ -74,7 +76,8 @@ OBJ= \
 	"debug\main.o12" \
 	"debug\startup.o12" \
 	"debug\drill.o12" \
-	"debug\interrupt.o12"
+	"debug\interrupt.o12" \
+	"debug\keyboardML15.o12"
 #-----------------------------------------------
 #DEFINES/UNDEFINES SECTION
 
@@ -138,6 +141,8 @@ clean:
 	RMFI "debug\drill.o12"
 	RMFI "debug\drill.o12"
 	RMFI "debug\interrupt.o12"
+	RMFI "debug\keyboardML15.o12"
+	RMFI "debug\keyboardML15.o12"
 #-----------------------------------------------
 
 
@@ -168,6 +173,12 @@ clean:
 "debug\interrupt.o12":	\
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/interrupt.s12"
 	ASSM  $(ASFLAGS) $(ASMDEF) -o"debug\interrupt.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/interrupt.s12"
+"debug\keyboardML15.o12":	\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/keyboardML15.c"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/keyboardML15.h"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/ports.h"
+	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
+	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"debug\keyboardML15.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/keyboardML15.c"
 !EICONF	Debug
 
 !IFCONF	Final
@@ -187,7 +198,8 @@ OBJ= \
 	"final\main.o12" \
 	"final\startup.o12" \
 	"final\drill.o12" \
-	"final\interrupt.o12"
+	"final\interrupt.o12" \
+	"final\keyboardML15.o12"
 #-----------------------------------------------
 #DEFINES/UNDEFINES SECTION
 
@@ -245,6 +257,8 @@ clean:
 	RMFI "final\drill.o12"
 	RMFI "final\drill.o12"
 	RMFI "final\interrupt.o12"
+	RMFI "final\keyboardML15.o12"
+	RMFI "final\keyboardML15.o12"
 #-----------------------------------------------
 
 
@@ -275,4 +289,10 @@ clean:
 "final\interrupt.o12":	\
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/interrupt.s12"
 	ASSM  $(ASFLAGS) $(ASMDEF) -o"final\interrupt.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/interrupt.s12"
+"final\keyboardML15.o12":	\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/keyboardML15.c"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/keyboardML15.h"\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/ports.h"
+	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
+	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"final\keyboardML15.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/keyboardML15.c"
 !EICONF	Final

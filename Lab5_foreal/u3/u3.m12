@@ -43,6 +43,10 @@
 ##OTYPE=1
 #-----------------------------------------------
 #OPEN FILE SECTION
+##OF ".\clock.c"
+##OF ".\interrupt.s12"
+##OF ".\displayML15.c"
+##OF ".\main.c"
 #-----------------------------------------------
 #PROJECT FILES SECTION
 

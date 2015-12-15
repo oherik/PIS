@@ -1,0 +1,108 @@
+QLD (Version 4.8.1)- Link/Load Summary: 'debug\uppgift3_Debug.s19'
+SCRIPT FILES FROM THE FOLLOWING PATH(S):
+  'C:/Program Files (x86)/GMV/EducDist/config/xcc12'
+
+SCRIPT READ FROM THE FOLLOWING FILE(S):
+  'default.lsc'
+
+---------------------------
+ SEARCHED LIBRARIES:
+ 'C:/Program Files (x86)/GMV/EducDist/lib/xcc12/libcd.e12'
+ 'C:/Program Files (x86)/GMV/EducDist/lib/xcc12/libed.e12'
+ 'C:/Program Files (x86)/GMV/EducDist/lib/xcc12/librtkd.e12'
+ 'C:/Program Files (x86)/GMV/EducDist/lib/xcc12/libccd.e12'
+
+---------------------------
+ PROGRAM ENTRY:'__start'
+---------------------------
+ GROUPS AND SEGMENTS:
+
+  GROUP 'test_group', READ/WRITE ,allocation to: 00001000 - 000012F7, (size: 760 Bytes)
+   00001000 00001009 'init'
+   0000100A 000012F3 'text'
+   000012F4 000012F7 'bss'
+
+  GROUP 'interrupt_vectors', READ/WRITE
+   NO SEGMENTS
+
+  GROUP 'const_group',
+   NO SEGMENTS
+---------------------------
+LINKER DEFINED CONSTANTS:
+   __rom_code_enabled = 0
+   __heap_start = 000012F8
+  from segment 'text'
+   0000100A '__text__start'
+   000012F4 '__text__end'
+   000002EA '__text__size'
+  from segment 'init'
+   00001000 '__init__start'
+   0000100A '__init__end'
+   0000000A '__init__size'
+  from segment 'bss'
+   000012F4 '__bss__start'
+   000012F8 '__bss__end'
+   00000004 '__bss__size'
+  from segment 'data'
+   00000000 '__data__start'
+   00000000 '__data__end'
+   00000000 '__data__size'
+  from segment 'rodata'
+   00000000 '__rodata__start'
+   00000000 '__rodata__end'
+   00000000 '__rodata__size'
+---------------------------
+GLOBAL SYMBOL(S):
+
+ in module: 'startup3' of type 'O12' defined in file 'startup3.o12'
+  in segment: 'init'
+   00001006 '_exit'
+   00001000 '__start'
+
+ in module: 'clock' of type 'O12' defined in file 'clock.o12'
+  in segment: 'text'
+   00001060 '_hold'
+   0000100A '_init_clock'
+   00001049 '_get_time'
+   0000102D '_clock_inter'
+
+ in module: 'avbrott' of type 'O12' defined in file 'avbrott.o12'
+  in segment: 'text'
+   0000108E '_avbrottsrutin'
+   0000108B '_nollstalla_I_flaggan'
+
+ in module: 'main' of type 'O12' defined in file 'main.o12'
+  in segment: 'text'
+   00001092 '_main'
+
+ in module: 'displayML15' of type 'O12' defined in file 'displayML15.o12'
+  in segment: 'text'
+   000010BE '_display_digits'
+   000010F7 '_display_dec'
+
+ in module: '_cmp32' of type 'O12' defined in file '_cmp32.o12'
+  in segment: 'text'
+   00001139 'cmp32'
+
+ in module: '_mul32' of type 'O12' defined in file '_mul32.o12'
+  in segment: 'text'
+   000011E5 'muls32'
+   00001152 'mulu32'
+
+ in module: '_add32' of type 'O12' defined in file '_add32.o12'
+  in segment: 'text'
+   000012AE 'add32'
+
+ in module: '_and32' of type 'O12' defined in file '_and32.o12'
+  in segment: 'text'
+   000012BD 'and32'
+
+ in module: '_shl32' of type 'O12' defined in file '_shl32.o12'
+  in segment: 'text'
+   000012CC 'shl32'
+
+ in module: '_sub32' of type 'O12' defined in file '_sub32.o12'
+  in segment: 'text'
+   000012E5 'sub32'
+---
+ End of listfile

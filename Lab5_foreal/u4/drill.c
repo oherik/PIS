@@ -2,7 +2,7 @@
 #include "drill.h"
 #include "clock.h"
 
-static unsigned int DCShadow = 0;
+static unsigned int DCShadow;
 
 void Outone(int bit){		//Sätter en bit i borren till 1
 	unsigned int mask = 1;
@@ -11,7 +11,7 @@ void Outone(int bit){		//Sätter en bit i borren till 1
 	} else {
 		mask = mask << bit;
 		DCShadow = DCShadow | mask;
-		//DRILL = DCShadow;
+		DRILL = DCShadow;
 	}
 }
 
@@ -22,25 +22,92 @@ void Outzero(int bit){ 		//Sätter en bit i borren till 0
 	} else {
 		mask = mask << bit;
 		DCShadow = DCShadow & ~mask;
-		//DRILL = DCshadow;
+		DRILL = DCShadow;
 	}
-
-
 }
 
 void MotorStart(void){
 	if(DCShadow & 0x02 == 0){		//Kolla om motorn är startad
 		Outone(2);
-		hold(1000);	
+		hold((time_type)1000);	
 	}
 }
 
-void MotorStop(void);
-void DrillDown(void);
-void DrillUp(void);
-int Nste(int);
+void MotorStop(void){
+	Outzero(2);
+}
+
+void DrillDown(void){
+	Outone(3);
+}
+
+void DrillUp(void){
+	Outzero(3);
+}
+
+void Alarm(int count){
+	while(count>0){
+		Outone(4);
+		hold((time_type)1000);
+		Outzero(4);
+		count--;
+		if(count == 0){
+			hold((time_type)500);
+		}
+	}
+}
+
+int Step(void){
+	unsigned int status = DRILLSTATUS;
+	if(status & 0x02 == 0){
+		Alarm(2);
+		return 0;
+	}
+	Outone(1);
+	Outone(0);
+	hold((time_type)500);
+	Outzero(0);
+	return 1;
+
+}
+
+int NStep(int steps){
+int error;
+	while(steps>0){
+		error = Step();
+		if(error == 0){
+			return 0;
+		}
+	}
+	return 1;
+}
+
+int DrillDownTest(void){
+	char tries = 20;
+	unsigned int status;
+	while((status & 0x04 != 0)){
+		status = DRILLSTATUS;
+		if(tries == 0){
+			Alarm(2);
+			return 0;
+		} else{
+			hold((time_type)250);
+			tries--;
+		}
+	}
+	return 1;
+}
+
+
+int DrillHole(void){
+	int error; 
+	DrillDown();
+	error = DrillDownTest();
+	DrillUp();
+	return error;
+}
+
+
 int DrillDownTest(void);
-void Alarm(int);
-void DrillHole(void);
 int RefPos(void);
 void DoAuto(void);

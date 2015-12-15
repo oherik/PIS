@@ -1,0 +1,536 @@
+S0030000FC
+S10D1000CF2FFF161096A720FD0065
+S123100A1B9E87C77C12E07C12DE7912E3CC00106C80EC807B003BC6807B12E2F612E27B6F
+S123102A0038CC10CE7C3FF01610CB1B823DA7CD0000CC00823B35FD12DEFC12E03B3516B7
+S123104A10D21B887D12DE7C12E0C680FA12E37B12E3F612E37B00373DA7FD12DEFC12E021
+S123106A3D1B9C1610636D806C82ED86EC883B35ED84EC863B351610D21B883B35161063CC
+S123108A3B351610E11B8825E11B843D1B9A16100A1610636D826C84CD0000CC03E83B3505
+S12310AAED86EC883B351610FA1B886C80CD0000CC03E83B3516106B1B841820FFD31B864D
+S12310CA3D10EF3D1610380BEC84E388B7C6EC82E987A986B7C63DEC84A3883939EC84384C
+S12310EAE288B721E4B0CAFBA28639E4B0B7123D1B9987C76C856C83C6206B82CD8000CC7E
+S123110A00003B35ED8DEC8F3B351612971B888D000026058C0000270210F72707CC00011B
+S123112A6C80200487C76C80CD0000CC00013B35ED8DEC8F3B351612B51B886D896C8BCDAE
+S123114A0000CC00013B35ED87EC893B351612B51B886D836C85EC808C00002717CD000087
+S123116ACC00013B35ED87EC893B351612A61B886D836C85ED8DEC8F3B35ED87EC893B35BB
+S123118A1610E11B881825002CED8DEC8F3B35ED87EC893B351612CE1B886D836C85CD0029
+S12311AA00CC00013B35ED8DEC8F3B351612A61B886D896C8B6382E6821826FF3FED89ECF6
+S12311CA8B1B873D1B9ACD000087C73B35EDF010ECF0123B351610E11B882C14ED8CEC8E2F
+S12311EAB7C64151B7C64151C300012401022004ED8CEC8E3B35CD000087C73B35EDF010D9
+S123120AECF0123B351610E11B882C14ED8CEC8EB7C64151B7C64151C30001240102200458
+S123122AED8CEC8E3B351610FA1B886D826C84CD000087C73B35EDF010ECF0123B3516109F
+S123124AE11B882C05CC0001200287C76C80CD000087C73B35ED8CEC8E3B351610E11B880A
+S123126A2C05CC0001200287C7E881A8808C00002714ED82EC84B7C64151B7C64151C300DA
+S123128A012401022004ED82EC841B863DEC82A486E487B7C6EC84A488E4893DEC82AA86D3
+S12312AAEA87B7C6EC84AA88EA893DEC84ED823635A68C841F270A5865826581658043261D
+S11712CAF631323DEC84A388B7C6EC82E287A286B7C63D3273
+S10912DE00000000000006
+S9031000EC
+SX:C:s:__start
+SX:C:M:clock$C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/clock.c
+SX:C:S:F:clock:init_clock:_init_clock:(typ0)(typ0)
+SX:C:S:F:clock:__func__:___func__:(typ11)
+SX:C:S:L:clock:init_clock:tst:0:(typ11)
+SX:C:S:F:clock:hold:_hold:(typ0)(typ2)
+SX:C:S:L:clock:hold:time:6:(typ2)
+SX:C:S:F:clock:__func__:___func__:(typ11)
+SX:C:S:L:clock:hold:start_time:0:(typ2)
+SX:C:T:  typ0 V (-1)
+SX:C:T:  typ1 L (4)
+SX:C:T:  typ2 l (4)
+SX:C:T:  typ3 C (1)
+SX:C:T:  typ4 c (1)
+SX:C:T:  typ5 S (2)
+SX:C:T:  typ6 s (2)
+SX:C:T:  typ7 g (4)
+SX:C:T:  typ8 G (4)
+SX:C:T:  typ9 h (4)
+SX:C:T:  typ10 R (2)
+SX:C:T:  typ11 I (2)
+SX:C:T:  typ12 i (2)
+SX:C:T:  typ13 E (2)
+SX:C:T:  typ14 F (2)
+SX:C:T:  typ15 P (2)
+SX:C:T: typ2 l (4)
+SX:C:T: typ4 c (1)
+SX:C:T: typ6 s (2)
+SX:C:M:main$C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/main.c
+SX:C:S:F:main:main:_main:(typ0)(typ0)
+SX:C:S:F:main:__func__:___func__:(typ11)
+SX:C:S:L:main:main:time:2:(typ2)
+SX:C:S:L:main:main:time_sec:0:(typ12)
+SX:C:T:  typ0 V (-1)
+SX:C:T:  typ1 L (4)
+SX:C:T:  typ2 l (4)
+SX:C:T:  typ3 C (1)
+SX:C:T:  typ4 c (1)
+SX:C:T:  typ5 S (2)
+SX:C:T:  typ6 s (2)
+SX:C:T:  typ7 g (4)
+SX:C:T:  typ8 G (4)
+SX:C:T:  typ9 h (4)
+SX:C:T:  typ10 R (2)
+SX:C:T:  typ11 I (2)
+SX:C:T:  typ12 i (2)
+SX:C:T:  typ13 E (2)
+SX:C:T:  typ14 F (2)
+SX:C:T:  typ15 P (2)
+SX:C:T: typ2 l (4)
+SX:C:T: typ4 c (1)
+SX:C:T: typ6 s (2)
+SX:A:M:startup$C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/startup.s12
+SX:C:T: typ2 l (4)
+SX:C:T: typ4 c (1)
+SX:C:T: typ6 s (2)
+SX:C:M:drill$C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/drill.c
+SX:C:T:  typ0 V (-1)
+SX:C:T:  typ1 L (4)
+SX:C:T:  typ2 l (4)
+SX:C:T:  typ3 C (1)
+SX:C:T:  typ4 c (1)
+SX:C:T:  typ5 S (2)
+SX:C:T:  typ6 s (2)
+SX:C:T:  typ7 g (4)
+SX:C:T:  typ8 G (4)
+SX:C:T:  typ9 h (4)
+SX:C:T:  typ10 R (2)
+SX:C:T:  typ11 I (2)
+SX:C:T:  typ12 i (2)
+SX:C:T:  typ13 E (2)
+SX:C:T:  typ14 F (2)
+SX:C:T:  typ15 P (2)
+SX:C:T: typ2 l (4)
+SX:C:T: typ4 c (1)
+SX:C:T: typ6 s (2)
+SX:A:M:interrupt$C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/interrupt.s12
+SX:C:T: typ2 l (4)
+SX:C:T: typ4 c (1)
+SX:C:T: typ6 s (2)
+SX:C:M:_add32$../src/libcc/common/_add32.c
+SX:C:S:F:_add32:add32:add32:(typ2)(typ2)(typ2)
+SX:C:S:L:_add32:add32:a:2:(typ2)
+SX:C:S:L:_add32:add32:b:6:(typ2)
+SX:C:S:F:_add32:__func__:___func__:(typ11)
+SX:C:T:  typ0 V (-1)
+SX:C:T:  typ1 L (4)
+SX:C:T:  typ2 l (4)
+SX:C:T:  typ3 C (1)
+SX:C:T:  typ4 c (1)
+SX:C:T:  typ5 S (2)
+SX:C:T:  typ6 s (2)
+SX:C:T:  typ7 g (4)
+SX:C:T:  typ8 G (4)
+SX:C:T:  typ9 h (4)
+SX:C:T:  typ10 R (2)
+SX:C:T:  typ11 I (2)
+SX:C:T:  typ12 i (2)
+SX:C:T:  typ13 E (2)
+SX:C:T:  typ14 F (2)
+SX:C:T:  typ15 P (2)
+SX:C:T:_add32: typ16-_add32 Z (4)U float_long {\
+f:(0):(typ7);\
+l:(0):(typ1);\
+}
+SX:C:T:_add32: typ17-_add32 Z (4)U long_int {\
+l:(0):(typ1);\
+s:(0):(typ18-_add32);\
+}
+SX:C:T:_add32: typ18-_add32 Z (4)S {\
+msw:(0):(typ12);\
+lsw:(2):(typ12);\
+}
+SX:C:T: typ2 l (4)
+SX:C:T: typ4 c (1)
+SX:C:T: typ6 s (2)
+SX:C:M:_cmp32$../src/libcc/common/_cmp32.c
+SX:C:S:F:_cmp32:cmp32:cmp32:(typ2)(typ2)(typ2)
+SX:C:S:L:_cmp32:cmp32:a:2:(typ2)
+SX:C:S:L:_cmp32:cmp32:b:6:(typ2)
+SX:C:S:F:_cmp32:__func__:___func__:(typ11)
+SX:C:T:  typ0 V (-1)
+SX:C:T:  typ1 L (4)
+SX:C:T:  typ2 l (4)
+SX:C:T:  typ3 C (1)
+SX:C:T:  typ4 c (1)
+SX:C:T:  typ5 S (2)
+SX:C:T:  typ6 s (2)
+SX:C:T:  typ7 g (4)
+SX:C:T:  typ8 G (4)
+SX:C:T:  typ9 h (4)
+SX:C:T:  typ10 R (2)
+SX:C:T:  typ11 I (2)
+SX:C:T:  typ12 i (2)
+SX:C:T:  typ13 E (2)
+SX:C:T:  typ14 F (2)
+SX:C:T:  typ15 P (2)
+SX:C:T:_cmp32: typ16-_cmp32 Z (4)U float_long {\
+f:(0):(typ7);\
+l:(0):(typ1);\
+}
+SX:C:T:_cmp32: typ17-_cmp32 Z (4)U long_int {\
+l:(0):(typ1);\
+s:(0):(typ18-_cmp32);\
+}
+SX:C:T:_cmp32: typ18-_cmp32 Z (4)S {\
+msw:(0):(typ12);\
+lsw:(2):(typ12);\
+}
+SX:C:T: typ2 l (4)
+SX:C:T: typ4 c (1)
+SX:C:T: typ6 s (2)
+SX:C:M:_div32$../src/libcc/common/_div32.c
+SX:C:S:F:_div32:divu32:divu32:(typ2)(typ2)(typ2)
+SX:C:S:L:_div32:divu32:a:9:(typ2)
+SX:C:S:L:_div32:divu32:b:13:(typ2)
+SX:C:S:F:_div32:__func__:___func__:(typ11)
+SX:C:S:L:_div32:divu32:rest:3:(typ2)
+SX:C:S:L:_div32:divu32:count:2:(typ4)
+SX:C:S:L:_div32:divu32:c:0:(typ5)
+SX:C:S:F:_div32:divs32:divs32:(typ1)(typ1)(typ1)
+SX:C:S:L:_div32:divs32:a:8:(typ1)
+SX:C:S:L:_div32:divs32:b:12:(typ1)
+SX:C:S:F:_div32:__func__:___func__:(typ11)
+SX:C:S:L:_div32:divs32:r:2:(typ1)
+SX:C:T:  typ0 V (-1)
+SX:C:T:  typ1 L (4)
+SX:C:T:  typ2 l (4)
+SX:C:T:  typ3 C (1)
+SX:C:T:  typ4 c (1)
+SX:C:T:  typ5 S (2)
+SX:C:T:  typ6 s (2)
+SX:C:T:  typ7 g (4)
+SX:C:T:  typ8 G (4)
+SX:C:T:  typ9 h (4)
+SX:C:T:  typ10 R (2)
+SX:C:T:  typ11 I (2)
+SX:C:T:  typ12 i (2)
+SX:C:T:  typ13 E (2)
+SX:C:T:  typ14 F (2)
+SX:C:T:  typ15 P (2)
+SX:C:T:_div32: typ16-_div32 Z (4)U float_long {\
+f:(0):(typ7);\
+l:(0):(typ1);\
+}
+SX:C:T:_div32: typ17-_div32 Z (4)U long_int {\
+l:(0):(typ1);\
+s:(0):(typ18-_div32);\
+}
+SX:C:T:_div32: typ18-_div32 Z (4)S {\
+msw:(0):(typ12);\
+lsw:(2):(typ12);\
+}
+SX:C:T: typ2 l (4)
+SX:C:T: typ4 c (1)
+SX:C:T: typ6 s (2)
+SX:C:M:_and32$../src/libcc/common/_and32.c
+SX:C:S:F:_and32:and32:and32:(typ2)(typ2)(typ2)
+SX:C:S:L:_and32:and32:a:2:(typ2)
+SX:C:S:L:_and32:and32:b:6:(typ2)
+SX:C:S:F:_and32:__func__:___func__:(typ11)
+SX:C:T:  typ0 V (-1)
+SX:C:T:  typ1 L (4)
+SX:C:T:  typ2 l (4)
+SX:C:T:  typ3 C (1)
+SX:C:T:  typ4 c (1)
+SX:C:T:  typ5 S (2)
+SX:C:T:  typ6 s (2)
+SX:C:T:  typ7 g (4)
+SX:C:T:  typ8 G (4)
+SX:C:T:  typ9 h (4)
+SX:C:T:  typ10 R (2)
+SX:C:T:  typ11 I (2)
+SX:C:T:  typ12 i (2)
+SX:C:T:  typ13 E (2)
+SX:C:T:  typ14 F (2)
+SX:C:T:  typ15 P (2)
+SX:C:T:_and32: typ16-_and32 Z (4)U float_long {\
+f:(0):(typ7);\
+l:(0):(typ1);\
+}
+SX:C:T:_and32: typ17-_and32 Z (4)U long_int {\
+l:(0):(typ1);\
+s:(0):(typ18-_and32);\
+}
+SX:C:T:_and32: typ18-_and32 Z (4)S {\
+msw:(0):(typ12);\
+lsw:(2):(typ12);\
+}
+SX:C:T: typ2 l (4)
+SX:C:T: typ4 c (1)
+SX:C:T: typ6 s (2)
+SX:C:M:_or32$../src/libcc/common/_or32.c
+SX:C:S:F:_or32:or32:or32:(typ2)(typ2)(typ2)
+SX:C:S:L:_or32:or32:a:2:(typ2)
+SX:C:S:L:_or32:or32:b:6:(typ2)
+SX:C:S:F:_or32:__func__:___func__:(typ11)
+SX:C:T:  typ0 V (-1)
+SX:C:T:  typ1 L (4)
+SX:C:T:  typ2 l (4)
+SX:C:T:  typ3 C (1)
+SX:C:T:  typ4 c (1)
+SX:C:T:  typ5 S (2)
+SX:C:T:  typ6 s (2)
+SX:C:T:  typ7 g (4)
+SX:C:T:  typ8 G (4)
+SX:C:T:  typ9 h (4)
+SX:C:T:  typ10 R (2)
+SX:C:T:  typ11 I (2)
+SX:C:T:  typ12 i (2)
+SX:C:T:  typ13 E (2)
+SX:C:T:  typ14 F (2)
+SX:C:T:  typ15 P (2)
+SX:C:T:_or32: typ16-_or32 Z (4)U float_long {\
+f:(0):(typ7);\
+l:(0):(typ1);\
+}
+SX:C:T:_or32: typ17-_or32 Z (4)U long_int {\
+l:(0):(typ1);\
+s:(0):(typ18-_or32);\
+}
+SX:C:T:_or32: typ18-_or32 Z (4)S {\
+msw:(0):(typ12);\
+lsw:(2):(typ12);\
+}
+SX:C:T: typ2 l (4)
+SX:C:T: typ4 c (1)
+SX:C:T: typ6 s (2)
+SX:C:M:_shl32$../src/libcc/common/_shl32.c
+SX:C:S:F:_shl32:shl32:shl32:(typ2)(typ2)(typ1)
+SX:C:S:L:_shl32:shl32:a:2:(typ2)
+SX:C:S:L:_shl32:shl32:amount:6:(typ1)
+SX:C:S:F:_shl32:__func__:___func__:(typ11)
+SX:C:T:  typ0 V (-1)
+SX:C:T:  typ1 L (4)
+SX:C:T:  typ2 l (4)
+SX:C:T:  typ3 C (1)
+SX:C:T:  typ4 c (1)
+SX:C:T:  typ5 S (2)
+SX:C:T:  typ6 s (2)
+SX:C:T:  typ7 g (4)
+SX:C:T:  typ8 G (4)
+SX:C:T:  typ9 h (4)
+SX:C:T:  typ10 R (2)
+SX:C:T:  typ11 I (2)
+SX:C:T:  typ12 i (2)
+SX:C:T:  typ13 E (2)
+SX:C:T:  typ14 F (2)
+SX:C:T:  typ15 P (2)
+SX:C:T:_shl32: typ16-_shl32 Z (4)U float_long {\
+f:(0):(typ7);\
+l:(0):(typ1);\
+}
+SX:C:T:_shl32: typ17-_shl32 Z (4)U long_int {\
+l:(0):(typ1);\
+s:(0):(typ18-_shl32);\
+}
+SX:C:T:_shl32: typ18-_shl32 Z (4)S {\
+msw:(0):(typ12);\
+lsw:(2):(typ12);\
+}
+SX:C:T: typ2 l (4)
+SX:C:T: typ4 c (1)
+SX:C:T: typ6 s (2)
+SX:C:M:_sub32$../src/libcc/common/_sub32.c
+SX:C:S:F:_sub32:sub32:sub32:(typ2)(typ1)(typ1)
+SX:C:S:L:_sub32:sub32:a:2:(typ1)
+SX:C:S:L:_sub32:sub32:b:6:(typ1)
+SX:C:S:F:_sub32:__func__:___func__:(typ11)
+SX:C:T:  typ0 V (-1)
+SX:C:T:  typ1 L (4)
+SX:C:T:  typ2 l (4)
+SX:C:T:  typ3 C (1)
+SX:C:T:  typ4 c (1)
+SX:C:T:  typ5 S (2)
+SX:C:T:  typ6 s (2)
+SX:C:T:  typ7 g (4)
+SX:C:T:  typ8 G (4)
+SX:C:T:  typ9 h (4)
+SX:C:T:  typ10 R (2)
+SX:C:T:  typ11 I (2)
+SX:C:T:  typ12 i (2)
+SX:C:T:  typ13 E (2)
+SX:C:T:  typ14 F (2)
+SX:C:T:  typ15 P (2)
+SX:C:T:_sub32: typ16-_sub32 Z (4)U float_long {\
+f:(0):(typ7);\
+l:(0):(typ1);\
+}
+SX:C:T:_sub32: typ17-_sub32 Z (4)U long_int {\
+l:(0):(typ1);\
+s:(0):(typ18-_sub32);\
+}
+SX:C:T:_sub32: typ18-_sub32 Z (4)S {\
+msw:(0):(typ12);\
+lsw:(2):(typ12);\
+}
+SX:C:T: typ2 l (4)
+SX:C:T: typ4 c (1)
+SX:C:T: typ6 s (2)
+SX:A:X:startup:7:1000
+SX:A:X:startup:8:1003
+SX:A:X:startup:9:1006
+SX:A:X:startup:10:1007
+SX:A:F:startup:__start:1000:6
+SX:A:E:startup:__start:1009:11
+SX:C:F:clock:_init_clock:0000100A:18
+SX:C:X:clock:18:1:100A
+SX:C:X:clock:21:11:100C
+SX:C:X:clock:22:17:1014
+SX:C:X:clock:25:11:1017
+SX:C:X:clock:26:29:101C
+SX:C:X:clock:29:20:1021
+SX:C:X:clock:30:38:1026
+SX:C:X:clock:33:26:102C
+SX:C:X:clock:36:9:1032
+SX:C:X:clock:37:1:1035
+SX:C:Z:clock:37:1:1035
+SX:C:E:clock:_init_clock:00001038:37
+SX:C:F:clock:_clock_inter:00001038:38
+SX:C:X:clock:38:1:1038
+SX:C:X:clock:39:13:1039
+SX:C:X:clock:40:22:1054
+SX:C:X:clock:41:38:105C
+SX:C:X:clock:42:1:1062
+SX:C:Z:clock:42:1:1062
+SX:C:E:clock:_clock_inter:00001063:42
+SX:C:F:clock:_get_time:00001063:44
+SX:C:X:clock:44:1:1063
+SX:C:X:clock:46:1:106A
+SX:C:Z:clock:46:1:106A
+SX:C:E:clock:_get_time:0000106B:46
+SX:C:F:clock:_hold:0000106B:47
+SX:C:X:clock:47:1:106B
+SX:C:X:clock:48:23:106D
+SX:C:X:clock:49:7:1074
+SX:C:X:clock:51:1:1093
+SX:C:Z:clock:51:1:1093
+SX:C:E:clock:_hold:00001096:51
+SX:C:F:main:_main:00001096:3
+SX:C:X:main:3:1:1096
+SX:C:X:main:6:11:1098
+SX:C:X:main:7:6:109B
+SX:C:X:main:8:18:109B
+SX:C:X:main:9:21:10A2
+SX:C:X:main:10:21:10B7
+SX:C:X:main:12:1:10C8
+SX:C:Z:main:12:1:10C8
+SX:C:E:main:_main:000010CB:12
+SX:A:X:interrupt:5:10CB
+SX:A:X:interrupt:6:10CD
+SX:A:X:interrupt:10:10CE
+SX:A:X:interrupt:11:10D1
+SX:C:F:_add32:add32:000010D2:9
+SX:C:X:_add32:9:13:10D2
+SX:C:X:_add32:120:2:10D2
+SX:C:X:_add32:121:2:10D4
+SX:C:X:_add32:122:2:10D6
+SX:C:X:_add32:123:2:10D8
+SX:C:X:_add32:124:2:10DA
+SX:C:X:_add32:125:2:10DC
+SX:C:X:_add32:126:2:10DE
+SX:C:X:_add32:132:1:10E0
+SX:C:Z:_add32:132:1:10E0
+SX:C:E:_add32:add32:000010E1:132
+SX:C:F:_cmp32:cmp32:000010E1:12
+SX:C:X:_cmp32:12:13:10E1
+SX:C:X:_cmp32:186:2:10E1
+SX:C:X:_cmp32:187:2:10E3
+SX:C:X:_cmp32:188:2:10E5
+SX:C:X:_cmp32:189:2:10E6
+SX:C:X:_cmp32:190:2:10E7
+SX:C:X:_cmp32:191:2:10E9
+SX:C:X:_cmp32:192:2:10EA
+SX:C:X:_cmp32:193:2:10EC
+SX:C:X:_cmp32:194:2:10EE
+SX:C:X:_cmp32:195:2:10F0
+SX:C:X:_cmp32:196:2:10F2
+SX:C:X:_cmp32:197:2:10F4
+SX:C:X:_cmp32:198:2:10F5
+SX:C:X:_cmp32:199:2:10F7
+SX:C:X:_cmp32:204:1:10F9
+SX:C:Z:_cmp32:204:1:10F9
+SX:C:E:_cmp32:cmp32:000010FA:204
+SX:C:F:_div32:divu32:000010FA:9
+SX:C:X:_div32:9:13:10FA
+SX:C:X:_div32:12:25:10FC
+SX:C:X:_div32:16:4:1106
+SX:C:X:_div32:17:8:1127
+SX:C:X:_div32:19:8:112E
+SX:C:X:_div32:20:9:1132
+SX:C:X:_div32:21:12:1149
+SX:C:X:_div32:22:4:1160
+SX:C:X:_div32:23:13:1167
+SX:C:X:_div32:25:4:117E
+SX:C:X:_div32:26:12:1193
+SX:C:X:_div32:27:10:11A8
+SX:C:X:_div32:29:9:11BF
+SX:C:X:_div32:31:1:11CB
+SX:C:Z:_div32:31:1:11CB
+SX:C:E:_div32:divu32:000011CE:31
+SX:C:F:_div32:divs32:000011CE:34
+SX:C:X:_div32:34:13:11CE
+SX:C:X:_div32:38:46:11D0
+SX:C:X:_div32:40:4:1239
+SX:C:X:_div32:44:1:1294
+SX:C:Z:_div32:44:1:1294
+SX:C:E:_div32:divs32:00001297:44
+SX:C:F:_and32:and32:00001297:9
+SX:C:X:_and32:9:13:1297
+SX:C:X:_and32:118:2:1297
+SX:C:X:_and32:119:2:1299
+SX:C:X:_and32:120:2:129B
+SX:C:X:_and32:121:2:129D
+SX:C:X:_and32:122:2:129F
+SX:C:X:_and32:123:2:12A1
+SX:C:X:_and32:124:2:12A3
+SX:C:X:_and32:130:1:12A5
+SX:C:Z:_and32:130:1:12A5
+SX:C:E:_and32:and32:000012A6:130
+SX:C:F:_or32:or32:000012A6:8
+SX:C:X:_or32:8:13:12A6
+SX:C:X:_or32:118:2:12A6
+SX:C:X:_or32:119:2:12A8
+SX:C:X:_or32:120:2:12AA
+SX:C:X:_or32:121:2:12AC
+SX:C:X:_or32:122:2:12AE
+SX:C:X:_or32:123:2:12B0
+SX:C:X:_or32:124:2:12B2
+SX:C:X:_or32:130:1:12B4
+SX:C:Z:_or32:130:1:12B4
+SX:C:E:_or32:or32:000012B5:130
+SX:C:F:_shl32:shl32:000012B5:9
+SX:C:X:_shl32:9:13:12B5
+SX:C:X:_shl32:184:2:12B5
+SX:C:X:_shl32:185:2:12B7
+SX:C:X:_shl32:186:2:12B9
+SX:C:X:_shl32:187:2:12BA
+SX:C:X:_shl32:188:2:12BB
+SX:C:X:_shl32:189:2:12BD
+SX:C:X:_shl32:190:2:12BF
+SX:C:X:_shl32:191:2:12C1
+SX:C:X:_shl32:192:2:12C1
+SX:C:X:_shl32:193:2:12C2
+SX:C:X:_shl32:194:2:12C4
+SX:C:X:_shl32:195:2:12C6
+SX:C:X:_shl32:196:2:12C8
+SX:C:X:_shl32:197:2:12C9
+SX:C:X:_shl32:198:2:12CB
+SX:C:X:_shl32:199:2:12CB
+SX:C:X:_shl32:200:2:12CC
+SX:C:X:_shl32:205:1:12CD
+SX:C:Z:_shl32:205:1:12CD
+SX:C:E:_shl32:shl32:000012CE:205
+SX:C:F:_sub32:sub32:000012CE:10
+SX:C:X:_sub32:10:13:12CE
+SX:C:X:_sub32:125:2:12CE
+SX:C:X:_sub32:126:2:12D0
+SX:C:X:_sub32:127:2:12D2
+SX:C:X:_sub32:128:2:12D4
+SX:C:X:_sub32:129:2:12D6
+SX:C:X:_sub32:130:2:12D8
+SX:C:X:_sub32:131:2:12DA
+SX:C:X:_sub32:135:1:12DC
+SX:C:Z:_sub32:135:1:12DC
+SX:C:E:_sub32:sub32:000012DD:135
+SX:C:S:G:clock:crgintshadow:_crgintshadow:000012E2:(typ4)
+SX:C:S:G:clock:crgflgshadow:_crgflgshadow:000012E3:(typ4)
+SX:C:S:S:clock:millis:000012DE:(typ2)

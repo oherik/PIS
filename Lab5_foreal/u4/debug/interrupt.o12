@@ -1,0 +1,15 @@
+mod:interrupt:O12:interrupt.o12
+seg:text:7
+C:text	10EF3D1600000B
+RG:text:interrupt:00000004:O:W:_clock_inter:10
+G:text:interrupt:00000003:_IRQ_r
+G:text:interrupt:00000000:_clear_i
+SY:A:M:interrupt$C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/interrupt.s12
+SY:A:X:interrupt:5:text:0
+SY:A:X:interrupt:6:text:2
+SY:A:X:interrupt:10:text:3
+SY:A:X:interrupt:11:text:6
+SY:C:T: typ2 l (4)
+SY:C:T: typ4 c (1)
+SY:C:T: typ6 s (2)
+e

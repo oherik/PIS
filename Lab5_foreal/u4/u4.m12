@@ -50,7 +50,10 @@ FILES= \
 	".\clock.h" "" "1"  \
 	".\main.c" "" "1"  \
 	".\ports.h" "" "1"  \
-	".\startup.s12" "" "1" 
+	".\startup.s12" "" "1"  \
+	".\drill.c" "" "1"  \
+	".\drill.h" "" "1"  \
+	".\interrupt.s12" "" "1" 
 #-----------------------------------------------
 #PROJECT OPTIONS SECTION
 
@@ -69,7 +72,9 @@ LNFLAGS=-g -i default.lsc
 OBJ= \
 	"debug\clock.o12" \
 	"debug\main.o12" \
-	"debug\startup.o12"
+	"debug\startup.o12" \
+	"debug\drill.o12" \
+	"debug\interrupt.o12"
 #-----------------------------------------------
 #DEFINES/UNDEFINES SECTION
 
@@ -130,6 +135,9 @@ clean:
 	RMFI "debug\main.o12"
 	RMFI "debug\ports.o12"
 	RMFI "debug\startup.o12"
+	RMFI "debug\drill.o12"
+	RMFI "debug\drill.o12"
+	RMFI "debug\interrupt.o12"
 #-----------------------------------------------
 
 
@@ -149,6 +157,13 @@ clean:
 "debug\startup.o12":	\
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/startup.s12"
 	ASSM  $(ASFLAGS) $(ASMDEF) -o"debug\startup.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/startup.s12"
+"debug\drill.o12":	\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/drill.c"
+	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
+	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"debug\drill.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/drill.c"
+"debug\interrupt.o12":	\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/interrupt.s12"
+	ASSM  $(ASFLAGS) $(ASMDEF) -o"debug\interrupt.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/interrupt.s12"
 !EICONF	Debug
 
 !IFCONF	Final
@@ -166,7 +181,9 @@ LNFLAGS=-i default.lsc
 OBJ= \
 	"final\clock.o12" \
 	"final\main.o12" \
-	"final\startup.o12"
+	"final\startup.o12" \
+	"final\drill.o12" \
+	"final\interrupt.o12"
 #-----------------------------------------------
 #DEFINES/UNDEFINES SECTION
 
@@ -221,6 +238,9 @@ clean:
 	RMFI "final\main.o12"
 	RMFI "final\ports.o12"
 	RMFI "final\startup.o12"
+	RMFI "final\drill.o12"
+	RMFI "final\drill.o12"
+	RMFI "final\interrupt.o12"
 #-----------------------------------------------
 
 
@@ -240,4 +260,11 @@ clean:
 "final\startup.o12":	\
 	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/startup.s12"
 	ASSM  $(ASFLAGS) $(ASMDEF) -o"final\startup.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/startup.s12"
+"final\drill.o12":	\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/drill.c"
+	COMP  $(CCFLAGS) $(DEF) $(UNDEF)  \
+	-I"C:\Program Files (x86)\GMV\EducDist\bin\..\include" $(INC) -o"final\drill.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/drill.c"
+"final\interrupt.o12":	\
+	"C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/interrupt.s12"
+	ASSM  $(ASFLAGS) $(ASMDEF) -o"final\interrupt.o12" "C:/Users/Erik/Documents/GitHub/PIS/Lab5_foreal/u4/interrupt.s12"
 !EICONF	Final

@@ -1,0 +1,13 @@
+	export	_clear_i
+	export	_IRQ_r
+	import	_clock_inter
+_clear_i:
+	CLI
+	RTS
+end_clear_i
+
+_IRQ_r:
+	JSR	_clock_inter
+	RTI
+_end_IRQ_r	
+	

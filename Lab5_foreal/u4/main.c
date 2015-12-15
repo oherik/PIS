@@ -2,13 +2,15 @@
 #include "drill.h"
 #include "keyboardML15.h"
 
+
 void main(void){
-double pattern[21] = { 0, 1, 1, 1, 1, 1, 1, 1, 2, 1, 5, 2, 2, 2, 2, 4, 4, 3, 8, 2, 0xFF}; 
-int* pattern_ptr = pattern;
+//int pattern[21] = { 0, 1, 1, 1, 1, 1, 1, 1, 2, 1, 5, 2, 2, 2, 2, 4, 4, 3, 8, 2, 0xFF}; 
+//int* pattern_ptr = pattern;
 char key;
 
 init_clock();
-
+DrillInit();
+while(1){
 key = get_key();
 
 switch(key) {
@@ -34,11 +36,11 @@ switch(key) {
 	RefPos();
 	break;
 	case 7:
-	DoAuto(pattern_ptr);
+	Nstep(10);
 	break;    
    }
 
-
+}
 
 
 }

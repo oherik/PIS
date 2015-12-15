@@ -17,10 +17,10 @@ SCRIPT READ FROM THE FOLLOWING FILE(S):
 ---------------------------
  GROUPS AND SEGMENTS:
 
-  GROUP 'test_group', READ/WRITE ,allocation to: 00001000 - 000012E3, (size: 740 Bytes)
+  GROUP 'test_group', READ/WRITE ,allocation to: 00001000 - 0000134F, (size: 848 Bytes)
    00001000 00001009 'init'
-   0000100A 000012DD 'text'
-   000012DE 000012E3 'bss'
+   0000100A 00001347 'text'
+   00001348 0000134F 'bss'
 
   GROUP 'interrupt_vectors', READ/WRITE
    NO SEGMENTS
@@ -30,15 +30,15 @@ SCRIPT READ FROM THE FOLLOWING FILE(S):
 ---------------------------
 LINKER DEFINED CONSTANTS:
    __rom_code_enabled = 0
-   __heap_start = 000012E4
+   __heap_start = 00001350
   from segment 'text'
    0000100A '__text__start'
-   000012DE '__text__end'
-   000002D4 '__text__size'
+   00001348 '__text__end'
+   0000033E '__text__size'
   from segment 'bss'
-   000012DE '__bss__start'
-   000012E4 '__bss__end'
-   00000006 '__bss__size'
+   00001348 '__bss__start'
+   00001350 '__bss__end'
+   00000008 '__bss__size'
   from segment 'data'
    00000000 '__data__start'
    00000000 '__data__end'
@@ -61,8 +61,8 @@ GLOBAL SYMBOL(S):
    00001063 '_get_time'
    00001038 '_clock_inter'
   in segment: 'bss'
-   000012E3 '_crgflgshadow'
-   000012E2 '_crgintshadow'
+   0000134D '_crgflgshadow'
+   0000134C '_crgintshadow'
 
  in module: 'main' of type 'O12' defined in file 'main.o12'
   in segment: 'text'
@@ -74,39 +74,42 @@ GLOBAL SYMBOL(S):
    00001000 '__start'
 
  in module: 'drill' of type 'O12' defined in file 'drill.o12'
+  in segment: 'text'
+   000010FF '_Outzero'
+   000010CB '_Outone'
 
  in module: 'interrupt' of type 'O12' defined in file 'interrupt.o12'
   in segment: 'text'
-   000010CE '_IRQ_r'
-   000010CB '_clear_i'
+   00001139 '_IRQ_r'
+   00001136 '_clear_i'
 
  in module: '_add32' of type 'O12' defined in file '_add32.o12'
   in segment: 'text'
-   000010D2 'add32'
+   0000113D 'add32'
 
  in module: '_cmp32' of type 'O12' defined in file '_cmp32.o12'
   in segment: 'text'
-   000010E1 'cmp32'
+   0000114C 'cmp32'
 
  in module: '_div32' of type 'O12' defined in file '_div32.o12'
   in segment: 'text'
-   000011CE 'divs32'
-   000010FA 'divu32'
+   00001239 'divs32'
+   00001165 'divu32'
 
  in module: '_and32' of type 'O12' defined in file '_and32.o12'
   in segment: 'text'
-   00001297 'and32'
+   00001302 'and32'
 
  in module: '_or32' of type 'O12' defined in file '_or32.o12'
   in segment: 'text'
-   000012A6 'or32'
+   00001311 'or32'
 
  in module: '_shl32' of type 'O12' defined in file '_shl32.o12'
   in segment: 'text'
-   000012B5 'shl32'
+   00001320 'shl32'
 
  in module: '_sub32' of type 'O12' defined in file '_sub32.o12'
   in segment: 'text'
-   000012CE 'sub32'
+   00001339 'sub32'
 ---
  End of listfile

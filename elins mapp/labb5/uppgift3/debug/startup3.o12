@@ -1,0 +1,18 @@
+mod:startup3:O12:startup3.o12
+seg:text:0
+seg:init:9
+C:init	CF2FFF160000A720FD
+RG:init:startup3:00000004:O:W:_main:8
+G:init:startup3:00000006:_exit
+G:init:startup3:00000000:__start
+SY:A:M:startup3$C:/Users/Elin/OneDrive/Documents/piss/xcc/uppgift3/startup3.s12
+SY:A:X:startup3:7:init:0
+SY:A:X:startup3:8:init:3
+SY:A:X:startup3:9:init:6
+SY:A:X:startup3:10:init:7
+SY:C:T: typ2 l (4)
+SY:C:T: typ4 c (1)
+SY:C:T: typ6 s (2)
+SY:A:F:startup3:init:__start:00000000:6
+SY:A:E:startup3:init:__start:9:11
+e

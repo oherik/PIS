@@ -1,0 +1,13 @@
+	import _clock_inter
+	export	_nollstalla_I_flaggan
+	export	_avbrottsrutin
+
+_nollstalla_I_flaggan:
+	CLI
+	RTS
+
+_avbrottsrutin:
+	JSR	_clock_inter	
+	RTI
+	
+

@@ -1,0 +1,94 @@
+mod:clock:O12:clock.o12
+seg:text:129
+seg:bss:4
+seg:data:0
+seg:rodata:0
+C:text	A787C77C00027C0000C6807B0038C610
+C:text	7B003BCC00007C3FF2CC00007C3FF016
+C:text	00003D
+C:text	A7FD0000FC0002C300012401027D0000
+C:text	7C0002C6807B00371600003D
+C:text	A7CD0000CC000A3B35FD0000FC00023B
+C:text	351600001B883D
+C:text	1B9C1600006D806C82ED86EC883B35ED
+C:text	84EC863B351600003B351600001B883B
+C:text	351600001B8825E11B843D
+C:bss	00000000
+RG:text:clock:00000014:O:W:_avbrottsrutin:54
+RG:text:clock:0000001A:O:W:_avbrottsrutin:58
+RG:text:clock:00000020:O:W:_nollstalla_I_flaggan:62
+RG:text:clock:0000003C:O:W:_nollstalla_I_flaggan:97
+RG:text:clock:00000051:O:W:mulu32:126
+RG:text:clock:00000059:O:W:_get_time:156
+RG:text:clock:0000006C:O:W:_get_time:175
+RG:text:clock:00000071:O:W:sub32:178
+RG:text:clock:00000078:O:W:cmp32:182
+RL:text:clock:00000004:O:W:00000000:bss:42
+RL:text:clock:00000007:O:W:00000000:bss:43
+RL:text:clock:00000025:O:W:00000000:bss:84
+RL:text:clock:00000028:O:W:00000000:bss:85
+RL:text:clock:00000031:O:W:00000000:bss:89
+RL:text:clock:00000034:O:W:00000000:bss:90
+RL:text:clock:00000049:O:W:00000000:bss:122
+RL:text:clock:0000004C:O:W:00000000:bss:123
+G:text:clock:00000056:_hold
+G:text:clock:00000000:_init_clock
+G:text:clock:0000003F:_get_time
+G:text:clock:00000023:_clock_inter
+SY:C:M:clock$C:/Users/Elin/OneDrive/Documents/piss/xcc/uppgift3/clock.c
+SY:C:S:S:clock:bss:tick:00000000:(typ2)
+SY:C:F:clock:text:_init_clock:00000000:9
+SY:C:X:clock:9:1:text:0
+SY:C:X:clock:12:9:text:1
+SY:C:X:clock:13:25:text:9
+SY:C:X:clock:14:25:text:E
+SY:C:X:clock:15:32:text:13
+SY:C:X:clock:16:32:text:19
+SY:C:X:clock:17:22:text:1F
+SY:C:X:clock:18:1:text:22
+SY:C:Z:clock:18:1:text:22
+SY:C:E:clock:text:_init_clock:00000023:18
+SY:C:F:clock:text:_clock_inter:00000023:20
+SY:C:X:clock:20:1:text:23
+SY:C:X:clock:22:5:text:24
+SY:C:X:clock:23:23:text:36
+SY:C:X:clock:24:22:text:3B
+SY:C:X:clock:25:1:text:3E
+SY:C:Z:clock:25:1:text:3E
+SY:C:E:clock:text:_clock_inter:0000003F:25
+SY:C:F:clock:text:_get_time:0000003F:27
+SY:C:X:clock:27:1:text:3F
+SY:C:X:clock:30:1:text:55
+SY:C:Z:clock:30:1:text:55
+SY:C:E:clock:text:_get_time:00000056:30
+SY:C:F:clock:text:_hold:00000056:32
+SY:C:X:clock:32:1:text:56
+SY:C:S:F:clock:hold:_hold:(typ0)(typ2)
+SY:C:S:L:clock:hold:ms:6:(typ2)
+SY:C:S:F:clock:__func__:___func__:(typ11)
+SY:C:S:L:clock:hold:tiden:0:(typ2)
+SY:C:X:clock:37:17:text:58
+SY:C:X:clock:39:7:text:5F
+SY:C:X:clock:42:1:text:7E
+SY:C:Z:clock:42:1:text:7E
+SY:C:E:clock:text:_hold:00000081:42
+SY:C:T:  typ0 V (-1)
+SY:C:T:  typ1 L (4)
+SY:C:T:  typ2 l (4)
+SY:C:T:  typ3 C (1)
+SY:C:T:  typ4 c (1)
+SY:C:T:  typ5 S (2)
+SY:C:T:  typ6 s (2)
+SY:C:T:  typ7 g (4)
+SY:C:T:  typ8 G (4)
+SY:C:T:  typ9 h (4)
+SY:C:T:  typ10 R (2)
+SY:C:T:  typ11 I (2)
+SY:C:T:  typ12 i (2)
+SY:C:T:  typ13 E (2)
+SY:C:T:  typ14 F (2)
+SY:C:T:  typ15 P (2)
+SY:C:T: typ2 l (4)
+SY:C:T: typ4 c (1)
+SY:C:T: typ6 s (2)
+e

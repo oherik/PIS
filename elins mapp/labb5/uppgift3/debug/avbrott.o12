@@ -1,0 +1,15 @@
+mod:avbrott:O12:avbrott.o12
+seg:text:7
+C:text	10EF3D1600000B
+RG:text:avbrott:00000004:O:W:_clock_inter:10
+G:text:avbrott:00000003:_avbrottsrutin
+G:text:avbrott:00000000:_nollstalla_I_flaggan
+SY:A:M:avbrott$C:/Users/Elin/OneDrive/Documents/piss/xcc/uppgift3/avbrott.s12
+SY:A:X:avbrott:6:text:0
+SY:A:X:avbrott:7:text:2
+SY:A:X:avbrott:10:text:3
+SY:A:X:avbrott:11:text:6
+SY:C:T: typ2 l (4)
+SY:C:T: typ4 c (1)
+SY:C:T: typ6 s (2)
+e

@@ -1,0 +1,138 @@
+S0030000FC
+S10D1000CF2FFF16109BA720FD0060
+S123100A1B9FF609C06B80E7802D06E680B714200220EF1B813D1B9EC6017B09C2C6907BF2
+S123102A09C37909C287C76C80EC808C00062D092014EE80086E8020F0EC80E384B745E6C7
+S123104A007B09C320EC7909C37909C31B823D1B9787C76C87EC878C00062D092028EE87E0
+S123106A086E8720F0EC8BCE000A18101A816B80CC0005A3871AE6E6806B00EC8BCE000A3D
+S123108A18106E8B20D81A81341610201B821B893D1B9E16100A6C80EC803B1610591B82FE
+S10910AA20F11B823D0051
+S9031000EC
+SX:C:s:__start
+SX:A:M:startup$C:/Users/Elin/OneDrive/Documents/piss/xcc/uppgift1/startup.s12
+SX:C:T: typ2 l (4)
+SX:C:T: typ4 c (1)
+SX:C:T: typ6 s (2)
+SX:C:M:keyboardML15$C:/Users/Elin/OneDrive/Documents/piss/xcc/uppgift2/keyboardML15.c
+SX:C:S:F:keyboardML15:get_key:_get_key:(typ11)(typ0)
+SX:C:S:F:keyboardML15:__func__:___func__:(typ11)
+SX:C:S:L:keyboardML15:get_key:key:0:(typ3)
+SX:C:T:  typ0 V (-1)
+SX:C:T:  typ1 L (4)
+SX:C:T:  typ2 l (4)
+SX:C:T:  typ3 C (1)
+SX:C:T:  typ4 c (1)
+SX:C:T:  typ5 S (2)
+SX:C:T:  typ6 s (2)
+SX:C:T:  typ7 g (4)
+SX:C:T:  typ8 G (4)
+SX:C:T:  typ9 h (4)
+SX:C:T:  typ10 R (2)
+SX:C:T:  typ11 I (2)
+SX:C:T:  typ12 i (2)
+SX:C:T:  typ13 E (2)
+SX:C:T:  typ14 F (2)
+SX:C:T:  typ15 P (2)
+SX:C:T: typ2 l (4)
+SX:C:T: typ4 c (1)
+SX:C:T: typ6 s (2)
+SX:C:M:displayML15$C:/Users/Elin/OneDrive/Documents/piss/xcc/uppgift2/displayML15.c
+SX:C:S:F:displayML15:display_digits:_display_digits:(typ0)(typ16-displayML15)
+SX:C:S:L:displayML15:display_digits:vector:4:(typ16-displayML15)
+SX:C:S:F:displayML15:__func__:___func__:(typ11)
+SX:C:S:L:displayML15:display_digits:j:0:(typ11)
+SX:C:S:F:displayML15:display_dec:_display_dec:(typ0)(typ12)
+SX:C:S:L:displayML15:display_dec:keynumber:11:(typ12)
+SX:C:S:F:displayML15:__func__:___func__:(typ11)
+SX:C:S:L:displayML15:display_dec:i:7:(typ11)
+SX:C:S:L:displayML15:display_dec:vec:1:(typ18-displayML15)
+SX:C:T:  typ0 V (-1)
+SX:C:T:  typ1 L (4)
+SX:C:T:  typ2 l (4)
+SX:C:T:  typ3 C (1)
+SX:C:T:  typ4 c (1)
+SX:C:T:  typ5 S (2)
+SX:C:T:  typ6 s (2)
+SX:C:T:  typ7 g (4)
+SX:C:T:  typ8 G (4)
+SX:C:T:  typ9 h (4)
+SX:C:T:  typ10 R (2)
+SX:C:T:  typ11 I (2)
+SX:C:T:  typ12 i (2)
+SX:C:T:  typ13 E (2)
+SX:C:T:  typ14 F (2)
+SX:C:T:  typ15 P (2)
+SX:C:T:displayML15: typ16-displayML15 a *(typ4)
+SX:C:T:displayML15: typ18-displayML15 A (6)(typ4)
+SX:C:T: typ2 l (4)
+SX:C:T: typ4 c (1)
+SX:C:T: typ6 s (2)
+SX:C:M:main$C:/Users/Elin/OneDrive/Documents/piss/xcc/uppgift2/main.c
+SX:C:S:F:main:main:_main:(typ0)(typ0)
+SX:C:S:F:main:__func__:___func__:(typ11)
+SX:C:S:L:main:main:keynumber:0:(typ11)
+SX:C:T:  typ0 V (-1)
+SX:C:T:  typ1 L (4)
+SX:C:T:  typ2 l (4)
+SX:C:T:  typ3 C (1)
+SX:C:T:  typ4 c (1)
+SX:C:T:  typ5 S (2)
+SX:C:T:  typ6 s (2)
+SX:C:T:  typ7 g (4)
+SX:C:T:  typ8 G (4)
+SX:C:T:  typ9 h (4)
+SX:C:T:  typ10 R (2)
+SX:C:T:  typ11 I (2)
+SX:C:T:  typ12 i (2)
+SX:C:T:  typ13 E (2)
+SX:C:T:  typ14 F (2)
+SX:C:T:  typ15 P (2)
+SX:C:T: typ2 l (4)
+SX:C:T: typ4 c (1)
+SX:C:T: typ6 s (2)
+SX:A:X:startup:7:1000
+SX:A:X:startup:8:1003
+SX:A:X:startup:9:1006
+SX:A:X:startup:10:1007
+SX:A:F:startup:__start:1000:6
+SX:A:E:startup:__start:1009:11
+SX:C:F:keyboardML15:_get_key:0000100A:6
+SX:C:X:keyboardML15:6:1:100A
+SX:C:X:keyboardML15:8:7:100C
+SX:C:X:keyboardML15:9:12:100C
+SX:C:X:keyboardML15:10:4:1011
+SX:C:X:keyboardML15:15:1:101D
+SX:C:Z:keyboardML15:15:1:101D
+SX:C:E:keyboardML15:_get_key:00001020:15
+SX:C:F:displayML15:_display_digits:00001020:5
+SX:C:X:displayML15:5:1:1020
+SX:C:X:displayML15:9:21:1022
+SX:C:X:displayML15:10:24:1027
+SX:C:X:displayML15:11:21:102C
+SX:C:X:displayML15:13:7:102F
+SX:C:X:displayML15:13:15:1033
+SX:C:X:displayML15:13:22:103C
+SX:C:X:displayML15:15:29:1043
+SX:C:X:displayML15:18:23:1050
+SX:C:X:displayML15:19:23:1053
+SX:C:X:displayML15:21:1:1056
+SX:C:Z:displayML15:21:1:1056
+SX:C:E:displayML15:_display_digits:00001059:21
+SX:C:F:displayML15:_display_dec:00001059:23
+SX:C:X:displayML15:23:1:1059
+SX:C:X:displayML15:28:6:105B
+SX:C:X:displayML15:28:10:105F
+SX:C:X:displayML15:28:14:1068
+SX:C:X:displayML15:30:24:106F
+SX:C:X:displayML15:31:25:1085
+SX:C:X:displayML15:34:19:1090
+SX:C:X:displayML15:35:1:1098
+SX:C:Z:displayML15:35:1:1098
+SX:C:E:displayML15:_display_dec:0000109B:35
+SX:C:F:main:_main:0000109B:2
+SX:C:X:main:2:1:109B
+SX:C:X:main:4:7:109D
+SX:C:X:main:6:16:109D
+SX:C:X:main:7:23:10A2
+SX:C:X:main:9:1:10AC
+SX:C:Z:main:9:1:10AC
+SX:C:E:main:_main:000010AF:9

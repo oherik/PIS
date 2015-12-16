@@ -57,7 +57,7 @@ void Alarm(int count){
 		hold((time_type)1000);
 		Outzero(4);
 		count--;
-		if(count == 0){
+		if(count != 0){
 			hold((time_type)500);
 		}
 	}

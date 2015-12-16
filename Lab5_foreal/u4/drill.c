@@ -119,12 +119,13 @@ int DrillHole(void){
 
 int RefPos(void){
 	int step_error;
-	unsigned int status = DRILLSTATUS;
-	while(status & 0x01 == 0){
+	unsigned char status = DRILLSTATUS;
+	while((status & 0x01) == 0){
 		step_error = Step();
 		if(step_error == 0){
 			return 0;
 		}
+		status = DRILLSTATUS;
 	}
 	return 1;
 }

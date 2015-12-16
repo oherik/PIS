@@ -36,7 +36,7 @@ switch(key) {
 	RefPos();
 	break;
 	case 7:
-	Nstep(10);
+	DoAuto();
 	break;    
    }
 

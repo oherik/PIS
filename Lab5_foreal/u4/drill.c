@@ -65,7 +65,7 @@ void Alarm(int count){
 
 int Step(void){
 	unsigned char status = DRILLSTATUS;
-	if((status & 0x02) != 0){
+	if((status & 0x02) == 0){
 		Alarm(2);
 		return 0;
 	} else{
@@ -80,15 +80,16 @@ int Step(void){
 
 int Nstep(int steps){
 	int error = 1;
+	
 	while(error != 0){
-		if(steps==0){
+		if(steps<=0){
 			return 1;
 		} else {
 			steps = steps - 1;
 			error = Step();	
 		}
-		return 0;
 	}
+	return 0;
 }
 
 int DrillDownTest(void){

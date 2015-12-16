@@ -43,6 +43,9 @@
 ##OTYPE=1
 #-----------------------------------------------
 #OPEN FILE SECTION
+##OF ".\keyboardML15.c"
+##OF ".\main.c"
+##OF ".\drill.c"
 #-----------------------------------------------
 #PROJECT FILES SECTION
 
